@@ -33,25 +33,23 @@ export default function Footer() {
 
           {/* Coffrets */}
           <div>
-            <h4 className="font-bold uppercase tracking-wider text-xs text-amber-300 mb-3.5">
-              Coffrets Cadeaux
+            <h4 className="font-bold uppercase tracking-wider text-xs text-slate-300 mb-3.5">
+              Nos Coffrets
             </h4>
             <ul className="space-y-2 text-xs text-slate-300">
               <li>
-                <Link to="/coffrets/decouverte" className="hover:text-white transition-colors flex items-center gap-1">
-                  <span>Coffret Découverte (15€ / 26€)</span>
-                  <span className="text-[10px] text-amber-400 font-bold">• Best-Seller</span>
+                <Link to="/coffrets" className="text-foam-red font-bold block pb-1 hover:underline transition-colors">
+                  Voir toutes les offres de coffrets →
                 </Link>
               </li>
               <li>
-                <Link to="/coffrets/exotique" className="hover:text-white transition-colors flex items-center gap-1">
-                  <span>Coffret Exotique Éphémère</span>
-                  <span className="text-[10px] text-emerald-400 font-bold">• Édition Limitée</span>
+                <Link to="/coffrets/decouverte" className="hover:text-white transition-colors">
+                  Coffret Découverte (15€ / 26€)
                 </Link>
               </li>
               <li>
-                <Link to="/nos-bars" className="text-emerald-300 font-bold block pt-1 hover:text-white transition-colors">
-                  ✓ Click & Collect Gratuit (0 €)
+                <Link to="/coffrets/exotique" className="hover:text-white transition-colors">
+                  Coffret Exotique Éphémère (15€ / 26€)
                 </Link>
               </li>
             </ul>

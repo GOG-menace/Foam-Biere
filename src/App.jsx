@@ -10,6 +10,7 @@ import ConfirmationModal from './components/ConfirmationModal';
 import LegalAgeModal from './components/LegalAgeModal';
 
 import HomePage from './pages/HomePage';
+import SetsOverviewPage from './pages/SetsOverviewPage';
 import SetSalesPage from './pages/SetSalesPage';
 import BeerProductPage from './pages/BeerProductPage';
 import BeersOverviewPage from './pages/BeersOverviewPage';
@@ -65,6 +66,9 @@ export default function App() {
             <Routes>
               {/* Home Landing Page */}
               <Route path="/" element={<HomePage />} />
+
+              {/* Dedicated Sets Overview Page (Offers) */}
+              <Route path="/coffrets" element={<SetsOverviewPage />} />
 
               {/* Dedicated Set Sales Pages */}
               <Route path="/coffrets/decouverte" element={<SetSalesPage defaultSlug="coffret-decouverte" />} />

@@ -55,19 +55,19 @@ export default function HomePage() {
               {/* Dual CTA */}
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                 <Link
-                  to="/coffrets/decouverte"
+                  to="/coffrets"
                   className="w-full sm:w-auto py-4 px-8 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-shopify hover:shadow-red-glow transition-all transform hover:-translate-y-0.5 active:translate-y-0"
                 >
                   <Package className="w-5 h-5" />
-                  <span>Découvrir le Coffret Découverte (Dès 15 €)</span>
+                  <span>Découvrir nos Offres de Coffrets (Dès 15 €)</span>
                 </Link>
 
                 <Link
-                  to="/coffrets/exotique"
+                  to="/bieres"
                   className="w-full sm:w-auto py-4 px-7 rounded-2xl bg-white hover:bg-foam-subtle text-foam-navy font-bold text-sm sm:text-base border-2 border-foam-navy/20 hover:border-foam-navy transition-all flex items-center justify-center gap-2 shadow-xs"
                 >
-                  <Sparkles className="w-5 h-5 text-foam-red" />
-                  <span>Coffret Exotique Éphémère</span>
+                  <Beer className="w-5 h-5 text-foam-red" />
+                  <span>Découvrir nos 3 Bières à l'Unité</span>
                 </Link>
               </div>
 
@@ -183,7 +183,9 @@ export default function HomePage() {
           </h2>
           <p className="text-sm sm:text-base text-foam-text leading-relaxed">
             Chaque coffret est disponible en format <strong>3 bouteilles (15,00 €)</strong> ou <strong>6 bouteilles (26,00 €)</strong>. 
-            Cliquez sur un coffret pour accéder à sa page de vente dédiée.
+            <Link to="/coffrets" className="text-xs font-bold text-foam-red hover:underline block mt-1.5">
+              Accéder à la page de toutes nos offres de coffrets →
+            </Link>
           </p>
         </div>
 
