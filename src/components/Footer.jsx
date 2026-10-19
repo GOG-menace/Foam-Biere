@@ -62,18 +62,18 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-xs text-slate-300">
               <li>
-                <Link to="/bieres/west-coast" className="hover:text-white transition-colors">
-                  FOAM West Coast IPA
+                <Link to="/bieres" className="hover:text-white transition-colors">
+                  FOAM French IPA
                 </Link>
               </li>
               <li>
-                <Link to="/bieres/lager" className="hover:text-white transition-colors">
-                  FOAM Lager Méditerranéenne
+                <Link to="/bieres" className="hover:text-white transition-colors">
+                  Lou FOAM d’Aqui
                 </Link>
               </li>
               <li>
-                <Link to="/bieres/blanche" className="hover:text-white transition-colors">
-                  FOAM Blanche Riviera
+                <Link to="/bieres" className="hover:text-white transition-colors">
+                  FOAM Wheat Ale
                 </Link>
               </li>
               <li>

@@ -49,15 +49,15 @@ export default function SetsOverviewPage() {
                 {decouverte.name}
               </h2>
               <p className="text-sm text-foam-text leading-relaxed pt-1">
-                L'assortiment signature pour découvrir le savoir-faire de Stéphane au Port de Nice. Réunit nos trois bières permanentes : la West Coast IPA houblonnée, la Lager dorée et rafraîchissante, et la Blanche douce aux notes d'agrumes.
+                L'assortiment signature pour découvrir le savoir-faire de Stéphane au Port de Nice. Réunit nos trois bières permanentes : la French IPA houblonnée, Lou FOAM d’Aqui dorée et rafraîchissante, et la Wheat Ale douce aux notes d'agrumes.
               </p>
             </div>
 
             <div className="p-4 rounded-lg bg-foam-subtle/60 border border-foam-border text-xs text-foam-text space-y-1.5">
               <p className="font-bold text-foam-navy uppercase tracking-wider text-[11px]">Composition du coffret :</p>
-              <p>• 1 ou 2 FOAM West Coast IPA (Houblonnée & fruitée)</p>
-              <p>• 1 ou 2 FOAM Lager Méditerranéenne (Fraîche & maltée)</p>
-              <p>• 1 ou 2 FOAM Blanche Riviera (Froment & agrumes)</p>
+              <p>• 1 ou 2 FOAM French IPA (Houblonnée & fruitée)</p>
+              <p>• 1 ou 2 Lou FOAM d’Aqui (Blonde fraîche & maltée)</p>
+              <p>• 1 ou 2 FOAM Wheat Ale (Froment doux & agrumes)</p>
             </div>
 
             <div className="pt-2 flex items-baseline justify-between border-t border-foam-border/60">

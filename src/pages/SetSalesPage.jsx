@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
   ShoppingBag, Check, Star, MapPin, Truck, ShieldCheck, 
-  Package, ChevronRight, ChevronDown, Sparkles, Heart, Award, ArrowRight, Beer 
+  Package, ChevronRight, ChevronDown, Sparkles, Heart, Award, ArrowRight, Beer, Camera 
 } from 'lucide-react';
 import { SETS, SHIPPING_RATES, BARS_DATA } from '../data/products';
 import { useCart } from '../context/CartContext';
@@ -20,6 +20,12 @@ export default function SetSalesPage({ defaultSlug }) {
   const [selectedFormat, setSelectedFormat] = useState('pack6');
   const [quantity, setQuantity] = useState(1);
   const [addedAlert, setAddedAlert] = useState(false);
+  const [activeImage, setActiveImage] = useState(product.image);
+
+  // Sync activeImage when product changes
+  useEffect(() => {
+    setActiveImage(product.image);
+  }, [product.image]);
 
   const currentPack = selectedFormat === 'pack3' ? product.pack3 : product.pack6;
 
@@ -42,7 +48,7 @@ export default function SetSalesPage({ defaultSlug }) {
       <nav className="flex items-center gap-2 text-xs font-semibold text-foam-muted">
         <Link to="/" className="hover:text-foam-red transition-colors">Accueil</Link>
         <ChevronRight className="w-3.5 h-3.5 text-foam-border" />
-        <span className="text-foam-muted">Coffrets Cadeaux</span>
+        <Link to="/coffrets" className="hover:text-foam-red transition-colors">Coffrets Cadeaux</Link>
         <ChevronRight className="w-3.5 h-3.5 text-foam-border" />
         <span className="text-foam-navy font-bold truncate">{product.name}</span>
       </nav>
@@ -51,28 +57,63 @@ export default function SetSalesPage({ defaultSlug }) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
         
         {/* Left Column: Image Showcase & Gallery */}
-        <div className="lg:col-span-7 space-y-4">
-          <div className="rounded-2xl overflow-hidden bg-white border border-foam-border shadow-shopify aspect-[4/3]">
+        <div className="lg:col-span-7 space-y-3">
+          
+          {/* Main Photo Display */}
+          <div className="rounded-xl overflow-hidden bg-white border border-foam-border shadow-shopify aspect-[4/3] relative group">
             <img
-              src={product.image}
+              src={activeImage || product.image}
               alt={product.fullName}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-all duration-300 group-hover:scale-102"
             />
+            <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-foam-navy/90 backdrop-blur-xs text-white text-[10px] font-bold uppercase tracking-wider">
+              <Camera className="w-3 h-3 text-foam-red" />
+              <span>Photo officielle FOAM</span>
+            </div>
           </div>
+
+          {/* Interactive Thumbnails Gallery */}
+          {product.gallery && product.gallery.length > 1 && (
+            <div className="space-y-1.5">
+              <span className="text-[11px] font-bold text-foam-muted uppercase tracking-wider block">
+                Galerie photos du coffret ({product.gallery.length} vues) :
+              </span>
+              <div className="grid grid-cols-4 gap-2.5">
+                {product.gallery.map((img, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setActiveImage(img)}
+                    className={`aspect-[4/3] rounded-lg overflow-hidden border-2 transition-all p-0.5 bg-white ${
+                      activeImage === img
+                        ? 'border-foam-red ring-2 ring-foam-red/25 shadow-xs'
+                        : 'border-foam-border hover:border-foam-navy/50 opacity-80 hover:opacity-100'
+                    }`}
+                  >
+                    <img
+                      src={img}
+                      alt={`Aperçu ${idx + 1}`}
+                      className="w-full h-full object-cover rounded-md"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Guarantees row below image */}
           <div className="grid grid-cols-3 gap-3 text-center text-xs text-foam-navy pt-2">
-            <div className="p-3 bg-white rounded-xl border border-foam-border shadow-2xs">
+            <div className="p-3 bg-white rounded-lg border border-foam-border shadow-xs">
               <Beer className="w-5 h-5 text-foam-red mx-auto mb-1" />
               <p className="font-bold text-[11px]">100% Artisanal</p>
               <p className="text-[10px] text-foam-muted">Brassée au Port</p>
             </div>
-            <div className="p-3 bg-foam-oliveSoft rounded-xl border border-foam-olive/25 shadow-2xs">
+            <div className="p-3 bg-foam-oliveSoft rounded-lg border border-foam-olive/25 shadow-xs">
               <MapPin className="w-5 h-5 text-foam-olive mx-auto mb-1" />
               <p className="font-bold text-[11px] text-foam-olive">Click & Collect 0€</p>
               <p className="text-[10px] text-foam-olive">Prêt en 2h au bar</p>
             </div>
-            <div className="p-3 bg-white rounded-xl border border-foam-border shadow-2xs">
+            <div className="p-3 bg-white rounded-lg border border-foam-border shadow-xs">
               <ShieldCheck className="w-5 h-5 text-foam-navy mx-auto mb-1" />
               <p className="font-bold text-[11px]">Garantie Anti-Casse</p>
               <p className="text-[10px] text-foam-muted">Étui rigide certifié</p>

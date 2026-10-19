@@ -4,7 +4,7 @@ import { Beer, ArrowRight, Package, Sparkles } from 'lucide-react';
 import { BEERS } from '../data/products';
 
 export default function BeersOverviewPage() {
-  const beers = Object.values(BEERS);
+  const beers = [BEERS['french-ipa'], BEERS['lou-foam-daqui'], BEERS['wheat-ale']];
 
   return (
     <div className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">

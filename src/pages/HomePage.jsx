@@ -95,7 +95,7 @@ export default function HomePage() {
                           Coffret Découverte 3 ou 6 bières
                         </h3>
                         <p className="text-xs text-slate-200 mt-0.5">
-                          West Coast IPA • Lager Dorée • Blanche Riviera
+                          French IPA • Lou FOAM d’Aqui • Wheat Ale
                         </p>
                       </div>
                     </div>
@@ -220,15 +220,15 @@ export default function HomePage() {
                 <ul className="space-y-1.5 text-foam-text">
                   <li className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-foam-red shrink-0" />
-                    <span><strong>FOAM West Coast IPA</strong> (Houblonnée & fruitée)</span>
+                    <span><strong>FOAM French IPA</strong> (Houblonnée & fruitée)</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-foam-gold shrink-0" />
-                    <span><strong>FOAM Lager Méditerranéenne</strong> (Fraîche & maltée)</span>
+                    <span><strong>Lou FOAM d’Aqui</strong> (Blonde fraîche & désaltérante)</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-foam-olive shrink-0" />
-                    <span><strong>FOAM Blanche Riviera</strong> (Froment aux agrumes doux)</span>
+                    <span><strong>FOAM Wheat Ale</strong> (Froment doux aux agrumes)</span>
                   </li>
                 </ul>
               </div>
