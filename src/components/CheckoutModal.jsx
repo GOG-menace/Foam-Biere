@@ -57,7 +57,7 @@ export default function CheckoutModal() {
         particleCount: 70,
         spread: 60,
         origin: { y: 0.6 },
-        colors: ['#D9631E', '#C9971E', '#28533E', '#0F2438']
+        colors: ['#904545', '#C9971E', '#28533E', '#0F2438']
       });
     } catch (e) {
       console.warn(e);
@@ -104,7 +104,7 @@ export default function CheckoutModal() {
               </p>
             </div>
             <div className="text-right">
-              <span className="font-serif text-2xl font-black text-foam-amber">
+              <span className="font-serif text-2xl font-black text-foam-red">
                 {grandTotal.toFixed(2)} €
               </span>
               <span className="text-[11px] text-foam-olive font-bold block">0 € débité aujourd'hui</span>
@@ -125,7 +125,7 @@ export default function CheckoutModal() {
                   required
                   value={formData.firstName}
                   onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                  className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-amber"
+                  className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
                   placeholder="Léa"
                 />
               </div>
@@ -137,7 +137,7 @@ export default function CheckoutModal() {
                   required
                   value={formData.lastName}
                   onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                  className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-amber"
+                  className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
                   placeholder="Vannini"
                 />
               </div>
@@ -149,7 +149,7 @@ export default function CheckoutModal() {
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-amber"
+                  className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
                   placeholder="lea@exemple.fr"
                 />
               </div>
@@ -161,7 +161,7 @@ export default function CheckoutModal() {
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-amber"
+                  className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
                   placeholder="06 12 34 56 78"
                 />
               </div>
@@ -181,7 +181,7 @@ export default function CheckoutModal() {
                   required
                   value={formData.address}
                   onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                  className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-amber"
+                  className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
                   placeholder="12 Quai des Deux Emmanuels"
                 />
               </div>
@@ -193,7 +193,7 @@ export default function CheckoutModal() {
                     required
                     value={formData.zip}
                     onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
-                    className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-amber"
+                    className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
                     placeholder="06300"
                   />
                 </div>
@@ -204,7 +204,7 @@ export default function CheckoutModal() {
                     required
                     value={formData.city}
                     onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                    className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-amber"
+                    className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
                     placeholder="Nice"
                   />
                 </div>
@@ -213,11 +213,11 @@ export default function CheckoutModal() {
           )}
 
           {/* Test mode callout */}
-          <div className="p-3.5 bg-amber-50 rounded-2xl border border-amber-300 flex items-start gap-2.5 text-xs text-amber-950">
-            <Lock className="w-4 h-4 text-foam-amber shrink-0 mt-0.5" />
+          <div className="p-3.5 bg-foam-redSoft rounded-2xl border border-foam-redBorder flex items-start gap-2.5 text-xs text-foam-navy">
+            <Lock className="w-4 h-4 text-foam-red shrink-0 mt-0.5" />
             <div>
-              <strong className="block">🔒 Dispositif Pilote SAÉ IUT Nice :</strong>
-              <p className="text-[11px] text-amber-900 mt-0.5 leading-relaxed">
+              <strong className="block text-foam-red">🔒 Dispositif Pilote SAÉ IUT Nice :</strong>
+              <p className="text-[11px] text-foam-text mt-0.5 leading-relaxed">
                 Aucun débit bancaire ne sera effectué. Votre précommande enregistre votre réservation auprès de la brasserie FOAM au Port de Nice.
               </p>
             </div>
@@ -230,7 +230,7 @@ export default function CheckoutModal() {
                 type="checkbox"
                 checked={formData.certifyAdult}
                 onChange={(e) => setFormData({ ...formData, certifyAdult: e.target.checked })}
-                className="mt-0.5 text-foam-amber rounded"
+                className="mt-0.5 text-foam-red rounded"
               />
               <span className="text-[11px] text-foam-navy leading-tight font-medium">
                 Je certifie sur l'honneur être majeur(e) (+18 ans) conformément à la réglementation française (Loi Évin).
@@ -242,7 +242,7 @@ export default function CheckoutModal() {
                 type="checkbox"
                 checked={formData.acceptTerms}
                 onChange={(e) => setFormData({ ...formData, acceptTerms: e.target.checked })}
-                className="mt-0.5 text-foam-amber rounded"
+                className="mt-0.5 text-foam-red rounded"
               />
               <span className="text-[11px] text-foam-navy leading-tight font-medium">
                 J'accepte les conditions de précommande et la politique de confidentialité RGPD.
@@ -259,7 +259,7 @@ export default function CheckoutModal() {
           <div className="pt-3 border-t border-foam-border">
             <button
               type="submit"
-              className="w-full py-4 px-6 rounded-2xl bg-foam-amber hover:bg-foam-amberDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-amber-glow transition-all"
+              className="w-full py-4 px-6 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all"
             >
               <span>Valider ma précommande (0 € débité aujourd'hui)</span>
               <ArrowRight className="w-5 h-5" />

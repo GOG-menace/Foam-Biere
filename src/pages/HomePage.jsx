@@ -12,11 +12,11 @@ export default function HomePage() {
     <div className="space-y-16 sm:space-y-24 pb-20">
       
       {/* 1. HERO SECTION ORIENTÉE CONVERSION (DNVB / SHOPIFY STYLE) */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-foam-amberSoft/70 via-foam-bg to-foam-bg pt-10 pb-16 sm:pt-16 sm:pb-24 border-b border-foam-border/60">
+      <section className="relative overflow-hidden bg-gradient-to-b from-foam-redSoft/60 via-foam-bg to-foam-bg pt-10 pb-16 sm:pt-16 sm:pb-24 border-b border-foam-border/60">
         
-        {/* Subtle decorative Mediterranean amber light glow */}
-        <div className="absolute top-0 right-10 w-96 h-96 rounded-full bg-foam-amber/10 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-amber-400/10 blur-3xl pointer-events-none" />
+        {/* Subtle decorative Mediterranean red light glow */}
+        <div className="absolute top-0 right-10 w-96 h-96 rounded-full bg-foam-red/10 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-foam-red/10 blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -25,14 +25,14 @@ export default function HomePage() {
             <div className="lg:col-span-7 text-center lg:text-left space-y-6">
               
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-foam-border shadow-xs">
-                <span className="w-2 h-2 rounded-full bg-foam-amber animate-ping" />
+                <span className="w-2.5 h-2.5 rounded-full bg-foam-red animate-ping" />
                 <span className="text-xs font-bold uppercase tracking-wider text-foam-navy">
                   Microbrasserie du Port de Nice • Groupe Paloma (1948)
                 </span>
               </div>
 
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-black text-foam-navy leading-[1.12] tracking-tight">
-                La bière artisanale du Port de Nice, <span className="text-foam-amber underline decoration-foam-amber/40">en direct</span> de nos cuves.
+                La bière artisanale du Port de Nice, <span className="text-foam-red underline decoration-foam-red/40">en direct</span> de nos cuves.
               </h1>
 
               <p className="text-base sm:text-lg text-foam-text font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
@@ -56,7 +56,7 @@ export default function HomePage() {
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                 <Link
                   to="/coffrets/decouverte"
-                  className="w-full sm:w-auto py-4 px-8 rounded-2xl bg-foam-amber hover:bg-foam-amberDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-shopify hover:shadow-amber-glow transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                  className="w-full sm:w-auto py-4 px-8 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-shopify hover:shadow-red-glow transition-all transform hover:-translate-y-0.5 active:translate-y-0"
                 >
                   <Package className="w-5 h-5" />
                   <span>Découvrir le Coffret Découverte (Dès 15 €)</span>
@@ -66,7 +66,7 @@ export default function HomePage() {
                   to="/coffrets/exotique"
                   className="w-full sm:w-auto py-4 px-7 rounded-2xl bg-white hover:bg-foam-subtle text-foam-navy font-bold text-sm sm:text-base border-2 border-foam-navy/20 hover:border-foam-navy transition-all flex items-center justify-center gap-2 shadow-xs"
                 >
-                  <Sparkles className="w-5 h-5 text-foam-amber" />
+                  <Sparkles className="w-5 h-5 text-foam-red" />
                   <span>Coffret Exotique Éphémère</span>
                 </Link>
               </div>
@@ -98,7 +98,7 @@ export default function HomePage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-foam-navy/80 via-transparent to-transparent flex items-end p-5">
                       <div className="text-white">
-                        <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-foam-amber">
+                        <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-foam-red">
                           Best-Seller Fêtes
                         </span>
                         <h3 className="font-serif text-xl font-bold mt-1">
@@ -119,7 +119,7 @@ export default function HomePage() {
 
                     <Link
                       to="/coffrets/decouverte"
-                      className="py-2.5 px-4 rounded-xl bg-foam-amber hover:bg-foam-amberDark text-white font-bold text-xs flex items-center gap-1.5 transition-colors shadow-xs"
+                      className="py-2.5 px-4 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-bold text-xs flex items-center gap-1.5 transition-colors shadow-xs"
                     >
                       <span>Commander</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -137,7 +137,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-foam-border">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             <div className="p-4 rounded-2xl bg-white border border-foam-border flex items-center gap-3.5 shadow-xs">
-              <div className="w-11 h-11 rounded-xl bg-foam-amberSoft text-foam-amber flex items-center justify-center shrink-0">
+              <div className="w-11 h-11 rounded-xl bg-foam-redSoft text-foam-red flex items-center justify-center shrink-0">
                 <Beer className="w-6 h-6" />
               </div>
               <div>
@@ -175,7 +175,7 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         <div className="text-center max-w-3xl mx-auto space-y-2">
-          <span className="text-xs font-bold uppercase tracking-wider text-foam-amber bg-foam-amberSoft px-3 py-1 rounded-full border border-foam-amber/30">
+          <span className="text-xs font-bold uppercase tracking-wider text-foam-red bg-foam-redSoft px-3 py-1 rounded-full border border-foam-redBorder">
             Gamme Coffrets Cadeaux
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black text-foam-navy">
@@ -190,7 +190,7 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           
           {/* CARTE COFFRET DÉCOUVERTE */}
-          <div className="rounded-3xl bg-white border-2 border-foam-border hover:border-foam-amber p-6 sm:p-8 shadow-shopify hover:shadow-shopify-hover transition-all flex flex-col justify-between group">
+          <div className="rounded-3xl bg-white border-2 border-foam-border hover:border-foam-red p-6 sm:p-8 shadow-shopify hover:shadow-shopify-hover transition-all flex flex-col justify-between group">
             <div className="space-y-4">
               
               <div className="aspect-[16/10] rounded-2xl overflow-hidden bg-foam-subtle border border-foam-border relative">
@@ -199,19 +199,19 @@ export default function HomePage() {
                   alt={decouverte.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <span className="absolute top-3 left-3 bg-foam-amber text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs">
+                <span className="absolute top-3 left-3 bg-foam-red text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs">
                   {decouverte.badge}
                 </span>
-                <span className="absolute bottom-3 right-3 bg-white/90 text-foam-navy font-bold text-xs px-2.5 py-1 rounded-full backdrop-blur-xs border border-foam-border">
+                <span className="absolute bottom-3 right-3 bg-white/95 text-foam-navy font-bold text-xs px-2.5 py-1 rounded-full backdrop-blur-xs border border-foam-border">
                   15 € (3 bières) / 26 € (6 bières)
                 </span>
               </div>
 
               <div>
-                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy group-hover:text-foam-amber transition-colors">
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy group-hover:text-foam-red transition-colors">
                   {decouverte.name}
                 </h3>
-                <p className="text-xs font-bold text-foam-amber uppercase tracking-wider mt-0.5">
+                <p className="text-xs font-bold text-foam-red uppercase tracking-wider mt-0.5">
                   {decouverte.subtitle}
                 </p>
                 <p className="text-xs sm:text-sm text-foam-text mt-3 leading-relaxed">
@@ -226,7 +226,7 @@ export default function HomePage() {
                 </strong>
                 <ul className="space-y-1.5 text-foam-text">
                   <li className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-foam-amber" />
+                    <span className="w-2 h-2 rounded-full bg-foam-red" />
                     <span><strong>FOAM West Coast IPA</strong> (Houblonnée & résineuse)</span>
                   </li>
                   <li className="flex items-center gap-2">
@@ -247,12 +247,12 @@ export default function HomePage() {
                 <div className="font-serif text-2xl font-black text-foam-navy">
                   15,00 € <span className="text-xs font-normal text-foam-muted">les 3 x 33cl</span>
                 </div>
-                <span className="text-[11px] text-foam-amber font-bold">26,00 € le pack de 6 (-10 €)</span>
+                <span className="text-[11px] text-foam-red font-bold">26,00 € le pack de 6 (-10 €)</span>
               </div>
 
               <Link
                 to="/coffrets/decouverte"
-                className="py-3.5 px-6 rounded-xl bg-foam-amber hover:bg-foam-amberDark text-white font-extrabold text-xs sm:text-sm flex items-center gap-2 shadow-xs transition-colors"
+                className="py-3.5 px-6 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-xs sm:text-sm flex items-center gap-2 shadow-xs transition-colors"
               >
                 <span>Accéder à la page de vente</span>
                 <ArrowRight className="w-4 h-4" />
@@ -350,7 +350,7 @@ export default function HomePage() {
           </div>
           <Link
             to="/bieres"
-            className="text-xs font-bold text-foam-amber hover:text-foam-amberDark flex items-center gap-1"
+            className="text-xs font-bold text-foam-red hover:text-foam-redDark flex items-center gap-1"
           >
             <span>Voir toute la gamme et comparatif</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -371,7 +371,7 @@ export default function HomePage() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <span className={`absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-white ${
-                    beer.badgeColor === 'amber' ? 'bg-foam-amber' : beer.badgeColor === 'olive' ? 'bg-foam-olive' : 'bg-foam-gold'
+                    beer.badgeColor === 'amber' ? 'bg-foam-red' : beer.badgeColor === 'olive' ? 'bg-foam-olive' : 'bg-foam-gold'
                   }`}>
                     {beer.badge}
                   </span>
@@ -382,11 +382,11 @@ export default function HomePage() {
 
                 <div className="p-6 space-y-3">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-bold text-foam-amber uppercase tracking-wider">{beer.style}</span>
+                    <span className="font-bold text-foam-red uppercase tracking-wider">{beer.style}</span>
                     <span className="text-foam-muted">33 cl</span>
                   </div>
 
-                  <h3 className="font-serif text-xl font-bold text-foam-navy group-hover:text-foam-amber transition-colors">
+                  <h3 className="font-serif text-xl font-bold text-foam-navy group-hover:text-foam-red transition-colors">
                     {beer.name}
                   </h3>
 
@@ -408,7 +408,7 @@ export default function HomePage() {
 
                 <Link
                   to={`/bieres/${beer.slug}`}
-                  className="py-2.5 px-4 rounded-xl bg-foam-navy hover:bg-foam-amber text-white font-bold text-xs flex items-center gap-1.5 transition-colors shadow-xs"
+                  className="py-2.5 px-4 rounded-xl bg-foam-navy hover:bg-foam-red text-white font-bold text-xs flex items-center gap-1.5 transition-colors shadow-xs"
                 >
                   <span>Fiche Produit</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -426,7 +426,7 @@ export default function HomePage() {
         
         <div className="rounded-3xl bg-foam-navy text-white p-8 sm:p-10 flex flex-col justify-between space-y-6 shadow-shopify">
           <div className="space-y-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-300">
+            <span className="text-xs font-bold uppercase tracking-wider text-foam-redSoft">
               Caution Groupe Paloma • Maison Familiale Fondée en 1948
             </span>
             <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white">
@@ -439,7 +439,7 @@ export default function HomePage() {
 
           <Link
             to="/groupe-paloma"
-            className="inline-flex items-center gap-2 py-3 px-5 rounded-xl bg-white text-foam-navy hover:bg-amber-100 font-bold text-xs self-start transition-colors"
+            className="inline-flex items-center gap-2 py-3 px-5 rounded-xl bg-white text-foam-navy hover:bg-foam-red hover:text-white font-bold text-xs self-start transition-colors"
           >
             <span>Découvrir l'Histoire du Groupe Paloma</span>
             <ArrowRight className="w-3.5 h-3.5" />

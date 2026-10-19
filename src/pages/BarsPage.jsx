@@ -30,7 +30,7 @@ export default function BarsPage() {
             <div className="space-y-5">
               
               <div className="flex items-center justify-between">
-                <span className="text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full bg-foam-amberSoft text-foam-amberDark border border-foam-amber/30">
+                <span className="text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full bg-foam-redSoft text-foam-redDark border border-foam-redBorder">
                   {bar.badge}
                 </span>
                 <span className="text-xs font-bold text-foam-olive bg-foam-oliveSoft px-3 py-1 rounded-full flex items-center gap-1.5 border border-foam-olive/30">
@@ -45,7 +45,7 @@ export default function BarsPage() {
 
               <div className="space-y-2.5 text-xs sm:text-sm text-foam-text">
                 <div className="flex items-start gap-2.5">
-                  <Navigation className="w-4 h-4 text-foam-amber shrink-0 mt-0.5" />
+                  <Navigation className="w-4 h-4 text-foam-red shrink-0 mt-0.5" />
                   <span className="font-semibold text-foam-navy">{bar.address}</span>
                 </div>
                 <div className="flex items-start gap-2.5 text-foam-muted">
@@ -81,7 +81,7 @@ export default function BarsPage() {
             <div className="pt-4 border-t border-foam-border">
               <Link
                 to="/coffrets/decouverte"
-                className="w-full py-3.5 px-5 rounded-2xl bg-foam-navy hover:bg-foam-amber text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shadow-xs"
+                className="w-full py-3.5 px-5 rounded-2xl bg-foam-navy hover:bg-foam-red text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shadow-xs"
               >
                 <ShoppingBag className="w-4 h-4" />
                 <span>Commander avec retrait dans ce bar (0 €)</span>

@@ -12,7 +12,7 @@ export default function BeersOverviewPage() {
       
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-3">
-        <span className="text-xs font-bold uppercase tracking-wider text-foam-amber bg-foam-amberSoft px-3 py-1 rounded-full border border-foam-amber/30">
+        <span className="text-xs font-bold uppercase tracking-wider text-foam-red bg-foam-redSoft px-3 py-1 rounded-full border border-foam-redBorder">
           En Direct de nos Cuves au Port de Nice
         </span>
         <h1 className="font-serif text-3xl sm:text-5xl font-black text-foam-navy">
@@ -39,7 +39,7 @@ export default function BeersOverviewPage() {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <span className={`absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-white ${
-                  beer.badgeColor === 'amber' ? 'bg-foam-amber' : beer.badgeColor === 'olive' ? 'bg-foam-olive' : 'bg-foam-gold'
+                  beer.badgeColor === 'amber' ? 'bg-foam-red' : beer.badgeColor === 'olive' ? 'bg-foam-olive' : 'bg-foam-gold'
                 }`}>
                   {beer.badge}
                 </span>
@@ -50,14 +50,14 @@ export default function BeersOverviewPage() {
 
               <div className="p-6 space-y-3">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="font-bold text-foam-amber uppercase tracking-wider">{beer.style}</span>
+                  <span className="font-bold text-foam-red uppercase tracking-wider">{beer.style}</span>
                   <div className="flex items-center gap-1 text-amber-500 font-bold">
                     <Star className="w-3.5 h-3.5 fill-amber-400" />
                     <span>{beer.rating}</span>
                   </div>
                 </div>
 
-                <h3 className="font-serif text-2xl font-bold text-foam-navy group-hover:text-foam-amber transition-colors">
+                <h3 className="font-serif text-2xl font-bold text-foam-navy group-hover:text-foam-red transition-colors">
                   {beer.name}
                 </h3>
 
@@ -82,7 +82,7 @@ export default function BeersOverviewPage() {
 
               <Link
                 to={`/bieres/${beer.slug}`}
-                className="py-2.5 px-4 rounded-xl bg-foam-navy hover:bg-foam-amber text-white font-bold text-xs flex items-center gap-1.5 transition-colors shadow-xs"
+                className="py-2.5 px-4 rounded-xl bg-foam-navy hover:bg-foam-red text-white font-bold text-xs flex items-center gap-1.5 transition-colors shadow-xs"
               >
                 <span>Fiche Produit Complète</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -93,9 +93,9 @@ export default function BeersOverviewPage() {
       </div>
 
       {/* Banner to Gift Set (Upsell) */}
-      <div className="rounded-3xl bg-gradient-to-r from-foam-amberSoft via-white to-foam-goldSoft p-8 sm:p-10 border-2 border-foam-amber/40 shadow-shopify flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="rounded-3xl bg-gradient-to-r from-foam-redSoft via-white to-foam-goldSoft p-8 sm:p-10 border-2 border-foam-redBorder shadow-shopify flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="space-y-2 text-center md:text-left">
-          <span className="text-xs font-bold uppercase tracking-wider text-foam-amber">
+          <span className="text-xs font-bold uppercase tracking-wider text-foam-red">
             L'Assortiment Idéal pour Découvrir
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy">
@@ -108,7 +108,7 @@ export default function BeersOverviewPage() {
 
         <Link
           to="/coffrets/decouverte"
-          className="py-4 px-7 rounded-2xl bg-foam-amber hover:bg-foam-amberDark text-white font-bold text-sm shrink-0 flex items-center gap-2 shadow-shopify transition-all"
+          className="py-4 px-7 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-bold text-sm shrink-0 flex items-center gap-2 shadow-shopify transition-all"
         >
           <span>Découvrir le Coffret (Dès 15 €)</span>
           <ArrowRight className="w-4 h-4" />

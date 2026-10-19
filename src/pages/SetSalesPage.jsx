@@ -20,7 +20,6 @@ export default function SetSalesPage({ defaultSlug }) {
   const [selectedFormat, setSelectedFormat] = useState('pack6');
   const [quantity, setQuantity] = useState(1);
   const [addedAlert, setAddedAlert] = useState(false);
-  const [activeTab, setActiveTab] = useState('contents'); // 'contents', 'story', 'delivery'
 
   const currentPack = selectedFormat === 'pack3' ? product.pack3 : product.pack6;
 
@@ -41,7 +40,7 @@ export default function SetSalesPage({ defaultSlug }) {
       
       {/* Breadcrumbs (Shopify standard) */}
       <nav className="flex items-center gap-2 text-xs font-semibold text-foam-muted">
-        <Link to="/" className="hover:text-foam-amber transition-colors">Accueil</Link>
+        <Link to="/" className="hover:text-foam-red transition-colors">Accueil</Link>
         <ChevronRight className="w-3.5 h-3.5 text-foam-border" />
         <span className="text-foam-muted">Coffrets Cadeaux</span>
         <ChevronRight className="w-3.5 h-3.5 text-foam-border" />
@@ -63,7 +62,7 @@ export default function SetSalesPage({ defaultSlug }) {
             {/* Badges */}
             <div className="absolute top-4 left-4 flex flex-col gap-2">
               <span className={`px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider text-white shadow-xs ${
-                product.badgeColor === 'amber' ? 'bg-foam-amber' : 'bg-foam-olive'
+                product.badgeColor === 'amber' ? 'bg-foam-red' : 'bg-foam-olive'
               }`}>
                 {product.badge}
               </span>
@@ -81,7 +80,7 @@ export default function SetSalesPage({ defaultSlug }) {
           {/* Guarantees row below image */}
           <div className="grid grid-cols-3 gap-3 text-center text-xs text-foam-navy pt-2">
             <div className="p-3 bg-white rounded-2xl border border-foam-border shadow-2xs">
-              <Beer className="w-5 h-5 text-foam-amber mx-auto mb-1" />
+              <Beer className="w-5 h-5 text-foam-red mx-auto mb-1" />
               <p className="font-bold text-[11px]">100% Artisanal</p>
               <p className="text-[10px] text-foam-muted">Brassée au Port</p>
             </div>
@@ -115,7 +114,7 @@ export default function SetSalesPage({ defaultSlug }) {
             <h1 className="font-serif text-3xl sm:text-4xl font-black text-foam-navy leading-tight">
               {product.fullName}
             </h1>
-            <p className="text-xs font-bold uppercase tracking-wider text-foam-amber mt-1">
+            <p className="text-xs font-bold uppercase tracking-wider text-foam-red mt-1">
               {product.subtitle}
             </p>
 
@@ -152,7 +151,7 @@ export default function SetSalesPage({ defaultSlug }) {
               <label className="font-bold uppercase tracking-wider text-foam-navy">
                 Format de Coffret :
               </label>
-              <span className="text-foam-amber font-bold">
+              <span className="text-foam-red font-bold">
                 {selectedFormat === 'pack6' ? '✓ Format Recommandé' : 'Format Découverte'}
               </span>
             </div>
@@ -164,7 +163,7 @@ export default function SetSalesPage({ defaultSlug }) {
                 onClick={() => setSelectedFormat('pack3')}
                 className={`p-3.5 rounded-2xl border-2 text-left transition-all ${
                   selectedFormat === 'pack3'
-                    ? 'border-foam-amber bg-foam-amberSoft shadow-xs ring-2 ring-foam-amber/20'
+                    ? 'border-foam-red bg-foam-redSoft shadow-xs ring-2 ring-foam-red/20'
                     : 'border-foam-border bg-white hover:border-foam-navy/40'
                 }`}
               >
@@ -182,16 +181,16 @@ export default function SetSalesPage({ defaultSlug }) {
                 onClick={() => setSelectedFormat('pack6')}
                 className={`p-3.5 rounded-2xl border-2 text-left transition-all relative ${
                   selectedFormat === 'pack6'
-                    ? 'border-foam-amber bg-foam-amberSoft shadow-xs ring-2 ring-foam-amber/20'
+                    ? 'border-foam-red bg-foam-redSoft shadow-xs ring-2 ring-foam-red/20'
                     : 'border-foam-border bg-white hover:border-foam-navy/40'
                 }`}
               >
-                <div className="absolute -top-2.5 right-2 bg-foam-amber text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full shadow-2xs">
+                <div className="absolute -top-2.5 right-2 bg-foam-red text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full shadow-2xs">
                   -10 € d'économie
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-xs text-foam-navy">Pack de 6</span>
-                  <span className="font-serif font-black text-sm text-foam-amberDark">26,00 €</span>
+                  <span className="font-serif font-black text-sm text-foam-redDark">26,00 €</span>
                 </div>
                 <p className="text-[11px] text-foam-muted mt-0.5">6 bouteilles (33cl)</p>
                 <p className="text-[10px] text-foam-olive font-bold">4,33 € / unité</p>
@@ -271,7 +270,7 @@ export default function SetSalesPage({ defaultSlug }) {
                 <div className="text-xs flex-1">
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-foam-navy flex items-center gap-1">
-                      <Truck className="w-3.5 h-3.5" />
+                      <Truck className="w-3.5 h-3.5 text-foam-red" />
                       Expédition Colis Sécurisé Anti-Casse
                     </span>
                     <span className="font-bold text-foam-navy">
@@ -311,11 +310,11 @@ export default function SetSalesPage({ defaultSlug }) {
                 </button>
               </div>
 
-              {/* Add to Cart CTA */}
+              {/* Add to Cart CTA in FOAM Red #904545 */}
               <button
                 type="button"
                 onClick={handleAddToCart}
-                className="flex-1 py-4 px-6 rounded-2xl bg-foam-amber hover:bg-foam-amberDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-amber-glow transition-all active:scale-98"
+                className="flex-1 py-4 px-6 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all active:scale-98"
               >
                 <ShoppingBag className="w-5 h-5" />
                 <span>
@@ -346,15 +345,15 @@ export default function SetSalesPage({ defaultSlug }) {
               className="p-3.5 rounded-2xl bg-white border border-foam-border hover:border-foam-navy/40 flex items-center justify-between text-xs group transition-all"
             >
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-foam-amber block">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-foam-red block">
                   Découvrez également :
                 </span>
-                <strong className="text-foam-navy group-hover:text-foam-amber transition-colors text-sm">
+                <strong className="text-foam-navy group-hover:text-foam-red transition-colors text-sm">
                   {otherSet.name}
                 </strong>
                 <p className="text-foam-muted text-[11px]">{otherSet.subtitle}</p>
               </div>
-              <ArrowRight className="w-4 h-4 text-foam-amber" />
+              <ArrowRight className="w-4 h-4 text-foam-red" />
             </Link>
           </div>
 
@@ -373,7 +372,7 @@ export default function SetSalesPage({ defaultSlug }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
           <div className="p-6 bg-white rounded-3xl border border-foam-border shadow-shopify space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-foam-amberSoft text-foam-amber flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-foam-redSoft text-foam-red flex items-center justify-center">
               <Package className="w-5 h-5" />
             </div>
             <h3 className="font-serif text-lg font-bold text-foam-navy">
@@ -414,7 +413,7 @@ export default function SetSalesPage({ defaultSlug }) {
 
           <div className="p-6 bg-white rounded-3xl border border-foam-border shadow-shopify space-y-3">
             <div className="w-10 h-10 rounded-xl bg-foam-navy text-white flex items-center justify-center">
-              <MapPin className="w-5 h-5 text-amber-300" />
+              <MapPin className="w-5 h-5 text-foam-redSoft" />
             </div>
             <h3 className="font-serif text-lg font-bold text-foam-navy">
               Retrait 0 € aux Bars FOAM
@@ -423,7 +422,7 @@ export default function SetSalesPage({ defaultSlug }) {
               Économisez les frais de port en venant chercher votre coffret frais au bar. Profitez-en pour contempler les cuves de brassage du Port de Nice ou boire un verre Place du Pin.
             </p>
             <div className="pt-1">
-              <Link to="/nos-bars" className="text-xs font-bold text-foam-amber hover:underline">
+              <Link to="/nos-bars" className="text-xs font-bold text-foam-red hover:underline">
                 Voir les 2 adresses à Nice →
               </Link>
             </div>

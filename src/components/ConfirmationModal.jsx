@@ -29,7 +29,7 @@ export default function ConfirmationModal() {
         <img
           src="/logo-foam.png"
           alt="FOAM Nice"
-          className="w-16 h-16 object-contain rounded-full mx-auto mb-3 shadow-md border-2 border-foam-amber"
+          className="w-16 h-16 object-contain rounded-full mx-auto mb-3 shadow-md border-2 border-foam-red"
         />
 
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold uppercase tracking-wider mb-2">
@@ -46,15 +46,15 @@ export default function ConfirmationModal() {
         </p>
 
         {/* Viral Reward Box */}
-        <div className="mt-4 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-left flex items-start gap-3">
-          <div className="p-2 rounded-xl bg-amber-200/60 text-amber-900 shrink-0">
-            <Gift className="w-5 h-5 text-foam-amber" />
+        <div className="mt-4 p-4 rounded-2xl bg-foam-redSoft border border-foam-redBorder text-left flex items-start gap-3">
+          <div className="p-2 rounded-xl bg-white text-foam-red border border-foam-redBorder shrink-0">
+            <Gift className="w-5 h-5 text-foam-red" />
           </div>
           <div>
-            <strong className="text-xs font-bold text-amber-950 block">
+            <strong className="text-xs font-bold text-foam-navy block">
               🎁 Cadeau Débloqué : Sous-bock Collector FOAM !
             </strong>
-            <p className="text-[11px] text-amber-900 mt-0.5 leading-snug">
+            <p className="text-[11px] text-foam-text mt-0.5 leading-snug">
               Un sous-bock collector en édition limitée a été glissé dans votre commande pour sublimer votre dégustation.
             </p>
           </div>
@@ -64,7 +64,7 @@ export default function ConfirmationModal() {
         <div className="mt-4 p-4 bg-foam-bg rounded-2xl border border-foam-border text-left space-y-2.5">
           <div className="flex justify-between border-b border-foam-border pb-1.5 font-bold text-foam-navy text-sm">
             <span>Articles réservés</span>
-            <span className="text-foam-amber">{orderConfirmed.grandTotal.toFixed(2)} €</span>
+            <span className="text-foam-red">{orderConfirmed.grandTotal.toFixed(2)} €</span>
           </div>
 
           <ul className="space-y-1 text-foam-text">
@@ -88,7 +88,7 @@ export default function ConfirmationModal() {
               </div>
             ) : (
               <div className="flex items-start gap-2 text-foam-navy">
-                <Truck className="w-4 h-4 shrink-0 mt-0.5 text-foam-amber" />
+                <Truck className="w-4 h-4 shrink-0 mt-0.5 text-foam-red" />
                 <div>
                   <strong className="block text-xs">Expédition Colis Sécurisé :</strong>
                   <span className="text-foam-text">
@@ -118,7 +118,7 @@ export default function ConfirmationModal() {
         <div className="mt-6 pt-3 border-t border-foam-border">
           <button
             onClick={handleClose}
-            className="w-full py-3.5 px-6 rounded-2xl bg-foam-navy hover:bg-foam-amber text-white font-extrabold text-xs flex items-center justify-center gap-2 transition-colors shadow-xs"
+            className="w-full py-3.5 px-6 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-xs flex items-center justify-center gap-2 transition-colors shadow-shopify hover:shadow-red-glow"
           >
             <span>Retourner sur la boutique FOAM</span>
             <ArrowRight className="w-4 h-4" />

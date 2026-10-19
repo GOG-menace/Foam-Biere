@@ -19,7 +19,7 @@
   }
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar with FOAM Red #904545 */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
@@ -28,8 +28,17 @@
   background: #FAF7F2;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D9631E;
+  background: #904545;
   border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #783535;
+}
+
+/* Selection */
+::selection {
+  background-color: #904545;
+  color: #FFFFFF;
 }
 
 /* Shopify-style accordion animations */

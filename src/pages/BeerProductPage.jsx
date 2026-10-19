@@ -34,9 +34,9 @@ export default function BeerProductPage({ defaultSlug }) {
       
       {/* Breadcrumbs */}
       <nav className="flex items-center gap-2 text-xs font-semibold text-foam-muted">
-        <Link to="/" className="hover:text-foam-amber transition-colors">Accueil</Link>
+        <Link to="/" className="hover:text-foam-red transition-colors">Accueil</Link>
         <ChevronRight className="w-3.5 h-3.5 text-foam-border" />
-        <Link to="/bieres" className="hover:text-foam-amber transition-colors">Nos Bières</Link>
+        <Link to="/bieres" className="hover:text-foam-red transition-colors">Nos Bières</Link>
         <ChevronRight className="w-3.5 h-3.5 text-foam-border" />
         <span className="text-foam-navy font-bold truncate">{beer.name}</span>
       </nav>
@@ -54,7 +54,7 @@ export default function BeerProductPage({ defaultSlug }) {
             />
 
             <span className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider text-white shadow-xs ${
-              beer.badgeColor === 'amber' ? 'bg-foam-amber' : beer.badgeColor === 'olive' ? 'bg-foam-olive' : 'bg-foam-gold'
+              beer.badgeColor === 'amber' ? 'bg-foam-red' : beer.badgeColor === 'olive' ? 'bg-foam-olive' : 'bg-foam-gold'
             }`}>
               {beer.badge}
             </span>
@@ -74,11 +74,11 @@ export default function BeerProductPage({ defaultSlug }) {
               <div>
                 <div className="flex justify-between font-bold text-foam-navy mb-1">
                   <span>Amertume ({beer.ibu} IBU)</span>
-                  <span className="text-foam-amber">{beer.sensoryProfile.amertume} / 5</span>
+                  <span className="text-foam-red font-black">{beer.sensoryProfile.amertume} / 5</span>
                 </div>
                 <div className="w-full bg-foam-subtle h-2.5 rounded-full overflow-hidden">
                   <div
-                    className="bg-foam-amber h-full rounded-full transition-all"
+                    className="bg-foam-red h-full rounded-full transition-all"
                     style={{ width: `${(beer.sensoryProfile.amertume / 5) * 100}%` }}
                   />
                 </div>
@@ -87,7 +87,7 @@ export default function BeerProductPage({ defaultSlug }) {
               <div>
                 <div className="flex justify-between font-bold text-foam-navy mb-1">
                   <span>Fraîcheur en bouche</span>
-                  <span className="text-foam-olive">{beer.sensoryProfile.fraicheur} / 5</span>
+                  <span className="text-foam-olive font-black">{beer.sensoryProfile.fraicheur} / 5</span>
                 </div>
                 <div className="w-full bg-foam-subtle h-2.5 rounded-full overflow-hidden">
                   <div
@@ -100,7 +100,7 @@ export default function BeerProductPage({ defaultSlug }) {
               <div>
                 <div className="flex justify-between font-bold text-foam-navy mb-1">
                   <span>Arômes fruités</span>
-                  <span className="text-amber-600">{beer.sensoryProfile.fruite} / 5</span>
+                  <span className="text-amber-600 font-black">{beer.sensoryProfile.fruite} / 5</span>
                 </div>
                 <div className="w-full bg-foam-subtle h-2.5 rounded-full overflow-hidden">
                   <div
@@ -113,7 +113,7 @@ export default function BeerProductPage({ defaultSlug }) {
               <div>
                 <div className="flex justify-between font-bold text-foam-navy mb-1">
                   <span>Rondeur du malt</span>
-                  <span className="text-foam-navy">{beer.sensoryProfile.malt} / 5</span>
+                  <span className="text-foam-navy font-black">{beer.sensoryProfile.malt} / 5</span>
                 </div>
                 <div className="w-full bg-foam-subtle h-2.5 rounded-full overflow-hidden">
                   <div
@@ -137,13 +137,13 @@ export default function BeerProductPage({ defaultSlug }) {
                 ))}
               </div>
               <span className="text-xs font-bold text-foam-navy">{beer.rating} / 5</span>
-              <span className="text-xs text-foam-muted">({beer.reviewsCount} avis vérifiés)</span>
+              <span className="text-xs text-foam-muted font-medium">({beer.reviewsCount} avis vérifiés)</span>
             </div>
 
             <h1 className="font-serif text-3xl sm:text-4xl font-black text-foam-navy leading-tight">
               {beer.fullName}
             </h1>
-            <p className="text-xs font-bold uppercase tracking-wider text-foam-amber mt-1">
+            <p className="text-xs font-bold uppercase tracking-wider text-foam-red mt-1">
               {beer.tagline}
             </p>
 
@@ -164,7 +164,7 @@ export default function BeerProductPage({ defaultSlug }) {
 
           {/* Description & Aromatics */}
           <div className="space-y-3 text-xs sm:text-sm text-foam-text leading-relaxed">
-            <p className="font-semibold text-foam-amber text-base">
+            <p className="font-semibold text-foam-red text-base">
               « {beer.shortDesc} »
             </p>
             <p>
@@ -173,9 +173,9 @@ export default function BeerProductPage({ defaultSlug }) {
           </div>
 
           {/* Detailed Tasting Notes */}
-          <div className="p-5 bg-foam-amberSoft/50 rounded-2xl border border-foam-amber/20 space-y-2.5 text-xs">
+          <div className="p-5 bg-foam-redSoft/50 rounded-2xl border border-foam-redBorder space-y-2.5 text-xs">
             <h4 className="font-bold uppercase tracking-wider text-foam-navy flex items-center gap-1.5">
-              <Beer className="w-4 h-4 text-foam-amber" />
+              <Beer className="w-4 h-4 text-foam-red" />
               <span>Notes de Dégustation :</span>
             </h4>
             <div className="space-y-1.5 text-foam-text">
@@ -236,7 +236,7 @@ export default function BeerProductPage({ defaultSlug }) {
               <button
                 type="button"
                 onClick={handleAddToCart}
-                className="flex-1 py-4 px-6 rounded-2xl bg-foam-amber hover:bg-foam-amberDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-amber-glow transition-all"
+                className="flex-1 py-4 px-6 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all"
               >
                 <ShoppingBag className="w-5 h-5" />
                 <span>
@@ -260,19 +260,19 @@ export default function BeerProductPage({ defaultSlug }) {
           </div>
 
           {/* Set Upsell banner */}
-          <div className="p-4 bg-gradient-to-r from-foam-amberSoft to-amber-50 rounded-2xl border-2 border-foam-amber/30 space-y-2">
+          <div className="p-4 bg-gradient-to-r from-foam-redSoft to-amber-50 rounded-2xl border-2 border-foam-redBorder space-y-2">
             <div className="flex items-center justify-between">
-              <span className="font-bold text-xs uppercase tracking-wider text-foam-amber">
+              <span className="font-bold text-xs uppercase tracking-wider text-foam-red">
                 Économisez en Coffret !
               </span>
-              <span className="text-xs font-black text-foam-amber">Dès 15,00 €</span>
+              <span className="text-xs font-black text-foam-red">Dès 15,00 €</span>
             </div>
             <p className="text-xs text-foam-text leading-snug">
               Retrouvez la {beer.name} dans notre <strong>Coffret Découverte</strong> avec nos 2 autres classiques (15 € le pack de 3 ou 26 € le pack de 6).
             </p>
             <Link
               to="/coffrets/decouverte"
-              className="inline-block text-xs font-bold text-foam-navy underline hover:text-foam-amber pt-1"
+              className="inline-block text-xs font-bold text-foam-navy underline hover:text-foam-red pt-1"
             >
               Voir le Coffret Découverte →
             </Link>
@@ -345,10 +345,10 @@ export default function BeerProductPage({ defaultSlug }) {
                   <img src={ob.image} alt={ob.name} className="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-foam-amber block">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-foam-red block">
                     {ob.style} • {ob.abv}
                   </span>
-                  <strong className="text-base font-serif font-bold text-foam-navy group-hover:text-foam-amber transition-colors">
+                  <strong className="text-base font-serif font-bold text-foam-navy group-hover:text-foam-red transition-colors">
                     {ob.name}
                   </strong>
                   <p className="text-xs text-foam-muted truncate max-w-xs">{ob.shortDesc}</p>
@@ -359,7 +359,7 @@ export default function BeerProductPage({ defaultSlug }) {
                 <span className="font-serif font-black text-lg text-foam-navy block">
                   {ob.price.toFixed(2)} €
                 </span>
-                <span className="text-xs font-bold text-foam-amber group-hover:underline">
+                <span className="text-xs font-bold text-foam-red group-hover:underline">
                   Voir →
                 </span>
               </div>

@@ -8,7 +8,7 @@ export default function PalomaPage() {
       
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-3">
-        <span className="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 px-3.5 py-1 rounded-full border border-amber-300">
+        <span className="text-xs font-bold uppercase tracking-wider text-foam-red bg-foam-redSoft px-3.5 py-1 rounded-full border border-foam-redBorder">
           Maison Familiale Azuréenne • Fondée en 1948
         </span>
         <h1 className="font-serif text-3xl sm:text-5xl font-black text-foam-navy leading-tight">
@@ -23,14 +23,14 @@ export default function PalomaPage() {
       <div className="rounded-3xl bg-white border-2 border-foam-border p-6 sm:p-12 shadow-shopify space-y-8 text-foam-text text-sm sm:text-base leading-relaxed">
         
         {/* Quote Block */}
-        <div className="border-l-4 border-foam-amber pl-4 sm:pl-6 py-1 italic font-serif text-lg sm:text-xl text-foam-navy font-semibold bg-foam-amberSoft/40 rounded-r-2xl">
+        <div className="border-l-4 border-foam-red pl-4 sm:pl-6 py-1 italic font-serif text-lg sm:text-xl text-foam-navy font-semibold bg-foam-redSoft/60 rounded-r-2xl">
           « De la trattoria historique Le Virginie en 1948 jusqu'aux cuves de notre microbrasserie du Port en 2022, une même passion guide la famille Vannini : le goût du partage et l'authenticité niçoise. »
         </div>
 
         {/* Chapter 1 : 1948 */}
         <div className="space-y-3">
           <h2 className="font-serif text-2xl font-bold text-foam-navy flex items-center gap-2">
-            <span className="text-foam-amber">1948 :</span> Une dynastie de restaurateurs niçois
+            <span className="text-foam-red">1948 :</span> Une dynastie de restaurateurs niçois
           </h2>
           <p>
             L’aventure commence au lendemain de la Seconde Guerre mondiale avec l’ouverture de la célèbre trattoria <em>Le Virginie</em> au Port de Nice. Fondée par la <strong>famille Vannini</strong>, la maison a grandi au fil des décennies en préservant scrupuleusement son indépendance, sa convivialité et son attachement viscéral au terroir méditerranéen.
@@ -43,7 +43,7 @@ export default function PalomaPage() {
         {/* Chapter 2 : 2022 FOAM */}
         <div className="p-6 sm:p-8 bg-foam-subtle rounded-3xl border border-foam-border space-y-4">
           <div className="flex items-center gap-2 text-foam-navy font-serif font-bold text-xl">
-            <Beer className="w-6 h-6 text-foam-amber" />
+            <Beer className="w-6 h-6 text-foam-red" />
             <span>2022 : La Naissance de la Microbrasserie FOAM au Port</span>
           </div>
           <p className="text-sm text-foam-text leading-relaxed">
@@ -116,7 +116,7 @@ export default function PalomaPage() {
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
         <Link
           to="/coffrets/decouverte"
-          className="w-full sm:w-auto py-3.5 px-6 rounded-2xl bg-foam-amber hover:bg-foam-amberDark text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-shopify transition-all"
+          className="w-full sm:w-auto py-3.5 px-6 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all"
         >
           <Beer className="w-4 h-4" />
           <span>Découvrir nos Coffrets Découverte</span>
@@ -126,7 +126,7 @@ export default function PalomaPage() {
           to="/nos-bars"
           className="w-full sm:w-auto py-3.5 px-6 rounded-2xl bg-white hover:bg-foam-subtle text-foam-navy font-bold text-xs sm:text-sm border-2 border-foam-navy flex items-center justify-center gap-2 shadow-xs transition-all"
         >
-          <MapPin className="w-4 h-4 text-foam-amber" />
+          <MapPin className="w-4 h-4 text-foam-red" />
           <span>Visiter nos Bars au Port & Place du Pin</span>
         </Link>
       </div>

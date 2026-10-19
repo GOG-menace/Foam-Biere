@@ -26,11 +26,11 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-foam-border shadow-xs">
       
-      {/* Top Announcement Bar (Shopify style) */}
+      {/* Top Announcement Bar (Shopify standard) */}
       <div className="bg-foam-navy text-white text-xs py-2 px-4 border-b border-foam-navyLight">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1 text-center sm:text-left">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-foam-amber animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-foam-red animate-pulse" />
             <span className="text-slate-200">
               Microbrasserie du Port de Nice • <strong className="text-white font-semibold">Retrait Click & Collect GRATUIT (0 €)</strong> au Quai des Deux Emmanuels & Place du Pin
             </span>
@@ -53,14 +53,14 @@ export default function Header() {
             <img
               src="/logo-foam.png"
               alt="Logo FOAM Bière & Manger Port de Nice"
-              className="w-12 h-12 sm:w-14 sm:h-14 object-contain rounded-full shadow-xs group-hover:scale-105 transition-transform"
+              className="w-12 h-12 sm:w-14 sm:h-14 object-contain rounded-full shadow-xs group-hover:scale-105 transition-transform border border-foam-border"
             />
             <div className="flex flex-col">
               <div className="flex items-center gap-1.5">
-                <span className="font-serif text-2xl font-black tracking-tight text-foam-navy group-hover:text-foam-amber transition-colors">
+                <span className="font-serif text-2xl font-black tracking-tight text-foam-navy group-hover:text-foam-red transition-colors">
                   FOAM
                 </span>
-                <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-foam-amberSoft text-foam-amber border border-foam-amber/30">
+                <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-foam-redSoft text-foam-red border border-foam-redBorder">
                   Nice
                 </span>
               </div>
@@ -78,8 +78,8 @@ export default function Header() {
                 to={link.path}
                 className={`relative py-1 text-sm font-bold tracking-tight transition-all flex items-center gap-1.5 ${
                   isActive(link.path)
-                    ? 'text-foam-amber border-b-2 border-foam-amber'
-                    : 'text-foam-navy hover:text-foam-amber'
+                    ? 'text-foam-red border-b-2 border-foam-red'
+                    : 'text-foam-navy hover:text-foam-red'
                 }`}
               >
                 <span>{link.label}</span>
@@ -87,7 +87,7 @@ export default function Header() {
                   <span className={`text-[10px] font-extrabold px-1.5 py-0.2 rounded-full ${
                     link.badge === 'Éphémère'
                       ? 'bg-foam-oliveSoft text-foam-olive border border-foam-olive/30'
-                      : 'bg-foam-amberSoft text-foam-amberDark border border-foam-amber/30'
+                      : 'bg-foam-redSoft text-foam-red border border-foam-redBorder'
                   }`}>
                     {link.badge}
                   </span>
@@ -109,10 +109,10 @@ export default function Header() {
               <span>Click & Collect 0€</span>
             </Link>
 
-            {/* Cart Trigger Button */}
+            {/* Cart Trigger Button in FOAM Red #904545 */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative flex items-center gap-2.5 py-2.5 px-4 rounded-xl bg-foam-amber hover:bg-foam-amberDark text-white font-bold text-sm shadow-shopify hover:shadow-amber-glow transition-all transform active:scale-95 group"
+              className="relative flex items-center gap-2.5 py-2.5 px-4 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-bold text-sm shadow-shopify hover:shadow-red-glow transition-all transform active:scale-95 group"
               aria-label="Voir le panier"
             >
               <div className="relative">
@@ -150,7 +150,7 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(false)}
                 className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-bold transition-colors ${
                   isActive(link.path)
-                    ? 'bg-foam-amberSoft text-foam-amberDark'
+                    ? 'bg-foam-redSoft text-foam-red'
                     : 'text-foam-navy hover:bg-foam-subtle'
                 }`}
               >
@@ -176,6 +176,30 @@ export default function Header() {
           </div>
         )}
 
+      </div>
+
+      {/* Quick Navigation Scroll Bar for Mobile & Compact Preview Panes */}
+      <div className="lg:hidden flex items-center gap-2 overflow-x-auto py-2.5 px-4 bg-foam-bg border-t border-foam-border scrollbar-none text-xs">
+        {navLinks.map((link) => (
+          <Link
+            key={link.path}
+            to={link.path}
+            className={`shrink-0 px-3 py-1.5 rounded-full font-bold transition-all text-xs flex items-center gap-1.5 ${
+              isActive(link.path)
+                ? 'bg-foam-red text-white shadow-xs'
+                : 'bg-white text-foam-navy hover:text-foam-red border border-foam-border'
+            }`}
+          >
+            <span>{link.label}</span>
+            {link.badge && (
+              <span className={`text-[9px] font-black px-1.5 py-0.2 rounded-full ${
+                isActive(link.path) ? 'bg-white/20 text-white' : 'bg-foam-redSoft text-foam-red'
+              }`}>
+                {link.badge}
+              </span>
+            )}
+          </Link>
+        ))}
       </div>
     </header>
   );

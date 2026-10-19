@@ -41,7 +41,7 @@ export default function SlideOverCart() {
           {/* Header */}
           <div className="p-5 border-b border-foam-border bg-white flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-foam-amberSoft text-foam-amber flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl bg-foam-redSoft text-foam-red flex items-center justify-center">
                 <ShoppingBag className="w-5 h-5" />
               </div>
               <div>
@@ -134,7 +134,7 @@ export default function SlideOverCart() {
                   />
                   <div className="flex-1 flex justify-between font-bold text-foam-navy">
                     <span className="flex items-center gap-1">
-                      <Truck className="w-3.5 h-3.5 text-foam-amber" />
+                      <Truck className="w-3.5 h-3.5 text-foam-red" />
                       Expédition Colis Sécurisé Anti-Casse
                     </span>
                     <span>{SHIPPING_RATES.homeDelivery.toFixed(2)} €</span>
@@ -166,7 +166,7 @@ export default function SlideOverCart() {
                   >
                     <div className="flex-1 min-w-0">
                       <h4 className="font-bold text-foam-navy truncate text-sm">{item.name}</h4>
-                      <p className="text-[11px] text-foam-amber font-semibold">{item.formatLabel}</p>
+                      <p className="text-[11px] text-foam-red font-semibold">{item.formatLabel}</p>
                       <span className="font-serif font-black text-sm text-foam-navy mt-1 block">
                         {(item.price * item.quantity).toFixed(2)} €
                       </span>
@@ -219,18 +219,18 @@ export default function SlideOverCart() {
                 </div>
                 <div className="flex justify-between text-base font-serif font-black text-foam-navy pt-2 border-t border-foam-border">
                   <span>Total :</span>
-                  <span className="text-2xl text-foam-amber">{grandTotal.toFixed(2)} €</span>
+                  <span className="text-2xl text-foam-red">{grandTotal.toFixed(2)} €</span>
                 </div>
               </div>
 
               {/* SAÉ pilot reminder */}
-              <div className="p-2.5 rounded-xl bg-foam-amberSoft text-amber-900 border border-foam-amber/30 text-[11px] text-center font-medium">
+              <div className="p-2.5 rounded-xl bg-foam-redSoft text-foam-navy border border-foam-redBorder text-[11px] text-center font-medium">
                 🔒 Mode précommande test (SAÉ IUT Nice) • 0 € débité aujourd'hui.
               </div>
 
               <button
                 onClick={handleGoToCheckout}
-                className="w-full py-4 px-6 rounded-2xl bg-foam-amber hover:bg-foam-amberDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-amber-glow transition-all"
+                className="w-full py-4 px-6 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all"
               >
                 <span>Passer la précommande (0 € débité)</span>
                 <ArrowRight className="w-4 h-4" />

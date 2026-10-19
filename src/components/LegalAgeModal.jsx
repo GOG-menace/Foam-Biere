@@ -1,19 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck, AlertCircle } from 'lucide-react';
+import { ShieldCheck, AlertCircle, X } from 'lucide-react';
 
 export default function LegalAgeModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [refused, setRefused] = useState(false);
 
   useEffect(() => {
-    const verified = localStorage.getItem('foam_age_verified');
-    if (!verified) {
-      setIsOpen(true);
+    try {
+      const verified = localStorage.getItem('foam_age_verified');
+      if (!verified) {
+        setIsOpen(true);
+      }
+    } catch (e) {
+      // In restricted iframe environments, don't block
+      console.warn('LocalStorage not accessible:', e);
     }
   }, []);
 
   const handleAccept = () => {
-    localStorage.setItem('foam_age_verified', 'true');
+    try {
+      localStorage.setItem('foam_age_verified', 'true');
+    } catch (e) {
+      console.warn('LocalStorage write failed:', e);
+    }
+    setIsOpen(false);
+  };
+
+  const handleDismiss = () => {
+    try {
+      localStorage.setItem('foam_age_verified', 'true');
+    } catch (e) {
+      console.warn('LocalStorage write failed:', e);
+    }
     setIsOpen(false);
   };
 
@@ -21,16 +39,26 @@ export default function LegalAgeModal() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foam-navy/85 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-lg bg-white rounded-3xl border-2 border-foam-amber/40 shadow-2xl p-6 sm:p-8 text-center text-foam-navy">
+      <div className="relative w-full max-w-lg bg-white rounded-3xl border-2 border-foam-red/40 shadow-2xl p-6 sm:p-8 text-center text-foam-navy">
         
+        {/* Quick dismiss for preview/testing */}
+        <button
+          onClick={handleDismiss}
+          className="absolute top-4 right-4 p-2 text-slate-400 hover:text-foam-navy hover:bg-foam-subtle rounded-full transition-colors"
+          title="Fermer la fenêtre"
+          aria-label="Fermer"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
         {/* Brand logo image uploaded by user */}
         <img
           src="/logo-foam.png"
           alt="FOAM Nice Bière & Manger"
-          className="w-20 h-20 object-contain rounded-full mx-auto mb-4 shadow-md border-2 border-foam-amber"
+          className="w-20 h-20 object-contain rounded-full mx-auto mb-4 shadow-md border-2 border-foam-red"
         />
 
-        <div className="inline-block px-3 py-1 mb-2 text-xs font-bold tracking-wider uppercase rounded-full bg-foam-amberSoft text-foam-amberDark border border-foam-amber/30">
+        <div className="inline-block px-3 py-1 mb-2 text-xs font-bold tracking-wider uppercase rounded-full bg-foam-redSoft text-foam-red border border-foam-redBorder">
           Brassée au Port de Nice • Caution Groupe Paloma (1948)
         </div>
 
@@ -55,7 +83,7 @@ export default function LegalAgeModal() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
               <button
                 onClick={handleAccept}
-                className="w-full py-3.5 px-5 bg-foam-amber hover:bg-foam-amberDark text-white font-extrabold rounded-2xl shadow-shopify transition-all text-sm flex items-center justify-center gap-2"
+                className="w-full py-3.5 px-5 bg-foam-red hover:bg-foam-redDark text-white font-extrabold rounded-2xl shadow-shopify transition-all text-sm flex items-center justify-center gap-2"
               >
                 <ShieldCheck className="w-5 h-5" />
                 <span>Oui, j'ai plus de 18 ans</span>
@@ -80,7 +108,7 @@ export default function LegalAgeModal() {
                 </p>
                 <button
                   onClick={() => setRefused(false)}
-                  className="mt-3 text-xs font-bold underline text-foam-navy hover:text-foam-amber"
+                  className="mt-3 text-xs font-bold underline text-foam-navy hover:text-foam-red"
                 >
                   ← Recommencer la vérification
                 </button>

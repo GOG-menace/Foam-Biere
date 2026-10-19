@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 
 import Header from './components/Header';
@@ -16,10 +16,30 @@ import BeersOverviewPage from './pages/BeersOverviewPage';
 import PalomaPage from './pages/PalomaPage';
 import BarsPage from './pages/BarsPage';
 
-// Automatically scroll to top on route change (true multi-page experience)
-function ScrollToTop() {
-  const { pathname } = useLocation();
+// Scroll to top on every route navigation & handle legacy hash or query param redirects
+function NavigationHelper() {
+  const { pathname, hash, search } = useLocation();
+  const navigate = useNavigate();
 
+  // If URL has a legacy hash like #/coffrets/decouverte or query param like ?page=/bieres, convert to real pathname
+  useEffect(() => {
+    if (hash && hash.startsWith('#/')) {
+      const targetPath = hash.slice(1);
+      navigate(targetPath, { replace: true });
+    } else if (search) {
+      try {
+        const params = new URLSearchParams(search);
+        const queryTarget = params.get('page') || params.get('p') || params.get('route');
+        if (queryTarget && queryTarget !== pathname) {
+          navigate(queryTarget.startsWith('/') ? queryTarget : `/${queryTarget}`, { replace: true });
+        }
+      } catch (e) {
+        console.warn('NavigationHelper query parse error:', e);
+      }
+    }
+  }, [hash, search, pathname, navigate]);
+
+  // Always scroll to top on page change
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [pathname]);
@@ -31,10 +51,10 @@ export default function App() {
   return (
     <CartProvider>
       <Router>
-        <ScrollToTop />
-        <div className="min-h-screen flex flex-col bg-foam-bg text-foam-text selection:bg-foam-amber selection:text-white">
+        <NavigationHelper />
+        <div className="min-h-screen flex flex-col bg-foam-bg text-foam-text selection:bg-foam-red selection:text-white">
           
-          {/* Age Gate (Loi Évin) */}
+          {/* Legal Age Gate (Loi Évin) */}
           <LegalAgeModal />
 
           {/* Shopify-Standard Header with authentic Logo */}
@@ -65,7 +85,7 @@ export default function App() {
               {/* Dedicated Nos Bars Page */}
               <Route path="/nos-bars" element={<BarsPage />} />
 
-              {/* Fallback */}
+              {/* Fallback to Home */}
               <Route path="*" element={<HomePage />} />
             </Routes>
           </main>

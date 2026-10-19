@@ -4,7 +4,7 @@ import { Beer, MapPin, ShieldAlert, Award, ArrowUpRight } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-foam-navy text-white mt-20 pt-16 pb-16 border-t-4 border-foam-amber">
+    <footer className="bg-foam-navy text-white mt-20 pt-16 pb-16 border-t-4 border-foam-red">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Top 4-Column Grid */}
@@ -18,15 +18,15 @@ export default function Footer() {
                 alt="FOAM Logo"
                 className="w-12 h-12 object-contain rounded-full border border-white/40 shadow-xs"
               />
-              <span className="font-serif text-2xl font-black tracking-tight text-white group-hover:text-amber-400 transition-colors">
+              <span className="font-serif text-2xl font-black tracking-tight text-white group-hover:text-foam-red transition-colors">
                 FOAM NICE
               </span>
             </Link>
             <p className="text-xs text-slate-300 leading-relaxed">
               Microbrasserie artisanale du Port de Nice. Créée avec passion par le <strong>Groupe Paloma</strong>, maison familiale azuréenne fondée en 1948 par la famille Vannini.
             </p>
-            <div className="text-xs text-amber-300 font-semibold flex items-center gap-1.5">
-              <MapPin className="w-4 h-4 text-foam-amber" />
+            <div className="text-xs text-slate-200 font-semibold flex items-center gap-1.5">
+              <MapPin className="w-4 h-4 text-foam-red" />
               <span>3 Quai des Deux Emmanuels & Place du Pin</span>
             </div>
           </div>
@@ -79,7 +79,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/bieres" className="text-amber-400 font-semibold block pt-1 hover:text-white transition-colors">
+                <Link to="/bieres" className="text-foam-red font-bold block pt-1 hover:underline transition-colors">
                   Voir toute la gamme →
                 </Link>
               </li>
@@ -88,7 +88,7 @@ export default function Footer() {
 
           {/* Histoire & Bars */}
           <div>
-            <h4 className="font-bold uppercase tracking-wider text-xs text-amber-300 mb-3.5">
+            <h4 className="font-bold uppercase tracking-wider text-xs text-slate-300 mb-3.5">
               La Maison FOAM
             </h4>
             <ul className="space-y-2 text-xs text-slate-300">
@@ -119,7 +119,7 @@ export default function Footer() {
         </div>
 
         {/* Loi Évin Sanitary Warning - High Contrast & Visible */}
-        <div className="p-4 rounded-2xl bg-amber-500/15 border-2 border-amber-400 text-center text-xs sm:text-sm font-bold text-amber-200 tracking-wide">
+        <div className="p-4 rounded-2xl bg-white/10 border-2 border-foam-red text-center text-xs sm:text-sm font-bold text-white tracking-wide">
           ⚠️ L'ABUS D'ALCOOL EST DANGEREUX POUR LA SANTÉ, À CONSOMMER AVEC MODÉRATION. VENTE STRICTEMENT INTERDITE AUX MINEURS DE MOINS DE 18 ANS.
         </div>
 
