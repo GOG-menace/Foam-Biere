@@ -1,113 +1,127 @@
 import React from 'react';
-import { ArrowLeft, MapPin, Clock, Beer, Navigation, CheckCircle2, ShoppingBag } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { MapPin, Clock, Beer, Navigation, CheckCircle2, Phone, ShoppingBag, ArrowRight } from 'lucide-react';
 import { BARS_DATA } from '../data/products';
 
-export default function BarsPage({ navigateTo }) {
+export default function BarsPage() {
   return (
-    <div className="py-10 sm:py-16 max-w-5xl mx-auto px-4 sm:px-6 space-y-12">
+    <div className="py-10 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       
-      {/* Back button */}
-      <div>
-        <button
-          onClick={() => navigateTo('home')}
-          className="text-xs font-semibold text-kraft-muted hover:text-kraft-ink flex items-center gap-1.5 transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Retour à l'accueil</span>
-        </button>
-      </div>
-
       {/* Header */}
-      <div className="text-center max-w-2xl mx-auto space-y-3">
-        <span className="text-xs font-bold uppercase tracking-wider text-kraft-olive bg-kraft-stone px-3 py-1 rounded-full border border-kraft-border">
-          Dégustation & Click & Collect 0€
+      <div className="text-center max-w-3xl mx-auto space-y-3">
+        <span className="text-xs font-bold uppercase tracking-wider text-foam-olive bg-foam-oliveSoft px-3.5 py-1 rounded-full border border-foam-olive/30">
+          Dégustation Pression & Retrait Click & Collect 0 €
         </span>
-        <h1 className="font-serif text-3xl sm:text-5xl font-bold text-kraft-ink">
+        <h1 className="font-serif text-3xl sm:text-5xl font-black text-foam-navy leading-tight">
           Nos 2 Bars FOAM à Nice
         </h1>
-        <p className="text-sm text-kraft-muted leading-relaxed">
-          Deux adresses emblématiques pour déguster nos bières à la pression ou retirer vos commandes de coffrets sans frais de port.
+        <p className="text-base text-foam-text leading-relaxed">
+          Deux adresses emblématiques pour savourer nos bières fraîches à la pression au comptoir ou pour récupérer vos commandes de coffrets sans aucun frais de port.
         </p>
       </div>
 
-      {/* 2 Bars Cards Detailed */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* 2 Bars Detailed Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
         {BARS_DATA.map((bar) => (
-          <div 
+          <div
             key={bar.id}
-            className="kraft-card p-6 sm:p-8 flex flex-col justify-between space-y-6"
+            className="rounded-3xl bg-white border-2 border-foam-border p-6 sm:p-10 shadow-shopify flex flex-col justify-between space-y-6"
           >
-            <div className="space-y-4">
+            <div className="space-y-5">
+              
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-kraft-terracotta">
-                  {bar.type}
+                <span className="text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full bg-foam-amberSoft text-foam-amberDark border border-foam-amber/30">
+                  {bar.badge}
                 </span>
-                <span className="text-xs font-bold text-kraft-olive bg-kraft-stone px-2.5 py-0.5 rounded-full border border-kraft-border">
+                <span className="text-xs font-bold text-foam-olive bg-foam-oliveSoft px-3 py-1 rounded-full flex items-center gap-1.5 border border-foam-olive/30">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
                   Click & Collect 0 €
                 </span>
               </div>
 
-              <h2 className="font-serif text-2xl font-bold text-kraft-ink">
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy">
                 {bar.name}
               </h2>
 
-              <div className="space-y-2 text-xs text-kraft-muted">
-                <div className="flex items-start gap-2">
-                  <Navigation className="w-4 h-4 text-kraft-ink shrink-0 mt-0.5" />
-                  <span className="text-kraft-ink font-medium">{bar.address}</span>
+              <div className="space-y-2.5 text-xs sm:text-sm text-foam-text">
+                <div className="flex items-start gap-2.5">
+                  <Navigation className="w-4 h-4 text-foam-amber shrink-0 mt-0.5" />
+                  <span className="font-semibold text-foam-navy">{bar.address}</span>
                 </div>
-                <div className="flex items-start gap-2">
-                  <Clock className="w-4 h-4 text-kraft-muted shrink-0 mt-0.5" />
+                <div className="flex items-start gap-2.5 text-foam-muted">
+                  <Clock className="w-4 h-4 text-foam-muted shrink-0 mt-0.5" />
                   <span>{bar.hours}</span>
                 </div>
               </div>
 
-              <p className="text-xs text-kraft-ink/85 leading-relaxed pt-2 border-t border-kraft-border">
+              <p className="text-xs sm:text-sm text-foam-text leading-relaxed pt-2 border-t border-foam-border">
                 {bar.description}
               </p>
 
-              {/* Specific features */}
-              <div className="pt-2 space-y-1.5">
-                <strong className="text-xs font-bold uppercase tracking-wider text-kraft-ink block">
-                  Spécificités du lieu :
+              {/* Specific Features List */}
+              <div className="p-4 rounded-2xl bg-foam-bg border border-foam-border space-y-2">
+                <strong className="text-xs font-bold uppercase tracking-wider text-foam-navy block">
+                  Ce que vous trouverez sur place :
                 </strong>
-                <ul className="space-y-1 text-xs text-kraft-muted">
+                <ul className="space-y-1.5 text-xs text-foam-text">
                   {bar.features.map((feature, i) => (
                     <li key={i} className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-kraft-olive shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-foam-olive shrink-0" />
                       <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
+                <p className="text-[11px] text-foam-muted italic pt-1 border-t border-foam-border/60">
+                  💡 {bar.mapHint}
+                </p>
               </div>
+
             </div>
 
-            <div className="pt-4 border-t border-kraft-border">
-              <button
-                onClick={() => navigateTo('coffret-decouverte')}
-                className="w-full py-3 px-4 rounded-xl bg-kraft-ink hover:bg-kraft-terracotta text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors"
+            <div className="pt-4 border-t border-foam-border">
+              <Link
+                to="/coffrets/decouverte"
+                className="w-full py-3.5 px-5 rounded-2xl bg-foam-navy hover:bg-foam-amber text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shadow-xs"
               >
-                <ShoppingBag className="w-3.5 h-3.5" />
+                <ShoppingBag className="w-4 h-4" />
                 <span>Commander avec retrait dans ce bar (0 €)</span>
-              </button>
+              </Link>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Click & Collect Explanatory Banner */}
-      <div className="p-6 sm:p-8 bg-kraft-stone/60 rounded-2xl border border-kraft-border space-y-3">
-        <h3 className="font-serif text-xl font-bold text-kraft-ink flex items-center gap-2">
-          <MapPin className="w-5 h-5 text-kraft-olive" />
-          <span>Comment fonctionne le retrait Click & Collect ?</span>
-        </h3>
-        <p className="text-xs sm:text-sm text-kraft-muted leading-relaxed">
-          1. Vous commandez votre coffret (3 ou 6 bières) ou vos bouteilles sur le site.
-          <br />
-          2. Vous choisissez votre bar de retrait : <strong>Port de Nice (Quai des Deux Emmanuels)</strong> ou <strong>Place du Pin</strong>.
-          <br />
-          3. Votre commande est préparée immédiatement avec des bouteilles fraîches. Vous repartez avec votre étui carton rigide sans débourser un centime de frais de port.
-        </p>
+      {/* Explanatory Banner Click & Collect */}
+      <div className="rounded-3xl bg-foam-oliveSoft border-2 border-foam-olive/40 p-8 sm:p-10 space-y-4 text-foam-navy shadow-shopify">
+        <div className="flex items-center gap-2.5">
+          <MapPin className="w-6 h-6 text-foam-olive" />
+          <h3 className="font-serif text-2xl font-bold text-foam-navy">
+            Comment fonctionne le retrait Click & Collect gratuit ?
+          </h3>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2 text-xs sm:text-sm text-foam-text">
+          <div className="p-4 bg-white/80 rounded-2xl border border-foam-olive/20 space-y-1">
+            <strong className="font-bold text-foam-navy block text-sm">1. Choisissez vos bières</strong>
+            <p className="text-foam-muted text-xs leading-relaxed">
+              Sélectionnez vos coffrets de 3 ou 6 bières ou vos bouteilles favorites sur notre boutique.
+            </p>
+          </div>
+
+          <div className="p-4 bg-white/80 rounded-2xl border border-foam-olive/20 space-y-1">
+            <strong className="font-bold text-foam-navy block text-sm">2. Sélectionnez votre bar</strong>
+            <p className="text-foam-muted text-xs leading-relaxed">
+              Cochez <strong>FOAM Port de Nice</strong> ou <strong>FOAM Place du Pin</strong> lors de la validation.
+            </p>
+          </div>
+
+          <div className="p-4 bg-white/80 rounded-2xl border border-foam-olive/20 space-y-1">
+            <strong className="font-bold text-foam-navy block text-sm">3. Retirez vos bières fraîches</strong>
+            <p className="text-foam-muted text-xs leading-relaxed">
+              Vos bouteilles sont prêtes sous 2h en étui rigide prêt à offrir, sans payer de frais de livraison.
+            </p>
+          </div>
+        </div>
       </div>
 
     </div>

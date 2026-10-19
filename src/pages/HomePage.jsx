@@ -1,331 +1,471 @@
 import React from 'react';
-import { ArrowRight, MapPin, Package, Sparkles, Shield, Beer } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, MapPin, Beer, Package, Star, ShieldCheck, Sparkles, CheckCircle2, Award } from 'lucide-react';
 import { SETS, BEERS } from '../data/products';
 
-export default function HomePage({ navigateTo }) {
+export default function HomePage() {
   const decouverte = SETS['coffret-decouverte'];
   const exotique = SETS['coffret-exotique'];
-  const beerList = Object.values(BEERS);
+  const beers = Object.values(BEERS);
 
   return (
-    <div className="py-10 sm:py-16 space-y-16 sm:space-y-24 max-w-6xl mx-auto px-4 sm:px-6">
+    <div className="space-y-16 sm:space-y-24 pb-20">
       
-      {/* 1. HERO SOBRE & KRAFT */}
-      <section className="text-center max-w-3xl mx-auto pt-4 sm:pt-8">
-        <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-kraft-ink bg-kraft-stone border border-kraft-border mb-4">
-          Microbrasserie artisanale • Port de Nice
-        </span>
+      {/* 1. HERO SECTION ORIENTÉE CONVERSION (DNVB / SHOPIFY STYLE) */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-foam-amberSoft/70 via-foam-bg to-foam-bg pt-10 pb-16 sm:pt-16 sm:pb-24 border-b border-foam-border/60">
         
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-kraft-ink leading-tight tracking-tight">
-          La bière du Port de Nice, <br className="hidden sm:inline" />
-          <span className="text-kraft-terracotta italic font-normal">en direct</span> de nos cuves.
-        </h1>
+        {/* Subtle decorative Mediterranean amber light glow */}
+        <div className="absolute top-0 right-10 w-96 h-96 rounded-full bg-foam-amber/10 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-amber-400/10 blur-3xl pointer-events-none" />
 
-        <p className="mt-5 text-base sm:text-lg text-kraft-muted leading-relaxed">
-          Élaborée au Quai des Deux Emmanuels par notre maître brasseur Stéphane. 
-          Commandez nos coffrets dégustation en <strong className="text-kraft-ink font-semibold">Click & Collect gratuit</strong> dans nos bars ou en livraison sécurisée.
-        </p>
-
-        {/* Reassurance pills */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs text-kraft-muted font-medium">
-          <span className="flex items-center gap-1.5">
-            <MapPin className="w-4 h-4 text-kraft-olive" />
-            Retrait gratuit 0€ (Port & Place du Pin)
-          </span>
-          <span className="hidden sm:inline text-kraft-border">•</span>
-          <span className="flex items-center gap-1.5">
-            <Beer className="w-4 h-4 text-kraft-terracotta" />
-            100% brassée au Port de Nice
-          </span>
-          <span className="hidden sm:inline text-kraft-border">•</span>
-          <span className="flex items-center gap-1.5">
-            <Package className="w-4 h-4 text-kraft-ink" />
-            Étuis kraft protecteurs
-          </span>
-        </div>
-      </section>
-
-      {/* 2. SECTION COFFRETS PHARE (CONVERSION DIRECTE) */}
-      <section className="space-y-6">
-        <div className="text-center max-w-xl mx-auto">
-          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-kraft-ink">
-            Nos Coffrets Dégustation
-          </h2>
-          <p className="text-xs sm:text-sm text-kraft-muted mt-1">
-            Conditionnés en étuis kraft rigides. Choisissez entre le format 3 bouteilles (15 €) ou 6 bouteilles (26 €).
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          
-          {/* CARTE COFFRET DÉCOUVERTE */}
-          <div className="kraft-card p-6 sm:p-8 flex flex-col justify-between hover:border-kraft-terracotta/60 transition-all duration-300 group">
-            <div>
-              {/* Image Placeholder Kraft */}
-              <div 
-                onClick={() => navigateTo('coffret-decouverte')}
-                className="w-full aspect-[16/10] rounded-xl bg-kraft-stone border border-kraft-border flex flex-col items-center justify-center p-6 text-center cursor-pointer group-hover:bg-kraft-border/30 transition-colors"
-              >
-                <div className="w-12 h-12 rounded-full bg-white text-kraft-terracotta flex items-center justify-center font-serif font-bold text-xl mb-3 shadow-xs">
-                  📦
-                </div>
-                <span className="text-xs font-semibold uppercase tracking-wider text-kraft-ink">
-                  {decouverte.imagePlaceholder}
-                </span>
-                <span className="text-[11px] text-kraft-muted mt-1">
-                  (Emplacement pour votre visuel de coffret kraft)
-                </span>
-              </div>
-
-              <div className="mt-6 flex items-center justify-between text-xs">
-                <span className="font-semibold uppercase tracking-wider text-kraft-olive">
-                  {decouverte.badge}
-                </span>
-                <span className="text-kraft-muted">
-                  33cl • Recettes permanentes
-                </span>
-              </div>
-
-              <h3 
-                onClick={() => navigateTo('coffret-decouverte')}
-                className="font-serif text-2xl font-bold text-kraft-ink mt-2 group-hover:text-kraft-terracotta transition-colors cursor-pointer"
-              >
-                {decouverte.name}
-              </h3>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            {/* Left Content */}
+            <div className="lg:col-span-7 text-center lg:text-left space-y-6">
               
-              <p className="text-xs text-kraft-muted mt-1">
-                {decouverte.subtitle}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-foam-border shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-foam-amber animate-ping" />
+                <span className="text-xs font-bold uppercase tracking-wider text-foam-navy">
+                  Microbrasserie du Port de Nice • Groupe Paloma (1948)
+                </span>
+              </div>
+
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-black text-foam-navy leading-[1.12] tracking-tight">
+                La bière artisanale du Port de Nice, <span className="text-foam-amber underline decoration-foam-amber/40">en direct</span> de nos cuves.
+              </h1>
+
+              <p className="text-base sm:text-lg text-foam-text font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                Brassée au Quai des Deux Emmanuels par Stéphane, notre maître brasseur. 
+                Commandez nos coffrets dégustation prêts à offrir avec <strong className="text-foam-navy font-bold">Retrait Click & Collect GRATUIT</strong> dans nos 2 bars à Nice ou livraison sécurisée anti-casse.
               </p>
 
-              <p className="text-xs text-kraft-ink/80 mt-3 leading-relaxed">
-                {decouverte.description}
+              {/* Social Proof */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 text-xs text-foam-muted font-medium pt-1">
+                <div className="flex items-center gap-1 text-amber-500">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <span className="font-bold text-foam-navy text-sm">4.9 / 5</span>
+                <span className="text-foam-border">•</span>
+                <span className="text-foam-text font-medium">Plus de 1 200 dégustations par semaine au bar du Port</span>
+              </div>
+
+              {/* Dual CTA */}
+              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                <Link
+                  to="/coffrets/decouverte"
+                  className="w-full sm:w-auto py-4 px-8 rounded-2xl bg-foam-amber hover:bg-foam-amberDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-shopify hover:shadow-amber-glow transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  <Package className="w-5 h-5" />
+                  <span>Découvrir le Coffret Découverte (Dès 15 €)</span>
+                </Link>
+
+                <Link
+                  to="/coffrets/exotique"
+                  className="w-full sm:w-auto py-4 px-7 rounded-2xl bg-white hover:bg-foam-subtle text-foam-navy font-bold text-sm sm:text-base border-2 border-foam-navy/20 hover:border-foam-navy transition-all flex items-center justify-center gap-2 shadow-xs"
+                >
+                  <Sparkles className="w-5 h-5 text-foam-amber" />
+                  <span>Coffret Exotique Éphémère</span>
+                </Link>
+              </div>
+
+              {/* Click & collect note */}
+              <p className="text-xs text-foam-olive font-semibold flex items-center justify-center lg:justify-start gap-1.5">
+                <MapPin className="w-4 h-4 shrink-0" />
+                <span>Retrait gratuit 0 € disponible sous 2h aux bars FOAM Port et Place du Pin</span>
               </p>
 
-              {/* Composition rapide */}
-              <div className="mt-4 p-3 bg-kraft-bg rounded-lg border border-kraft-border/80 text-xs text-kraft-ink space-y-1">
-                <p className="font-semibold text-kraft-ink">Composition équilibrée :</p>
-                <p className="text-kraft-muted">• FOAM West Coast (IPA houblonnée)</p>
-                <p className="text-kraft-muted">• FOAM Lager (Blonde florale & fraîche)</p>
-                <p className="text-kraft-muted">• FOAM Blanche (Zestes d’agrumes de la Riviera)</p>
+            </div>
+
+            {/* Right Card / Visual Showcase */}
+            <div className="lg:col-span-5">
+              <div className="relative mx-auto max-w-md lg:max-w-none">
+                
+                {/* Floating badge */}
+                <div className="absolute -top-4 -right-2 z-20 bg-foam-navy text-white py-2 px-3.5 rounded-2xl shadow-shopify border border-white/20 flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+                  <span className="text-xs font-bold">En direct des cuves de Nice</span>
+                </div>
+
+                <div className="rounded-3xl bg-white border border-foam-border p-4 shadow-shopify-hover space-y-4">
+                  <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-foam-subtle relative">
+                    <img
+                      src={decouverte.image}
+                      alt="Coffret Découverte bières artisanales FOAM Nice"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-foam-navy/80 via-transparent to-transparent flex items-end p-5">
+                      <div className="text-white">
+                        <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-foam-amber">
+                          Best-Seller Fêtes
+                        </span>
+                        <h3 className="font-serif text-xl font-bold mt-1">
+                          Coffret Découverte 3 ou 6 bières
+                        </h3>
+                        <p className="text-xs text-slate-200">
+                          West Coast IPA • Lager Dorée • Blanche Riviera
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-1 text-xs">
+                    <div>
+                      <span className="text-foam-muted block text-[11px]">Format au choix</span>
+                      <strong className="text-foam-navy font-bold text-sm">Pack 3 (15 €) • Pack 6 (26 €)</strong>
+                    </div>
+
+                    <Link
+                      to="/coffrets/decouverte"
+                      className="py-2.5 px-4 rounded-xl bg-foam-amber hover:bg-foam-amberDark text-white font-bold text-xs flex items-center gap-1.5 transition-colors shadow-xs"
+                    >
+                      <span>Commander</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                </div>
+
               </div>
             </div>
 
-            <div className="mt-6 pt-5 border-t border-kraft-border flex items-center justify-between">
+          </div>
+        </div>
+
+        {/* 3 Pillars Trust Bar */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-foam-border">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="p-4 rounded-2xl bg-white border border-foam-border flex items-center gap-3.5 shadow-xs">
+              <div className="w-11 h-11 rounded-xl bg-foam-amberSoft text-foam-amber flex items-center justify-center shrink-0">
+                <Beer className="w-6 h-6" />
+              </div>
               <div>
-                <div className="text-xs text-kraft-muted">À partir de</div>
-                <div className="text-2xl font-serif font-bold text-kraft-ink">
-                  15,00 € <span className="text-xs font-normal text-kraft-muted">(3x33cl)</span>
-                </div>
-                <div className="text-[11px] text-kraft-terracotta font-medium">
-                  ou 26,00 € le pack de 6
-                </div>
+                <h4 className="font-bold text-sm text-foam-navy">Brassée au Port de Nice</h4>
+                <p className="text-xs text-foam-muted">Par Stéphane au Quai des Deux Emmanuels</p>
+              </div>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-foam-oliveSoft border border-foam-olive/30 flex items-center gap-3.5 shadow-xs">
+              <div className="w-11 h-11 rounded-xl bg-foam-olive text-white flex items-center justify-center shrink-0">
+                <MapPin className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="font-bold text-sm text-foam-olive">Click & Collect 0 €</h4>
+                <p className="text-xs text-foam-olive font-medium">Retrait immédiat au Port et Place du Pin</p>
+              </div>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-white border border-foam-border flex items-center gap-3.5 shadow-xs">
+              <div className="w-11 h-11 rounded-xl bg-foam-goldSoft text-foam-gold flex items-center justify-center shrink-0">
+                <Package className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="font-bold text-sm text-foam-navy">Étuis Cadeau Rigides</h4>
+                <p className="text-xs text-foam-muted">Protection anti-casse recyclable</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+
+      {/* 2. SECTION COFFRETS CADEAUX (PAGES DE VENTE DÉDIÉES) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        
+        <div className="text-center max-w-3xl mx-auto space-y-2">
+          <span className="text-xs font-bold uppercase tracking-wider text-foam-amber bg-foam-amberSoft px-3 py-1 rounded-full border border-foam-amber/30">
+            Gamme Coffrets Cadeaux
+          </span>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black text-foam-navy">
+            Nos Coffrets Dégustation
+          </h2>
+          <p className="text-sm sm:text-base text-foam-text leading-relaxed">
+            Chaque coffret est disponible en format <strong>3 bouteilles (15,00 €)</strong> ou <strong>6 bouteilles (26,00 €)</strong>. 
+            Cliquez sur un coffret pour accéder à sa page de vente dédiée.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          
+          {/* CARTE COFFRET DÉCOUVERTE */}
+          <div className="rounded-3xl bg-white border-2 border-foam-border hover:border-foam-amber p-6 sm:p-8 shadow-shopify hover:shadow-shopify-hover transition-all flex flex-col justify-between group">
+            <div className="space-y-4">
+              
+              <div className="aspect-[16/10] rounded-2xl overflow-hidden bg-foam-subtle border border-foam-border relative">
+                <img
+                  src={decouverte.image}
+                  alt={decouverte.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <span className="absolute top-3 left-3 bg-foam-amber text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs">
+                  {decouverte.badge}
+                </span>
+                <span className="absolute bottom-3 right-3 bg-white/90 text-foam-navy font-bold text-xs px-2.5 py-1 rounded-full backdrop-blur-xs border border-foam-border">
+                  15 € (3 bières) / 26 € (6 bières)
+                </span>
               </div>
 
-              <button
-                onClick={() => navigateTo('coffret-decouverte')}
-                className="py-3 px-5 rounded-lg bg-kraft-ink text-white hover:bg-kraft-terracotta transition-colors text-xs font-bold flex items-center gap-1.5"
+              <div>
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy group-hover:text-foam-amber transition-colors">
+                  {decouverte.name}
+                </h3>
+                <p className="text-xs font-bold text-foam-amber uppercase tracking-wider mt-0.5">
+                  {decouverte.subtitle}
+                </p>
+                <p className="text-xs sm:text-sm text-foam-text mt-3 leading-relaxed">
+                  {decouverte.description}
+                </p>
+              </div>
+
+              {/* Inclus dans le coffret */}
+              <div className="p-4 rounded-xl bg-foam-bg border border-foam-border space-y-2 text-xs">
+                <strong className="text-foam-navy block uppercase tracking-wider text-[11px]">
+                  Les 3 bières permanentes incluses :
+                </strong>
+                <ul className="space-y-1.5 text-foam-text">
+                  <li className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-foam-amber" />
+                    <span><strong>FOAM West Coast IPA</strong> (Houblonnée & résineuse)</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-foam-gold" />
+                    <span><strong>FOAM Lager</strong> (Blonde florale & désaltérante)</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-foam-olive" />
+                    <span><strong>FOAM Blanche</strong> (Bière de froment aux agrumes doux)</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="pt-6 mt-6 border-t border-foam-border flex items-center justify-between">
+              <div>
+                <span className="text-xs text-foam-muted">À partir de</span>
+                <div className="font-serif text-2xl font-black text-foam-navy">
+                  15,00 € <span className="text-xs font-normal text-foam-muted">les 3 x 33cl</span>
+                </div>
+                <span className="text-[11px] text-foam-amber font-bold">26,00 € le pack de 6 (-10 €)</span>
+              </div>
+
+              <Link
+                to="/coffrets/decouverte"
+                className="py-3.5 px-6 rounded-xl bg-foam-amber hover:bg-foam-amberDark text-white font-extrabold text-xs sm:text-sm flex items-center gap-2 shadow-xs transition-colors"
               >
-                <span>Commander</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
+                <span>Accéder à la page de vente</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
 
           {/* CARTE COFFRET EXOTIQUE */}
-          <div className="kraft-card p-6 sm:p-8 flex flex-col justify-between hover:border-kraft-terracotta/60 transition-all duration-300 group">
-            <div>
-              {/* Image Placeholder Kraft */}
-              <div 
-                onClick={() => navigateTo('coffret-exotique')}
-                className="w-full aspect-[16/10] rounded-xl bg-kraft-stone border border-kraft-border flex flex-col items-center justify-center p-6 text-center cursor-pointer group-hover:bg-kraft-border/30 transition-colors"
-              >
-                <div className="w-12 h-12 rounded-full bg-white text-kraft-terracotta flex items-center justify-center font-serif font-bold text-xl mb-3 shadow-xs">
-                  🌴
-                </div>
-                <span className="text-xs font-semibold uppercase tracking-wider text-kraft-ink">
-                  {exotique.imagePlaceholder}
-                </span>
-                <span className="text-[11px] text-kraft-muted mt-1">
-                  (Emplacement pour votre visuel de coffret kraft)
-                </span>
-              </div>
-
-              <div className="mt-6 flex items-center justify-between text-xs">
-                <span className="font-semibold uppercase tracking-wider text-kraft-terracotta">
+          <div className="rounded-3xl bg-white border-2 border-foam-border hover:border-foam-olive p-6 sm:p-8 shadow-shopify hover:shadow-shopify-hover transition-all flex flex-col justify-between group">
+            <div className="space-y-4">
+              
+              <div className="aspect-[16/10] rounded-2xl overflow-hidden bg-foam-subtle border border-foam-border relative">
+                <img
+                  src={exotique.image}
+                  alt={exotique.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <span className="absolute top-3 left-3 bg-foam-olive text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs">
                   {exotique.badge}
                 </span>
-                <span className="text-kraft-muted">
-                  33cl • Brassins du moment
+                <span className="absolute bottom-3 right-3 bg-white/90 text-foam-navy font-bold text-xs px-2.5 py-1 rounded-full backdrop-blur-xs border border-foam-border">
+                  15 € (3 bières) / 26 € (6 bières)
                 </span>
               </div>
 
-              <h3 
-                onClick={() => navigateTo('coffret-exotique')}
-                className="font-serif text-2xl font-bold text-kraft-ink mt-2 group-hover:text-kraft-terracotta transition-colors cursor-pointer"
-              >
-                {exotique.name}
-              </h3>
-              
-              <p className="text-xs text-kraft-muted mt-1">
-                {exotique.subtitle}
-              </p>
+              <div>
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy group-hover:text-foam-olive transition-colors">
+                  {exotique.name}
+                </h3>
+                <p className="text-xs font-bold text-foam-olive uppercase tracking-wider mt-0.5">
+                  {exotique.subtitle}
+                </p>
+                <p className="text-xs sm:text-sm text-foam-text mt-3 leading-relaxed">
+                  {exotique.description}
+                </p>
+              </div>
 
-              <p className="text-xs text-kraft-ink/80 mt-3 leading-relaxed">
-                {exotique.description}
-              </p>
-
-              {/* Composition rapide */}
-              <div className="mt-4 p-3 bg-kraft-bg rounded-lg border border-kraft-border/80 text-xs text-kraft-ink space-y-1">
-                <p className="font-semibold text-kraft-ink">Les créations de Stéphane :</p>
-                <p className="text-kraft-muted">• Brassin Riviera Tropicale (notes mangue & agrumes)</p>
-                <p className="text-kraft-muted">• Cuvée au Houblon cultivé sous le soleil de Nice</p>
-                <p className="text-kraft-muted">• Blanche Exotique aux fruits de la passion</p>
+              {/* Inclus dans le coffret exotique */}
+              <div className="p-4 rounded-xl bg-foam-bg border border-foam-border space-y-2 text-xs">
+                <strong className="text-foam-navy block uppercase tracking-wider text-[11px]">
+                  Cuvées éphémères du Brasseur incluses :
+                </strong>
+                <ul className="space-y-1.5 text-foam-text">
+                  <li className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-600" />
+                    <span><strong>Brassin Riviera Tropicale</strong> (Mangue & fruits de la passion)</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-amber-600" />
+                    <span><strong>Cuvée Houblon Niçois Solaire</strong> (Houblons cultivés à Nice)</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-teal-600" />
+                    <span><strong>Blanche Exotique Éphémère</strong> (Zestes d'agrumes rares)</span>
+                  </li>
+                </ul>
               </div>
             </div>
 
-            <div className="mt-6 pt-5 border-t border-kraft-border flex items-center justify-between">
+            <div className="pt-6 mt-6 border-t border-foam-border flex items-center justify-between">
               <div>
-                <div className="text-xs text-kraft-muted">À partir de</div>
-                <div className="text-2xl font-serif font-bold text-kraft-ink">
-                  15,00 € <span className="text-xs font-normal text-kraft-muted">(3x33cl)</span>
+                <span className="text-xs text-foam-muted">À partir de</span>
+                <div className="font-serif text-2xl font-black text-foam-navy">
+                  15,00 € <span className="text-xs font-normal text-foam-muted">les 3 x 33cl</span>
                 </div>
-                <div className="text-[11px] text-kraft-terracotta font-medium">
-                  ou 26,00 € le pack de 6
-                </div>
+                <span className="text-[11px] text-foam-olive font-bold">26,00 € le pack de 6 (-10 €)</span>
               </div>
 
-              <button
-                onClick={() => navigateTo('coffret-exotique')}
-                className="py-3 px-5 rounded-lg bg-kraft-ink text-white hover:bg-kraft-terracotta transition-colors text-xs font-bold flex items-center gap-1.5"
+              <Link
+                to="/coffrets/exotique"
+                className="py-3.5 px-6 rounded-xl bg-foam-navy hover:bg-foam-navyLight text-white font-extrabold text-xs sm:text-sm flex items-center gap-2 shadow-xs transition-colors"
               >
-                <span>Commander</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
+                <span>Accéder à la page de vente</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
 
         </div>
+
       </section>
 
-      {/* 3. SECTION LES 3 BIÈRES PERMANENTES (ACCÈS AUX FICHES DÉDIÉES) */}
-      <section className="space-y-6 pt-4">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+
+      {/* 3. SECTION LES 3 BIÈRES PERMANENTES (PAGES PRODUITS INDIVIDUELLES) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-foam-border pb-4">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-kraft-muted">
-              Nos Recettes du Port
+            <span className="text-xs font-bold uppercase tracking-wider text-foam-muted">
+              Les Bières du Port de Nice à l'Unité (33cl • 6,00 €)
             </span>
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-kraft-ink mt-1">
-              Les Bières à l'Unité (33cl • 6,00 €)
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-foam-navy mt-1">
+              Les 3 Créations Permanentes de Stéphane
             </h2>
           </div>
-          <p className="text-xs text-kraft-muted max-w-sm">
-            Retrouvez les fiches complètes avec les houblons utilisés, accords mets-bières et histoire de leur brassage.
-          </p>
+          <Link
+            to="/bieres"
+            className="text-xs font-bold text-foam-amber hover:text-foam-amberDark flex items-center gap-1"
+          >
+            <span>Voir toute la gamme et comparatif</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {beerList.map((beer) => (
-            <div 
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {beers.map((beer) => (
+            <div
               key={beer.slug}
-              className="kraft-card p-6 flex flex-col justify-between hover:border-kraft-ink transition-all group"
+              className="rounded-3xl bg-white border border-foam-border hover:border-foam-navy/40 shadow-shopify hover:shadow-shopify-hover transition-all flex flex-col justify-between overflow-hidden group"
             >
               <div>
-                {/* Image Placeholder */}
-                <div 
-                  onClick={() => navigateTo(`biere-${beer.slug}`)}
-                  className="w-full aspect-[4/3] rounded-lg bg-kraft-stone border border-kraft-border flex flex-col items-center justify-center p-4 text-center cursor-pointer group-hover:bg-kraft-border/30 transition-colors"
-                >
-                  <span className="text-2xl mb-1">🍺</span>
-                  <span className="text-xs font-bold text-kraft-ink">{beer.name}</span>
-                  <span className="text-[10px] text-kraft-muted">33cl • {beer.abv}</span>
+                <div className="aspect-[4/3] bg-foam-subtle overflow-hidden relative">
+                  <img
+                    src={beer.image}
+                    alt={beer.fullName}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <span className={`absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-white ${
+                    beer.badgeColor === 'amber' ? 'bg-foam-amber' : beer.badgeColor === 'olive' ? 'bg-foam-olive' : 'bg-foam-gold'
+                  }`}>
+                    {beer.badge}
+                  </span>
+                  <span className="absolute bottom-3 right-3 text-xs font-bold px-2 py-0.5 rounded-full bg-white/90 text-foam-navy border border-foam-border">
+                    {beer.abv} • IBU {beer.ibu}
+                  </span>
                 </div>
 
-                <div className="mt-4 flex items-center justify-between text-xs text-kraft-muted">
-                  <span className="font-semibold text-kraft-terracotta">{beer.style}</span>
-                  <span>{beer.abv}</span>
-                </div>
+                <div className="p-6 space-y-3">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-bold text-foam-amber uppercase tracking-wider">{beer.style}</span>
+                    <span className="text-foam-muted">33 cl</span>
+                  </div>
 
-                <h3 
-                  onClick={() => navigateTo(`biere-${beer.slug}`)}
-                  className="font-serif text-xl font-bold text-kraft-ink mt-1 group-hover:text-kraft-terracotta transition-colors cursor-pointer"
-                >
-                  {beer.name}
-                </h3>
+                  <h3 className="font-serif text-xl font-bold text-foam-navy group-hover:text-foam-amber transition-colors">
+                    {beer.name}
+                  </h3>
 
-                <p className="text-xs text-kraft-muted mt-2 leading-relaxed">
-                  {beer.shortDesc}
-                </p>
+                  <p className="text-xs text-foam-text leading-relaxed">
+                    {beer.shortDesc}
+                  </p>
 
-                <div className="mt-3 text-[11px] text-kraft-ink/70">
-                  <strong className="text-kraft-ink">Houblons :</strong> {beer.hops}
+                  <div className="pt-2 text-xs text-foam-navy">
+                    <strong className="text-foam-muted font-semibold">Houblons : </strong>
+                    <span className="font-bold">{beer.hops}</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="mt-5 pt-4 border-t border-kraft-border flex items-center justify-between">
-                <span className="font-serif text-lg font-bold text-kraft-ink">
+              <div className="p-6 pt-0 border-t border-foam-border/60 flex items-center justify-between mt-4">
+                <span className="font-serif text-2xl font-bold text-foam-navy">
                   {beer.price.toFixed(2)} €
                 </span>
 
-                <button
-                  onClick={() => navigateTo(`biere-${beer.slug}`)}
-                  className="text-xs font-bold text-kraft-ink hover:text-kraft-terracotta flex items-center gap-1 transition-colors"
+                <Link
+                  to={`/bieres/${beer.slug}`}
+                  className="py-2.5 px-4 rounded-xl bg-foam-navy hover:bg-foam-amber text-white font-bold text-xs flex items-center gap-1.5 transition-colors shadow-xs"
                 >
-                  <span>Fiche détaillée</span>
-                  <ArrowRight className="w-3 h-3" />
-                </button>
+                  <span>Fiche Produit</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
               </div>
             </div>
           ))}
         </div>
+
       </section>
 
-      {/* 4. BLOCS SOBRES : GROUPE PALOMA & NOS BARS */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-kraft-border">
+
+      {/* 4. BANNIÈRES PALOMA 1948 & NOS BARS */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
         
-        <div className="kraft-card p-6 sm:p-8 flex flex-col justify-between">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-kraft-terracotta">
-              Maison Familiale depuis 1948
+        <div className="rounded-3xl bg-foam-navy text-white p-8 sm:p-10 flex flex-col justify-between space-y-6 shadow-shopify">
+          <div className="space-y-3">
+            <span className="text-xs font-bold uppercase tracking-wider text-amber-300">
+              Caution Groupe Paloma • Maison Familiale Fondée en 1948
             </span>
-            <h3 className="font-serif text-2xl font-bold text-kraft-ink mt-1">
-              L'Histoire du Groupe Paloma
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white">
+              76 Ans de Passion Culinaire Azuréenne
             </h3>
-            <p className="text-xs sm:text-sm text-kraft-muted mt-2 leading-relaxed">
-              De la trattoria <em>Le Virginie</em> fondée en 1948 par la famille Vannini à la microbrasserie artisanale du Port de Nice créée en 2022. 76 ans de passion culinaire azuréenne.
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              De la trattoria <em>Le Virginie</em> fondée en 1948 au Port de Nice par la famille Vannini jusqu’à l'inauguration de la microbrasserie FOAM en 2022. Découvrez pourquoi nous sommes l’un des rares groupes de restauration à brasser nos propres bières sur place.
             </p>
           </div>
-          <div className="mt-6">
-            <button
-              onClick={() => navigateTo('groupe-paloma')}
-              className="text-xs font-bold uppercase tracking-wider text-kraft-ink hover:text-kraft-terracotta flex items-center gap-1.5 transition-colors"
-            >
-              <span>Découvrir notre histoire</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
+
+          <Link
+            to="/groupe-paloma"
+            className="inline-flex items-center gap-2 py-3 px-5 rounded-xl bg-white text-foam-navy hover:bg-amber-100 font-bold text-xs self-start transition-colors"
+          >
+            <span>Découvrir l'Histoire du Groupe Paloma</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
 
-        <div className="kraft-card p-6 sm:p-8 flex flex-col justify-between">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-kraft-olive">
-              Click & Collect Gratuit
+        <div className="rounded-3xl bg-foam-oliveSoft border-2 border-foam-olive/30 p-8 sm:p-10 flex flex-col justify-between space-y-6 shadow-shopify">
+          <div className="space-y-3">
+            <span className="text-xs font-bold uppercase tracking-wider text-foam-olive">
+              Click & Collect Gratuit 0 €
             </span>
-            <h3 className="font-serif text-2xl font-bold text-kraft-ink mt-1">
-              Nos Bars FOAM à Nice
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy">
+              Nos 2 Bars FOAM au Port et Place du Pin
             </h3>
-            <p className="text-xs sm:text-sm text-kraft-muted mt-2 leading-relaxed">
-              Retirez vos coffrets frais au <strong>Port de Nice (Quai des Deux Emmanuels)</strong> face aux cuves, ou à la <strong>Place du Pin</strong> au cœur du quartier piétonnier.
+            <p className="text-xs sm:text-sm text-foam-text leading-relaxed">
+              Venez déguster nos bières à la pression sur nos terrasses ou retirez vos commandes de coffrets gratuitement sous 2h. Cuves inox visibles au Port, ambiance festive sous les pins de la Place du Pin.
             </p>
           </div>
-          <div className="mt-6">
-            <button
-              onClick={() => navigateTo('nos-bars')}
-              className="text-xs font-bold uppercase tracking-wider text-kraft-ink hover:text-kraft-terracotta flex items-center gap-1.5 transition-colors"
-            >
-              <span>Voir les adresses & horaires</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
+
+          <Link
+            to="/nos-bars"
+            className="inline-flex items-center gap-2 py-3 px-5 rounded-xl bg-foam-olive hover:bg-emerald-900 text-white font-bold text-xs self-start transition-colors"
+          >
+            <span>Voir les adresses, horaires & spécificités</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
 
       </section>

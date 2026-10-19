@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck, Beer } from 'lucide-react';
+import { ShieldCheck, AlertCircle } from 'lucide-react';
 
 export default function LegalAgeModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,62 +20,78 @@ export default function LegalAgeModal() {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-kraft-ink/80 backdrop-blur-xs">
-      <div className="relative w-full max-w-md bg-kraft-bg rounded-2xl border border-kraft-border shadow-2xl p-6 sm:p-8 text-center text-kraft-ink">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foam-navy/85 backdrop-blur-md animate-fade-in">
+      <div className="relative w-full max-w-lg bg-white rounded-3xl border-2 border-foam-amber/40 shadow-2xl p-6 sm:p-8 text-center text-foam-navy">
         
-        <div className="w-12 h-12 rounded-xl bg-kraft-stone text-kraft-terracotta flex items-center justify-center font-serif text-2xl mx-auto mb-3">
-          🍺
+        {/* Brand logo image uploaded by user */}
+        <img
+          src="/logo-foam.png"
+          alt="FOAM Nice Bière & Manger"
+          className="w-20 h-20 object-contain rounded-full mx-auto mb-4 shadow-md border-2 border-foam-amber"
+        />
+
+        <div className="inline-block px-3 py-1 mb-2 text-xs font-bold tracking-wider uppercase rounded-full bg-foam-amberSoft text-foam-amberDark border border-foam-amber/30">
+          Brassée au Port de Nice • Caution Groupe Paloma (1948)
         </div>
 
-        <span className="text-[10px] font-bold uppercase tracking-wider text-kraft-muted">
-          Microbrasserie du Port de Nice • Groupe Paloma 1948
-        </span>
-
-        <h2 className="font-serif text-2xl font-bold text-kraft-ink mt-1">
+        <h2 className="font-serif text-3xl font-black tracking-tight text-foam-navy">
           FOAM NICE
         </h2>
+        <p className="text-xs uppercase tracking-widest text-foam-muted font-bold mt-1">
+          Boutique Microbrasserie Artisanale
+        </p>
 
         {!refused ? (
-          <>
-            <p className="text-xs text-kraft-muted mt-3 leading-relaxed">
-              Pour accéder à notre boutique de bières artisanales, vous devez être âgé(e) de 18 ans ou plus conformément à la réglementation française (Loi Évin).
-            </p>
+          <div className="mt-5 space-y-4">
+            <div className="p-4 bg-foam-bg rounded-2xl border border-foam-border">
+              <p className="text-base font-bold text-foam-navy">
+                Avez-vous 18 ans ou plus ?
+              </p>
+              <p className="text-xs text-foam-text mt-1 leading-relaxed">
+                L’accès à notre boutique de bières artisanales du Port de Nice est strictement réservé aux personnes majeures conformément à la Loi Évin.
+              </p>
+            </div>
 
-            <div className="grid grid-cols-2 gap-3 mt-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
               <button
                 onClick={handleAccept}
-                className="py-3 px-4 rounded-xl bg-kraft-ink hover:bg-kraft-terracotta text-white font-bold text-xs transition-colors flex items-center justify-center gap-1.5"
+                className="w-full py-3.5 px-5 bg-foam-amber hover:bg-foam-amberDark text-white font-extrabold rounded-2xl shadow-shopify transition-all text-sm flex items-center justify-center gap-2"
               >
-                <ShieldCheck className="w-4 h-4" />
-                <span>Oui, j'ai +18 ans</span>
+                <ShieldCheck className="w-5 h-5" />
+                <span>Oui, j'ai plus de 18 ans</span>
               </button>
 
               <button
                 onClick={() => setRefused(true)}
-                className="py-3 px-4 rounded-xl bg-white border border-kraft-border text-kraft-ink hover:bg-kraft-stone text-xs font-semibold transition-colors"
+                className="w-full py-3.5 px-4 bg-foam-subtle hover:bg-foam-border text-foam-navy font-bold rounded-2xl border border-foam-border transition-colors text-xs"
               >
-                J'ai moins de 18 ans
+                Non, j'ai moins de 18 ans
               </button>
             </div>
-          </>
+          </div>
         ) : (
-          <div className="mt-4 p-4 bg-red-50 rounded-xl border border-red-200 text-xs text-red-900 text-left">
-            <p className="font-bold">Accès restreint aux personnes majeures</p>
-            <p className="mt-1 text-[11px] text-red-800">
-              Conformément à l’article L. 3342-1 du Code de la santé publique, la vente d'alcool est interdite aux mineurs de moins de 18 ans.
-            </p>
-            <button
-              onClick={() => setRefused(false)}
-              className="mt-3 text-[11px] font-bold underline text-red-900"
-            >
-              ← Recommencer la vérification
-            </button>
+          <div className="mt-5 p-5 bg-red-50 rounded-2xl border border-red-200 text-left text-xs text-red-900 space-y-2">
+            <div className="flex items-start gap-2.5">
+              <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+              <div>
+                <strong className="block font-bold">Accès réservé aux personnes majeures</strong>
+                <p className="mt-1 text-red-800 leading-relaxed">
+                  Conformément à l’article L. 3342-1 du Code de la santé publique, la vente d’alcool est strictement interdite aux mineurs de moins de 18 ans.
+                </p>
+                <button
+                  onClick={() => setRefused(false)}
+                  className="mt-3 text-xs font-bold underline text-foam-navy hover:text-foam-amber"
+                >
+                  ← Recommencer la vérification
+                </button>
+              </div>
+            </div>
           </div>
         )}
 
-        <p className="mt-6 pt-3 border-t border-kraft-border text-[10px] text-kraft-muted uppercase tracking-wider">
+        <div className="mt-6 pt-3 border-t border-foam-border text-[11px] text-foam-muted font-bold uppercase tracking-wider">
           ⚠️ L'abus d'alcool est dangereux pour la santé, à consommer avec modération.
-        </p>
+        </div>
 
       </div>
     </div>

@@ -5,26 +5,37 @@
 @layer base {
   html {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    color: #18232C;
-    background-color: #F7F4EE;
+    color: #0F172A;
+    background-color: #FAF7F2;
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, .font-serif {
     font-family: 'Fraunces', Georgia, serif;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.02em;
+    color: #0F2438;
   }
 }
 
-/* Kraft card styled container */
-.kraft-card {
-  background-color: #FFFDF9;
-  border: 1px solid #E1D7C8;
-  border-radius: 1rem;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF7F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9631E;
+  border-radius: 4px;
 }
 
-.kraft-tag {
-  background-color: #EFE9DF;
-  color: #18232C;
-  border: 1px solid #E1D7C8;
+/* Shopify-style accordion animations */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
 }

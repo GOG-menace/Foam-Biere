@@ -1,62 +1,150 @@
-// FOAM Nice Official Beers Data based on foamnice.com/biere-foam and brewery specs
+// FOAM Nice Official Beers Data & E-commerce Product Specifications
+// Based on https://www.foamnice.com/biere-foam and master brewer Stéphane's specs
 
 export const BEERS = {
   'west-coast': {
     slug: 'west-coast',
     name: 'FOAM West Coast',
-    subtitle: 'Blonde IPA artisanale du Port',
+    fullName: 'FOAM West Coast India Pale Ale',
+    tagline: 'Blonde IPA artisanale du Port de Nice',
+    badge: 'Coup de Cœur Houblonné',
+    badgeColor: 'amber',
     style: 'West Coast IPA',
     abv: '6.2% vol.',
-    hops: 'Waimea & Mosaïc',
-    profile: 'Fruité, résineux et sec en bouche',
-    color: '#D97736',
-    price: 6.00,
-    shortDesc: 'Une blonde IPA au profil franc et houblonné, alliant notes de fruits tropicaux et résine de pin maritime avec une finale sèche et désaltérante.',
-    fullDesc: 'Élaborée avec passion par Stéphane, notre maître brasseur, dans les cuves de notre microbrasserie au Port de Nice. La FOAM West Coast est notre interprétation méditerranéenne des classiques de la côte Ouest américaine. Les houblons Waimea et Mosaïc s’expriment pleinement pour révéler un bouquet aromatique explosif d’agrumes et de résine avec une belle longueur en bouche.',
-    brewerNotes: 'Brassée en fermentation haute au 3 Quai des Deux Emmanuels. Non pasteurisée, non filtrée pour préserver l’intégrité des huiles essentielles de houblon.',
-    ingredients: 'Eau des Préalpes d’Azur, malt d’orge français, houblons Waimea et Mosaïc, levure.',
     ibu: 48,
-    pairing: 'Idéale avec une socca chaude et poivrée, une pissaladière niçoise ou des fromages affinés.',
-    imagePlaceholder: '🍺 FOAM West Coast IPA (33cl)',
-    badge: 'La Houblonnée'
+    ebc: 14,
+    price: 6.00,
+    volume: '33 cl',
+    rating: 4.9,
+    reviewsCount: 38,
+    inStock: true,
+    stockCount: 84,
+    color: '#D9631E',
+    bannerAccent: 'from-amber-600 to-orange-700',
+    shortDesc: 'Une blonde IPA au profil franc et houblonné, alliant notes éclatantes de fruits tropicaux et résine de pin maritime avec une finale sèche et ultra-désaltérante.',
+    fullDesc: 'Élaborée avec passion par Stéphane, maître brasseur de FOAM, dans les cuves de notre microbrasserie au Port de Nice (3 Quai des Deux Emmanuels). La FOAM West Coast est notre interprétation méditerranéenne des classiques de la côte Ouest américaine. Les houblons Waimea et Mosaïc s’expriment pleinement pour révéler un bouquet aromatique explosif d’agrumes mûrs et d’aiguilles de pin maritime, sublimé par une belle longueur en bouche.',
+    sensoryProfile: {
+      amertume: 4,
+      fraicheur: 4,
+      fruite: 5,
+      malt: 3
+    },
+    tastingNotes: {
+      robe: 'Blonde dorée brillante aux reflets cuivrés chauds, coiffée d’une mousse blanche dense et crémeuse.',
+      nez: 'Bouquet explosif de pamplemousse rose, de zeste de mandarine de la Riviera et d’effluves résineux de pin maritime.',
+      bouche: 'Attaque franche et fruitée sur le malt caramélisé léger, relayée par une amertume résineuse tranchante et structurée. Finale nette et sèche.'
+    },
+    ingredients: 'Eau pure des Préalpes d’Azur, malt d’orge français (Pale Ale, Munich, Cara-Pils), houblons aromatiques (Waimea & Mosaïc), levure de fermentation haute.',
+    technicalDetails: [
+      { label: 'Style de bière', value: 'West Coast India Pale Ale' },
+      { label: 'Degré d’alcool (ABV)', value: '6.2% vol.' },
+      { label: 'Amertume', value: '48 IBU (Franche & résineuse)' },
+      { label: 'Couleur', value: '14 EBC (Dorée cuivrée)' },
+      { label: 'Houblons maîtres', value: 'Waimea (Nouvelle-Zélande) & Mosaïc (USA)' },
+      { label: 'Fermentation', value: 'Haute (19°C), non pasteurisée, non filtrée' },
+      { label: 'Lieu de brassage', value: '3 Quai des Deux Emmanuels, Port de Nice' }
+    ],
+    pairing: 'Socca niçoise croustillante et poivrée, pissaladière aux oignons fondants, daube provençale mijotée, burger au gorgonzola ou fromages affinés.',
+    serviceTemperature: '7°C – 9°C',
+    recommendedGlass: 'Verre Tulipe ou Teku pour concentrer les huiles essentielles de houblon.',
+    imagePlaceholder: '🍺 Bouteille FOAM West Coast IPA (33cl)',
+    image: 'https://images.unsplash.com/photo-1608270102574-d4dc3dfb5722?auto=format&fit=crop&w=900&q=80'
   },
   'lager': {
     slug: 'lager',
     name: 'FOAM Lager',
-    subtitle: 'Blonde de soif fraîche & florale',
-    style: 'Lager Méditerranéenne',
+    fullName: 'FOAM Lager Méditerranéenne',
+    tagline: 'Blonde de soif fraîche, florale & délicate',
+    badge: 'La Classique du Port',
+    badgeColor: 'gold',
+    style: 'Lager Dorée Méditerranéenne',
     abv: '5.0% vol.',
-    hops: 'Hallertau Mittelfrüh',
-    profile: 'Fraîche, florale, herbacée et légère amertume',
-    color: '#D4AF37',
-    price: 6.00,
-    shortDesc: 'Une bière blonde de fermentation basse, remarquablement fraîche, dominée par les notes céréalières et une délicate trame florale.',
-    fullDesc: 'La bière de soif par excellence du Quai Cassini. Conçue par Stéphane pour offrir une buvabilité maximale sans jamais compromettre le goût. Le noble houblon allemand Hallertau Mittelfrüh apporte une signature florale et herbacée très fine qui sublime la rondeur des malts d’orge.',
-    brewerNotes: 'Fermentation basse soignée et garde à froid prolongée dans nos fermenteurs du port pour une limpidité naturelle et une pétillance vive.',
-    ingredients: 'Eau de Nice, malts d’orge sélectionnés, houblon Hallertau Mittelfrüh, levure de basse fermentation.',
     ibu: 20,
-    pairing: 'Accompagne à merveille les petits farcis niçois, un loup grillé ou une planche de charcuterie locale.',
-    imagePlaceholder: '🍺 FOAM Lager (33cl)',
-    badge: 'La Classique'
+    ebc: 6,
+    price: 6.00,
+    volume: '33 cl',
+    rating: 4.8,
+    reviewsCount: 44,
+    inStock: true,
+    stockCount: 112,
+    color: '#C9971E',
+    bannerAccent: 'from-amber-500 to-yellow-600',
+    shortDesc: 'Une bière blonde de fermentation basse d’une fraîcheur remarquable, dominée par la pureté des céréales d’orge et une délicate trame florale herbacée.',
+    fullDesc: 'La compagne idéale des fins d’après-midi sur les quais du Port de Nice. Imaginée par Stéphane pour offrir une buvabilité absolue sans aucun compromis sur la finesse aromatique. Le noble houblon allemand Hallertau Mittelfrüh apporte une signature florale et herbacée très aérienne qui sublime la rondeur des malts d’orge.',
+    sensoryProfile: {
+      amertume: 2,
+      fraicheur: 5,
+      fruite: 2,
+      malt: 4
+    },
+    tastingNotes: {
+      robe: 'Blonde paille étincelante et d’une pure limpidité naturelle, mousse fine et persistante.',
+      nez: 'Notes parfumées de fleurs sauvages, mie de pain frais, foin coupé et céréales printanières.',
+      bouche: 'Texture soyeuse et vive, grande sensation de pureté désaltérante. Équilibre parfait entre douceur maltée et vivacité houblonnée.'
+    },
+    ingredients: 'Eau de Nice, malts d’orge de printemps soigneusement sélectionnés, houblon noble Hallertau Mittelfrüh, levure de fermentation basse.',
+    technicalDetails: [
+      { label: 'Style de bière', value: 'Lager Dorée (Fermentation basse)' },
+      { label: 'Degré d’alcool (ABV)', value: '5.0% vol.' },
+      { label: 'Amertume', value: '20 IBU (Légère & désaltérante)' },
+      { label: 'Couleur', value: '6 EBC (Blonde paille lumineuse)' },
+      { label: 'Houblon maître', value: 'Hallertau Mittelfrüh (Allemagne)' },
+      { label: 'Fermentation & Garde', value: 'Basse (10°C) + lagering à froid de 4 semaines' },
+      { label: 'Lieu de brassage', value: '3 Quai des Deux Emmanuels, Port de Nice' }
+    ],
+    pairing: 'Petits farcis niçois, daurade royale ou loup grillé au fenouil, panisses chaudes dorées, foccacia maison à l’huile d’olive et romarin.',
+    serviceTemperature: '4°C – 6°C',
+    recommendedGlass: 'Chope haute ou verre droit pour préserver la vivacité des bulles.',
+    imagePlaceholder: '🍺 Bouteille FOAM Lager (33cl)',
+    image: 'https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=900&q=80'
   },
   'blanche': {
     slug: 'blanche',
     name: 'FOAM Blanche',
-    subtitle: 'Bière de blé rafraîchissante aux agrumes',
-    style: 'Blanche de Blé (Witbier moderne)',
+    fullName: 'FOAM Blanche Riviera aux Agrumes',
+    tagline: 'Bière de blé veloutée aux agrumes solaires',
+    badge: 'Fraîcheur Côtière',
+    badgeColor: 'olive',
+    style: 'Blanche de Blé (Witbier Moderne)',
     abv: '4.8% vol.',
-    hops: 'Cascade & Mosaïc',
-    profile: 'Notes d’agrumes, fruits tropicaux, fraîcheur vive',
-    color: '#4A6B53',
-    price: 6.00,
-    shortDesc: 'Une blanche soyeuse et légère, aux arômes éclatants de zestes d’agrumes et de fruits exotiques avec une amertume très subtile.',
-    fullDesc: 'Inspirée par la douceur de vivre de la Riviera. Brassée avec une part généreuse de froment malté, elle dégage un trouble soyeux naturel. Le mariage des houblons Cascade et Mosaïc lui confère une aromatique lumineuse évoquant le pamplemousse, le citron doux et les fruits de la passion.',
-    brewerNotes: 'Une bière désaltérante pensée pour les journées ensoleillées sur la terrasse du Port de Nice ou de la Place du Pin.',
-    ingredients: 'Eau pure, malt d’orge, froment malté, houblons Cascade et Mosaïc, levure.',
     ibu: 16,
-    pairing: 'Parfaite avec une salade niçoise authentique, un ceviche de daurade ou une tourte de blettes sucrée.',
-    imagePlaceholder: '🍺 FOAM Blanche (33cl)',
-    badge: 'La Douce'
+    ebc: 4,
+    price: 6.00,
+    volume: '33 cl',
+    rating: 4.9,
+    reviewsCount: 51,
+    inStock: true,
+    stockCount: 65,
+    color: '#28533E',
+    bannerAccent: 'from-emerald-700 to-teal-800',
+    shortDesc: 'Une blanche soyeuse et légère, aux arômes éclatants de zestes d’agrumes de la Côte d’Azur et de fruits exotiques avec une amertume très subtile.',
+    fullDesc: 'Inspirée par la douceur de vivre de la Riviera et la brise marine de la baie de Nice. Brassée avec une part généreuse de froment malté, elle offre un trouble naturel soyeux. L’association des houblons Cascade et Mosaïc lui confère une aromatique lumineuse évoquant le pamplemousse, le citron doux et les fruits de la passion.',
+    sensoryProfile: {
+      amertume: 1,
+      fraicheur: 5,
+      fruite: 5,
+      malt: 3
+    },
+    tastingNotes: {
+      robe: 'Blonde pâle trouble (hazy) aux reflets opalescents, mousse blanche onctueuse et aérienne.',
+      nez: 'Parfum d’agrumes frais (bergamote, citron de pays, écorce d’orange) relevé d’une touche exotique de fruit de la passion.',
+      bouche: 'Sensation veloutée et caressante apportée par le froment, équilibrée par une pétillance tonique. Finale très douce et rafraîchissante.'
+    },
+    ingredients: 'Eau pure, malt d’orge Pilsen, froment malté (blé), flocons d’avoine, houblons Cascade & Mosaïc, levure blanche.',
+    technicalDetails: [
+      { label: 'Style de bière', value: 'Blanche de Blé (Witbier moderne)' },
+      { label: 'Degré d’alcool (ABV)', value: '4.8% vol.' },
+      { label: 'Amertume', value: '16 IBU (Très douce)' },
+      { label: 'Couleur', value: '4 EBC (Paille opalescente voilée)' },
+      { label: 'Houblons maîtres', value: 'Cascade & Mosaïc' },
+      { label: 'Fermentation', value: 'Haute, non filtrée (trouble naturel)' },
+      { label: 'Lieu de brassage', value: '3 Quai des Deux Emmanuels, Port de Nice' }
+    ],
+    pairing: 'Salade niçoise traditionnelle, chèvre frais du pays, carpaccio de poulpe à l’huile d’olive citronnée, tourte de blettes sucrée.',
+    serviceTemperature: '5°C – 7°C',
+    recommendedGlass: 'Grand verre calice ou verre évasé pour libérer l’onctuosité de la mousse.',
+    imagePlaceholder: '🍺 Bouteille FOAM Blanche (33cl)',
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?auto=format&fit=crop&w=900&q=80'
   }
 };
 
@@ -64,58 +152,106 @@ export const SETS = {
   'coffret-decouverte': {
     slug: 'coffret-decouverte',
     name: 'Coffret Découverte FOAM',
-    subtitle: 'Les bières classiques de notre microbrasserie',
-    badge: 'Les Incontournables',
-    highlight: '1 classique de chaque recette du Port',
-    description: 'Le coffret idéal pour s’initier à l’univers brassicole artisanal de FOAM au Port de Nice. Réunit nos trois recettes permanentes emblématiques élaborées par notre maître brasseur Stéphane.',
+    fullName: 'Coffret Découverte "Les Classiques du Port"',
+    subtitle: '1 bière classique de chaque recette du Port de Nice',
+    badge: 'Idée Cadeau n°1',
+    badgeColor: 'amber',
+    rating: 5.0,
+    reviewsCount: 62,
+    inStock: true,
+    bannerAccent: 'from-amber-600 to-orange-700',
+    description: 'Le coffret incontournable pour faire découvrir le savoir-faire de la microbrasserie FOAM au Port de Nice. Réunit nos trois bières permanentes élaborées par Stéphane, dans un élégant étui carton rigide protecteur prêt à offrir.',
     pack3: {
-      format: 'Pack de 3 bouteilles (33cl)',
+      id: 'pack3',
+      format: 'Coffret 3 Bouteilles (3 x 33cl)',
+      shortFormat: '3 x 33cl',
       price: 15.00,
+      unitPrice: '5,00 € / bouteille',
+      savingNote: 'Idéal dégustation solo ou duo',
       contents: [
-        '1x FOAM West Coast IPA (33cl)',
-        '1x FOAM Lager Méditerranéenne (33cl)',
-        '1x FOAM Blanche Riviera (33cl)'
+        { name: 'FOAM West Coast IPA (33cl)', desc: 'Blonde houblonnée résineuse et fruitée' },
+        { name: 'FOAM Lager Méditerranéenne (33cl)', desc: 'Blonde fraîche, florale et désaltérante' },
+        { name: 'FOAM Blanche Riviera (33cl)', desc: 'Bière de blé veloutée aux agrumes doux' }
       ]
     },
     pack6: {
-      format: 'Pack de 6 bouteilles (33cl)',
+      id: 'pack6',
+      format: 'Coffret 6 Bouteilles (6 x 33cl)',
+      shortFormat: '6 x 33cl',
       price: 26.00,
+      unitPrice: '4,33 € / bouteille',
+      savingNote: 'Économisez 10,00 € par rapport au prix unitaire',
+      isPopular: true,
       contents: [
-        '2x FOAM West Coast IPA (33cl)',
-        '2x FOAM Lager Méditerranéenne (33cl)',
-        '2x FOAM Blanche Riviera (33cl)'
+        { name: '2x FOAM West Coast IPA (33cl)', desc: 'Blonde houblonnée résineuse et fruitée' },
+        { name: '2x FOAM Lager Méditerranéenne (33cl)', desc: 'Blonde fraîche, florale et désaltérante' },
+        { name: '2x FOAM Blanche Riviera (33cl)', desc: 'Bière de blé veloutée aux agrumes doux' }
       ]
     },
-    packaging: 'Étui rigide carton kraft recyclable, calage anti-casse écoresponsable.',
-    imagePlaceholder: '📦 Coffret Découverte Kraft FOAM (3 ou 6 bières)'
+    goodiesIncluded: [
+      'Étui rigide carton kraft épais recyclable avec calage anti-casse',
+      'Sous-bocks collector FOAM Nice offerts',
+      'Fiche mémo de dégustation et accords mets-bières du brasseur'
+    ],
+    technicalHighlights: [
+      'Bouteilles 33cl en verre ambré protecteur anti-UV',
+      'Bières non pasteurisées, conservant toute leur fraîcheur aromatique',
+      'Direct cuves du Port de Nice (circuit le plus court de la Côte d’Azur)'
+    ],
+    imagePlaceholder: '📦 Coffret Découverte FOAM (3 ou 6 bières)',
+    image: 'https://images.unsplash.com/photo-1571613316887-6f8d5cbf7ef7?auto=format&fit=crop&w=900&q=80'
   },
   'coffret-exotique': {
     slug: 'coffret-exotique',
     name: 'Coffret Exotique FOAM',
-    subtitle: 'Les créations & brassins éphémères du Brasseur',
-    badge: 'Édition Éphémère',
-    highlight: 'Recettes créatives & houblons aromatiques',
-    description: 'Une sélection de cuvées éphémères et de recettes audacieuses imaginées par Stéphane dans nos cuves du port : houblons solaires cultivés sous le soleil niçois, notes de fruits exotiques et éditions limitées habituellement servies uniquement aux tireuses du bar.',
+    fullName: 'Coffret Exotique "Les Éphémères du Brasseur"',
+    subtitle: 'Les créations exclusives & houblons solaires de Nice',
+    badge: 'Édition Éphémère Limitée',
+    badgeColor: 'olive',
+    rating: 4.9,
+    reviewsCount: 39,
+    inStock: true,
+    bannerAccent: 'from-emerald-700 to-teal-800',
+    description: 'Une sélection rare de cuvées éphémères et de recettes créatives imaginées par Stéphane dans nos fermenteurs du port : houblons cultivés sous le soleil niçois, brassins aux agrumes rares et éditions habituellement servies uniquement aux tireuses du bar.',
     pack3: {
-      format: 'Pack de 3 bouteilles (33cl)',
+      id: 'pack3',
+      format: 'Coffret 3 Bouteilles Éphémères (3 x 33cl)',
+      shortFormat: '3 x 33cl',
       price: 15.00,
+      unitPrice: '5,00 € / bouteille',
+      savingNote: 'Cuvées rares en tirage limité',
       contents: [
-        '1x Brassin Éphémère Riviera Tropicale (33cl)',
-        '1x Cuvée Spéciale Houblon Niçois (33cl)',
-        '1x FOAM Blanche Exotique Fruits de la Passion (33cl)'
+        { name: '1x Brassin Riviera Tropicale (33cl)', desc: 'NEIPA soyeuse mangue et passion' },
+        { name: '1x Cuvée Houblon Niçois Solaire (33cl)', desc: 'Brassée avec le houblon cultivé à Nice' },
+        { name: '1x Blanche Exotique aux Fruits Rares (33cl)', desc: 'Infusion zestes de yuzu et coriandre' }
       ]
     },
     pack6: {
-      format: 'Pack de 6 bouteilles (33cl)',
+      id: 'pack6',
+      format: 'Coffret 6 Bouteilles Éphémères (6 x 33cl)',
+      shortFormat: '6 x 33cl',
       price: 26.00,
+      unitPrice: '4,33 € / bouteille',
+      savingNote: 'Économisez 10,00 € — Édition spéciale collectionneur',
+      isPopular: true,
       contents: [
-        '2x Brassin Éphémère Riviera Tropicale (33cl)',
-        '2x Cuvée Spéciale Houblon Niçois (33cl)',
-        '2x FOAM Blanche Exotique Fruits de la Passion (33cl)'
+        { name: '2x Brassin Riviera Tropicale (33cl)', desc: 'NEIPA soyeuse mangue et passion' },
+        { name: '2x Cuvée Houblon Niçois Solaire (33cl)', desc: 'Brassée avec le houblon cultivé à Nice' },
+        { name: '2x Blanche Exotique aux Fruits Rares (33cl)', desc: 'Infusion zestes de yuzu et coriandre' }
       ]
     },
-    packaging: 'Étui sérigraphié kraft collector, scellé par le brasseur.',
-    imagePlaceholder: '📦 Coffret Exotique Kraft FOAM (Édition Limitée 3 ou 6 bières)'
+    goodiesIncluded: [
+      'Étui collector sérigraphié FOAM Nice',
+      'Sous-bocks collector de l’édition éphémère',
+      'Note personnelle numérotée du maître brasseur Stéphane'
+    ],
+    technicalHighlights: [
+      'Série limitée à seulement 200 coffrets par embouteillage',
+      'Houblons locaux niçois récoltés sous le soleil de la Côte d’Azur',
+      'Non pasteurisé, direct des fûts de garde'
+    ],
+    imagePlaceholder: '📦 Coffret Exotique Éphémère FOAM (3 ou 6 bières)',
+    image: 'https://images.unsplash.com/photo-1559526323-cb2f2fe2591b?auto=format&fit=crop&w=900&q=80'
   }
 };
 
@@ -123,43 +259,38 @@ export const BARS_DATA = [
   {
     id: 'foam-port',
     name: 'FOAM Port de Nice',
-    type: 'La Microbrasserie & Bar',
+    badge: 'Microbrasserie & Bar',
     address: '3 Quai des Deux Emmanuels, 06300 Nice',
     zone: 'Port de Nice',
-    hours: 'Mardi au Dimanche : 16h00 – 00h30',
-    description: 'Le lieu de naissance des bières FOAM. C’est ici, face aux bateaux pointus traditionnels et aux yachts du port, que Stéphane brasse l’ensemble de nos bières dans nos cuves inox visibles depuis la salle. Vous y trouverez un grand mur de tireuses en libre-service avec carte rechargeable et une terrasse baignée par la lumière du port.',
+    hours: 'Mardi au Dimanche : 16h00 – 00h30 (Fermé le lundi)',
+    phone: '04 93 00 00 00',
+    description: 'Le berceau historique de FOAM. C’est ici, face aux pointus traditionnels et aux yachts du port, que Stéphane brasse l’ensemble de nos bières dans nos cuves inox visibles depuis la salle. Vous y trouverez un grand mur de tireuses en libre-service avec carte magnétique et une terrasse baignée par la lumière du port.',
     features: [
-      'Cuves de brassage et fermenteurs sur place',
-      'Mur de tireuses de bières artisanales en libre-service',
-      'Terrasse face aux quais du Port de Nice',
-      'Retrait Click & Collect gratuit immédiat'
-    ]
+      'Cuves de brassage et fermenteurs inox ouverts sur la salle',
+      'Mur de tireuses de bières artisanales en libre-service (carte sans contact)',
+      'Terrasse ensoleillée sur les quais du Port de Nice',
+      'Comptoir de retrait Click & Collect immédiat 0 €'
+    ],
+    mapHint: 'Accès facile en Tramway Ligne 2 (Arrêt Port Lympia à 3 minutes à pied).'
   },
   {
     id: 'foam-pin',
     name: 'FOAM Place du Pin',
-    type: 'Bar Taproom & Convivialité',
+    badge: 'Taproom & Convivialité',
     address: 'Place du Pin, 06300 Nice',
     zone: 'Le Petit Marais Niçois',
     hours: 'Tous les jours : 17h00 – 01h00',
-    description: 'Implanté au cœur de la Place du Pin, épicentre de la vie nocturne et piétonne niçoise. Le bar propose toutes les bières FOAM à la pression ainsi que des brassins invités, accompagnés de planches et street food méditerranéenne sous les grands pins.',
+    phone: '04 93 11 11 11',
+    description: 'Implanté au cœur de la Place du Pin, épicentre de la vie nocturne et piétonne niçoise. Le bar propose toutes les bières FOAM à la pression ainsi que des brassins invités, accompagnés de planches et street food méditerranéenne sous les grands pins de la place.',
     features: [
-      'Toutes les créations FOAM en pression fraîche',
-      'Atmosphère festive et terrasse piétonne animée',
+      'Toutes les créations FOAM en pression extra-fraîche',
+      'Terrasse piétonne animée sous les pins méditerranéens',
       'Tireuses connectées en libre-service',
-      'Retrait Click & Collect gratuit au comptoir'
-    ]
+      'Comptoir de retrait Click & Collect 0 €'
+    ],
+    mapHint: 'Au cœur de la place piétonne, à 5 minutes de la Place Garibaldi.'
   }
 ];
-
-export const PALOMA_HISTORY = {
-  foundationYear: 1948,
-  founder: 'Famille Vannini',
-  firstEstablishment: 'Le Virginie (Trattoria historique)',
-  breweryLaunch: 2022,
-  headBrewer: 'Stéphane',
-  philosophy: 'Créée par le Groupe Paloma, maison familiale indépendante fondée en 1948 par la famille Vannini, la microbrasserie FOAM perpétue 76 ans de passion culinaire azuréenne. Nous avons fait le choix rare de brasser nous-mêmes nos bières au Quai des Deux Emmanuels, en circuit ultra-court, avec de l’eau locale et du houblon cultivé sous le soleil niçois.'
-};
 
 export const SHIPPING_RATES = {
   clickAndCollect: 0.00,

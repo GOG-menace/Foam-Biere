@@ -1,142 +1,233 @@
 import React, { useState } from 'react';
-import { ArrowLeft, ShoppingBag, Check, MapPin, Beer, Utensils, Award } from 'lucide-react';
+import { useParams, Link } from 'react-router-dom';
+import { 
+  ShoppingBag, Check, Star, MapPin, Truck, ChevronRight, 
+  Utensils, Award, Info, Beer, ShieldCheck, ArrowRight 
+} from 'lucide-react';
 import { BEERS } from '../data/products';
 import { useCart } from '../context/CartContext';
 
-export default function BeerProductPage({ beerSlug, navigateTo }) {
+export default function BeerProductPage({ defaultSlug }) {
+  const { slug } = useParams();
+  const beerSlug = slug || defaultSlug || 'west-coast';
   const beer = BEERS[beerSlug] || BEERS['west-coast'];
-  const { addItem } = useCart();
+  const otherBeers = Object.values(BEERS).filter(b => b.slug !== beer.slug);
+
+  const { addItem, setIsCartOpen, setIsCheckoutOpen } = useCart();
   const [quantity, setQuantity] = useState(1);
-  const [addedNotice, setAddedNotice] = useState(false);
+  const [addedAlert, setAddedAlert] = useState(false);
 
   const handleAddToCart = () => {
     addItem(beer, 'bottle', quantity);
-    setAddedNotice(true);
-    setTimeout(() => setAddedNotice(false), 2000);
+    setAddedAlert(true);
+    setTimeout(() => setAddedAlert(false), 2500);
   };
 
-  const otherBeers = Object.values(BEERS).filter(b => b.slug !== beer.slug);
+  const handleBuyNow = () => {
+    addItem(beer, 'bottle', quantity);
+    setIsCartOpen(false);
+    setIsCheckoutOpen(true);
+  };
 
   return (
-    <div className="py-8 sm:py-14 max-w-5xl mx-auto px-4 sm:px-6">
+    <div className="py-8 sm:py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       
-      {/* Back button */}
-      <div className="mb-6">
-        <button
-          onClick={() => navigateTo('home')}
-          className="text-xs font-semibold text-kraft-muted hover:text-kraft-ink flex items-center gap-1.5 transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Retour au catalogue</span>
-        </button>
-      </div>
+      {/* Breadcrumbs */}
+      <nav className="flex items-center gap-2 text-xs font-semibold text-foam-muted">
+        <Link to="/" className="hover:text-foam-amber transition-colors">Accueil</Link>
+        <ChevronRight className="w-3.5 h-3.5 text-foam-border" />
+        <Link to="/bieres" className="hover:text-foam-amber transition-colors">Nos Bières</Link>
+        <ChevronRight className="w-3.5 h-3.5 text-foam-border" />
+        <span className="text-foam-navy font-bold truncate">{beer.name}</span>
+      </nav>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      {/* Main 2-Column Product Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
         
-        {/* Left Column : Kraft Bottle Visual Placeholder */}
-        <div className="lg:col-span-5 space-y-4">
-          <div className="w-full aspect-[3/4] rounded-2xl bg-kraft-stone border-2 border-kraft-border flex flex-col items-center justify-center p-8 text-center relative overflow-hidden">
-            <span className="text-6xl mb-4">🍺</span>
-            <span className="text-sm font-bold uppercase tracking-wider text-kraft-ink">
-              {beer.name}
+        {/* Left Column: Image & Technical Gauges */}
+        <div className="lg:col-span-6 space-y-6">
+          <div className="rounded-3xl overflow-hidden bg-white border-2 border-foam-border shadow-shopify relative aspect-[4/3]">
+            <img
+              src={beer.image}
+              alt={beer.fullName}
+              className="w-full h-full object-cover"
+            />
+
+            <span className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider text-white shadow-xs ${
+              beer.badgeColor === 'amber' ? 'bg-foam-amber' : beer.badgeColor === 'olive' ? 'bg-foam-olive' : 'bg-foam-gold'
+            }`}>
+              {beer.badge}
             </span>
-            <span className="text-xs text-kraft-terracotta font-semibold mt-1">
-              {beer.style} • 33cl
-            </span>
-            <p className="text-[11px] text-kraft-muted mt-3 max-w-xs">
-              Brassée & embouteillée au Port de Nice par Stéphane
-            </p>
-            <div className="mt-4 px-3 py-1 bg-white/80 rounded-full text-[10px] font-semibold text-kraft-muted border border-kraft-border">
-              (Espace réservé pour votre photo de bouteille)
+
+            <div className="absolute bottom-4 right-4 bg-white/95 px-3 py-1 rounded-full text-xs font-bold text-foam-navy shadow border border-foam-border">
+              {beer.volume} • {beer.abv}
             </div>
           </div>
 
-          <div className="p-4 bg-kraft-cream rounded-xl border border-kraft-border space-y-2 text-xs">
-            <div className="flex justify-between py-1 border-b border-kraft-border">
-              <span className="text-kraft-muted">Degré d'alcool</span>
-              <strong className="text-kraft-ink">{beer.abv}</strong>
-            </div>
-            <div className="flex justify-between py-1 border-b border-kraft-border">
-              <span className="text-kraft-muted">Houblons utilisés</span>
-              <strong className="text-kraft-ink">{beer.hops}</strong>
-            </div>
-            <div className="flex justify-between py-1 border-b border-kraft-border">
-              <span className="text-kraft-muted">Amertume (IBU)</span>
-              <strong className="text-kraft-ink">{beer.ibu} / 100</strong>
-            </div>
-            <div className="flex justify-between py-1">
-              <span className="text-kraft-muted">Volume</span>
-              <strong className="text-kraft-ink">33 cl</strong>
+          {/* Sensory Gauges (Amertume, Fraîcheur, Fruité, Malt) */}
+          <div className="p-6 bg-white rounded-3xl border border-foam-border shadow-shopify space-y-4">
+            <h3 className="font-serif text-lg font-bold text-foam-navy">
+              Profil Sensoriel du Brasseur
+            </h3>
+
+            <div className="space-y-3 text-xs">
+              <div>
+                <div className="flex justify-between font-bold text-foam-navy mb-1">
+                  <span>Amertume ({beer.ibu} IBU)</span>
+                  <span className="text-foam-amber">{beer.sensoryProfile.amertume} / 5</span>
+                </div>
+                <div className="w-full bg-foam-subtle h-2.5 rounded-full overflow-hidden">
+                  <div
+                    className="bg-foam-amber h-full rounded-full transition-all"
+                    style={{ width: `${(beer.sensoryProfile.amertume / 5) * 100}%` }}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between font-bold text-foam-navy mb-1">
+                  <span>Fraîcheur en bouche</span>
+                  <span className="text-foam-olive">{beer.sensoryProfile.fraicheur} / 5</span>
+                </div>
+                <div className="w-full bg-foam-subtle h-2.5 rounded-full overflow-hidden">
+                  <div
+                    className="bg-foam-olive h-full rounded-full transition-all"
+                    style={{ width: `${(beer.sensoryProfile.fraicheur / 5) * 100}%` }}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between font-bold text-foam-navy mb-1">
+                  <span>Arômes fruités</span>
+                  <span className="text-amber-600">{beer.sensoryProfile.fruite} / 5</span>
+                </div>
+                <div className="w-full bg-foam-subtle h-2.5 rounded-full overflow-hidden">
+                  <div
+                    className="bg-amber-500 h-full rounded-full transition-all"
+                    style={{ width: `${(beer.sensoryProfile.fruite / 5) * 100}%` }}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between font-bold text-foam-navy mb-1">
+                  <span>Rondeur du malt</span>
+                  <span className="text-foam-navy">{beer.sensoryProfile.malt} / 5</span>
+                </div>
+                <div className="w-full bg-foam-subtle h-2.5 rounded-full overflow-hidden">
+                  <div
+                    className="bg-foam-navy h-full rounded-full transition-all"
+                    style={{ width: `${(beer.sensoryProfile.malt / 5) * 100}%` }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Right Column : Beer Profile & Conversion */}
-        <div className="lg:col-span-7 space-y-6">
+        {/* Right Column: Buying Options & Descriptions */}
+        <div className="lg:col-span-6 space-y-6">
           
           <div>
-            <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider text-kraft-olive bg-kraft-stone border border-kraft-border mb-2">
-              {beer.badge}
-            </span>
-            <h1 className="font-serif text-3xl sm:text-4xl font-bold text-kraft-ink">
-              {beer.name}
+            <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center text-amber-500">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <span className="text-xs font-bold text-foam-navy">{beer.rating} / 5</span>
+              <span className="text-xs text-foam-muted">({beer.reviewsCount} avis vérifiés)</span>
+            </div>
+
+            <h1 className="font-serif text-3xl sm:text-4xl font-black text-foam-navy leading-tight">
+              {beer.fullName}
             </h1>
-            <p className="text-sm font-medium text-kraft-muted mt-0.5">
-              {beer.subtitle}
+            <p className="text-xs font-bold uppercase tracking-wider text-foam-amber mt-1">
+              {beer.tagline}
             </p>
-            <div className="mt-3 font-serif text-2xl font-bold text-kraft-ink">
-              {beer.price.toFixed(2)} € <span className="text-xs font-normal text-kraft-muted">la bouteille de 33cl</span>
+
+            <div className="mt-4 p-4 bg-white rounded-2xl border border-foam-border shadow-2xs flex items-baseline justify-between">
+              <div>
+                <span className="font-serif text-3xl font-black text-foam-navy">
+                  {beer.price.toFixed(2)} €
+                </span>
+                <span className="text-xs font-bold text-foam-muted ml-2">
+                  TTC • Bouteille de 33cl
+                </span>
+              </div>
+              <span className="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full">
+                En stock aux cuves ({beer.stockCount} dispo)
+              </span>
             </div>
           </div>
 
-          {/* Profile & Description from foamnice.com */}
-          <div className="space-y-3 text-xs sm:text-sm text-kraft-ink leading-relaxed">
-            <p className="font-medium text-kraft-terracotta">
-              « {beer.profile} »
+          {/* Description & Aromatics */}
+          <div className="space-y-3 text-xs sm:text-sm text-foam-text leading-relaxed">
+            <p className="font-semibold text-foam-amber text-base">
+              « {beer.shortDesc} »
             </p>
-            <p className="text-kraft-ink/80">
+            <p>
               {beer.fullDesc}
             </p>
           </div>
 
-          {/* Brewer's Note */}
-          <div className="p-4 bg-kraft-stone/50 rounded-xl border border-kraft-border text-xs text-kraft-ink space-y-1.5">
-            <h4 className="font-bold uppercase tracking-wider text-kraft-ink flex items-center gap-1.5">
-              <Award className="w-4 h-4 text-kraft-terracotta" />
-              <span>Le Mot du Brasseur (Stéphane, Port de Nice) :</span>
+          {/* Detailed Tasting Notes */}
+          <div className="p-5 bg-foam-amberSoft/50 rounded-2xl border border-foam-amber/20 space-y-2.5 text-xs">
+            <h4 className="font-bold uppercase tracking-wider text-foam-navy flex items-center gap-1.5">
+              <Beer className="w-4 h-4 text-foam-amber" />
+              <span>Notes de Dégustation :</span>
             </h4>
-            <p className="text-kraft-muted leading-relaxed">
-              {beer.brewerNotes}
-            </p>
-          </div>
-
-          {/* Pairing */}
-          <div className="p-4 bg-kraft-cream rounded-xl border border-kraft-border text-xs flex items-start gap-2.5">
-            <Utensils className="w-4 h-4 text-kraft-terracotta shrink-0 mt-0.5" />
-            <div>
-              <strong className="text-kraft-ink block">Accords mets & cuisine niçoise :</strong>
-              <span className="text-kraft-muted mt-0.5 block">{beer.pairing}</span>
+            <div className="space-y-1.5 text-foam-text">
+              <p><strong className="text-foam-navy">Robe :</strong> {beer.tastingNotes.robe}</p>
+              <p><strong className="text-foam-navy">Nez :</strong> {beer.tastingNotes.nez}</p>
+              <p><strong className="text-foam-navy">Bouche :</strong> {beer.tastingNotes.bouche}</p>
             </div>
           </div>
 
-          {/* Single Bottle Add to Cart CTA */}
-          <div className="pt-4 border-t border-kraft-border space-y-3">
+          {/* Food Pairing with Nice Cuisine */}
+          <div className="p-4 bg-foam-oliveSoft rounded-2xl border border-foam-olive/30 flex items-start gap-3 text-xs">
+            <Utensils className="w-5 h-5 text-foam-olive shrink-0 mt-0.5" />
+            <div>
+              <strong className="text-foam-olive font-bold text-xs uppercase tracking-wider block">
+                Accords Mets & Gastronomie Niçoise :
+              </strong>
+              <p className="text-foam-text mt-1 leading-relaxed">
+                {beer.pairing}
+              </p>
+            </div>
+          </div>
+
+          {/* Service tips */}
+          <div className="grid grid-cols-2 gap-3 text-xs text-foam-navy">
+            <div className="p-3 bg-white rounded-xl border border-foam-border">
+              <span className="text-foam-muted block text-[11px]">Température de service :</span>
+              <strong className="font-bold">{beer.serviceTemperature}</strong>
+            </div>
+            <div className="p-3 bg-white rounded-xl border border-foam-border">
+              <span className="text-foam-muted block text-[11px]">Verre conseillé :</span>
+              <strong className="font-bold text-[11px] truncate block">{beer.recommendedGlass}</strong>
+            </div>
+          </div>
+
+          {/* Add to Cart Actions */}
+          <div className="space-y-3 pt-2">
             <div className="flex items-center gap-3">
-              <div className="flex items-center border border-kraft-border rounded-lg bg-white p-1">
+              <div className="flex items-center border-2 border-foam-border rounded-xl bg-white p-1">
                 <button
                   type="button"
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-8 h-8 rounded text-kraft-ink hover:bg-kraft-stone flex items-center justify-center font-bold"
+                  className="w-9 h-9 rounded-lg text-foam-navy hover:bg-foam-subtle flex items-center justify-center font-black"
                 >
                   -
                 </button>
-                <span className="w-8 text-center text-xs font-bold text-kraft-ink">
+                <span className="w-9 text-center font-bold text-sm text-foam-navy">
                   {quantity}
                 </span>
                 <button
                   type="button"
                   onClick={() => setQuantity(quantity + 1)}
-                  className="w-8 h-8 rounded text-kraft-ink hover:bg-kraft-stone flex items-center justify-center font-bold"
+                  className="w-9 h-9 rounded-lg text-foam-navy hover:bg-foam-subtle flex items-center justify-center font-black"
                 >
                   +
                 </button>
@@ -145,60 +236,136 @@ export default function BeerProductPage({ beerSlug, navigateTo }) {
               <button
                 type="button"
                 onClick={handleAddToCart}
-                className="flex-1 py-3.5 px-6 rounded-xl bg-kraft-ink hover:bg-kraft-terracotta text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shadow-xs"
+                className="flex-1 py-4 px-6 rounded-2xl bg-foam-amber hover:bg-foam-amberDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-amber-glow transition-all"
               >
-                <ShoppingBag className="w-4 h-4" />
+                <ShoppingBag className="w-5 h-5" />
                 <span>
-                  {addedNotice ? '✓ Ajouté au panier !' : `Ajouter ${(beer.price * quantity).toFixed(2)} €`}
+                  {addedAlert ? '✓ Ajouté au panier !' : `Ajouter au Panier • ${(beer.price * quantity).toFixed(2)} €`}
                 </span>
               </button>
             </div>
 
-            <p className="text-[11px] text-kraft-muted text-center">
-              Retrait Click & Collect 0 € disponible dans nos bars FOAM (Port et Place du Pin).
+            <button
+              type="button"
+              onClick={handleBuyNow}
+              className="w-full py-3.5 px-6 rounded-2xl bg-foam-navy hover:bg-foam-navyLight text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors"
+            >
+              <span>Commander immédiatement (0 € débité)</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+
+            <p className="text-[11px] text-center text-foam-muted">
+              📍 Retrait Click & Collect 0 € disponible sous 2h aux bars FOAM Port et Place du Pin.
             </p>
           </div>
 
-          {/* Opportunity to buy in the 3 or 6 pack instead */}
-          <div className="p-4 bg-kraft-stone/40 rounded-xl border border-kraft-border text-xs space-y-2">
+          {/* Set Upsell banner */}
+          <div className="p-4 bg-gradient-to-r from-foam-amberSoft to-amber-50 rounded-2xl border-2 border-foam-amber/30 space-y-2">
             <div className="flex items-center justify-between">
-              <span className="font-bold text-kraft-ink">
-                Envie de découvrir nos 3 recettes ?
+              <span className="font-bold text-xs uppercase tracking-wider text-foam-amber">
+                Économisez en Coffret !
               </span>
-              <span className="text-kraft-terracotta font-bold">Dès 15,00 €</span>
+              <span className="text-xs font-black text-foam-amber">Dès 15,00 €</span>
             </div>
-            <p className="text-kraft-muted text-[11px]">
-              Retrouvez la {beer.name} dans notre Coffret Découverte (Pack de 3 à 15 € ou Pack de 6 à 26 €).
+            <p className="text-xs text-foam-text leading-snug">
+              Retrouvez la {beer.name} dans notre <strong>Coffret Découverte</strong> avec nos 2 autres classiques (15 € le pack de 3 ou 26 € le pack de 6).
             </p>
-            <button
-              onClick={() => navigateTo('coffret-decouverte')}
-              className="text-xs font-bold text-kraft-terracotta hover:underline inline-block pt-1"
+            <Link
+              to="/coffrets/decouverte"
+              className="inline-block text-xs font-bold text-foam-navy underline hover:text-foam-amber pt-1"
             >
               Voir le Coffret Découverte →
-            </button>
-          </div>
-
-          {/* Explore Other Beers */}
-          <div className="pt-4 border-t border-kraft-border">
-            <span className="text-xs font-bold uppercase tracking-wider text-kraft-muted block mb-2">
-              Autres bières de la microbrasserie :
-            </span>
-            <div className="grid grid-cols-2 gap-2">
-              {otherBeers.map((ob) => (
-                <button
-                  key={ob.slug}
-                  onClick={() => navigateTo(`biere-${ob.slug}`)}
-                  className="p-2.5 rounded-lg border border-kraft-border text-left hover:bg-kraft-stone transition-colors text-xs"
-                >
-                  <strong className="text-kraft-ink block truncate">{ob.name}</strong>
-                  <span className="text-[11px] text-kraft-muted block">{ob.style} (6 €)</span>
-                </button>
-              ))}
-            </div>
+            </Link>
           </div>
 
         </div>
 
+      </div>
+
+
+      {/* TECHNICAL TABLE & DETAILS (Shopify Standard Specs) */}
+      <div className="pt-10 border-t border-foam-border space-y-6">
+        <h2 className="font-serif text-2xl font-bold text-foam-navy">
+          Fiche Technique & Méthode de Brassage
+        </h2>
+
+        <div className="bg-white rounded-3xl border border-foam-border shadow-shopify overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-foam-border">
+            
+            <div className="p-6 space-y-3">
+              <h3 className="font-bold uppercase tracking-wider text-xs text-foam-navy mb-4">
+                Caractéristiques de la Bière
+              </h3>
+              <dl className="space-y-2.5 text-xs">
+                {beer.technicalDetails.map((t, idx) => (
+                  <div key={idx} className="flex justify-between py-1 border-b border-foam-border/60">
+                    <dt className="text-foam-muted">{t.label}</dt>
+                    <dd className="font-bold text-foam-navy text-right">{t.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <h3 className="font-bold uppercase tracking-wider text-xs text-foam-navy mb-2">
+                Ingrédients & Éthique de Brassage
+              </h3>
+              <p className="text-xs text-foam-text leading-relaxed">
+                {beer.ingredients}
+              </p>
+              
+              <div className="p-4 bg-foam-bg rounded-2xl border border-foam-border space-y-2 text-xs">
+                <span className="font-bold text-foam-navy block">Parole de Stéphane (Maître Brasseur) :</span>
+                <p className="text-foam-muted italic leading-relaxed">
+                  « Nous brassons chaque semaine par petits volumes pour garantir une fraîcheur absolue. L'absence de pasteurisation et de filtration préserve la richesse naturelle des huiles de houblon et des protéines de malt. »
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      {/* EXPLORE OTHER BEERS (Related Products Shopify Section) */}
+      <div className="pt-8 border-t border-foam-border space-y-6">
+        <h2 className="font-serif text-2xl font-bold text-foam-navy">
+          Complétez votre Dégustation
+        </h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {otherBeers.map((ob) => (
+            <Link
+              key={ob.slug}
+              to={`/bieres/${ob.slug}`}
+              className="p-5 bg-white rounded-3xl border border-foam-border hover:border-foam-navy shadow-shopify flex items-center justify-between gap-4 group transition-all"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-2xl overflow-hidden bg-foam-subtle shrink-0">
+                  <img src={ob.image} alt={ob.name} className="w-full h-full object-cover" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-foam-amber block">
+                    {ob.style} • {ob.abv}
+                  </span>
+                  <strong className="text-base font-serif font-bold text-foam-navy group-hover:text-foam-amber transition-colors">
+                    {ob.name}
+                  </strong>
+                  <p className="text-xs text-foam-muted truncate max-w-xs">{ob.shortDesc}</p>
+                </div>
+              </div>
+
+              <div className="text-right shrink-0">
+                <span className="font-serif font-black text-lg text-foam-navy block">
+                  {ob.price.toFixed(2)} €
+                </span>
+                <span className="text-xs font-bold text-foam-amber group-hover:underline">
+                  Voir →
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
 
     </div>
