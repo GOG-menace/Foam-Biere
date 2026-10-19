@@ -5,49 +5,26 @@
 @layer base {
   html {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    color: #0F2537;
-    background-color: #FAF6F0;
+    color: #18232C;
+    background-color: #F7F4EE;
+    scroll-behavior: smooth;
   }
 
-  h1, h2, h3, h4, .font-editorial {
+  h1, h2, h3, h4, .font-serif {
     font-family: 'Fraunces', Georgia, serif;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.015em;
   }
 }
 
-/* Custom scrollbars */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+/* Kraft card styled container */
+.kraft-card {
+  background-color: #FFFDF9;
+  border: 1px solid #E1D7C8;
+  border-radius: 1rem;
 }
 
-::-webkit-scrollbar-track {
-  background: #FAF6F0;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #D96B27;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #B85518;
-}
-
-/* Subtle glow animations */
-@keyframes pulse-subtle {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.92; transform: scale(1.02); }
-}
-
-.animate-pulse-subtle {
-  animation: pulse-subtle 3s ease-in-out infinite;
-}
-
-/* Glassmorphism utility */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(229, 222, 213, 0.8);
+.kraft-tag {
+  background-color: #EFE9DF;
+  color: #18232C;
+  border: 1px solid #E1D7C8;
 }

@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
-import { X, ShieldCheck, MapPin, Truck, AlertCircle, Lock, ArrowRight, Check } from 'lucide-react';
+import { X, Lock, MapPin, Truck, ArrowRight } from 'lucide-react';
 import { useCart } from '../context/CartContext';
-import confetti from 'canvas-confetti';
+import { BARS_DATA } from '../data/products';
 
 export default function CheckoutModal() {
   const { 
     isCheckoutOpen, 
     setIsCheckoutOpen, 
     items, 
-    subtotal, 
-    shippingAmount, 
-    finalTotal, 
+    grandTotal, 
     deliveryMethod, 
     selectedBar, 
-    selectedSlot,
     completeOrder 
   } = useCart();
 
@@ -23,314 +20,213 @@ export default function CheckoutModal() {
     email: '',
     phone: '',
     address: '',
-    zip: '',
     city: '',
-    notes: '',
-    certifyAdult: false,
-    acceptTerms: false
+    zip: '',
+    certifyAdult: false
   });
 
-  const [errors, setErrors] = useState({});
+  const [error, setError] = useState('');
 
   if (!isCheckoutOpen) return null;
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
-  };
-
-  const validate = () => {
-    const newErrors = {};
-    if (!formData.firstName.trim()) newErrors.firstName = 'Prénom requis';
-    if (!formData.lastName.trim()) newErrors.lastName = 'Nom requis';
-    if (!formData.email.trim() || !formData.email.includes('@')) newErrors.email = 'E-mail valide requis';
-    if (!formData.phone.trim()) newErrors.phone = 'Numéro de téléphone requis pour le suivi';
-
-    if (deliveryMethod === 'shipping') {
-      if (!formData.address.trim()) newErrors.address = 'Adresse de livraison requise';
-      if (!formData.zip.trim()) newErrors.zip = 'Code postal requis';
-      if (!formData.city.trim()) newErrors.city = 'Ville requise';
-    }
-
-    if (!formData.certifyAdult) {
-      newErrors.certifyAdult = 'Vous devez certifier être majeur(e) (+18 ans) conformément à la Loi Évin.';
-    }
-
-    if (!formData.acceptTerms) {
-      newErrors.acceptTerms = 'Vous devez accepter les CGV et la politique RGPD.';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  const currentBar = BARS_DATA.find(b => b.id === selectedBar) || BARS_DATA[0];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validate()) return;
-
-    // Trigger celebration confetti
-    try {
-      confetti({
-        particleCount: 80,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#D96B27', '#D4AF37', '#2E5A44', '#0F2537']
-      });
-    } catch (err) {
-      console.warn(err);
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
+      setError('Veuillez renseigner vos coordonnées de contact.');
+      return;
+    }
+    if (deliveryMethod === 'homeDelivery' && (!formData.address || !formData.city || !formData.zip)) {
+      setError('Veuillez renseigner votre adresse de livraison.');
+      return;
+    }
+    if (!formData.certifyAdult) {
+      setError('Vous devez certifier être majeur(e) (+18 ans) conformément à la réglementation.');
+      return;
     }
 
     completeOrder(formData);
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foam-navy/80 backdrop-blur-sm overflow-y-auto animate-fade-in">
-      <div className="relative w-full max-w-2xl bg-foam-bg rounded-3xl border border-foam-border shadow-2xl overflow-hidden my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-kraft-ink/70 backdrop-blur-xs overflow-y-auto">
+      <div className="relative w-full max-w-xl bg-kraft-bg rounded-2xl border border-kraft-border shadow-2xl overflow-hidden my-8">
         
         {/* Header */}
-        <div className="p-6 bg-white border-b border-foam-border flex items-center justify-between">
+        <div className="p-5 bg-white border-b border-kraft-border flex items-center justify-between">
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-foam-amber">
-              Mode Test SAÉ IUT Nice • Sans Débit
+            <span className="text-[10px] font-bold uppercase tracking-wider text-kraft-terracotta">
+              Dispositif Pilote • Mode Test
             </span>
-            <h2 className="font-editorial text-2xl font-bold text-foam-navy">
+            <h2 className="font-serif text-xl font-bold text-kraft-ink">
               Finaliser votre précommande FOAM
             </h2>
           </div>
           <button
             onClick={() => setIsCheckoutOpen(false)}
-            className="p-2 rounded-xl text-foam-gray hover:text-foam-navy hover:bg-foam-stone transition-colors"
+            className="p-1.5 text-kraft-muted hover:text-kraft-ink"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-6 max-h-[75vh] overflow-y-auto">
+        <form onSubmit={handleSubmit} className="p-6 space-y-5 max-h-[75vh] overflow-y-auto text-xs text-kraft-ink">
           
-          {/* Summary Box */}
-          <div className="p-4 rounded-2xl bg-foam-stone/60 border border-foam-border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+          {/* Order quick summary */}
+          <div className="p-3.5 bg-white rounded-xl border border-kraft-border flex items-center justify-between">
             <div>
-              <div className="flex items-center gap-2">
-                {deliveryMethod === 'click_and_collect' ? (
-                  <span className="inline-flex items-center gap-1 text-xs font-bold text-foam-olive bg-foam-oliveLight px-2.5 py-1 rounded-full">
-                    <MapPin className="w-3.5 h-3.5" />
-                    Click & Collect Gratuit (0€)
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center gap-1 text-xs font-bold text-foam-navy bg-white px-2.5 py-1 rounded-full border border-foam-border">
-                    <Truck className="w-3.5 h-3.5" />
-                    Expédition Anti-Casse
-                  </span>
-                )}
-                <span className="text-xs font-medium text-foam-navy">
-                  {items.length} article{items.length > 1 ? 's' : ''}
-                </span>
-              </div>
-              <p className="text-xs text-foam-navy/80 mt-1">
-                {deliveryMethod === 'click_and_collect' 
-                  ? `Retrait : ${selectedBar?.name} (${selectedSlot})` 
-                  : 'Livraison à domicile anti-casse'}
+              <span className="font-bold text-kraft-ink">
+                {items.length} article{items.length > 1 ? 's' : ''} ({deliveryMethod === 'clickAndCollect' ? 'Click & Collect 0€' : 'Livraison'})
+              </span>
+              <p className="text-[11px] text-kraft-muted mt-0.5">
+                {deliveryMethod === 'clickAndCollect' ? `Retrait : ${currentBar.name}` : 'Envoi sécurisé anti-casse'}
               </p>
             </div>
-
-            <div className="text-right sm:border-l sm:border-foam-border/80 sm:pl-4">
-              <span className="text-xs text-foam-gray">Total à régler :</span>
-              <p className="text-xl font-black text-foam-amber">{finalTotal.toFixed(2)} €</p>
-              <p className="text-[10px] text-foam-olive font-bold uppercase">0 € débité aujourd'hui</p>
+            <div className="text-right">
+              <span className="font-serif text-lg font-bold text-kraft-terracotta">
+                {grandTotal.toFixed(2)} €
+              </span>
+              <span className="text-[10px] text-kraft-muted block">0 € débité</span>
             </div>
           </div>
 
-          {/* Customer Coordinates */}
-          <div>
-            <h3 className="font-editorial text-base font-bold text-foam-navy mb-3">
-              1. Coordonnées de contact
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {/* Contact Fields */}
+          <div className="space-y-3">
+            <h4 className="font-bold uppercase tracking-wider text-kraft-ink">
+              Coordonnées de contact
+            </h4>
+
+            <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-medium text-foam-navy mb-1">Prénom *</label>
+                <label className="block text-kraft-muted mb-1">Prénom *</label>
                 <input
                   type="text"
-                  name="firstName"
+                  required
                   value={formData.firstName}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                  className="w-full p-2.5 rounded-lg border border-kraft-border bg-white text-kraft-ink focus:outline-none focus:ring-1 focus:ring-kraft-ink"
                   placeholder="Léa"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-foam-border text-xs sm:text-sm text-foam-navy focus:ring-2 focus:ring-foam-amber focus:outline-none"
                 />
-                {errors.firstName && <p className="text-[10px] text-red-500 mt-1">{errors.firstName}</p>}
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-foam-navy mb-1">Nom *</label>
+                <label className="block text-kraft-muted mb-1">Nom *</label>
                 <input
                   type="text"
-                  name="lastName"
+                  required
                   value={formData.lastName}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                  className="w-full p-2.5 rounded-lg border border-kraft-border bg-white text-kraft-ink focus:outline-none focus:ring-1 focus:ring-kraft-ink"
                   placeholder="Vannini"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-foam-border text-xs sm:text-sm text-foam-navy focus:ring-2 focus:ring-foam-amber focus:outline-none"
                 />
-                {errors.lastName && <p className="text-[10px] text-red-500 mt-1">{errors.lastName}</p>}
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-foam-navy mb-1">E-mail *</label>
+                <label className="block text-kraft-muted mb-1">E-mail *</label>
                 <input
                   type="email"
-                  name="email"
+                  required
                   value={formData.email}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full p-2.5 rounded-lg border border-kraft-border bg-white text-kraft-ink focus:outline-none focus:ring-1 focus:ring-kraft-ink"
                   placeholder="lea@exemple.fr"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-foam-border text-xs sm:text-sm text-foam-navy focus:ring-2 focus:ring-foam-amber focus:outline-none"
                 />
-                {errors.email && <p className="text-[10px] text-red-500 mt-1">{errors.email}</p>}
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-foam-navy mb-1">Téléphone (SMS de confirmation) *</label>
+                <label className="block text-kraft-muted mb-1">Téléphone *</label>
                 <input
                   type="tel"
-                  name="phone"
+                  required
                   value={formData.phone}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="w-full p-2.5 rounded-lg border border-kraft-border bg-white text-kraft-ink focus:outline-none focus:ring-1 focus:ring-kraft-ink"
                   placeholder="06 12 34 56 78"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-foam-border text-xs sm:text-sm text-foam-navy focus:ring-2 focus:ring-foam-amber focus:outline-none"
                 />
-                {errors.phone && <p className="text-[10px] text-red-500 mt-1">{errors.phone}</p>}
               </div>
             </div>
           </div>
 
-          {/* Delivery Address (if shipping) */}
-          {deliveryMethod === 'shipping' && (
-            <div>
-              <h3 className="font-editorial text-base font-bold text-foam-navy mb-3">
-                2. Adresse de livraison Colis Anti-Casse
-              </h3>
-              <div className="space-y-3">
+          {/* Delivery Address (if homeDelivery) */}
+          {deliveryMethod === 'homeDelivery' && (
+            <div className="space-y-3 pt-2">
+              <h4 className="font-bold uppercase tracking-wider text-kraft-ink">
+                Adresse de livraison
+              </h4>
+              <div>
+                <label className="block text-kraft-muted mb-1">Adresse postale *</label>
+                <input
+                  type="text"
+                  required
+                  value={formData.address}
+                  onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                  className="w-full p-2.5 rounded-lg border border-kraft-border bg-white text-kraft-ink focus:outline-none focus:ring-1 focus:ring-kraft-ink"
+                  placeholder="12 Quai des Deux Emmanuels"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-medium text-foam-navy mb-1">Adresse postale *</label>
+                  <label className="block text-kraft-muted mb-1">Code postal *</label>
                   <input
                     type="text"
-                    name="address"
-                    value={formData.address}
-                    onChange={handleChange}
-                    placeholder="12 Quai des Deux Emmanuels"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-foam-border text-xs sm:text-sm text-foam-navy focus:ring-2 focus:ring-foam-amber focus:outline-none"
+                    required
+                    value={formData.zip}
+                    onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
+                    className="w-full p-2.5 rounded-lg border border-kraft-border bg-white text-kraft-ink focus:outline-none focus:ring-1 focus:ring-kraft-ink"
+                    placeholder="06300"
                   />
-                  {errors.address && <p className="text-[10px] text-red-500 mt-1">{errors.address}</p>}
                 </div>
-
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-xs font-medium text-foam-navy mb-1">Code postal *</label>
-                    <input
-                      type="text"
-                      name="zip"
-                      value={formData.zip}
-                      onChange={handleChange}
-                      placeholder="06300"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-foam-border text-xs sm:text-sm text-foam-navy focus:ring-2 focus:ring-foam-amber focus:outline-none"
-                    />
-                    {errors.zip && <p className="text-[10px] text-red-500 mt-1">{errors.zip}</p>}
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-medium text-foam-navy mb-1">Ville *</label>
-                    <input
-                      type="text"
-                      name="city"
-                      value={formData.city}
-                      onChange={handleChange}
-                      placeholder="Nice"
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-foam-border text-xs sm:text-sm text-foam-navy focus:ring-2 focus:ring-foam-amber focus:outline-none"
-                    />
-                    {errors.city && <p className="text-[10px] text-red-500 mt-1">{errors.city}</p>}
-                  </div>
+                <div>
+                  <label className="block text-kraft-muted mb-1">Ville *</label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.city}
+                    onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                    className="w-full p-2.5 rounded-lg border border-kraft-border bg-white text-kraft-ink focus:outline-none focus:ring-1 focus:ring-kraft-ink"
+                    placeholder="Nice"
+                  />
                 </div>
               </div>
             </div>
           )}
 
-          {/* Optional notes */}
-          <div>
-            <label className="block text-xs font-medium text-foam-navy mb-1">
-              Instructions particulières / Mot pour un cadeau (Optionnel)
-            </label>
-            <textarea
-              name="notes"
-              value={formData.notes}
-              onChange={handleChange}
-              rows={2}
-              placeholder="Ex: Merci de glisser un mot doux de la part de Léa pour Noël !"
-              className="w-full px-3.5 py-2.5 rounded-xl bg-white border border-foam-border text-xs sm:text-sm text-foam-navy focus:ring-2 focus:ring-foam-amber focus:outline-none"
+          {/* Notice Test Mode */}
+          <div className="p-3 bg-kraft-stone/60 rounded-xl border border-kraft-border flex items-start gap-2 text-[11px] text-kraft-muted">
+            <Lock className="w-4 h-4 text-kraft-terracotta shrink-0 mt-0.5" />
+            <span>
+              <strong>Mode précommande test :</strong> Aucun paiement bancaire n'est requis aujourd'hui. Votre commande réserve vos bouteilles fraîches auprès de la microbrasserie.
+            </span>
+          </div>
+
+          {/* Age certification */}
+          <label className="flex items-start gap-2.5 cursor-pointer pt-1">
+            <input
+              type="checkbox"
+              checked={formData.certifyAdult}
+              onChange={(e) => setFormData({ ...formData, certifyAdult: e.target.checked })}
+              className="mt-0.5 text-kraft-ink"
             />
-          </div>
+            <span className="text-[11px] text-kraft-ink leading-tight">
+              Je certifie sur l'honneur être âgé(e) de 18 ans ou plus conformément à la loi française sur les boissons alcoolisées.
+            </span>
+          </label>
 
-          {/* SAÉ Test Mode Box */}
-          <div className="p-4 rounded-2xl bg-amber-50/90 border border-amber-300 text-xs text-amber-950">
-            <div className="flex items-start gap-2.5">
-              <Lock className="w-5 h-5 text-foam-amber shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-amber-950">
-                  🔒 Mode Précommande Test (SAÉ IUT Nice Côte d'Azur)
-                </h4>
-                <p className="text-[11px] text-amber-900 mt-0.5 leading-relaxed">
-                  Aucun débit bancaire ne sera effectué. Votre précommande enregistre votre intention d'achat réelle pour le projet étudiant et vous recevrez un récapitulatif immédiat par e-mail fictif.
-                </p>
-              </div>
-            </div>
-          </div>
+          {error && (
+            <p className="text-[11px] text-red-600 font-semibold bg-red-50 p-2 rounded border border-red-200">
+              ⚠️ {error}
+            </p>
+          )}
 
-          {/* Mandatory Checkboxes */}
-          <div className="space-y-3 pt-2">
-            <div>
-              <label className="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  name="certifyAdult"
-                  checked={formData.certifyAdult}
-                  onChange={handleChange}
-                  className="mt-1 h-4 w-4 rounded border-foam-border text-foam-amber focus:ring-foam-amber shrink-0"
-                />
-                <span className="text-xs text-foam-navy leading-snug">
-                  Je certifie sur l'honneur être majeur(e) (+18 ans) conformément à la réglementation française sur les boissons alcoolisées.
-                </span>
-              </label>
-              {errors.certifyAdult && <p className="text-[10px] text-red-500 ml-7 mt-0.5">{errors.certifyAdult}</p>}
-            </div>
-
-            <div>
-              <label className="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  name="acceptTerms"
-                  checked={formData.acceptTerms}
-                  onChange={handleChange}
-                  className="mt-1 h-4 w-4 rounded border-foam-border text-foam-amber focus:ring-foam-amber shrink-0"
-                />
-                <span className="text-xs text-foam-navy leading-snug">
-                  J'accepte les Conditions Générales de Vente (CGV) et la politique de protection des données personnelles (RGPD).
-                </span>
-              </label>
-              {errors.acceptTerms && <p className="text-[10px] text-red-500 ml-7 mt-0.5">{errors.acceptTerms}</p>}
-            </div>
-          </div>
-
-          {/* Submit CTA */}
-          <div className="pt-4 border-t border-foam-border">
+          <div className="pt-2 border-t border-kraft-border">
             <button
               type="submit"
-              className="w-full py-4 px-6 bg-foam-amber hover:bg-foam-amberDark text-white font-bold rounded-2xl shadow-amber-glow transition-all flex items-center justify-center gap-2 text-sm sm:text-base cursor-pointer"
+              className="w-full py-3.5 px-6 rounded-xl bg-kraft-ink hover:bg-kraft-terracotta text-white font-bold text-sm flex items-center justify-center gap-2 transition-colors shadow-xs"
             >
-              <span>Valider ma précommande (0 € débité aujourd'hui)</span>
-              <ArrowRight className="w-5 h-5" />
+              <span>Confirmer ma précommande (0 € débité)</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
-            <p className="text-center text-[10px] text-foam-gray mt-2">
-              Confirmation immédiate • Réservation garantie en cuves ou en étui cadeau
-            </p>
           </div>
 
         </form>

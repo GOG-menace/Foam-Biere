@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck, AlertCircle, Beer, Wine } from 'lucide-react';
-import { useAnalytics } from '../context/AnalyticsContext';
+import { ShieldCheck, Beer } from 'lucide-react';
 
 export default function LegalAgeModal() {
-  const { trackAgeVerification } = useAnalytics();
   const [isOpen, setIsOpen] = useState(false);
-  const [isRefused, setIsRefused] = useState(false);
+  const [refused, setRefused] = useState(false);
 
   useEffect(() => {
     const verified = localStorage.getItem('foam_age_verified');
@@ -16,98 +14,68 @@ export default function LegalAgeModal() {
 
   const handleAccept = () => {
     localStorage.setItem('foam_age_verified', 'true');
-    trackAgeVerification(true);
     setIsOpen(false);
-  };
-
-  const handleRefuse = () => {
-    trackAgeVerification(false);
-    setIsRefused(true);
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foam-navy/85 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-lg overflow-hidden rounded-2xl bg-foam-bg border-2 border-foam-gold/40 shadow-2xl p-6 sm:p-8 text-center text-foam-navy">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-kraft-ink/80 backdrop-blur-xs">
+      <div className="relative w-full max-w-md bg-kraft-bg rounded-2xl border border-kraft-border shadow-2xl p-6 sm:p-8 text-center text-kraft-ink">
         
-        {/* Subtle decorative top bar */}
-        <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-foam-amber via-foam-gold to-foam-olive" />
-
-        {/* Brand Header */}
-        <div className="mb-6">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-foam-stone border border-foam-gold/50 shadow-inner mb-4">
-            <Beer className="w-8 h-8 text-foam-amber" />
-          </div>
-          
-          <div className="inline-block px-3 py-1 mb-2 text-xs font-semibold tracking-wider uppercase rounded-full bg-foam-stone text-foam-navy/80 border border-foam-border">
-            Brassée au Port de Nice • Caution Groupe Paloma (1948)
-          </div>
-          
-          <h2 className="font-editorial text-3xl sm:text-4xl font-bold tracking-tight text-foam-navy">
-            FOAM NICE
-          </h2>
-          <p className="text-xs uppercase tracking-widest text-foam-gray mt-1">
-            Micro-Brasserie Artisanale Méditerranéenne
-          </p>
+        <div className="w-12 h-12 rounded-xl bg-kraft-stone text-kraft-terracotta flex items-center justify-center font-serif text-2xl mx-auto mb-3">
+          🍺
         </div>
 
-        {!isRefused ? (
-          <div>
-            <div className="py-4 border-y border-foam-border/70 my-4 bg-white/60 rounded-xl px-4">
-              <p className="text-base sm:text-lg font-medium text-foam-navy mb-1">
-                Avez-vous 18 ans ou plus ?
-              </p>
-              <p className="text-xs text-foam-gray">
-                L’accès à notre boutique de bières artisanales du Port de Nice est strictement réservé aux personnes majeures.
-              </p>
-            </div>
+        <span className="text-[10px] font-bold uppercase tracking-wider text-kraft-muted">
+          Microbrasserie du Port de Nice • Groupe Paloma 1948
+        </span>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
+        <h2 className="font-serif text-2xl font-bold text-kraft-ink mt-1">
+          FOAM NICE
+        </h2>
+
+        {!refused ? (
+          <>
+            <p className="text-xs text-kraft-muted mt-3 leading-relaxed">
+              Pour accéder à notre boutique de bières artisanales, vous devez être âgé(e) de 18 ans ou plus conformément à la réglementation française (Loi Évin).
+            </p>
+
+            <div className="grid grid-cols-2 gap-3 mt-6">
               <button
                 onClick={handleAccept}
-                className="w-full py-3.5 px-5 bg-foam-amber hover:bg-foam-amberDark text-white font-semibold rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-sm sm:text-base flex items-center justify-center gap-2 group"
+                className="py-3 px-4 rounded-xl bg-kraft-ink hover:bg-kraft-terracotta text-white font-bold text-xs transition-colors flex items-center justify-center gap-1.5"
               >
-                <ShieldCheck className="w-5 h-5 text-white/90 group-hover:scale-110 transition-transform" />
-                <span>Oui, j'ai plus de 18 ans</span>
+                <ShieldCheck className="w-4 h-4" />
+                <span>Oui, j'ai +18 ans</span>
               </button>
 
               <button
-                onClick={handleRefuse}
-                className="w-full py-3.5 px-4 bg-foam-stone hover:bg-foam-border text-foam-navy font-medium rounded-xl border border-foam-border transition-colors text-sm"
+                onClick={() => setRefused(true)}
+                className="py-3 px-4 rounded-xl bg-white border border-kraft-border text-kraft-ink hover:bg-kraft-stone text-xs font-semibold transition-colors"
               >
-                Non, j'ai moins de 18 ans
+                J'ai moins de 18 ans
               </button>
             </div>
-          </div>
+          </>
         ) : (
-          <div className="py-6 bg-red-50/80 rounded-xl border border-red-200 text-left p-5">
-            <div className="flex items-start gap-3">
-              <AlertCircle className="w-6 h-6 text-red-600 shrink-0 mt-0.5" />
-              <div>
-                <h3 className="font-semibold text-red-900 text-sm">
-                  Accès restreint aux personnes majeures
-                </h3>
-                <p className="text-xs text-red-800/90 mt-1 leading-relaxed">
-                  Conformément à l’article L. 3342-1 du Code de la santé publique (Loi Évin), la vente d’alcool est strictement interdite aux mineurs de moins de 18 ans. Nous ne pouvons malheureusement pas vous autoriser l’accès à notre boutique.
-                </p>
-                <button
-                  onClick={() => setIsRefused(false)}
-                  className="mt-4 text-xs font-semibold text-foam-navy underline hover:text-foam-amber"
-                >
-                  ← Erreur de saisie ? Recommencer la vérification
-                </button>
-              </div>
-            </div>
+          <div className="mt-4 p-4 bg-red-50 rounded-xl border border-red-200 text-xs text-red-900 text-left">
+            <p className="font-bold">Accès restreint aux personnes majeures</p>
+            <p className="mt-1 text-[11px] text-red-800">
+              Conformément à l’article L. 3342-1 du Code de la santé publique, la vente d'alcool est interdite aux mineurs de moins de 18 ans.
+            </p>
+            <button
+              onClick={() => setRefused(false)}
+              className="mt-3 text-[11px] font-bold underline text-red-900"
+            >
+              ← Recommencer la vérification
+            </button>
           </div>
         )}
 
-        {/* Bandeau Sanitaire Obligatoire (Loi Évin) */}
-        <div className="mt-6 pt-4 border-t border-foam-border/60">
-          <p className="text-[11px] font-semibold tracking-wide text-foam-navy/80 uppercase">
-            ⚠️ L'abus d'alcool est dangereux pour la santé, à consommer avec modération. Vente interdite aux mineurs.
-          </p>
-        </div>
+        <p className="mt-6 pt-3 border-t border-kraft-border text-[10px] text-kraft-muted uppercase tracking-wider">
+          ⚠️ L'abus d'alcool est dangereux pour la santé, à consommer avec modération.
+        </p>
 
       </div>
     </div>

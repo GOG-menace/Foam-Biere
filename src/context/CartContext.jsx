@@ -1,140 +1,109 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useAnalytics } from './AnalyticsContext';
-import { BARS_LOCATIONS, TIME_SLOTS } from '../data/products';
+import { SHIPPING_RATES, BARS_DATA } from '../data/products';
 
 const CartContext = createContext();
 
-const FREE_SHIPPING_THRESHOLD = 50.00;
-const SHIPPING_FEE = 12.90;
-
 export function CartProvider({ children }) {
-  const { trackAddToCart, trackOrderCompleted, logEvent } = useAnalytics();
-
-  // Load cart from localStorage or default
   const [items, setItems] = useState(() => {
-    const saved = localStorage.getItem('foam_cart_items');
-    if (saved) {
-      try {
-        return JSON.parse(saved);
-      } catch (e) {
-        console.error(e);
-      }
+    try {
+      const saved = localStorage.getItem('foam_cart');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
     }
-    // Start with 1 default discovery item or empty
-    return [];
   });
 
-  const [deliveryMethod, setDeliveryMethod] = useState('click_and_collect'); // 'click_and_collect' | 'shipping'
-  const [selectedBarId, setSelectedBarId] = useState('foam-port');
-  const [selectedSlot, setSelectedSlot] = useState(TIME_SLOTS[0]);
-
+  const [deliveryMethod, setDeliveryMethod] = useState('clickAndCollect'); // 'clickAndCollect' | 'homeDelivery'
+  const [selectedBar, setSelectedBar] = useState(BARS_DATA[0].id);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const [confirmedOrder, setConfirmedOrder] = useState(null);
+  const [orderConfirmed, setOrderConfirmed] = useState(null);
 
   useEffect(() => {
-    localStorage.setItem('foam_cart_items', JSON.stringify(items));
+    localStorage.setItem('foam_cart', JSON.stringify(items));
   }, [items]);
 
-  const addItem = (item, quantity = 1) => {
-    setItems(prevItems => {
-      // If it's a custom pack, match by composition signature
-      const itemKey = item.customKey || item.id;
-      const existingIndex = prevItems.findIndex(i => (i.customKey || i.id) === itemKey);
+  const addItem = (product, format = 'pack3', quantity = 1) => {
+    // Unique key per product + format (e.g., 'coffret-decouverte_pack6')
+    const key = `${product.slug}_${format}`;
+    let itemPrice = product.price;
+    let formatLabel = 'Bouteille 33cl';
 
-      if (existingIndex > -1) {
-        const next = [...prevItems];
-        next[existingIndex] = {
-          ...next[existingIndex],
-          quantity: next[existingIndex].quantity + quantity
+    if (product.pack3 && format === 'pack3') {
+      itemPrice = product.pack3.price;
+      formatLabel = product.pack3.format;
+    } else if (product.pack6 && format === 'pack6') {
+      itemPrice = product.pack6.price;
+      formatLabel = product.pack6.format;
+    }
+
+    setItems(prev => {
+      const index = prev.findIndex(item => item.key === key);
+      if (index > -1) {
+        const next = [...prev];
+        next[index] = {
+          ...next[index],
+          quantity: next[index].quantity + quantity
         };
         return next;
-      } else {
-        return [...prevItems, { ...item, quantity }];
       }
+      return [...prev, {
+        key,
+        slug: product.slug,
+        name: product.name,
+        format,
+        formatLabel,
+        price: itemPrice,
+        quantity,
+        badge: product.badge,
+        imagePlaceholder: product.imagePlaceholder
+      }];
     });
 
-    trackAddToCart(item.name, item.price * quantity);
     setIsCartOpen(true);
   };
 
-  const updateQuantity = (itemId, change) => {
-    setItems(prevItems => {
-      return prevItems
-        .map(item => {
-          if ((item.customKey || item.id) === itemId) {
-            const newQty = item.quantity + change;
-            return newQty > 0 ? { ...item, quantity: newQty } : null;
-          }
-          return item;
-        })
-        .filter(Boolean);
-    });
+  const updateQuantity = (key, delta) => {
+    setItems(prev => prev.map(item => {
+      if (item.key === key) {
+        const newQty = item.quantity + delta;
+        return newQty > 0 ? { ...item, quantity: newQty } : null;
+      }
+      return item;
+    }).filter(Boolean));
   };
 
-  const removeItem = (itemId) => {
-    setItems(prevItems => prevItems.filter(i => (i.customKey || i.id) !== itemId));
-    logEvent('CART_REMOVE', `Article retiré du panier`);
+  const removeItem = (key) => {
+    setItems(prev => prev.filter(item => item.key !== key));
   };
 
-  const clearCart = () => {
-    setItems([]);
-  };
+  const clearCart = () => setItems([]);
 
-  // Calculations
-  const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const totalItemCount = items.reduce((sum, item) => sum + item.quantity, 0);
-
-  const isFreeShipping = subtotal >= FREE_SHIPPING_THRESHOLD;
-  const shippingAmount = deliveryMethod === 'click_and_collect' 
-    ? 0.00 
-    : (isFreeShipping ? 0.00 : SHIPPING_FEE);
-
-  const remainingForFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
-  const freeShippingProgress = Math.min(100, (subtotal / FREE_SHIPPING_THRESHOLD) * 100);
-
-  const finalTotal = subtotal + shippingAmount;
-
-  // Selected bar details
-  const selectedBar = BARS_LOCATIONS.find(b => b.id === selectedBarId) || BARS_LOCATIONS[0];
-
-  const handleDeliveryMethodChange = (method) => {
-    setDeliveryMethod(method);
-    logEvent(
-      'DELIVERY_METHOD',
-      method === 'click_and_collect' 
-        ? 'Méthode choisie : Click & Collect 0€ (Économie 12,90€)' 
-        : 'Méthode choisie : Expédition Colis anti-casse'
-    );
-  };
+  const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const totalCount = items.reduce((sum, item) => sum + item.quantity, 0);
+  const shippingCost = deliveryMethod === 'clickAndCollect' ? SHIPPING_RATES.clickAndCollect : SHIPPING_RATES.homeDelivery;
+  const grandTotal = subtotal + (items.length > 0 ? shippingCost : 0);
 
   const completeOrder = (customerData) => {
-    const orderId = 'FOAM-' + Math.floor(100000 + Math.random() * 900000);
-    const orderSummary = {
-      orderId,
-      createdAt: new Date().toISOString(),
+    const orderNumber = 'FOAM-' + Math.floor(100000 + Math.random() * 900000);
+    const chosenBar = BARS_DATA.find(b => b.id === selectedBar) || BARS_DATA[0];
+
+    const order = {
+      orderNumber,
+      date: new Date().toLocaleDateString('fr-FR'),
       customer: customerData,
       items: [...items],
       subtotal,
-      shippingAmount,
-      finalTotal,
+      shippingCost,
+      grandTotal,
       deliveryMethod,
-      bar: deliveryMethod === 'click_and_collect' ? selectedBar : null,
-      slot: deliveryMethod === 'click_and_collect' ? selectedSlot : null,
-      status: 'PRÉCOMMANDE TEST ENREGISTRÉE (0€ DÉBITÉ)'
+      bar: deliveryMethod === 'clickAndCollect' ? chosenBar : null
     };
 
-    trackOrderCompleted({
-      total: finalTotal,
-      isClickAndCollect: deliveryMethod === 'click_and_collect',
-      orderId,
-      itemsCount: totalItemCount
-    });
-
-    setConfirmedOrder(orderSummary);
+    setOrderConfirmed(order);
     setIsCheckoutOpen(false);
     clearCart();
-    return orderSummary;
+    return order;
   };
 
   return (
@@ -144,29 +113,21 @@ export function CartProvider({ children }) {
       updateQuantity,
       removeItem,
       clearCart,
+      totalCount,
       subtotal,
-      totalItemCount,
+      shippingCost,
+      grandTotal,
       deliveryMethod,
-      setDeliveryMethod: handleDeliveryMethodChange,
-      selectedBarId,
-      setSelectedBarId,
+      setDeliveryMethod,
       selectedBar,
-      selectedSlot,
-      setSelectedSlot,
-      shippingAmount,
-      isFreeShipping,
-      remainingForFreeShipping,
-      freeShippingProgress,
-      finalTotal,
+      setSelectedBar,
       isCartOpen,
       setIsCartOpen,
       isCheckoutOpen,
       setIsCheckoutOpen,
-      confirmedOrder,
-      setConfirmedOrder,
-      completeOrder,
-      FREE_SHIPPING_THRESHOLD,
-      SHIPPING_FEE
+      orderConfirmed,
+      setOrderConfirmed,
+      completeOrder
     }}>
       {children}
     </CartContext.Provider>
@@ -174,9 +135,5 @@ export function CartProvider({ children }) {
 }
 
 export function useCart() {
-  const context = useContext(CartContext);
-  if (!context) {
-    throw new Error('useCart must be used within a CartProvider');
-  }
-  return context;
+  return useContext(CartContext);
 }
