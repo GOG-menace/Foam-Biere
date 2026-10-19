@@ -47,10 +47,10 @@ export default function JuryMetricsDrawer() {
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-foam-amber text-white">
-                    Dispositif SAÉ IUT Nice
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-foam-red text-white">
+                    FOAM Analytics
                   </span>
-                  <span className="text-xs text-foam-gold font-mono">Sprint 3 • Pilote</span>
+                  <span className="text-xs text-foam-gold font-mono">Performance E-Commerce</span>
                 </div>
                 <h2 className="font-editorial text-xl font-bold text-white mt-0.5">
                   Cockpit de Performance AARRR (Jury)

@@ -44,12 +44,12 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/coffrets/decouverte" className="hover:text-white transition-colors">
-                  Coffret Découverte (15€ / 26€)
+                  Coffret Découverte
                 </Link>
               </li>
               <li>
                 <Link to="/coffrets/exotique" className="hover:text-white transition-colors">
-                  Coffret Exotique Éphémère (15€ / 26€)
+                  Coffret Exotique Éphémère
                 </Link>
               </li>
             </ul>
@@ -63,17 +63,17 @@ export default function Footer() {
             <ul className="space-y-2 text-xs text-slate-300">
               <li>
                 <Link to="/bieres/west-coast" className="hover:text-white transition-colors">
-                  FOAM West Coast IPA (6,00 €)
+                  FOAM West Coast IPA
                 </Link>
               </li>
               <li>
                 <Link to="/bieres/lager" className="hover:text-white transition-colors">
-                  FOAM Lager Méditerranéenne (6,00 €)
+                  FOAM Lager Méditerranéenne
                 </Link>
               </li>
               <li>
                 <Link to="/bieres/blanche" className="hover:text-white transition-colors">
-                  FOAM Blanche Riviera (6,00 €)
+                  FOAM Blanche Riviera
                 </Link>
               </li>
               <li>
@@ -124,7 +124,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400 pt-2">
           <p>© {new Date().getFullYear()} FOAM Nice • Microbrasserie artisanale du Port. Tous droits réservés.</p>
-          <p>Groupe Paloma (Maison familiale fondée en 1948) • Dispositif pilote SAÉ</p>
+          <p>Groupe Paloma (Maison familiale fondée en 1948)</p>
         </div>
 
       </div>

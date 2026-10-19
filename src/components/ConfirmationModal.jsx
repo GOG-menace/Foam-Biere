@@ -34,7 +34,7 @@ export default function ConfirmationModal() {
 
         <div className="flex items-center justify-center gap-1.5 text-foam-olive text-xs font-bold uppercase tracking-wider mb-2">
           <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-          <span>Précommande Test Confirmée</span>
+          <span>Commande Confirmée</span>
         </div>
 
         <h2 className="font-serif text-2xl sm:text-3xl font-black text-foam-navy mt-1">

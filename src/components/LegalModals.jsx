@@ -52,10 +52,10 @@ export default function LegalModals({ activeModal, onClose }) {
                 <br />
                 <strong>N° de TVA Intracommunautaire :</strong> FR 48 842194800.
                 <br />
-                <strong>Directeur de la publication :</strong> Direction Groupe Paloma & Équipe Projet SAÉ IUT Nice.
+                <strong>Directeur de la publication :</strong> Direction Groupe Paloma & Brasserie FOAM Nice.
               </p>
               <p>
-                <strong>Cadre académique & Dispositif pilote :</strong> Le présent site est une application web e-commerce de précommande développée dans le cadre d’une Situation d'Apprentissage et d'Évaluation (SAÉ) en partenariat avec l'IUT Nice Côte d'Azur (Université Côte d'Azur).
+                <strong>Éditeur du site :</strong> Microbrasserie artisanale FOAM Nice, filiale du Groupe Paloma (fondé en 1948 au Port de Nice).
               </p>
               <p>
                 <strong>Hébergement :</strong> Serveurs sécurisés situés dans l'Union Européenne (Vercel / Cloudflare).
@@ -73,9 +73,9 @@ export default function LegalModals({ activeModal, onClose }) {
               </div>
 
               <p>
-                <strong>Article 2 : Nature des commandes en mode test SAÉ</strong>
+                <strong>Article 2 : Nature des commandes & réservation directe</strong>
                 <br />
-                Le site opère un dispositif de précommande sans débit bancaire immédiat. L'utilisateur enregistre une intention d'achat ferme permettant à la brasserie de planifier ses brassins et étuis de fin d'année.
+                Le site opère un dispositif de commande et précommande direct producteur. L'utilisateur enregistre une réservation ferme permettant à la brasserie de planifier ses cuvées et étuis artisanaux.
               </p>
 
               <p>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
   ShoppingBag, Check, Star, MapPin, Truck, ShieldCheck, 
-  Package, ChevronRight, ChevronDown, Sparkles, Heart, Award, ArrowRight 
+  Package, ChevronRight, ChevronDown, Sparkles, Heart, Award, ArrowRight, Beer 
 } from 'lucide-react';
 import { SETS, SHIPPING_RATES, BARS_DATA } from '../data/products';
 import { useCart } from '../context/CartContext';
@@ -308,12 +308,12 @@ export default function SetSalesPage({ defaultSlug }) {
               onClick={handleBuyNow}
               className="w-full py-3.5 px-6 rounded-2xl bg-foam-navy hover:bg-foam-navyLight text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shadow-2xs"
             >
-              <span>Commander immédiatement (Mode Précommande Test)</span>
+              <span>Commander immédiatement</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 
             <p className="text-[11px] text-center text-foam-muted font-medium">
-              🔒 Dispositif pilote sans débit bancaire immédiat • Réservation garantie en direct des cuves.
+              🔒 Paiement 100% sécurisé • Réservation garantie en direct de notre brasserie au Port de Nice.
             </p>
           </div>
 

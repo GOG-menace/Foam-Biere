@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin, Beer, Package, Star, ShieldCheck, Sparkles, CheckCircle2, Award } from 'lucide-react';
-import { SETS, BEERS } from '../data/products';
+import { SETS } from '../data/products';
 
 export default function HomePage() {
   const decouverte = SETS['coffret-decouverte'];
   const exotique = SETS['coffret-exotique'];
-  const beers = Object.values(BEERS);
 
   return (
     <div className="space-y-16 sm:space-y-24 pb-20">
@@ -56,7 +55,7 @@ export default function HomePage() {
                   className="w-full sm:w-auto py-4 px-8 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-shopify hover:shadow-red-glow transition-all transform hover:-translate-y-0.5 active:translate-y-0"
                 >
                   <Package className="w-5 h-5" />
-                  <span>Découvrir nos Offres de Coffrets (Dès 15 €)</span>
+                  <span>Découvrir nos Offres de Coffrets</span>
                 </Link>
 
                 <Link
@@ -64,7 +63,7 @@ export default function HomePage() {
                   className="w-full sm:w-auto py-4 px-7 rounded-2xl bg-white hover:bg-foam-subtle text-foam-navy font-bold text-sm sm:text-base border-2 border-foam-navy/20 hover:border-foam-navy transition-all flex items-center justify-center gap-2 shadow-xs"
                 >
                   <Beer className="w-5 h-5 text-foam-red" />
-                  <span>Découvrir nos 3 Bières à l'Unité</span>
+                  <span>Découvrir nos Bières Artisanales</span>
                 </Link>
               </div>
 
@@ -102,14 +101,14 @@ export default function HomePage() {
                   <div className="flex items-center justify-between pt-1 text-xs">
                     <div>
                       <span className="text-foam-muted block text-[11px]">Format au choix</span>
-                      <strong className="text-foam-navy font-bold text-sm">Pack 3 (15 €) • Pack 6 (26 €)</strong>
+                      <strong className="text-foam-navy font-bold text-sm">Disponible en Pack 3 et Pack 6</strong>
                     </div>
 
                     <Link
                       to="/coffrets/decouverte"
                       className="py-2.5 px-4 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-bold text-xs flex items-center gap-1.5 transition-colors shadow-xs"
                     >
-                      <span>Commander</span>
+                      <span>Découvrir l'offre</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
@@ -170,7 +169,7 @@ export default function HomePage() {
             Nos Coffrets Dégustation
           </h2>
           <p className="text-sm sm:text-base text-foam-text leading-relaxed">
-            Chaque coffret est disponible en format <strong>3 bouteilles (15,00 €)</strong> ou <strong>6 bouteilles (26,00 €)</strong>. 
+            Chaque coffret est disponible en format 3 ou 6 bouteilles, prêt à offrir ou à partager. 
             <Link to="/coffrets" className="text-xs font-bold text-foam-red hover:underline block mt-1.5">
               Accéder à la page de toutes nos offres de coffrets →
             </Link>
@@ -227,18 +226,18 @@ export default function HomePage() {
 
             <div className="pt-6 mt-6 border-t border-foam-border flex items-center justify-between">
               <div>
-                <span className="text-xs text-foam-muted">À partir de</span>
-                <div className="font-serif text-2xl font-black text-foam-navy">
-                  15,00 € <span className="text-xs font-normal text-foam-muted">les 3 x 33cl</span>
+                <span className="text-xs text-foam-muted">Format au choix</span>
+                <div className="font-serif text-lg font-bold text-foam-navy">
+                  Pack de 3 ou 6 bières
                 </div>
-                <span className="text-[11px] text-foam-red font-bold">26,00 € le pack de 6 (-10 €)</span>
+                <span className="text-[11px] text-foam-olive font-bold">Click & Collect gratuit sous 2h</span>
               </div>
 
               <Link
                 to="/coffrets/decouverte"
                 className="py-3.5 px-6 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-xs sm:text-sm flex items-center gap-2 shadow-xs transition-colors"
               >
-                <span>Accéder à la page de vente</span>
+                <span>Découvrir l'offre</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -292,100 +291,23 @@ export default function HomePage() {
 
             <div className="pt-6 mt-6 border-t border-foam-border flex items-center justify-between">
               <div>
-                <span className="text-xs text-foam-muted">À partir de</span>
-                <div className="font-serif text-2xl font-black text-foam-navy">
-                  15,00 € <span className="text-xs font-normal text-foam-muted">les 3 x 33cl</span>
+                <span className="text-xs text-foam-muted">Format au choix</span>
+                <div className="font-serif text-lg font-bold text-foam-navy">
+                  Pack de 3 ou 6 bières
                 </div>
-                <span className="text-[11px] text-foam-olive font-bold">26,00 € le pack de 6 (-10 €)</span>
+                <span className="text-[11px] text-foam-olive font-bold">Édition limitée du brasseur</span>
               </div>
 
               <Link
                 to="/coffrets/exotique"
                 className="py-3.5 px-6 rounded-xl bg-foam-navy hover:bg-foam-navyLight text-white font-extrabold text-xs sm:text-sm flex items-center gap-2 shadow-xs transition-colors"
               >
-                <span>Accéder à la page de vente</span>
+                <span>Découvrir l'offre</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
 
-        </div>
-
-      </section>
-
-
-      {/* 3. SECTION LES 3 BIÈRES PERMANENTES (PAGES PRODUITS INDIVIDUELLES) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-foam-border pb-4">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-foam-muted">
-              Les Bières du Port de Nice à l'Unité (33cl • 6,00 €)
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-foam-navy mt-1">
-              Les 3 Créations Permanentes de Stéphane
-            </h2>
-          </div>
-          <Link
-            to="/bieres"
-            className="text-xs font-bold text-foam-red hover:text-foam-redDark flex items-center gap-1"
-          >
-            <span>Voir toute la gamme et comparatif</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {beers.map((beer) => (
-            <div
-              key={beer.slug}
-              className="rounded-3xl bg-white border border-foam-border hover:border-foam-navy/40 shadow-shopify hover:shadow-shopify-hover transition-all flex flex-col justify-between overflow-hidden group"
-            >
-              <div>
-                <div className="aspect-[4/3] bg-foam-subtle overflow-hidden">
-                  <img
-                    src={beer.image}
-                    alt={beer.fullName}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-
-                <div className="p-6 space-y-3">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="font-bold text-foam-red uppercase tracking-wider">{beer.style}</span>
-                    <span className="text-foam-navy font-semibold">{beer.abv} • IBU {beer.ibu}</span>
-                  </div>
-
-                  <h3 className="font-serif text-xl font-bold text-foam-navy group-hover:text-foam-red transition-colors">
-                    {beer.name}
-                  </h3>
-
-                  <p className="text-xs text-foam-text leading-relaxed">
-                    {beer.shortDesc}
-                  </p>
-
-                  <div className="pt-2 text-xs text-foam-navy">
-                    <strong className="text-foam-muted font-semibold">Houblons : </strong>
-                    <span className="font-bold">{beer.hops}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-6 pt-0 border-t border-foam-border/60 flex items-center justify-between mt-4">
-                <span className="font-serif text-2xl font-bold text-foam-navy">
-                  {beer.price.toFixed(2)} €
-                </span>
-
-                <Link
-                  to={`/bieres/${beer.slug}`}
-                  className="py-2.5 px-4 rounded-xl bg-foam-navy hover:bg-foam-red text-white font-bold text-xs flex items-center gap-1.5 transition-colors shadow-xs"
-                >
-                  <span>Fiche Produit</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            </div>
-          ))}
         </div>
 
       </section>

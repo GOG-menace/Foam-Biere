@@ -83,7 +83,7 @@ export default function BeersOverviewPage() {
                 className="w-full py-3.5 px-4 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all active:scale-98 text-center"
               >
                 <Package className="w-4 h-4 shrink-0" />
-                <span>Commander dans le Coffret Découverte (15 €)</span>
+                <span>Commander dans le Coffret Découverte</span>
               </Link>
             </div>
           </div>
@@ -130,7 +130,7 @@ export default function BeersOverviewPage() {
             className="w-full sm:w-auto py-3.5 px-6 rounded-2xl bg-foam-navy hover:bg-foam-navyLight text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shrink-0"
           >
             <Sparkles className="w-4 h-4 text-foam-red" />
-            <span>Découvrir le Coffret Exotique (Dès 15 €)</span>
+            <span>Découvrir le Coffret Exotique</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

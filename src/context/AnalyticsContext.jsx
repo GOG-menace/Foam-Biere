@@ -111,7 +111,7 @@ export function AnalyticsProvider({ children }) {
 
     logEvent(
       'ORDER_SUCCESS',
-      `Précommande test #${orderId} validée (${total.toFixed(2)} € - ${isClickAndCollect ? 'Click & Collect 0€' : 'Colis Anti-Casse'})`
+      `Commande #${orderId} validée (${total.toFixed(2)} € - ${isClickAndCollect ? 'Click & Collect 0€' : 'Colis Anti-Casse'})`
     );
   };
 

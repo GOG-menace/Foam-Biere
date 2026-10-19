@@ -76,10 +76,10 @@ export default function CheckoutModal() {
             <img src="/logo-foam.png" alt="FOAM Logo" className="w-10 h-10 object-contain rounded-full border border-white/30" />
             <div>
               <span className="text-[10px] font-bold uppercase tracking-wider text-amber-300">
-                Mode Précommande Test (SAÉ IUT Nice)
+                Paiement Sécurisé & Réservation
               </span>
               <h2 className="font-serif text-xl font-bold text-white">
-                Finaliser votre précommande FOAM
+                Finaliser votre commande FOAM
               </h2>
             </div>
           </div>
@@ -212,13 +212,13 @@ export default function CheckoutModal() {
             </div>
           )}
 
-          {/* Test mode callout */}
+          {/* Craft guarantee callout */}
           <div className="p-3.5 bg-foam-redSoft rounded-2xl border border-foam-redBorder flex items-start gap-2.5 text-xs text-foam-navy">
             <Lock className="w-4 h-4 text-foam-red shrink-0 mt-0.5" />
             <div>
-              <strong className="block text-foam-red">🔒 Dispositif Pilote SAÉ IUT Nice :</strong>
+              <strong className="block text-foam-red">🔒 Engagement Brasserie FOAM Nice :</strong>
               <p className="text-[11px] text-foam-text mt-0.5 leading-relaxed">
-                Aucun débit bancaire ne sera effectué. Votre précommande enregistre votre réservation auprès de la brasserie FOAM au Port de Nice.
+                Votre commande enregistre directement votre réservation auprès de la brasserie au Port de Nice. Préparation soignée sous 2h pour le Click & Collect ou expédition sécurisée anti-casse.
               </p>
             </div>
           </div>
@@ -245,7 +245,7 @@ export default function CheckoutModal() {
                 className="mt-0.5 text-foam-red rounded"
               />
               <span className="text-[11px] text-foam-navy leading-tight font-medium">
-                J'accepte les conditions de précommande et la politique de confidentialité RGPD.
+                J'accepte les conditions générales de vente et la politique de confidentialité RGPD.
               </span>
             </label>
           </div>
@@ -261,7 +261,7 @@ export default function CheckoutModal() {
               type="submit"
               className="w-full py-4 px-6 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all"
             >
-              <span>Valider ma précommande (0 € débité aujourd'hui)</span>
+              <span>Valider ma commande</span>
               <ArrowRight className="w-5 h-5" />
             </button>
           </div>

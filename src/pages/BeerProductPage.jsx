@@ -240,7 +240,7 @@ export default function BeerProductPage({ defaultSlug }) {
               onClick={handleBuyNow}
               className="w-full py-3.5 px-6 rounded-2xl bg-foam-navy hover:bg-foam-navyLight text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors"
             >
-              <span>Commander immédiatement (0 € débité)</span>
+              <span>Commander immédiatement</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 
@@ -253,12 +253,12 @@ export default function BeerProductPage({ defaultSlug }) {
           <div className="p-4 bg-gradient-to-r from-foam-redSoft to-amber-50 rounded-2xl border-2 border-foam-redBorder space-y-2">
             <div className="flex items-center justify-between">
               <span className="font-bold text-xs uppercase tracking-wider text-foam-red">
-                Économisez en Coffret !
+                Disponible en Coffret Cadeau !
               </span>
-              <span className="text-xs font-black text-foam-red">Dès 15,00 €</span>
+              <span className="text-xs font-bold text-foam-olive">Pack 3 ou Pack 6</span>
             </div>
             <p className="text-xs text-foam-text leading-snug">
-              Retrouvez la {beer.name} dans notre <strong>Coffret Découverte</strong> avec nos 2 autres classiques (15 € le pack de 3 ou 26 € le pack de 6).
+              Retrouvez la {beer.name} dans notre <strong>Coffret Découverte</strong> réunissant nos 3 recettes permanentes artisanales.
             </p>
             <Link
               to="/coffrets/decouverte"

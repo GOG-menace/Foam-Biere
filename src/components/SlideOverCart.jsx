@@ -223,16 +223,16 @@ export default function SlideOverCart() {
                 </div>
               </div>
 
-              {/* SAÉ pilot reminder */}
+              {/* Brewery reassurance reminder */}
               <div className="p-2.5 rounded-xl bg-foam-redSoft text-foam-navy border border-foam-redBorder text-[11px] text-center font-medium">
-                🔒 Mode précommande test (SAÉ IUT Nice) • 0 € débité aujourd'hui.
+                🔒 Préparation artisanale au Port de Nice • Retrait gratuit au bar ou expédition soignée.
               </div>
 
               <button
                 onClick={handleGoToCheckout}
                 className="w-full py-4 px-6 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all"
               >
-                <span>Passer la précommande (0 € débité)</span>
+                <span>Commander mon panier</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
