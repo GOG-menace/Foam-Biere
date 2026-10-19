@@ -9,9 +9,9 @@ export default function BarsPage() {
       
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-3">
-        <span className="text-xs font-bold uppercase tracking-wider text-foam-olive bg-foam-oliveSoft px-3.5 py-1 rounded-full border border-foam-olive/30">
+        <p className="text-xs font-bold uppercase tracking-widest text-foam-olive">
           Dégustation Pression & Retrait Click & Collect 0 €
-        </span>
+        </p>
         <h1 className="font-serif text-3xl sm:text-5xl font-black text-foam-navy leading-tight">
           Nos 2 Bars FOAM à Nice
         </h1>
@@ -25,17 +25,16 @@ export default function BarsPage() {
         {BARS_DATA.map((bar) => (
           <div
             key={bar.id}
-            className="rounded-3xl bg-white border-2 border-foam-border p-6 sm:p-10 shadow-shopify flex flex-col justify-between space-y-6"
+            className="rounded-3xl bg-white border border-foam-border p-6 sm:p-10 shadow-shopify flex flex-col justify-between space-y-6"
           >
             <div className="space-y-5">
               
               <div className="flex items-center justify-between">
-                <span className="text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full bg-foam-redSoft text-foam-redDark border border-foam-redBorder">
+                <span className="text-xs font-bold uppercase tracking-wider text-foam-red">
                   {bar.badge}
                 </span>
-                <span className="text-xs font-bold text-foam-olive bg-foam-oliveSoft px-3 py-1 rounded-full flex items-center gap-1.5 border border-foam-olive/30">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-                  Click & Collect 0 €
+                <span className="text-xs font-bold text-foam-olive">
+                  ✓ Click & Collect 0 €
                 </span>
               </div>
 

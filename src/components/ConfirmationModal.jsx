@@ -32,7 +32,7 @@ export default function ConfirmationModal() {
           className="w-16 h-16 object-contain rounded-full mx-auto mb-3 shadow-md border-2 border-foam-red"
         />
 
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold uppercase tracking-wider mb-2">
+        <div className="flex items-center justify-center gap-1.5 text-foam-olive text-xs font-bold uppercase tracking-wider mb-2">
           <CheckCircle2 className="w-4 h-4 text-emerald-600" />
           <span>Précommande Test Confirmée</span>
         </div>

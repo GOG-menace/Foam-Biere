@@ -46,22 +46,12 @@ export default function BeerProductPage({ defaultSlug }) {
         
         {/* Left Column: Image & Technical Gauges */}
         <div className="lg:col-span-6 space-y-6">
-          <div className="rounded-3xl overflow-hidden bg-white border-2 border-foam-border shadow-shopify relative aspect-[4/3]">
+          <div className="rounded-3xl overflow-hidden bg-white border border-foam-border shadow-shopify aspect-[4/3]">
             <img
               src={beer.image}
               alt={beer.fullName}
               className="w-full h-full object-cover"
             />
-
-            <span className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider text-white shadow-xs ${
-              beer.badgeColor === 'amber' ? 'bg-foam-red' : beer.badgeColor === 'olive' ? 'bg-foam-olive' : 'bg-foam-gold'
-            }`}>
-              {beer.badge}
-            </span>
-
-            <div className="absolute bottom-4 right-4 bg-white/95 px-3 py-1 rounded-full text-xs font-bold text-foam-navy shadow border border-foam-border">
-              {beer.volume} • {beer.abv}
-            </div>
           </div>
 
           {/* Sensory Gauges (Amertume, Fraîcheur, Fruité, Malt) */}
@@ -156,8 +146,8 @@ export default function BeerProductPage({ defaultSlug }) {
                   TTC • Bouteille de 33cl
                 </span>
               </div>
-              <span className="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full">
-                En stock aux cuves ({beer.stockCount} dispo)
+              <span className="text-xs font-bold text-foam-olive">
+                ✓ En stock aux cuves ({beer.stockCount} dispo)
               </span>
             </div>
           </div>

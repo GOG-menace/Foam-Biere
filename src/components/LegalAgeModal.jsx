@@ -58,9 +58,9 @@ export default function LegalAgeModal() {
           className="w-20 h-20 object-contain rounded-full mx-auto mb-4 shadow-md border-2 border-foam-red"
         />
 
-        <div className="inline-block px-3 py-1 mb-2 text-xs font-bold tracking-wider uppercase rounded-full bg-foam-redSoft text-foam-red border border-foam-redBorder">
+        <p className="text-xs font-bold tracking-widest uppercase text-foam-red mb-2">
           Brassée au Port de Nice • Caution Groupe Paloma (1948)
-        </div>
+        </p>
 
         <h2 className="font-serif text-3xl font-black tracking-tight text-foam-navy">
           FOAM NICE

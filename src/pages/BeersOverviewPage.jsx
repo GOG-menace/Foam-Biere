@@ -1,118 +1,158 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Beer, Star, ArrowRight, MapPin, Package, Award } from 'lucide-react';
-import { BEERS, SETS } from '../data/products';
+import { Beer, ArrowRight, Package, Sparkles } from 'lucide-react';
+import { BEERS } from '../data/products';
 
 export default function BeersOverviewPage() {
   const beers = Object.values(BEERS);
-  const decouverte = SETS['coffret-decouverte'];
 
   return (
-    <div className="py-10 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
+    <div className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
       
-      {/* Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-3">
-        <span className="text-xs font-bold uppercase tracking-wider text-foam-red bg-foam-redSoft px-3 py-1 rounded-full border border-foam-redBorder">
-          En Direct de nos Cuves au Port de Nice
-        </span>
-        <h1 className="font-serif text-3xl sm:text-5xl font-black text-foam-navy">
-          Nos Bières Artisanales à l'Unité (33cl)
+      {/* Header purement informationnel */}
+      <div className="text-center max-w-3xl mx-auto space-y-4">
+        <p className="text-xs font-bold uppercase tracking-widest text-foam-red">
+          Microbrasserie du Port de Nice
+        </p>
+        <h1 className="font-serif text-3xl sm:text-5xl font-black text-foam-navy leading-tight">
+          Nos Bières Artisanales
         </h1>
-        <p className="text-sm sm:text-base text-foam-text leading-relaxed">
-          Élaborées au 3 Quai des Deux Emmanuels par Stéphane avec l'eau de Nice, des malts français et des houblons de terroir. 
-          Non filtrées, non pasteurisées pour une pureté aromatique absolue.
+        <p className="text-base text-foam-text leading-relaxed">
+          Élaborées et brassées au 3 Quai des Deux Emmanuels par Stéphane, notre maître brasseur. 
+          Découvrez ici les recettes, les ingrédients, les profils gustatifs et les accords mets-bières de notre maison.
         </p>
       </div>
 
-      {/* 3 Beers Grid */}
+      {/* Les 3 Bières Permanentes (Informations complètes + CTA vers le Coffret Découverte) */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {beers.map((beer) => (
           <div
             key={beer.slug}
-            className="rounded-3xl bg-white border-2 border-foam-border hover:border-foam-navy shadow-shopify hover:shadow-shopify-hover transition-all flex flex-col justify-between overflow-hidden group"
+            className="rounded-3xl bg-white border border-foam-border p-6 sm:p-8 shadow-shopify flex flex-col justify-between space-y-6 group"
           >
-            <div>
-              <div className="aspect-[4/3] bg-foam-subtle overflow-hidden relative">
+            <div className="space-y-5">
+              
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-foam-subtle border border-foam-border">
                 <img
                   src={beer.image}
                   alt={beer.fullName}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <span className={`absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-white ${
-                  beer.badgeColor === 'amber' ? 'bg-foam-red' : beer.badgeColor === 'olive' ? 'bg-foam-olive' : 'bg-foam-gold'
-                }`}>
-                  {beer.badge}
-                </span>
-                <span className="absolute bottom-3 right-3 text-xs font-bold px-2.5 py-0.5 rounded-full bg-white/95 text-foam-navy border border-foam-border">
-                  {beer.abv} • IBU {beer.ibu}
-                </span>
               </div>
 
-              <div className="p-6 space-y-3">
+              <div className="space-y-1.5">
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-bold text-foam-red uppercase tracking-wider">{beer.style}</span>
-                  <div className="flex items-center gap-1 text-amber-500 font-bold">
-                    <Star className="w-3.5 h-3.5 fill-amber-400" />
-                    <span>{beer.rating}</span>
-                  </div>
+                  <span className="font-semibold text-foam-navy">{beer.abv} • IBU {beer.ibu}</span>
                 </div>
 
-                <h3 className="font-serif text-2xl font-bold text-foam-navy group-hover:text-foam-red transition-colors">
+                <h2 className="font-serif text-2xl font-bold text-foam-navy">
                   {beer.name}
-                </h3>
+                </h2>
+              </div>
 
-                <p className="text-xs text-foam-text leading-relaxed">
-                  {beer.shortDesc}
-                </p>
+              <p className="text-xs sm:text-sm text-foam-text leading-relaxed">
+                {beer.description}
+              </p>
 
-                <div className="pt-2 text-xs text-foam-navy space-y-1">
-                  <p><strong className="text-foam-muted">Houblons :</strong> <span className="font-semibold">{beer.hops}</span></p>
-                  <p><strong className="text-foam-muted">Accords :</strong> <span className="text-foam-text">{beer.pairing}</span></p>
+              {/* Fiche technique gustative */}
+              <div className="p-4 rounded-2xl bg-foam-bg border border-foam-border space-y-2 text-xs">
+                <div>
+                  <span className="font-bold text-foam-navy block">Profil aromatique :</span>
+                  <span className="text-foam-text">{beer.shortDesc}</span>
+                </div>
+                <div>
+                  <span className="font-bold text-foam-navy block">Houblons utilisés :</span>
+                  <span className="text-foam-text">{beer.hops}</span>
+                </div>
+                <div>
+                  <span className="font-bold text-foam-navy block">Accords mets & bière :</span>
+                  <span className="text-foam-text">{beer.pairing}</span>
                 </div>
               </div>
+
             </div>
 
-            <div className="p-6 pt-0 border-t border-foam-border/60 flex items-center justify-between mt-4">
-              <div>
-                <span className="font-serif text-2xl font-black text-foam-navy">
-                  {beer.price.toFixed(2)} €
-                </span>
-                <span className="text-[10px] text-foam-muted block">33cl • Capsule</span>
-              </div>
-
+            {/* CTA vers le coffret Découverte qui contient cette bière */}
+            <div className="pt-4 border-t border-foam-border space-y-2">
+              <span className="text-[11px] font-bold text-foam-muted uppercase tracking-wider block text-center">
+                Disponible dans le Coffret Découverte
+              </span>
               <Link
-                to={`/bieres/${beer.slug}`}
-                className="py-2.5 px-4 rounded-xl bg-foam-navy hover:bg-foam-red text-white font-bold text-xs flex items-center gap-1.5 transition-colors shadow-xs"
+                to="/coffrets/decouverte"
+                className="w-full py-3.5 px-4 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all active:scale-98 text-center"
               >
-                <span>Fiche Produit Complète</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <Package className="w-4 h-4 shrink-0" />
+                <span>Commander dans le Coffret Découverte (15 €)</span>
               </Link>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Banner to Gift Set (Upsell) */}
-      <div className="rounded-3xl bg-gradient-to-r from-foam-redSoft via-white to-foam-goldSoft p-8 sm:p-10 border-2 border-foam-redBorder shadow-shopify flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="space-y-2 text-center md:text-left">
-          <span className="text-xs font-bold uppercase tracking-wider text-foam-red">
-            L'Assortiment Idéal pour Découvrir
-          </span>
+      {/* Présentation des Brassins Éphémères + CTA vers le Coffret Exotique */}
+      <div className="rounded-3xl bg-white border border-foam-border p-8 sm:p-12 shadow-shopify space-y-6">
+        <div className="max-w-3xl space-y-3">
+          <p className="text-xs font-bold uppercase tracking-wider text-foam-olive">
+            Créations Éphémères de Stéphane
+          </p>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy">
-            Retrouvez ces 3 bières dans le Coffret Découverte
+            Nos Brassins Éphémères au Houblon Niçois
           </h2>
-          <p className="text-xs sm:text-sm text-foam-text max-w-xl">
-            Disponible en pack de 3 (15,00 €) ou pack de 6 (26,00 € soit 10 € d'économie) dans un étui cadeau protecteur.
+          <p className="text-sm text-foam-text leading-relaxed">
+            Au fil des saisons et des récoltes de houblon sous le soleil azuréen, notre brasseur imagine des cuvées confidentielles, servies d'ordinaire uniquement à la pression dans nos bars du Port et de la Place du Pin. Retrouvez ces recettes rares embouteillées dans notre <strong>Coffret Exotique</strong>.
           </p>
         </div>
 
-        <Link
-          to="/coffrets/decouverte"
-          className="py-4 px-7 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-bold text-sm shrink-0 flex items-center gap-2 shadow-shopify transition-all"
-        >
-          <span>Découvrir le Coffret (Dès 15 €)</span>
-          <ArrowRight className="w-4 h-4" />
-        </Link>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div className="p-4 rounded-2xl bg-foam-bg border border-foam-border space-y-1">
+            <strong className="text-foam-navy font-bold block text-sm">Brassin Riviera Tropicale</strong>
+            <p className="text-foam-text">Notes intenses de mangue mûre et de fruits de la passion. Houblonnage à cru généreux.</p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-foam-bg border border-foam-border space-y-1">
+            <strong className="text-foam-navy font-bold block text-sm">Cuvée Houblon Niçois Solaire</strong>
+            <p className="text-foam-text">Confectionnée avec du houblon cultivé localement à Nice. Notes résineuses et herbacées typiques du terroir.</p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-foam-bg border border-foam-border space-y-1">
+            <strong className="text-foam-navy font-bold block text-sm">Blanche Exotique Éphémère</strong>
+            <p className="text-foam-text">Bière de blé veloutée parfumée aux zestes d'agrumes rares de la Côte d'Azur.</p>
+          </div>
+        </div>
+
+        <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-foam-border">
+          <p className="text-xs text-foam-muted">
+            Ces brassins rares sont disponibles exclusivement au sein du Coffret Exotique (Pack 3 ou Pack 6).
+          </p>
+          <Link
+            to="/coffrets/exotique"
+            className="w-full sm:w-auto py-3.5 px-6 rounded-2xl bg-foam-navy hover:bg-foam-navyLight text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shrink-0"
+          >
+            <Sparkles className="w-4 h-4 text-foam-red" />
+            <span>Découvrir le Coffret Exotique (Dès 15 €)</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </div>
+
+      {/* Bannière de redirection générale vers les coffrets */}
+      <div className="rounded-3xl bg-foam-subtle border border-foam-border p-8 sm:p-10 text-center space-y-4">
+        <h3 className="font-serif text-2xl font-bold text-foam-navy">
+          Prêt à déguster nos bières à la maison ?
+        </h3>
+        <p className="text-sm text-foam-text max-w-2xl mx-auto leading-relaxed">
+          Toutes nos bières sont proposées en coffrets cadeaux rigides de 3 ou 6 bouteilles, avec retrait gratuit en Click & Collect dans nos deux bars à Nice ou envoi sécurisé anti-casse.
+        </p>
+        <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link
+            to="/coffrets"
+            className="w-full sm:w-auto py-4 px-8 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all"
+          >
+            <span>Voir les deux formules de coffrets</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
       </div>
 
     </div>

@@ -9,11 +9,9 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Clean navigation links per user request:
-  // - No "Accueil" (the FOAM logo navigates home)
-  // - "Nos Coffrets" -> dedicated offers page (/coffrets)
+  // - "Nos Coffrets" -> intermediate offers page (/coffrets)
   // - "Nos Bières" -> beers presentation page (/bieres)
   // - "Groupe Paloma" & "Nos Bars"
-  // - No price capsules, no "éphémère" badges, no "click and collect" button
   const navLinks = [
     { label: 'Nos Coffrets', path: '/coffrets' },
     { label: 'Nos Bières', path: '/bieres' },
@@ -30,25 +28,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-foam-border shadow-xs">
       
-      {/* Top Announcement Bar */}
-      <div className="bg-foam-navy text-white text-xs py-2 px-4 border-b border-foam-navyLight">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-center sm:text-left">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-foam-red animate-pulse" />
-            <span className="text-slate-200">
-              Microbrasserie artisanale du Port de Nice • <strong className="text-white font-semibold">Maison Paloma (1948)</strong>
-            </span>
-          </div>
-
-          <div className="hidden md:flex items-center gap-4 text-[11px] text-slate-300">
-            <span className="text-amber-300 font-medium">⭐ 4.9/5 avis dégustation</span>
-            <span className="text-slate-500">•</span>
-            <span>3 Quai des Deux Emmanuels</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Navbar */}
+      {/* Main Navbar (Top announcement bar removed as requested) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
@@ -60,15 +40,10 @@ export default function Header() {
               className="w-12 h-12 sm:w-14 sm:h-14 object-contain rounded-full shadow-xs group-hover:scale-105 transition-transform border border-foam-border"
             />
             <div className="flex flex-col">
-              <div className="flex items-center gap-1.5">
-                <span className="font-serif text-2xl font-black tracking-tight text-foam-navy group-hover:text-foam-red transition-colors">
-                  FOAM
-                </span>
-                <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-foam-redSoft text-foam-red border border-foam-redBorder">
-                  Nice
-                </span>
-              </div>
-              <span className="text-[10px] font-semibold text-foam-muted uppercase tracking-widest -mt-0.5">
+              <span className="font-serif text-2xl font-black tracking-tight text-foam-navy group-hover:text-foam-red transition-colors">
+                FOAM NICE
+              </span>
+              <span className="text-[10px] font-semibold text-foam-muted uppercase tracking-widest">
                 Microbrasserie du Port • Paloma 1948
               </span>
             </div>
@@ -147,16 +122,16 @@ export default function Header() {
 
       </div>
 
-      {/* Quick Navigation Scroll Bar for Mobile & Compact Preview Panes */}
-      <div className="lg:hidden flex items-center gap-2 overflow-x-auto py-2.5 px-4 bg-foam-bg border-t border-foam-border scrollbar-none text-xs">
+      {/* Clean Navigation Scroll Bar for Mobile & Compact Preview Panes */}
+      <div className="lg:hidden flex items-center gap-3 overflow-x-auto py-2.5 px-4 bg-foam-bg border-t border-foam-border scrollbar-none text-xs">
         {navLinks.map((link) => (
           <Link
             key={link.path}
             to={link.path}
-            className={`shrink-0 px-3.5 py-1.5 rounded-full font-bold transition-all text-xs ${
+            className={`shrink-0 px-3 py-1 font-bold transition-all text-xs border-b-2 ${
               isActive(link.path)
-                ? 'bg-foam-red text-white shadow-xs'
-                : 'bg-white text-foam-navy hover:text-foam-red border border-foam-border'
+                ? 'text-foam-red border-foam-red'
+                : 'text-foam-navy hover:text-foam-red border-transparent'
             }`}
           >
             {link.label}

@@ -24,12 +24,9 @@ export default function HomePage() {
             {/* Left Content */}
             <div className="lg:col-span-7 text-center lg:text-left space-y-6">
               
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-foam-border shadow-xs">
-                <span className="w-2.5 h-2.5 rounded-full bg-foam-red animate-ping" />
-                <span className="text-xs font-bold uppercase tracking-wider text-foam-navy">
-                  Microbrasserie du Port de Nice • Groupe Paloma (1948)
-                </span>
-              </div>
+              <p className="text-xs font-bold uppercase tracking-widest text-foam-red">
+                Microbrasserie du Port de Nice • Groupe Paloma (1948)
+              </p>
 
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-black text-foam-navy leading-[1.12] tracking-tight">
                 La bière artisanale du Port de Nice, <span className="text-foam-red underline decoration-foam-red/40">en direct</span> de nos cuves.
@@ -82,12 +79,6 @@ export default function HomePage() {
             {/* Right Card / Visual Showcase */}
             <div className="lg:col-span-5">
               <div className="relative mx-auto max-w-md lg:max-w-none">
-                
-                {/* Floating badge */}
-                <div className="absolute -top-4 -right-2 z-20 bg-foam-navy text-white py-2 px-3.5 rounded-2xl shadow-shopify border border-white/20 flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-                  <span className="text-xs font-bold">En direct des cuves de Nice</span>
-                </div>
 
                 <div className="rounded-3xl bg-white border border-foam-border p-4 shadow-shopify-hover space-y-4">
                   <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-foam-subtle relative">
@@ -98,10 +89,7 @@ export default function HomePage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-foam-navy/80 via-transparent to-transparent flex items-end p-5">
                       <div className="text-white">
-                        <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-foam-red">
-                          Best-Seller Fêtes
-                        </span>
-                        <h3 className="font-serif text-xl font-bold mt-1">
+                        <h3 className="font-serif text-xl font-bold">
                           Coffret Découverte 3 ou 6 bières
                         </h3>
                         <p className="text-xs text-slate-200">
@@ -175,9 +163,9 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         <div className="text-center max-w-3xl mx-auto space-y-2">
-          <span className="text-xs font-bold uppercase tracking-wider text-foam-red bg-foam-redSoft px-3 py-1 rounded-full border border-foam-redBorder">
+          <p className="text-xs font-bold uppercase tracking-widest text-foam-red">
             Gamme Coffrets Cadeaux
-          </span>
+          </p>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black text-foam-navy">
             Nos Coffrets Dégustation
           </h2>
@@ -195,18 +183,12 @@ export default function HomePage() {
           <div className="rounded-3xl bg-white border-2 border-foam-border hover:border-foam-red p-6 sm:p-8 shadow-shopify hover:shadow-shopify-hover transition-all flex flex-col justify-between group">
             <div className="space-y-4">
               
-              <div className="aspect-[16/10] rounded-2xl overflow-hidden bg-foam-subtle border border-foam-border relative">
+              <div className="aspect-[16/10] rounded-2xl overflow-hidden bg-foam-subtle border border-foam-border">
                 <img
                   src={decouverte.image}
                   alt={decouverte.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <span className="absolute top-3 left-3 bg-foam-red text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs">
-                  {decouverte.badge}
-                </span>
-                <span className="absolute bottom-3 right-3 bg-white/95 text-foam-navy font-bold text-xs px-2.5 py-1 rounded-full backdrop-blur-xs border border-foam-border">
-                  15 € (3 bières) / 26 € (6 bières)
-                </span>
               </div>
 
               <div>
@@ -266,18 +248,12 @@ export default function HomePage() {
           <div className="rounded-3xl bg-white border-2 border-foam-border hover:border-foam-olive p-6 sm:p-8 shadow-shopify hover:shadow-shopify-hover transition-all flex flex-col justify-between group">
             <div className="space-y-4">
               
-              <div className="aspect-[16/10] rounded-2xl overflow-hidden bg-foam-subtle border border-foam-border relative">
+              <div className="aspect-[16/10] rounded-2xl overflow-hidden bg-foam-subtle border border-foam-border">
                 <img
                   src={exotique.image}
                   alt={exotique.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <span className="absolute top-3 left-3 bg-foam-olive text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs">
-                  {exotique.badge}
-                </span>
-                <span className="absolute bottom-3 right-3 bg-white/90 text-foam-navy font-bold text-xs px-2.5 py-1 rounded-full backdrop-blur-xs border border-foam-border">
-                  15 € (3 bières) / 26 € (6 bières)
-                </span>
               </div>
 
               <div>
@@ -366,26 +342,18 @@ export default function HomePage() {
               className="rounded-3xl bg-white border border-foam-border hover:border-foam-navy/40 shadow-shopify hover:shadow-shopify-hover transition-all flex flex-col justify-between overflow-hidden group"
             >
               <div>
-                <div className="aspect-[4/3] bg-foam-subtle overflow-hidden relative">
+                <div className="aspect-[4/3] bg-foam-subtle overflow-hidden">
                   <img
                     src={beer.image}
                     alt={beer.fullName}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <span className={`absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-white ${
-                    beer.badgeColor === 'amber' ? 'bg-foam-red' : beer.badgeColor === 'olive' ? 'bg-foam-olive' : 'bg-foam-gold'
-                  }`}>
-                    {beer.badge}
-                  </span>
-                  <span className="absolute bottom-3 right-3 text-xs font-bold px-2 py-0.5 rounded-full bg-white/90 text-foam-navy border border-foam-border">
-                    {beer.abv} • IBU {beer.ibu}
-                  </span>
                 </div>
 
                 <div className="p-6 space-y-3">
                   <div className="flex items-center justify-between text-xs">
                     <span className="font-bold text-foam-red uppercase tracking-wider">{beer.style}</span>
-                    <span className="text-foam-muted">33 cl</span>
+                    <span className="text-foam-navy font-semibold">{beer.abv} • IBU {beer.ibu}</span>
                   </div>
 
                   <h3 className="font-serif text-xl font-bold text-foam-navy group-hover:text-foam-red transition-colors">

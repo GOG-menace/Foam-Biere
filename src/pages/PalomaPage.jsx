@@ -8,9 +8,9 @@ export default function PalomaPage() {
       
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-3">
-        <span className="text-xs font-bold uppercase tracking-wider text-foam-red bg-foam-redSoft px-3.5 py-1 rounded-full border border-foam-redBorder">
+        <p className="text-xs font-bold uppercase tracking-widest text-foam-red">
           Maison Familiale Azuréenne • Fondée en 1948
-        </span>
+        </p>
         <h1 className="font-serif text-3xl sm:text-5xl font-black text-foam-navy leading-tight">
           L'Histoire du Groupe Paloma & de FOAM
         </h1>

@@ -57,8 +57,8 @@ export default function Footer() {
 
           {/* Bières 33cl */}
           <div>
-            <h4 className="font-bold uppercase tracking-wider text-xs text-amber-300 mb-3.5">
-              Nos Bières à l'Unité (33cl)
+            <h4 className="font-bold uppercase tracking-wider text-xs text-slate-300 mb-3.5">
+              Nos Bières (33cl)
             </h4>
             <ul className="space-y-2 text-xs text-slate-300">
               <li>

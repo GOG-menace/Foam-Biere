@@ -52,29 +52,12 @@ export default function SetSalesPage({ defaultSlug }) {
         
         {/* Left Column: Image Showcase & Gallery */}
         <div className="lg:col-span-7 space-y-4">
-          <div className="rounded-3xl overflow-hidden bg-white border-2 border-foam-border shadow-shopify relative aspect-[4/3]">
+          <div className="rounded-3xl overflow-hidden bg-white border border-foam-border shadow-shopify aspect-[4/3]">
             <img
               src={product.image}
               alt={product.fullName}
               className="w-full h-full object-cover"
             />
-
-            {/* Badges */}
-            <div className="absolute top-4 left-4 flex flex-col gap-2">
-              <span className={`px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider text-white shadow-xs ${
-                product.badgeColor === 'amber' ? 'bg-foam-red' : 'bg-foam-olive'
-              }`}>
-                {product.badge}
-              </span>
-              <span className="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-white/95 text-foam-navy shadow-xs border border-foam-border">
-                🎁 Prêt à offrir
-              </span>
-            </div>
-
-            <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-xs px-3.5 py-1.5 rounded-full text-xs font-bold text-foam-navy shadow border border-foam-border flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Direct cuves du Port de Nice</span>
-            </div>
           </div>
 
           {/* Guarantees row below image */}
@@ -139,9 +122,8 @@ export default function SetSalesPage({ defaultSlug }) {
               </span>
             </div>
 
-            <span className="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-emerald-500" />
-              En stock
+            <span className="text-xs font-bold text-foam-olive flex items-center gap-1">
+              ✓ En stock à Nice
             </span>
           </div>
 
@@ -179,21 +161,18 @@ export default function SetSalesPage({ defaultSlug }) {
               <button
                 type="button"
                 onClick={() => setSelectedFormat('pack6')}
-                className={`p-3.5 rounded-2xl border-2 text-left transition-all relative ${
+                className={`p-3.5 rounded-2xl border-2 text-left transition-all ${
                   selectedFormat === 'pack6'
                     ? 'border-foam-red bg-foam-redSoft shadow-xs ring-2 ring-foam-red/20'
                     : 'border-foam-border bg-white hover:border-foam-navy/40'
                 }`}
               >
-                <div className="absolute -top-2.5 right-2 bg-foam-red text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full shadow-2xs">
-                  -10 € d'économie
-                </div>
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-xs text-foam-navy">Pack de 6</span>
                   <span className="font-serif font-black text-sm text-foam-redDark">26,00 €</span>
                 </div>
                 <p className="text-[11px] text-foam-muted mt-0.5">6 bouteilles (33cl)</p>
-                <p className="text-[10px] text-foam-olive font-bold">4,33 € / unité</p>
+                <p className="text-[10px] text-foam-red font-bold mt-0.5">-10 € d'économie (4,33 € / unité)</p>
               </button>
             </div>
           </div>
