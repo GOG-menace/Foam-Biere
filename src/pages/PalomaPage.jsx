@@ -6,32 +6,36 @@ export default function PalomaPage() {
   return (
     <div className="py-10 sm:py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       
-      {/* Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-3.5">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-foam-border text-foam-navy text-[11px] font-bold uppercase tracking-widest shadow-xs">
-          <span className="w-1.5 h-1.5 rounded-full bg-foam-red" />
-          <span>Maison Familiale Azuréenne • Fondée en 1948</span>
+      {/* Header Brutaliste */}
+      <div className="text-left md:text-center max-w-3xl mx-auto space-y-3.5">
+        <div className="flex flex-wrap items-center justify-start md:justify-center gap-2">
+          <span className="sticker sticker-neon">
+            [ MAISON FAMILIALE // DEPUIS 1948 ]
+          </span>
+          <span className="sticker sticker-white">
+            [ PORT DE NICE 06300 ]
+          </span>
         </div>
-        <h1 className="font-serif text-3xl sm:text-5xl font-black text-foam-navy leading-tight">
-          L'Histoire du Groupe Paloma & de FOAM
+        <h1 className="font-impact text-3xl sm:text-5xl lg:text-6xl uppercase tracking-tight text-foam-black">
+          L'HISTOIRE DU GROUPE PALOMA & DE FOAM
         </h1>
-        <p className="text-base text-foam-text font-medium leading-relaxed">
+        <p className="text-base sm:text-lg text-foam-black font-medium leading-relaxed">
           76 ans d'hospitalité, d'amour de la gastronomie et d'artisanat indépendant sur la Côte d'Azur.
         </p>
       </div>
 
-      {/* Main Narrative Card */}
-      <div className="rounded-xl bg-white border border-foam-border p-6 sm:p-12 shadow-shopify space-y-8 text-foam-text text-sm sm:text-base leading-relaxed">
+      {/* Main Narrative Card Brutaliste */}
+      <div className="card-brutal p-6 sm:p-12 space-y-8 text-foam-black text-sm sm:text-base leading-relaxed font-sans">
         
         {/* Quote Block */}
-        <div className="border-l-4 border-foam-red pl-4 sm:pl-6 py-2 italic font-serif text-lg sm:text-xl text-foam-navy font-semibold bg-foam-redSoft rounded-r-lg">
-          « De la trattoria historique Le Virginie en 1948 jusqu'aux cuves de notre microbrasserie du Port en 2022, une même passion guide la famille Vannini : le goût du partage et l'authenticité niçoise. »
+        <div className="border-l-4 border-foam-orange pl-4 sm:pl-6 py-3 font-impact text-lg sm:text-xl text-foam-black uppercase tracking-tight bg-foam-neon border-2 border-foam-black shadow-brutal-sm">
+          « DE LA TRATTORIA HISTORIQUE LE VIRGINIE EN 1948 JUSQU'AUX CUVES DE NOTRE MICROBRASSERIE DU PORT EN 2022, UNE MÊME PASSION GUIDE LA FAMILLE VANNINI : LE GOÛT DU PARTAGE ET L'AUTHENTICITÉ NIÇOISE. »
         </div>
 
         {/* Chapter 1 : 1948 */}
         <div className="space-y-3">
-          <h2 className="font-serif text-2xl font-bold text-foam-navy flex items-center gap-2">
-            <span className="text-foam-red">1948 :</span> Une dynastie de restaurateurs niçois
+          <h2 className="font-impact text-2xl uppercase tracking-tight text-foam-black flex items-center gap-2">
+            <span className="text-foam-orange">1948 :</span> UNE DYNASTIE DE RESTAURATEURS NIÇOIS
           </h2>
           <p>
             L’aventure commence au lendemain de la Seconde Guerre mondiale avec l’ouverture de la célèbre trattoria <em>Le Virginie</em> au Port de Nice. Fondée par la <strong>famille Vannini</strong>, la maison a grandi au fil des décennies en préservant scrupuleusement son indépendance, sa convivialité et son attachement viscéral au terroir méditerranéen.
@@ -42,94 +46,66 @@ export default function PalomaPage() {
         </div>
 
         {/* Chapter 2 : 2022 FOAM */}
-        <div className="p-6 sm:p-8 bg-foam-subtle/70 rounded-lg border border-foam-border space-y-4">
-          <div className="flex items-center gap-2 text-foam-navy font-serif font-bold text-xl">
-            <Beer className="w-6 h-6 text-foam-red" />
-            <span>2022 : La Naissance de la Microbrasserie FOAM au Port</span>
+        <div className="p-6 sm:p-8 bg-foam-bg border-2 border-foam-black space-y-4">
+          <div className="flex items-center gap-2 text-foam-black font-impact text-xl uppercase tracking-tight">
+            <Beer className="w-6 h-6 text-foam-orange stroke-[2.5]" />
+            <span>2022 : LA NAISSANCE DE LA MICROBRASSERIE FOAM AU PORT</span>
           </div>
-          <p className="text-sm text-foam-text leading-relaxed">
+          <p className="text-sm text-foam-black leading-relaxed">
             Parce que nous voulions maîtriser l'ensemble de notre chaîne de valeur et offrir à nos clients une bière d’une fraîcheur absolue, nous avons franchi le pas en installant notre propre microbrasserie au <strong>3 Quai des Deux Emmanuels</strong>, face aux pointus colorés du Port de Nice.
           </p>
-          <p className="text-sm text-foam-navy font-semibold leading-relaxed">
+          <p className="text-sm font-bold leading-relaxed">
             FOAM fait ainsi partie des très rares acteurs de la restauration indépendante en France à brasser et embouteiller sa propre bière sur place, en circuit ultra-court.
           </p>
         </div>
 
-        {/* Chapter 3 : Stéphane & Houblon Niçois */}
+        {/* Chapter 3 : Stéphane */}
         <div className="space-y-3">
-          <h2 className="font-serif text-2xl font-bold text-foam-navy flex items-center gap-2">
-            <span className="text-foam-olive">2023 :</span> Stéphane & le Houblon cultivé sous le soleil de Nice
+          <h2 className="font-impact text-2xl uppercase tracking-tight text-foam-black flex items-center gap-2">
+            <span className="text-foam-orange">CRAFT :</span> STÉPHANE, LE MAÎTRE BRASSEUR
           </h2>
           <p>
-            Toutes les créations FOAM sont imaginées et brassées par <strong>Stéphane</strong>, notre maître brasseur. Chaque recette célèbre la lumière et les saveurs de la Riviera : de l'amertume fruitée et résineuse de la <em>West Coast IPA</em> à la douceur veloutée de la <em>Blanche</em> aux agrumes, jusqu'à la fraîcheur désaltérante de notre <em>Lager</em>.
-          </p>
-          <p>
-            Depuis 2023, nous intégrons également dans nos cuvées spéciales du houblon cultivé localement sous le soleil azuréen, pour un ancrage territorial encore plus fort.
+            Toutes les créations FOAM sont imaginées et brassées par <strong>Stéphane</strong>, notre maître brasseur. Chaque recette célèbre la lumière et les saveurs de la Riviera : de l'aromatique fruitée de la <em>FOAM French IPA</em> à la douceur veloutée de la <em>FOAM Wheat Ale</em> aux agrumes, jusqu'à la fraîcheur dorée de <em>Lou FOAM d'Aqui</em>.
           </p>
         </div>
 
         {/* 4 Pillars of Commitment */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-foam-border">
-          <div className="p-4 bg-white rounded-lg border border-foam-border shadow-xs space-y-1">
-            <strong className="text-xs font-bold uppercase tracking-wider text-foam-navy flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-foam-olive" />
-              Circuit Ultra-Court
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t-2 border-foam-black font-mono">
+          <div className="p-4 bg-white border-2 border-foam-black shadow-brutal-sm space-y-1">
+            <strong className="text-xs font-black uppercase tracking-wider text-foam-black flex items-center gap-1.5">
+              <span className="w-2 h-2 bg-foam-orange border border-foam-black" />
+              CIRCUIT ULTRA-COURT
             </strong>
-            <p className="text-xs text-foam-muted">
+            <p className="text-xs text-foam-muted font-sans">
               Brassée au port, bue au bar ou emportée directement chez vous en Click & Collect.
             </p>
           </div>
 
-          <div className="p-4 bg-white rounded-lg border border-foam-border shadow-xs space-y-1">
-            <strong className="text-xs font-bold uppercase tracking-wider text-foam-navy flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-foam-olive" />
-              100% Non Pasteurisée
+          <div className="p-4 bg-white border-2 border-foam-black shadow-brutal-sm space-y-1">
+            <strong className="text-xs font-black uppercase tracking-wider text-foam-black flex items-center gap-1.5">
+              <span className="w-2 h-2 bg-foam-neon border border-foam-black" />
+              100% NON PASTEURISÉE
             </strong>
-            <p className="text-xs text-foam-muted">
+            <p className="text-xs text-foam-muted font-sans">
               Une bière vivante qui conserve toute la pureté de ses huiles essentielles de houblon.
-            </p>
-          </div>
-
-          <div className="p-4 bg-white rounded-lg border border-foam-border shadow-xs space-y-1">
-            <strong className="text-xs font-bold uppercase tracking-wider text-foam-navy flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-foam-olive" />
-              Indépendance Familiale
-            </strong>
-            <p className="text-xs text-foam-muted">
-              La liberté de brasser sans compromis industriel, au service du goût et des Niçois.
-            </p>
-          </div>
-
-          <div className="p-4 bg-white rounded-lg border border-foam-border shadow-xs space-y-1">
-            <strong className="text-xs font-bold uppercase tracking-wider text-foam-navy flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-foam-olive" />
-              Convivialité Azuréenne
-            </strong>
-            <p className="text-xs text-foam-muted">
-              Des bières conçues pour sublimer la socca, les petits farcis et les apéritifs au soleil.
             </p>
           </div>
         </div>
 
-      </div>
+        {/* Call to action */}
+        <div className="pt-6 border-t-2 border-foam-black flex flex-col sm:flex-row items-center justify-between gap-4 font-mono">
+          <span className="text-xs font-bold text-foam-black">
+            GOÛTEZ LE SAVOIR-FAIRE DE NOTRE MAISON DANS NOS COFFRETS.
+          </span>
+          <Link
+            to="/coffrets"
+            className="btn-brutal-orange py-3.5 px-6 text-xs font-mono font-black"
+          >
+            <span>DÉCOUVRIR LES COFFRETS</span>
+            <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+          </Link>
+        </div>
 
-      {/* Dual CTA bottom */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-        <Link
-          to="/coffrets/decouverte"
-          className="w-full sm:w-auto py-3.5 px-6 rounded-lg bg-foam-red hover:bg-foam-redDark text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-shopify hover:shadow-craft-flat-red transition-all"
-        >
-          <Beer className="w-4 h-4" />
-          <span>Découvrir nos Coffrets Découverte</span>
-        </Link>
-
-        <Link
-          to="/nos-bars"
-          className="w-full sm:w-auto py-3.5 px-6 rounded-lg bg-white hover:bg-foam-subtle text-foam-navy font-bold text-xs sm:text-sm border border-foam-border hover:border-foam-navy flex items-center justify-center gap-2 shadow-xs transition-all"
-        >
-          <MapPin className="w-4 h-4 text-foam-red" />
-          <span>Visiter nos Bars au Port & Place du Pin</span>
-        </Link>
       </div>
 
     </div>

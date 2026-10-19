@@ -8,40 +8,50 @@ export default {
     extend: {
       colors: {
         foam: {
-          bg: '#F4EFE6',        // Papier kraft atelier / calcaire niçois
-          card: '#FFFFFF',      // Blanc pur net
-          subtle: '#ECE5D8',    // Beige kraft doux
-          navy: '#15191E',      // Anthracite d'encre d'atelier (structure & titres)
-          navyLight: '#262E38', // Ardoise atelier secondaire
-          red: '#904545',       // Rouge officiel FOAM
-          redDark: '#783535',   // Hover CTA rouge
-          redSoft: '#F8EDED',   // Fond doux rouge atelier
-          redBorder: '#D9A7A7', // Bordure rouge adoucie
-          amber: '#904545',     // Alias rétro-compatible
-          amberDark: '#783535',
-          amberSoft: '#F8EDED',
-          olive: '#264936',     // Vert garrigue & houblon d'atelier
-          oliveSoft: '#EDF4F0',
-          gold: '#A88636',      // Laiton d'atelier (Maison 1948)
-          goldSoft: '#F8F3E6',
-          text: '#15191E',      // Texte haute lisibilité d'encre
-          muted: '#4B5668',     // Texte secondaire net (WCAG AAA)
-          border: '#D8CEBF'     // Lignes kraft / métal atelier
+          bg: '#F2F2EF',        // Béton ultra clair / Papier atelier contemporain
+          concrete: '#E7E7E3',  // Gris béton technique
+          card: '#FFFFFF',      // Blanc pur pour fort contraste
+          black: '#0A0A0A',     // Noir encre franc brut
+          navy: '#0A0A0A',      // Alias vers noir encre
+          navyLight: '#1A1A1A',
+          orange: '#FF4800',    // Orange houblonné vif (Mikkeller / Brewdog punchy)
+          orangeHover: '#E03E00',
+          orangeSoft: '#FFF0EA',
+          neon: '#E2FF00',      // Jaune néon / acide pour stickers & tampons
+          neonHover: '#CEEB00',
+          cobalt: '#0047FF',    // Bleu cobalt électrique
+          red: '#FF4800',       // Accent vif électrique remplaçant le bordeaux
+          redDark: '#E03E00',
+          redSoft: '#FFF0EA',
+          redBorder: '#0A0A0A',
+          amber: '#FF4800',     // Alias rétro-compatible
+          amberDark: '#E03E00',
+          amberSoft: '#FFF0EA',
+          muted: '#5A5A57',     // Texte secondaire
+          subtle: '#ECECE8',
+          border: '#0A0A0A',    // Bordures noires franches (1 ou 2 px)
+          borderLight: '#D4D4CE',
         }
       },
       fontFamily: {
-        serif: ['Space Grotesk', 'Syne', 'system-ui', 'sans-serif'], // Titres percutants Craft Brut
-        display: ['Space Grotesk', 'Syne', 'sans-serif'],
-        craft: ['Syne', 'Space Grotesk', 'sans-serif'],
+        display: ['Syne', 'Space Grotesk', 'sans-serif'],
+        serif: ['Syne', 'Space Grotesk', 'sans-serif'],
+        impact: ['Archivo Black', 'Syne', 'sans-serif'],
         sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Space Mono', 'Consolas', 'monospace'],
       },
       boxShadow: {
-        'shopify': '0 1px 2px rgba(21, 25, 30, 0.06), 0 2px 6px -1px rgba(21, 25, 30, 0.04)',
-        'shopify-hover': '0 6px 16px -2px rgba(21, 25, 30, 0.10), 0 2px 6px rgba(21, 25, 30, 0.04)',
-        'craft-flat': '2px 2px 0px rgba(21, 25, 30, 0.9)',
-        'craft-flat-red': '2px 2px 0px #904545',
-        'red-glow': '0 2px 14px rgba(144, 69, 69, 0.25)',
-        'amber-glow': '0 2px 14px rgba(144, 69, 69, 0.25)'
+        'brutal-sm': '2px 2px 0px #0A0A0A',
+        'brutal': '3px 3px 0px #0A0A0A',
+        'brutal-lg': '5px 5px 0px #0A0A0A',
+        'brutal-orange': '3px 3px 0px #FF4800',
+        'brutal-neon': '3px 3px 0px #0A0A0A',
+        'shopify': '3px 3px 0px #0A0A0A',
+        'shopify-hover': '5px 5px 0px #0A0A0A',
+        'craft-flat': '3px 3px 0px #0A0A0A',
+        'craft-flat-red': '3px 3px 0px #FF4800',
+        'red-glow': '4px 4px 0px #0A0A0A',
+        'amber-glow': '4px 4px 0px #0A0A0A'
       }
     },
   },

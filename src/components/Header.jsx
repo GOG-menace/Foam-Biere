@@ -26,61 +26,64 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-foam-border shadow-xs">
+    <header className="sticky top-0 z-40 bg-foam-bg/95 backdrop-blur-sm border-b-2 border-foam-black">
       
       {/* Main Navbar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Left: Logo FOAM */}
+          {/* Left: Logo FOAM strictly */}
           <div className="flex-1 flex items-center justify-start">
             <Link to="/" className="flex items-center gap-3 group">
               <img
                 src="/logo-foam.png"
                 alt="Logo FOAM"
-                className="w-11 h-11 sm:w-12 sm:h-12 object-contain rounded-full shadow-xs group-hover:scale-105 transition-transform border border-foam-border"
+                className="w-11 h-11 sm:w-12 sm:h-12 object-contain border-2 border-foam-black shadow-[2px_2px_0px_#0A0A0A] group-hover:scale-105 group-hover:-rotate-3 transition-transform bg-white"
               />
-              <span className="font-serif text-2xl font-black tracking-tight text-foam-navy group-hover:text-foam-red transition-colors">
+              <span className="font-impact text-2xl sm:text-3xl tracking-tight text-foam-black group-hover:text-foam-orange transition-colors">
                 FOAM
               </span>
             </Link>
           </div>
 
-          {/* Center: Desktop Nav Links (Centrés) */}
-          <nav className="hidden lg:flex items-center justify-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`py-1 text-sm font-bold tracking-tight transition-all ${
-                  isActive(link.path)
-                    ? 'text-foam-red border-b-2 border-foam-red'
-                    : 'text-foam-navy hover:text-foam-red'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+          {/* Center: Desktop Nav Links (Strictly Centered & Brutalist Typography) */}
+          <nav className="hidden lg:flex items-center justify-center gap-4">
+            {navLinks.map((link) => {
+              const active = isActive(link.path);
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`font-mono text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 transition-all border-2 ${
+                    active
+                      ? 'bg-foam-black text-foam-neon border-foam-black shadow-[2px_2px_0px_#0A0A0A]'
+                      : 'border-transparent text-foam-black hover:border-foam-black hover:bg-foam-neon hover:text-foam-black hover:shadow-[2px_2px_0px_#0A0A0A]'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Right: Cart & Mobile Menu */}
           <div className="flex-1 flex items-center justify-end gap-3">
             
-            {/* Cart Trigger Button in FOAM Red #904545 */}
+            {/* Cart Trigger Button: Neo-Brutalist in Punchy Hop Orange */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative flex items-center gap-2.5 py-2.5 px-4 rounded-lg bg-foam-red hover:bg-foam-redDark text-white font-bold text-sm shadow-shopify hover:shadow-red-glow transition-all transform active:scale-95 group"
+              className="relative flex items-center gap-2.5 py-2.5 px-4 bg-foam-orange hover:bg-foam-orangeHover text-foam-black hover:text-white font-mono text-xs font-black uppercase tracking-wider border-2 border-foam-black shadow-brutal hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all active:translate-x-1 active:translate-y-1"
               aria-label="Voir le panier"
             >
               <div className="relative">
-                <ShoppingBag className="w-5 h-5 text-white" />
+                <ShoppingBag className="w-4 h-4 stroke-[2.5]" />
                 {totalCount > 0 && (
-                  <span className="absolute -top-2 -right-2.5 w-5 h-5 bg-foam-navy text-white text-[11px] font-black rounded-full flex items-center justify-center border-2 border-white shadow">
+                  <span className="absolute -top-2.5 -right-3 w-5 h-5 bg-foam-neon text-foam-black font-mono text-[11px] font-black border-2 border-foam-black flex items-center justify-center shadow-[1px_1px_0px_#0A0A0A]">
                     {totalCount}
                   </span>
                 )}
               </div>
-              <span className="hidden sm:inline font-semibold">
+              <span className="hidden sm:inline">
                 {totalCount > 0 ? `${grandTotal.toFixed(2)} €` : 'Panier'}
               </span>
             </button>
@@ -88,51 +91,57 @@ export default function Header() {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-foam-navy hover:bg-foam-subtle rounded-lg transition-colors"
+              className="lg:hidden p-2 text-foam-black border-2 border-foam-black bg-white hover:bg-foam-neon transition-colors shadow-[2px_2px_0px_#0A0A0A]"
               aria-label="Menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 stroke-[2.5]" /> : <Menu className="w-5 h-5 stroke-[2.5]" />}
             </button>
           </div>
 
         </div>
 
-        {/* Mobile Dropdown Menu (Centré) */}
+        {/* Mobile Dropdown Menu (Centered Brutalist Grid) */}
         {mobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-foam-border bg-white animate-fade-in space-y-1.5 text-center">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block px-4 py-2.5 rounded-lg text-sm font-bold transition-colors ${
-                  isActive(link.path)
-                    ? 'bg-foam-redSoft text-foam-red'
-                    : 'text-foam-navy hover:bg-foam-subtle'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+          <div className="lg:hidden py-4 border-t-2 border-foam-black bg-foam-bg animate-fade-in space-y-2 text-center">
+            {navLinks.map((link) => {
+              const active = isActive(link.path);
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider border-2 mx-2 transition-all ${
+                    active
+                      ? 'bg-foam-black text-foam-neon border-foam-black shadow-[2px_2px_0px_#0A0A0A]'
+                      : 'bg-white text-foam-black border-foam-black hover:bg-foam-neon'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
         )}
       </div>
 
-      {/* Clean Navigation Scroll Bar for Mobile & Compact Preview Panes */}
-      <div className="lg:hidden flex items-center gap-3 overflow-x-auto py-2.5 px-4 bg-foam-bg border-t border-foam-border scrollbar-none text-xs">
-        {navLinks.map((link) => (
-          <Link
-            key={link.path}
-            to={link.path}
-            className={`shrink-0 px-3 py-1 font-bold transition-all text-xs border-b-2 ${
-              isActive(link.path)
-                ? 'text-foam-red border-foam-red'
-                : 'text-foam-navy hover:text-foam-red border-transparent'
-            }`}
-          >
-            {link.label}
-          </Link>
-        ))}
+      {/* Clean Navigation Bar for Mobile */}
+      <div className="lg:hidden flex items-center gap-2 overflow-x-auto py-2 px-3 bg-white border-t-2 border-foam-black scrollbar-none">
+        {navLinks.map((link) => {
+          const active = isActive(link.path);
+          return (
+            <Link
+              key={link.path}
+              to={link.path}
+              className={`shrink-0 px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-wider border-2 transition-all ${
+                active
+                  ? 'bg-foam-black text-foam-neon border-foam-black'
+                  : 'bg-foam-bg text-foam-black border-foam-black hover:bg-foam-neon'
+              }`}
+            >
+              {link.label}
+            </Link>
+          );
+        })}
       </div>
     </header>
   );

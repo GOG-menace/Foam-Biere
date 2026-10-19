@@ -32,52 +32,53 @@ export default function SlideOverCart() {
     <div className="fixed inset-0 z-50 overflow-hidden animate-fade-in">
       <div 
         onClick={() => setIsCartOpen(false)}
-        className="absolute inset-0 bg-foam-navy/70 backdrop-blur-xs transition-opacity" 
+        className="absolute inset-0 bg-foam-black/80 backdrop-blur-xs transition-opacity" 
       />
 
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-md bg-foam-bg shadow-2xl flex flex-col justify-between border-l border-foam-border">
+        <div className="w-screen max-w-md bg-foam-bg flex flex-col justify-between border-l-4 border-foam-black shadow-2xl">
           
-          {/* Header */}
-          <div className="p-5 border-b border-foam-border bg-white flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-foam-redSoft text-foam-red flex items-center justify-center">
-                <ShoppingBag className="w-5 h-5" />
+          {/* Header Brutaliste */}
+          <div className="p-5 border-b-2 border-foam-black bg-white flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-foam-orange border-2 border-foam-black text-black flex items-center justify-center font-black shadow-[2px_2px_0px_#0A0A0A]">
+                <ShoppingBag className="w-5 h-5 stroke-[2.5]" />
               </div>
               <div>
-                <h2 className="font-serif text-lg font-bold text-foam-navy">
-                  Votre Panier FOAM
+                <h2 className="font-impact text-xl uppercase tracking-tight text-foam-black">
+                  VOTRE PANIER FOAM
                 </h2>
-                <p className="text-xs text-foam-muted">
-                  {items.length} article{items.length > 1 ? 's' : ''} sélectionné{items.length > 1 ? 's' : ''}
+                <p className="font-mono text-xs font-bold text-foam-muted">
+                  [ {items.length} ARTICLE{items.length > 1 ? 'S' : ''} ]
                 </p>
               </div>
             </div>
 
             <button
               onClick={() => setIsCartOpen(false)}
-              className="p-2 text-foam-muted hover:text-foam-navy rounded-xl hover:bg-foam-subtle transition-colors"
+              className="p-2 text-foam-black border-2 border-foam-black bg-white hover:bg-foam-neon transition-colors shadow-[2px_2px_0px_#0A0A0A]"
+              aria-label="Fermer"
             >
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5 stroke-[2.5]" />
             </button>
           </div>
 
           {/* Body Content */}
           <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
             
-            {/* Delivery Method Picker right in Cart (Shopify standard) */}
-            <div className="p-4 bg-white rounded-xl border border-foam-border space-y-2.5 shadow-xs">
-              <span className="text-xs font-bold uppercase tracking-wider text-foam-navy block">
-                Mode de réception :
+            {/* Delivery Method Picker right in Cart */}
+            <div className="p-4 bg-white border-2 border-foam-black shadow-brutal-sm space-y-2.5 font-mono text-xs">
+              <span className="font-black uppercase tracking-wider text-foam-black block border-b border-foam-borderLight pb-1">
+                [ MODE DE RÉCEPTION ]
               </span>
 
               <div className="space-y-2">
                 {/* Click & Collect Option */}
                 <label 
-                  className={`flex items-start gap-2.5 p-3 rounded-lg border-2 cursor-pointer text-xs transition-all ${
+                  className={`flex items-start gap-2.5 p-3 border-2 cursor-pointer transition-all ${
                     deliveryMethod === 'clickAndCollect'
-                      ? 'border-foam-olive bg-foam-oliveSoft ring-1 ring-foam-olive/30'
-                      : 'border-foam-border bg-white hover:border-foam-navy/30'
+                      ? 'border-foam-black bg-foam-neon shadow-brutal-sm'
+                      : 'border-foam-black bg-white hover:bg-foam-subtle'
                   }`}
                 >
                   <input
@@ -85,116 +86,141 @@ export default function SlideOverCart() {
                     name="cartDeliveryOption"
                     checked={deliveryMethod === 'clickAndCollect'}
                     onChange={() => setDeliveryMethod('clickAndCollect')}
-                    className="mt-0.5 text-foam-olive focus:ring-foam-olive"
+                    className="mt-0.5 accent-black"
                   />
                   <div className="flex-1">
-                    <div className="flex justify-between items-center font-bold text-foam-olive">
+                    <div className="flex justify-between items-center font-black text-foam-black uppercase">
                       <span className="flex items-center gap-1">
-                        <MapPin className="w-3.5 h-3.5" />
-                        Retrait Click & Collect au bar
+                        <MapPin className="w-3.5 h-3.5 stroke-[2.5]" />
+                        CLICK & COLLECT AU BAR
                       </span>
-                      <span className="bg-white px-2 py-0.5 rounded text-[10px] border border-foam-olive/30">
+                      <span className="sticker sticker-black text-[9px] py-0">
                         GRATUIT (0 €)
                       </span>
                     </div>
-                    <p className="text-[11px] text-foam-text mt-0.5">
-                      Économisez 6,90 € de frais de port et récupérez vos bières fraîches au bar !
+                    <p className="text-[11px] text-foam-black font-medium mt-0.5">
+                      Prêt sous 2h aux bars Port de Nice ou Place du Pin
                     </p>
-
-                    {deliveryMethod === 'clickAndCollect' && (
-                      <select
-                        value={selectedBar}
-                        onChange={(e) => setSelectedBar(e.target.value)}
-                        className="mt-2.5 w-full text-xs font-semibold bg-white border border-foam-border rounded-lg p-2 text-foam-navy focus:outline-none focus:ring-1 focus:ring-foam-olive"
-                      >
-                        {BARS_DATA.map(b => (
-                          <option key={b.id} value={b.id}>
-                            📍 {b.name} ({b.zone})
-                          </option>
-                        ))}
-                      </select>
-                    )}
                   </div>
                 </label>
 
-                {/* Home Delivery Option */}
+                {/* Shipping Option */}
                 <label 
-                  className={`flex items-start gap-2.5 p-3 rounded-lg border-2 cursor-pointer text-xs transition-all ${
-                    deliveryMethod === 'homeDelivery'
-                      ? 'border-foam-navy bg-white ring-1 ring-foam-navy/20'
-                      : 'border-foam-border bg-white hover:border-foam-navy/30'
+                  className={`flex items-start gap-2.5 p-3 border-2 cursor-pointer transition-all ${
+                    deliveryMethod === 'shipping'
+                      ? 'border-foam-black bg-foam-neon shadow-brutal-sm'
+                      : 'border-foam-black bg-white hover:bg-foam-subtle'
                   }`}
                 >
                   <input
                     type="radio"
                     name="cartDeliveryOption"
-                    checked={deliveryMethod === 'homeDelivery'}
-                    onChange={() => setDeliveryMethod('homeDelivery')}
-                    className="mt-0.5 text-foam-navy focus:ring-foam-navy"
+                    checked={deliveryMethod === 'shipping'}
+                    onChange={() => setDeliveryMethod('shipping')}
+                    className="mt-0.5 accent-black"
                   />
-                  <div className="flex-1 flex justify-between font-bold text-foam-navy">
-                    <span className="flex items-center gap-1">
-                      <Truck className="w-3.5 h-3.5 text-foam-red" />
-                      Expédition Colis Sécurisé Anti-Casse
-                    </span>
-                    <span>{SHIPPING_RATES.homeDelivery.toFixed(2)} €</span>
+                  <div className="flex-1">
+                    <div className="flex justify-between items-center font-black text-foam-black uppercase">
+                      <span className="flex items-center gap-1">
+                        <Truck className="w-3.5 h-3.5 stroke-[2.5]" />
+                        EXPÉDITION SÉCURISÉE
+                      </span>
+                      <span className="font-bold text-foam-black">
+                        {shippingCost.toFixed(2)} €
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-foam-black font-medium mt-0.5">
+                      Colis anti-casse sous 48-72h ouvrées
+                    </p>
                   </div>
                 </label>
               </div>
+
+              {/* Bar selection dropdown if Click & Collect */}
+              {deliveryMethod === 'clickAndCollect' && (
+                <div className="pt-2 border-t border-foam-borderLight">
+                  <label className="block text-[11px] font-black uppercase text-foam-black mb-1">
+                    BAR DE RETRAIT :
+                  </label>
+                  <select
+                    value={selectedBar}
+                    onChange={(e) => setSelectedBar(e.target.value)}
+                    className="w-full p-2 bg-foam-bg border-2 border-foam-black font-mono font-bold text-xs"
+                  >
+                    <option value="port">FOAM Port de Nice (3 Quai des Deux Emmanuels)</option>
+                    <option value="pin">FOAM Place du Pin (Place du Pin)</option>
+                  </select>
+                </div>
+              )}
             </div>
 
-            {/* Empty state or item list */}
+            {/* Cart Items List */}
             {items.length === 0 ? (
-              <div className="text-center py-14 text-foam-muted space-y-2">
-                <ShoppingBag className="w-12 h-12 text-foam-border mx-auto" />
-                <p className="font-serif text-lg font-bold text-foam-navy">Votre panier est vide</p>
-                <p className="text-xs">Choisissez un coffret découverte ou vos bières favorites.</p>
+              <div className="p-8 text-center bg-white border-2 border-foam-black shadow-brutal space-y-3 font-mono">
+                <ShoppingBag className="w-12 h-12 text-foam-muted mx-auto stroke-[1.5]" />
+                <p className="font-impact text-lg uppercase text-foam-black">VOTRE PANIER EST VIDE</p>
+                <p className="text-xs text-foam-muted">Découvrez nos coffrets dégustation prêts à offrir.</p>
+                <button
+                  onClick={() => setIsCartOpen(false)}
+                  className="btn-brutal-orange py-2 px-4 text-xs font-mono font-black"
+                >
+                  VOIR LES COFFRETS
+                </button>
               </div>
             ) : (
               <div className="space-y-3">
-                <div className="flex items-center justify-between text-xs font-bold text-foam-navy px-1">
-                  <span>Articles ({items.length})</span>
-                  <button onClick={clearCart} className="text-[11px] text-red-500 hover:underline font-normal">
-                    Vider le panier
-                  </button>
-                </div>
-
                 {items.map((item) => (
-                  <div
-                    key={item.key}
-                    className="p-3.5 bg-white rounded-lg border border-foam-border flex items-center justify-between gap-3 text-xs shadow-xs"
+                  <div 
+                    key={item.id}
+                    className="p-3.5 bg-white border-2 border-foam-black shadow-brutal-sm flex gap-3 items-center"
                   >
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-bold text-foam-navy truncate text-sm">{item.name}</h4>
-                      <p className="text-[11px] text-foam-red font-semibold">{item.formatLabel}</p>
-                      <span className="font-serif font-black text-sm text-foam-navy mt-1 block">
-                        {(item.price * item.quantity).toFixed(2)} €
-                      </span>
-                    </div>
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-16 h-16 object-cover border-2 border-foam-black shrink-0"
+                    />
 
-                    <div className="flex items-center gap-1.5 shrink-0">
-                      <button
-                        onClick={() => updateQuantity(item.key, -1)}
-                        className="w-7 h-7 rounded-md border border-foam-border text-foam-navy hover:bg-foam-subtle flex items-center justify-center font-bold"
-                      >
-                        -
-                      </button>
-                      <span className="w-6 text-center font-bold text-foam-navy">
-                        {item.quantity}
-                      </span>
-                      <button
-                        onClick={() => updateQuantity(item.key, 1)}
-                        className="w-7 h-7 rounded-md border border-foam-border text-foam-navy hover:bg-foam-subtle flex items-center justify-center font-bold"
-                      >
-                        +
-                      </button>
-                      <button
-                        onClick={() => removeItem(item.key)}
-                        className="p-1 text-slate-400 hover:text-red-500 ml-1"
-                        aria-label="Supprimer"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
+                    <div className="flex-1 min-w-0 font-mono">
+                      <div className="flex justify-between items-start">
+                        <h4 className="font-impact uppercase text-sm truncate text-foam-black">
+                          {item.name}
+                        </h4>
+                        <button
+                          onClick={() => removeItem(item.id)}
+                          className="text-foam-muted hover:text-foam-orange p-1"
+                          aria-label="Supprimer"
+                        >
+                          <Trash2 className="w-4 h-4 stroke-[2]" />
+                        </button>
+                      </div>
+
+                      <p className="text-[11px] text-foam-orange font-bold uppercase">
+                        {item.formatName || 'Format Sélectionné'}
+                      </p>
+
+                      <div className="flex justify-between items-center mt-2">
+                        <div className="flex items-center border-2 border-foam-black bg-foam-bg">
+                          <button
+                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                            className="w-6 h-6 flex items-center justify-center font-black hover:bg-white text-xs"
+                          >
+                            -
+                          </button>
+                          <span className="w-7 text-center font-black text-xs">
+                            {item.quantity}
+                          </span>
+                          <button
+                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                            className="w-6 h-6 flex items-center justify-center font-black hover:bg-white text-xs"
+                          >
+                            +
+                          </button>
+                        </div>
+
+                        <span className="font-impact text-sm text-foam-black">
+                          {(item.price * item.quantity).toFixed(2)} €
+                        </span>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -203,38 +229,44 @@ export default function SlideOverCart() {
 
           </div>
 
-          {/* Footer Subtotal & Checkout Trigger */}
+          {/* Footer Checkout Action */}
           {items.length > 0 && (
-            <div className="p-5 border-t border-foam-border bg-white space-y-3.5 text-xs">
-              <div className="space-y-1.5">
-                <div className="flex justify-between text-foam-text">
-                  <span>Sous-total articles :</span>
-                  <span className="font-bold text-foam-navy">{subtotal.toFixed(2)} €</span>
+            <div className="p-4 sm:p-5 bg-white border-t-2 border-foam-black space-y-3 font-mono">
+              <div className="space-y-1.5 text-xs">
+                <div className="flex justify-between text-foam-black">
+                  <span>SOUS-TOTAL TTC :</span>
+                  <span className="font-bold">{subtotal.toFixed(2)} €</span>
                 </div>
-                <div className="flex justify-between text-foam-text">
-                  <span>Frais de réception :</span>
-                  <span className={`font-bold ${deliveryMethod === 'clickAndCollect' ? 'text-foam-olive' : 'text-foam-navy'}`}>
-                    {deliveryMethod === 'clickAndCollect' ? '0,00 € (Click & Collect Offert)' : `${shippingCost.toFixed(2)} €`}
+                <div className="flex justify-between text-foam-black">
+                  <span>LIVRAISON :</span>
+                  <span className="font-bold">
+                    {deliveryMethod === 'clickAndCollect' ? (
+                      <span className="text-foam-black font-black bg-foam-neon px-1 border border-foam-black">0,00 € (OFFERT)</span>
+                    ) : (
+                      `${shippingCost.toFixed(2)} €`
+                    )}
                   </span>
                 </div>
-                <div className="flex justify-between text-base font-serif font-black text-foam-navy pt-2 border-t border-foam-border">
-                  <span>Total :</span>
-                  <span className="text-2xl text-foam-red">{grandTotal.toFixed(2)} €</span>
+                <div className="flex justify-between text-sm sm:text-base font-impact uppercase text-foam-black pt-2 border-t-2 border-foam-black">
+                  <span>TOTAL À RÉGLER :</span>
+                  <span className="text-foam-orange text-lg sm:text-xl">
+                    {grandTotal.toFixed(2)} €
+                  </span>
                 </div>
-              </div>
-
-              {/* Brewery reassurance reminder */}
-              <div className="p-2.5 rounded-lg bg-foam-redSoft text-foam-navy border border-foam-redBorder text-[11px] text-center font-medium">
-                🔒 Préparation artisanale au Port de Nice • Retrait gratuit au bar ou expédition soignée.
               </div>
 
               <button
+                type="button"
                 onClick={handleGoToCheckout}
-                className="w-full py-4 px-6 rounded-lg bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-craft-flat-red transition-all"
+                className="btn-brutal-orange w-full py-4 text-xs sm:text-sm font-mono font-black uppercase tracking-wider"
               >
-                <span>Commander mon panier</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>VALIDER LA COMMANDE • {grandTotal.toFixed(2)} €</span>
+                <ArrowRight className="w-4 h-4 stroke-[2.5]" />
               </button>
+
+              <p className="text-[10px] text-center text-foam-muted font-bold uppercase">
+                PAIEMENT SÉCURISÉ SSL • RETRAIT SOUS 2H AU BAR OU EXPÉDITION ANTI-CASSE
+              </p>
             </div>
           )}
 

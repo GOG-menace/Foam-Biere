@@ -12,7 +12,6 @@ export default function LegalAgeModal() {
         setIsOpen(true);
       }
     } catch (e) {
-      // In restricted iframe environments, don't block
       console.warn('LocalStorage not accessible:', e);
     }
   }, []);
@@ -38,44 +37,49 @@ export default function LegalAgeModal() {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foam-navy/85 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-lg bg-white rounded-xl border border-foam-border shadow-2xl p-6 sm:p-8 text-center text-foam-navy">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foam-black/80 backdrop-blur-xs animate-fade-in font-mono">
+      <div className="relative w-full max-w-lg bg-white border-2 border-foam-black shadow-brutal p-6 sm:p-8 text-center text-foam-black">
         
         {/* Quick dismiss for preview/testing */}
         <button
           onClick={handleDismiss}
-          className="absolute top-4 right-4 p-2 text-slate-400 hover:text-foam-navy hover:bg-foam-subtle rounded-md transition-colors"
-          title="Fermer la fenêtre"
+          className="absolute top-4 right-4 p-1.5 text-foam-black border-2 border-foam-black hover:bg-foam-neon transition-colors shadow-brutal-sm"
+          title="Fermer"
           aria-label="Fermer"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4 stroke-[2.5]" />
         </button>
 
-        {/* Brand logo image uploaded by user */}
+        {/* Brand logo image */}
         <img
           src="/logo-foam.png"
-          alt="FOAM Nice Bière & Manger"
-          className="w-20 h-20 object-contain rounded-full mx-auto mb-4 shadow-xs border border-foam-border"
+          alt="FOAM"
+          className="w-16 h-16 object-contain border-2 border-foam-black mx-auto mb-3 shadow-brutal-sm bg-white"
         />
 
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-foam-subtle border border-foam-border text-foam-navy text-[10px] font-bold uppercase tracking-widest mb-2">
-          <span>Brassée au Port de Nice • Quai des Deux Emmanuels</span>
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-2">
+          <span className="sticker sticker-neon text-[10px]">
+            [ PORT DE NICE // 06300 ]
+          </span>
+          <span className="sticker sticker-black text-[10px]">
+            [ VÉRIFICATION D'ÂGE ]
+          </span>
         </div>
 
-        <h2 className="font-serif text-3xl font-black tracking-tight text-foam-navy">
-          FOAM NICE
+        <h2 className="font-impact text-3xl sm:text-4xl uppercase tracking-tight text-foam-black">
+          FOAM
         </h2>
-        <p className="text-xs uppercase tracking-widest text-foam-muted font-bold mt-1">
-          Microbrasserie Artisanale Indépendante
+        <p className="font-mono text-xs uppercase tracking-wider text-foam-orange font-black mt-1">
+          MICROBRASSERIE ARTISANALE INDÉPENDANTE
         </p>
 
         {!refused ? (
           <div className="mt-5 space-y-4">
-            <div className="p-4 bg-foam-subtle/60 rounded-lg border border-foam-border">
-              <p className="text-base font-bold text-foam-navy">
-                Avez-vous 18 ans ou plus ?
+            <div className="p-4 bg-foam-bg border-2 border-foam-black text-left">
+              <p className="font-impact text-base uppercase text-foam-black">
+                AVEZ-VOUS 18 ANS OU PLUS ?
               </p>
-              <p className="text-xs text-foam-text mt-1 leading-relaxed">
+              <p className="text-xs text-foam-black mt-1 font-sans font-medium leading-relaxed">
                 L’accès à notre boutique de bières artisanales du Port de Nice est strictement réservé aux personnes majeures conformément à la Loi Évin.
               </p>
             </div>
@@ -83,32 +87,32 @@ export default function LegalAgeModal() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
               <button
                 onClick={handleAccept}
-                className="w-full py-3.5 px-5 bg-foam-red hover:bg-foam-redDark text-white font-extrabold rounded-lg shadow-shopify hover:shadow-craft-flat-red transition-all text-sm flex items-center justify-center gap-2"
+                className="btn-brutal-orange py-3.5 px-4 text-xs font-mono font-black uppercase"
               >
-                <ShieldCheck className="w-5 h-5" />
-                <span>Oui, j'ai plus de 18 ans</span>
+                <ShieldCheck className="w-4 h-4 stroke-[2.5]" />
+                <span>OUI, J'AI 18 ANS OU PLUS</span>
               </button>
 
               <button
                 onClick={() => setRefused(true)}
-                className="w-full py-3.5 px-4 bg-foam-subtle hover:bg-foam-border text-foam-navy font-bold rounded-lg border border-foam-border transition-colors text-xs"
+                className="btn-brutal-white py-3.5 px-4 text-xs font-mono font-black uppercase"
               >
-                Non, j'ai moins de 18 ans
+                NON, JE SUIS MINEUR
               </button>
             </div>
           </div>
         ) : (
-          <div className="mt-5 p-5 bg-red-50 rounded-2xl border border-red-200 text-left text-xs text-red-900 space-y-2">
+          <div className="mt-5 p-4 bg-foam-bg border-2 border-foam-black text-left text-xs font-mono space-y-2">
             <div className="flex items-start gap-2.5">
-              <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+              <AlertCircle className="w-5 h-5 text-foam-orange shrink-0 mt-0.5 stroke-[2.5]" />
               <div>
-                <strong className="block font-bold">Accès réservé aux personnes majeures</strong>
-                <p className="mt-1 text-red-800 leading-relaxed">
+                <strong className="block font-black uppercase text-foam-black">ACCÈS STRICTEMENT RÉSERVÉ AUX MAJEURS</strong>
+                <p className="mt-1 text-foam-black font-sans font-medium leading-relaxed">
                   Conformément à l’article L. 3342-1 du Code de la santé publique, la vente d’alcool est strictement interdite aux mineurs de moins de 18 ans.
                 </p>
                 <button
                   onClick={() => setRefused(false)}
-                  className="mt-3 text-xs font-bold underline text-foam-navy hover:text-foam-red"
+                  className="mt-2 text-xs font-mono font-bold underline hover:text-foam-orange"
                 >
                   ← Recommencer la vérification
                 </button>
@@ -117,7 +121,7 @@ export default function LegalAgeModal() {
           </div>
         )}
 
-        <div className="mt-6 pt-3 border-t border-foam-border text-[11px] text-foam-muted font-bold uppercase tracking-wider">
+        <div className="mt-6 pt-3 border-t-2 border-foam-black text-[10px] text-foam-muted font-bold uppercase tracking-wider">
           ⚠️ L'abus d'alcool est dangereux pour la santé, à consommer avec modération.
         </div>
 
