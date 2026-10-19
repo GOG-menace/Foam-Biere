@@ -39,7 +39,7 @@ export default function LegalAgeModal() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foam-navy/85 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-lg bg-white rounded-3xl border-2 border-foam-red/40 shadow-2xl p-6 sm:p-8 text-center text-foam-navy">
+      <div className="relative w-full max-w-lg bg-white rounded-2xl border border-foam-border shadow-2xl p-6 sm:p-8 text-center text-foam-navy">
         
         {/* Quick dismiss for preview/testing */}
         <button
@@ -58,9 +58,9 @@ export default function LegalAgeModal() {
           className="w-20 h-20 object-contain rounded-full mx-auto mb-4 shadow-md border-2 border-foam-red"
         />
 
-        <p className="text-xs font-bold tracking-widest uppercase text-foam-red mb-2">
-          Brassée au Port de Nice • Caution Groupe Paloma (1948)
-        </p>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-foam-goldSoft border border-foam-gold/30 text-foam-navy text-[10px] font-bold uppercase tracking-widest mb-2">
+          <span>Brassée au Port de Nice • Caution Maison 1948</span>
+        </div>
 
         <h2 className="font-serif text-3xl font-black tracking-tight text-foam-navy">
           FOAM NICE
@@ -71,7 +71,7 @@ export default function LegalAgeModal() {
 
         {!refused ? (
           <div className="mt-5 space-y-4">
-            <div className="p-4 bg-foam-bg rounded-2xl border border-foam-border">
+            <div className="p-4 bg-foam-bg rounded-xl border border-foam-border">
               <p className="text-base font-bold text-foam-navy">
                 Avez-vous 18 ans ou plus ?
               </p>
@@ -83,7 +83,7 @@ export default function LegalAgeModal() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
               <button
                 onClick={handleAccept}
-                className="w-full py-3.5 px-5 bg-foam-red hover:bg-foam-redDark text-white font-extrabold rounded-2xl shadow-shopify transition-all text-sm flex items-center justify-center gap-2"
+                className="w-full py-3.5 px-5 bg-foam-red hover:bg-foam-redDark text-white font-extrabold rounded-xl shadow-shopify transition-all text-sm flex items-center justify-center gap-2"
               >
                 <ShieldCheck className="w-5 h-5" />
                 <span>Oui, j'ai plus de 18 ans</span>
@@ -91,7 +91,7 @@ export default function LegalAgeModal() {
 
               <button
                 onClick={() => setRefused(true)}
-                className="w-full py-3.5 px-4 bg-foam-subtle hover:bg-foam-border text-foam-navy font-bold rounded-2xl border border-foam-border transition-colors text-xs"
+                className="w-full py-3.5 px-4 bg-foam-subtle hover:bg-foam-border text-foam-navy font-bold rounded-xl border border-foam-border transition-colors text-xs"
               >
                 Non, j'ai moins de 18 ans
               </button>

@@ -5,8 +5,8 @@
 @layer base {
   html {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    color: #0F172A;
-    background-color: #FAF7F2;
+    color: #16202A;
+    background-color: #FAF8F5;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -25,14 +25,14 @@
   height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAF7F2;
+  background: #FAF8F5;
 }
 ::-webkit-scrollbar-thumb {
   background: #904545;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #783535;
+  background: #7A3535;
 }
 
 /* Selection */

@@ -68,7 +68,7 @@ export default function CheckoutModal() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foam-navy/80 backdrop-blur-xs overflow-y-auto animate-fade-in">
-      <div className="relative w-full max-w-xl bg-white rounded-3xl border-2 border-foam-border shadow-2xl overflow-hidden my-8">
+      <div className="relative w-full max-w-xl bg-white rounded-2xl border border-foam-border shadow-2xl overflow-hidden my-8">
         
         {/* Header */}
         <div className="p-6 bg-foam-navy text-white flex items-center justify-between">
@@ -259,7 +259,7 @@ export default function CheckoutModal() {
           <div className="pt-3 border-t border-foam-border">
             <button
               type="submit"
-              className="w-full py-4 px-6 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all"
+              className="w-full py-4 px-6 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all"
             >
               <span>Valider ma commande</span>
               <ArrowRight className="w-5 h-5" />

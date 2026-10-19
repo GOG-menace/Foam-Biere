@@ -52,7 +52,7 @@ export default function SetSalesPage({ defaultSlug }) {
         
         {/* Left Column: Image Showcase & Gallery */}
         <div className="lg:col-span-7 space-y-4">
-          <div className="rounded-3xl overflow-hidden bg-white border border-foam-border shadow-shopify aspect-[4/3]">
+          <div className="rounded-2xl overflow-hidden bg-white border border-foam-border shadow-shopify aspect-[4/3]">
             <img
               src={product.image}
               alt={product.fullName}
@@ -62,17 +62,17 @@ export default function SetSalesPage({ defaultSlug }) {
 
           {/* Guarantees row below image */}
           <div className="grid grid-cols-3 gap-3 text-center text-xs text-foam-navy pt-2">
-            <div className="p-3 bg-white rounded-2xl border border-foam-border shadow-2xs">
+            <div className="p-3 bg-white rounded-xl border border-foam-border shadow-2xs">
               <Beer className="w-5 h-5 text-foam-red mx-auto mb-1" />
               <p className="font-bold text-[11px]">100% Artisanal</p>
               <p className="text-[10px] text-foam-muted">Brassée au Port</p>
             </div>
-            <div className="p-3 bg-foam-oliveSoft rounded-2xl border border-foam-olive/30 shadow-2xs">
+            <div className="p-3 bg-foam-oliveSoft rounded-xl border border-foam-olive/25 shadow-2xs">
               <MapPin className="w-5 h-5 text-foam-olive mx-auto mb-1" />
               <p className="font-bold text-[11px] text-foam-olive">Click & Collect 0€</p>
               <p className="text-[10px] text-foam-olive">Prêt en 2h au bar</p>
             </div>
-            <div className="p-3 bg-white rounded-2xl border border-foam-border shadow-2xs">
+            <div className="p-3 bg-white rounded-xl border border-foam-border shadow-2xs">
               <ShieldCheck className="w-5 h-5 text-foam-navy mx-auto mb-1" />
               <p className="font-bold text-[11px]">Garantie Anti-Casse</p>
               <p className="text-[10px] text-foam-muted">Étui rigide certifié</p>
@@ -143,7 +143,7 @@ export default function SetSalesPage({ defaultSlug }) {
               <button
                 type="button"
                 onClick={() => setSelectedFormat('pack3')}
-                className={`p-3.5 rounded-2xl border-2 text-left transition-all ${
+                className={`p-3.5 rounded-xl border-2 text-left transition-all ${
                   selectedFormat === 'pack3'
                     ? 'border-foam-red bg-foam-redSoft shadow-xs ring-2 ring-foam-red/20'
                     : 'border-foam-border bg-white hover:border-foam-navy/40'
@@ -161,7 +161,7 @@ export default function SetSalesPage({ defaultSlug }) {
               <button
                 type="button"
                 onClick={() => setSelectedFormat('pack6')}
-                className={`p-3.5 rounded-2xl border-2 text-left transition-all ${
+                className={`p-3.5 rounded-xl border-2 text-left transition-all ${
                   selectedFormat === 'pack6'
                     ? 'border-foam-red bg-foam-redSoft shadow-xs ring-2 ring-foam-red/20'
                     : 'border-foam-border bg-white hover:border-foam-navy/40'
@@ -178,7 +178,7 @@ export default function SetSalesPage({ defaultSlug }) {
           </div>
 
           {/* 2. DYNAMIC CONTENTS OF SELECTED FORMAT */}
-          <div className="p-4 bg-white rounded-2xl border border-foam-border space-y-2 text-xs">
+          <div className="p-4 bg-white rounded-xl border border-foam-border space-y-2 text-xs">
             <span className="font-bold uppercase tracking-wider text-foam-navy block">
               Contenu de votre {currentPack.format} :
             </span>
@@ -203,7 +203,7 @@ export default function SetSalesPage({ defaultSlug }) {
 
             <div className="space-y-2">
               <label 
-                className={`flex items-start gap-3 p-3 rounded-2xl border-2 cursor-pointer transition-all ${
+                className={`flex items-start gap-3 p-3 rounded-xl border-2 cursor-pointer transition-all ${
                   deliveryMethod === 'clickAndCollect'
                     ? 'border-foam-olive bg-foam-oliveSoft'
                     : 'border-foam-border bg-white'
@@ -233,7 +233,7 @@ export default function SetSalesPage({ defaultSlug }) {
               </label>
 
               <label 
-                className={`flex items-start gap-3 p-3 rounded-2xl border-2 cursor-pointer transition-all ${
+                className={`flex items-start gap-3 p-3 rounded-xl border-2 cursor-pointer transition-all ${
                   deliveryMethod === 'homeDelivery'
                     ? 'border-foam-navy bg-white'
                     : 'border-foam-border bg-white'
@@ -293,7 +293,7 @@ export default function SetSalesPage({ defaultSlug }) {
               <button
                 type="button"
                 onClick={handleAddToCart}
-                className="flex-1 py-4 px-6 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all active:scale-98"
+                className="flex-1 py-4 px-6 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all active:scale-98"
               >
                 <ShoppingBag className="w-5 h-5" />
                 <span>
@@ -306,7 +306,7 @@ export default function SetSalesPage({ defaultSlug }) {
             <button
               type="button"
               onClick={handleBuyNow}
-              className="w-full py-3.5 px-6 rounded-2xl bg-foam-navy hover:bg-foam-navyLight text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shadow-2xs"
+              className="w-full py-3.5 px-6 rounded-xl bg-foam-navy hover:bg-foam-navyLight text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shadow-2xs"
             >
               <span>Commander immédiatement</span>
               <ArrowRight className="w-4 h-4" />
@@ -350,7 +350,7 @@ export default function SetSalesPage({ defaultSlug }) {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
-          <div className="p-6 bg-white rounded-3xl border border-foam-border shadow-shopify space-y-3">
+          <div className="p-6 bg-white rounded-2xl border border-foam-border shadow-shopify space-y-3">
             <div className="w-10 h-10 rounded-xl bg-foam-redSoft text-foam-red flex items-center justify-center">
               <Package className="w-5 h-5" />
             </div>
@@ -370,7 +370,7 @@ export default function SetSalesPage({ defaultSlug }) {
             </ul>
           </div>
 
-          <div className="p-6 bg-white rounded-3xl border border-foam-border shadow-shopify space-y-3">
+          <div className="p-6 bg-white rounded-2xl border border-foam-border shadow-shopify space-y-3">
             <div className="w-10 h-10 rounded-xl bg-foam-oliveSoft text-foam-olive flex items-center justify-center">
               <Award className="w-5 h-5" />
             </div>
@@ -390,7 +390,7 @@ export default function SetSalesPage({ defaultSlug }) {
             </ul>
           </div>
 
-          <div className="p-6 bg-white rounded-3xl border border-foam-border shadow-shopify space-y-3">
+          <div className="p-6 bg-white rounded-2xl border border-foam-border shadow-shopify space-y-3">
             <div className="w-10 h-10 rounded-xl bg-foam-navy text-white flex items-center justify-center">
               <MapPin className="w-5 h-5 text-foam-redSoft" />
             </div>

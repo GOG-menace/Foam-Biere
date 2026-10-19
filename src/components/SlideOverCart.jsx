@@ -230,7 +230,7 @@ export default function SlideOverCart() {
 
               <button
                 onClick={handleGoToCheckout}
-                className="w-full py-4 px-6 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all"
+                className="w-full py-4 px-6 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all"
               >
                 <span>Commander mon panier</span>
                 <ArrowRight className="w-4 h-4" />

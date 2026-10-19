@@ -10,10 +10,11 @@ export default function BeersOverviewPage() {
     <div className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
       
       {/* Header purement informationnel */}
-      <div className="text-center max-w-3xl mx-auto space-y-4">
-        <p className="text-xs font-bold uppercase tracking-widest text-foam-red">
-          Microbrasserie du Port de Nice
-        </p>
+      <div className="text-center max-w-3xl mx-auto space-y-3.5">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-foam-goldSoft border border-foam-gold/30 text-foam-navy text-[11px] font-bold uppercase tracking-widest">
+          <span className="w-1.5 h-1.5 rounded-full bg-foam-red" />
+          <span>Microbrasserie du Port de Nice • Savoir-Faire 1948</span>
+        </div>
         <h1 className="font-serif text-3xl sm:text-5xl font-black text-foam-navy leading-tight">
           Nos Bières Artisanales
         </h1>
@@ -28,15 +29,15 @@ export default function BeersOverviewPage() {
         {beers.map((beer) => (
           <div
             key={beer.slug}
-            className="rounded-3xl bg-white border border-foam-border p-6 sm:p-8 shadow-shopify flex flex-col justify-between space-y-6 group"
+            className="rounded-2xl bg-white border border-foam-border p-6 sm:p-8 shadow-shopify flex flex-col justify-between space-y-6 group"
           >
             <div className="space-y-5">
               
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-foam-subtle border border-foam-border">
+              <div className="aspect-[4/3] rounded-xl overflow-hidden bg-foam-subtle border border-foam-border">
                 <img
                   src={beer.image}
                   alt={beer.fullName}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
                 />
               </div>
 
@@ -56,7 +57,7 @@ export default function BeersOverviewPage() {
               </p>
 
               {/* Fiche technique gustative */}
-              <div className="p-4 rounded-2xl bg-foam-bg border border-foam-border space-y-2 text-xs">
+              <div className="p-4 rounded-xl bg-foam-bg border border-foam-border space-y-2 text-xs">
                 <div>
                   <span className="font-bold text-foam-navy block">Profil aromatique :</span>
                   <span className="text-foam-text">{beer.shortDesc}</span>
@@ -80,7 +81,7 @@ export default function BeersOverviewPage() {
               </span>
               <Link
                 to="/coffrets/decouverte"
-                className="w-full py-3.5 px-4 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all active:scale-98 text-center"
+                className="w-full py-3.5 px-4 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all active:scale-98 text-center"
               >
                 <Package className="w-4 h-4 shrink-0" />
                 <span>Commander dans le Coffret Découverte</span>
@@ -91,7 +92,7 @@ export default function BeersOverviewPage() {
       </div>
 
       {/* Présentation des Brassins Éphémères + CTA vers le Coffret Exotique */}
-      <div className="rounded-3xl bg-white border border-foam-border p-8 sm:p-12 shadow-shopify space-y-6">
+      <div className="rounded-2xl bg-white border border-foam-border p-8 sm:p-12 shadow-shopify space-y-6">
         <div className="max-w-3xl space-y-3">
           <p className="text-xs font-bold uppercase tracking-wider text-foam-olive">
             Créations Éphémères de Stéphane
@@ -105,17 +106,17 @@ export default function BeersOverviewPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-          <div className="p-4 rounded-2xl bg-foam-bg border border-foam-border space-y-1">
+          <div className="p-4 rounded-xl bg-foam-bg border border-foam-border space-y-1">
             <strong className="text-foam-navy font-bold block text-sm">Brassin Riviera Tropicale</strong>
             <p className="text-foam-text">Notes intenses de mangue mûre et de fruits de la passion. Houblonnage à cru généreux.</p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-foam-bg border border-foam-border space-y-1">
+          <div className="p-4 rounded-xl bg-foam-bg border border-foam-border space-y-1">
             <strong className="text-foam-navy font-bold block text-sm">Cuvée Houblon Niçois Solaire</strong>
             <p className="text-foam-text">Confectionnée avec du houblon cultivé localement à Nice. Notes résineuses et herbacées typiques du terroir.</p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-foam-bg border border-foam-border space-y-1">
+          <div className="p-4 rounded-xl bg-foam-bg border border-foam-border space-y-1">
             <strong className="text-foam-navy font-bold block text-sm">Blanche Exotique Éphémère</strong>
             <p className="text-foam-text">Bière de blé veloutée parfumée aux zestes d'agrumes rares de la Côte d'Azur.</p>
           </div>
@@ -127,7 +128,7 @@ export default function BeersOverviewPage() {
           </p>
           <Link
             to="/coffrets/exotique"
-            className="w-full sm:w-auto py-3.5 px-6 rounded-2xl bg-foam-navy hover:bg-foam-navyLight text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shrink-0"
+            className="w-full sm:w-auto py-3 px-6 rounded-xl bg-foam-navy hover:bg-foam-navyLight text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shrink-0"
           >
             <Sparkles className="w-4 h-4 text-foam-red" />
             <span>Découvrir le Coffret Exotique</span>
@@ -137,7 +138,7 @@ export default function BeersOverviewPage() {
       </div>
 
       {/* Bannière de redirection générale vers les coffrets */}
-      <div className="rounded-3xl bg-foam-subtle border border-foam-border p-8 sm:p-10 text-center space-y-4">
+      <div className="rounded-2xl bg-white border border-foam-border p-8 sm:p-10 text-center space-y-4 shadow-xs">
         <h3 className="font-serif text-2xl font-bold text-foam-navy">
           Prêt à déguster nos bières à la maison ?
         </h3>
@@ -147,7 +148,7 @@ export default function BeersOverviewPage() {
         <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             to="/coffrets"
-            className="w-full sm:w-auto py-4 px-8 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all"
+            className="w-full sm:w-auto py-4 px-8 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all"
           >
             <span>Voir les deux formules de coffrets</span>
             <ArrowRight className="w-4 h-4" />

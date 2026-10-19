@@ -11,15 +11,16 @@ export default function SetsOverviewPage() {
     <div className="py-12 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
       
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-4">
-        <p className="text-xs font-bold uppercase tracking-widest text-foam-red">
-          Microbrasserie du Port de Nice
-        </p>
+      <div className="text-center max-w-3xl mx-auto space-y-3.5">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-foam-goldSoft border border-foam-gold/30 text-foam-navy text-[11px] font-bold uppercase tracking-widest">
+          <span className="w-1.5 h-1.5 rounded-full bg-foam-red" />
+          <span>Microbrasserie du Port de Nice • Maison 1948</span>
+        </div>
         <h1 className="font-serif text-3xl sm:text-5xl font-black text-foam-navy leading-tight">
-          Nos Coffrets Dégustation
+          Nos Deux Coffrets de la Riviera
         </h1>
         <p className="text-base text-foam-text leading-relaxed">
-          Découvrez nos deux sélections de bières artisanales niçoises, disponibles en format 3 bouteilles (15,00 €) ou 6 bouteilles (26,00 €). Choisissez votre coffret pour accéder à sa page de commande dédiée.
+          Découvrez nos deux sélections de bières artisanales niçoises, disponibles en format <strong>Pack de 3 (15,00 €)</strong> ou <strong>Pack de 6 (26,00 €)</strong>. Retrait Click & Collect offert sous 2h dans nos deux bars à Nice.
         </p>
       </div>
 
@@ -27,19 +28,22 @@ export default function SetsOverviewPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
         
         {/* CARTE 1 : COFFRET DÉCOUVERTE */}
-        <div className="rounded-3xl bg-white border border-foam-border hover:border-foam-navy p-6 sm:p-8 shadow-shopify hover:shadow-shopify-hover transition-all flex flex-col justify-between group">
+        <div className="rounded-2xl bg-white border border-foam-border hover:border-foam-red p-6 sm:p-8 shadow-shopify hover:shadow-shopify-hover transition-all flex flex-col justify-between group">
           <div className="space-y-5">
-            <div className="aspect-[16/10] rounded-2xl overflow-hidden bg-foam-subtle border border-foam-border">
+            <div className="aspect-[16/10] rounded-xl overflow-hidden bg-foam-subtle border border-foam-border relative">
               <img
                 src={decouverte.image}
                 alt={decouverte.name}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
               />
+              <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-foam-navy/90 backdrop-blur-xs text-white text-[10px] font-bold uppercase tracking-wider">
+                Les Incontournables
+              </span>
             </div>
 
-            <div className="space-y-2">
-              <p className="text-xs font-bold text-foam-red uppercase tracking-wider">
-                Les Incontournables • {decouverte.subtitle}
+            <div className="space-y-1.5">
+              <p className="text-[11px] font-bold text-foam-red uppercase tracking-wider">
+                {decouverte.subtitle}
               </p>
               <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy group-hover:text-foam-red transition-colors">
                 {decouverte.name}
@@ -49,50 +53,55 @@ export default function SetsOverviewPage() {
               </p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-foam-bg border border-foam-border text-xs text-foam-text space-y-1.5">
-              <p className="font-bold text-foam-navy">Composition du coffret :</p>
+            <div className="p-4 rounded-xl bg-foam-bg border border-foam-border text-xs text-foam-text space-y-1.5">
+              <p className="font-bold text-foam-navy uppercase tracking-wider text-[11px]">Composition du coffret :</p>
               <p>• 1 ou 2 FOAM West Coast IPA (Houblonnée & fruitée)</p>
               <p>• 1 ou 2 FOAM Lager Méditerranéenne (Fraîche & maltée)</p>
               <p>• 1 ou 2 FOAM Blanche Riviera (Froment & agrumes)</p>
             </div>
 
-            <div className="pt-2">
-              <p className="text-sm font-bold text-foam-navy">
-                15,00 € <span className="text-xs font-normal text-foam-muted">(Pack de 3)</span> • 26,00 € <span className="text-xs font-normal text-foam-muted">(Pack de 6)</span>
-              </p>
-              <p className="text-xs text-foam-olive font-semibold mt-0.5">
-                Retrait Click & Collect 0 € au Port ou Place du Pin
-              </p>
+            <div className="pt-2 flex items-baseline justify-between border-t border-foam-border/60">
+              <div>
+                <p className="text-base font-black text-foam-navy font-serif">
+                  15,00 € <span className="text-xs font-normal text-foam-muted font-sans">(Pack 3)</span> • 26,00 € <span className="text-xs font-normal text-foam-muted font-sans">(Pack 6)</span>
+                </p>
+                <p className="text-xs text-foam-olive font-semibold mt-0.5">
+                  ✓ Click & Collect 0 € (Port ou Place du Pin)
+                </p>
+              </div>
             </div>
           </div>
 
           <div className="pt-6 mt-6 border-t border-foam-border">
             <Link
               to="/coffrets/decouverte"
-              className="w-full py-4 px-6 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all active:scale-98"
+              className="w-full py-3.5 px-6 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all active:scale-98"
             >
-              <span>Découvrir le Coffret Découverte</span>
+              <span>Accéder à la page du Coffret Découverte</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
 
         {/* CARTE 2 : COFFRET EXOTIQUE */}
-        <div className="rounded-3xl bg-white border border-foam-border hover:border-foam-navy p-6 sm:p-8 shadow-shopify hover:shadow-shopify-hover transition-all flex flex-col justify-between group">
+        <div className="rounded-2xl bg-white border border-foam-border hover:border-foam-navy p-6 sm:p-8 shadow-shopify hover:shadow-shopify-hover transition-all flex flex-col justify-between group">
           <div className="space-y-5">
-            <div className="aspect-[16/10] rounded-2xl overflow-hidden bg-foam-subtle border border-foam-border">
+            <div className="aspect-[16/10] rounded-xl overflow-hidden bg-foam-subtle border border-foam-border relative">
               <img
                 src={exotique.image}
                 alt={exotique.name}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
               />
+              <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-foam-navy/90 backdrop-blur-xs text-white text-[10px] font-bold uppercase tracking-wider">
+                Édition Limitée
+              </span>
             </div>
 
-            <div className="space-y-2">
-              <p className="text-xs font-bold text-foam-olive uppercase tracking-wider">
-                Brassins Éphémères • {exotique.subtitle}
+            <div className="space-y-1.5">
+              <p className="text-[11px] font-bold text-foam-olive uppercase tracking-wider">
+                {exotique.subtitle}
               </p>
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy group-hover:text-foam-olive transition-colors">
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy group-hover:text-foam-navyLight transition-colors">
                 {exotique.name}
               </h2>
               <p className="text-sm text-foam-text leading-relaxed pt-1">
@@ -100,29 +109,31 @@ export default function SetsOverviewPage() {
               </p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-foam-bg border border-foam-border text-xs text-foam-text space-y-1.5">
-              <p className="font-bold text-foam-navy">Composition du coffret :</p>
+            <div className="p-4 rounded-xl bg-foam-bg border border-foam-border text-xs text-foam-text space-y-1.5">
+              <p className="font-bold text-foam-navy uppercase tracking-wider text-[11px]">Composition du coffret :</p>
               <p>• 1 ou 2 Brassin Riviera Tropicale (Mangue & passion)</p>
               <p>• 1 ou 2 Cuvée Houblon Niçois Solaire (Houblons locaux)</p>
               <p>• 1 ou 2 Blanche Exotique Éphémère (Zestes doux)</p>
             </div>
 
-            <div className="pt-2">
-              <p className="text-sm font-bold text-foam-navy">
-                15,00 € <span className="text-xs font-normal text-foam-muted">(Pack de 3)</span> • 26,00 € <span className="text-xs font-normal text-foam-muted">(Pack de 6)</span>
-              </p>
-              <p className="text-xs text-foam-olive font-semibold mt-0.5">
-                Retrait Click & Collect 0 € au Port ou Place du Pin
-              </p>
+            <div className="pt-2 flex items-baseline justify-between border-t border-foam-border/60">
+              <div>
+                <p className="text-base font-black text-foam-navy font-serif">
+                  15,00 € <span className="text-xs font-normal text-foam-muted font-sans">(Pack 3)</span> • 26,00 € <span className="text-xs font-normal text-foam-muted font-sans">(Pack 6)</span>
+                </p>
+                <p className="text-xs text-foam-olive font-semibold mt-0.5">
+                  ✓ Click & Collect 0 € (Port ou Place du Pin)
+                </p>
+              </div>
             </div>
           </div>
 
           <div className="pt-6 mt-6 border-t border-foam-border">
             <Link
               to="/coffrets/exotique"
-              className="w-full py-4 px-6 rounded-2xl bg-foam-navy hover:bg-foam-navyLight text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-shopify transition-all active:scale-98"
+              className="w-full py-3.5 px-6 rounded-xl bg-foam-navy hover:bg-foam-navyLight text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-shopify transition-all active:scale-98"
             >
-              <span>Découvrir le Coffret Exotique</span>
+              <span>Accéder à la page du Coffret Exotique</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -130,24 +141,24 @@ export default function SetsOverviewPage() {
 
       </div>
 
-      {/* CTA vers la page "Nos bières" (remplace la section 'Pourquoi choisir FOAM' et les bières à l'unité) */}
-      <div className="rounded-3xl bg-foam-subtle border border-foam-border p-8 sm:p-12 text-center space-y-4">
-        <p className="text-xs font-bold uppercase tracking-wider text-foam-navy">
+      {/* CTA vers la page "Nos bières" */}
+      <div className="rounded-2xl bg-white border border-foam-border p-8 sm:p-12 text-center space-y-4 shadow-xs">
+        <p className="text-[11px] font-bold uppercase tracking-widest text-foam-red">
           Dégustation & Notes Aromatiques
         </p>
         <h3 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy">
           Envie d'en savoir plus sur chaque recette ?
         </h3>
         <p className="text-sm text-foam-text max-w-2xl mx-auto leading-relaxed">
-          Consultez les caractéristiques techniques, les degrés d'alcool, les indices d'amertume (IBU) et les accords mets-bières imaginés par notre brasseur.
+          Consultez les caractéristiques techniques, les degrés d'alcool, les indices d'amertume (IBU) et les accords mets-bières imaginés par notre brasseur Stéphane.
         </p>
         <div className="pt-2">
           <Link
             to="/bieres"
-            className="inline-flex items-center gap-2 py-3.5 px-6 rounded-2xl bg-white hover:bg-foam-border border border-foam-border text-foam-navy font-bold text-sm shadow-xs transition-colors"
+            className="inline-flex items-center gap-2 py-3 px-6 rounded-xl bg-foam-subtle hover:bg-foam-border border border-foam-border text-foam-navy font-bold text-xs sm:text-sm transition-colors"
           >
             <Beer className="w-4 h-4 text-foam-red" />
-            <span>Découvrir la présentation de nos bières</span>
+            <span>Découvrir la présentation détaillée de nos bières</span>
             <ArrowRight className="w-4 h-4 text-foam-navy" />
           </Link>
         </div>

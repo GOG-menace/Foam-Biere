@@ -24,7 +24,7 @@ export default function ConfirmationModal() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foam-navy/85 backdrop-blur-xs overflow-y-auto animate-fade-in">
-      <div className="relative w-full max-w-lg bg-white rounded-3xl border-2 border-foam-border shadow-2xl overflow-hidden p-6 sm:p-8 text-center text-xs text-foam-navy my-6">
+      <div className="relative w-full max-w-lg bg-white rounded-2xl border border-foam-border shadow-2xl overflow-hidden p-6 sm:p-8 text-center text-xs text-foam-navy my-6">
         
         <img
           src="/logo-foam.png"
@@ -118,7 +118,7 @@ export default function ConfirmationModal() {
         <div className="mt-6 pt-3 border-t border-foam-border">
           <button
             onClick={handleClose}
-            className="w-full py-3.5 px-6 rounded-2xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-xs flex items-center justify-center gap-2 transition-colors shadow-shopify hover:shadow-red-glow"
+            className="w-full py-3.5 px-6 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-xs flex items-center justify-center gap-2 transition-colors shadow-shopify hover:shadow-red-glow"
           >
             <span>Retourner sur la boutique FOAM</span>
             <ArrowRight className="w-4 h-4" />
