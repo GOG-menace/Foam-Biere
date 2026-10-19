@@ -28,29 +28,26 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-foam-border shadow-xs">
       
-      {/* Main Navbar (Top announcement bar removed as requested) */}
+      {/* Main Navbar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Logo FOAM (navigates to Home) */}
-          <Link to="/" className="flex items-center gap-3.5 group">
-            <img
-              src="/logo-foam.png"
-              alt="Logo FOAM Bière & Manger Port de Nice"
-              className="w-12 h-12 sm:w-14 sm:h-14 object-contain rounded-full shadow-xs group-hover:scale-105 transition-transform border border-foam-border"
-            />
-            <div className="flex flex-col">
+          {/* Left: Logo FOAM */}
+          <div className="flex-1 flex items-center justify-start">
+            <Link to="/" className="flex items-center gap-3 group">
+              <img
+                src="/logo-foam.png"
+                alt="Logo FOAM"
+                className="w-11 h-11 sm:w-12 sm:h-12 object-contain rounded-full shadow-xs group-hover:scale-105 transition-transform border border-foam-border"
+              />
               <span className="font-serif text-2xl font-black tracking-tight text-foam-navy group-hover:text-foam-red transition-colors">
-                FOAM NICE
+                FOAM
               </span>
-              <span className="text-[10px] font-bold text-foam-muted uppercase tracking-widest">
-                Microbrasserie du Port • Quai des 2 Emmanuels
-              </span>
-            </div>
-          </Link>
+            </Link>
+          </div>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-8">
+          {/* Center: Desktop Nav Links (Centrés) */}
+          <nav className="hidden lg:flex items-center justify-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -66,8 +63,8 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Action buttons (Clean Cart Trigger) */}
-          <div className="flex items-center gap-3">
+          {/* Right: Cart & Mobile Menu */}
+          <div className="flex-1 flex items-center justify-end gap-3">
             
             {/* Cart Trigger Button in FOAM Red #904545 */}
             <button
@@ -100,15 +97,15 @@ export default function Header() {
 
         </div>
 
-        {/* Mobile Dropdown Menu */}
+        {/* Mobile Dropdown Menu (Centré) */}
         {mobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-foam-border bg-white animate-fade-in space-y-1.5">
+          <div className="lg:hidden py-4 border-t border-foam-border bg-white animate-fade-in space-y-1.5 text-center">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`block px-4 py-2.5 rounded-xl text-sm font-bold transition-colors ${
+                className={`block px-4 py-2.5 rounded-lg text-sm font-bold transition-colors ${
                   isActive(link.path)
                     ? 'bg-foam-redSoft text-foam-red'
                     : 'text-foam-navy hover:bg-foam-subtle'
@@ -119,7 +116,6 @@ export default function Header() {
             ))}
           </div>
         )}
-
       </div>
 
       {/* Clean Navigation Scroll Bar for Mobile & Compact Preview Panes */}
