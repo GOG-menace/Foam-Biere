@@ -26,7 +26,7 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-foam-bg/95 backdrop-blur-sm border-b-2 border-foam-black">
+    <header className="sticky top-0 z-40 bg-[#FAF6F0]/95 backdrop-blur-md border-b border-foam-border">
       
       {/* Main Navbar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,26 +38,26 @@ export default function Header() {
               <img
                 src="/logo-foam.png"
                 alt="Logo FOAM"
-                className="w-11 h-11 sm:w-12 sm:h-12 object-contain border-2 border-foam-black shadow-[2px_2px_0px_#0A0A0A] group-hover:scale-105 group-hover:-rotate-3 transition-transform bg-white"
+                className="w-11 h-11 sm:w-12 sm:h-12 object-contain rounded-full border border-foam-borderWarm shadow-xs group-hover:scale-105 transition-transform bg-white"
               />
-              <span className="font-impact text-2xl sm:text-3xl tracking-tight text-foam-black group-hover:text-foam-orange transition-colors">
+              <span className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-foam-navy group-hover:text-foam-terracotta transition-colors">
                 FOAM
               </span>
             </Link>
           </div>
 
-          {/* Center: Desktop Nav Links (Strictly Centered & Brutalist Typography) */}
-          <nav className="hidden lg:flex items-center justify-center gap-4">
+          {/* Center: Desktop Nav Links (Centrés, Typographie Riviera) */}
+          <nav className="hidden lg:flex items-center justify-center gap-8">
             {navLinks.map((link) => {
               const active = isActive(link.path);
               return (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`font-mono text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 transition-all border-2 ${
+                  className={`text-sm font-semibold tracking-wide transition-all py-1 ${
                     active
-                      ? 'bg-foam-black text-foam-neon border-foam-black shadow-[2px_2px_0px_#0A0A0A]'
-                      : 'border-transparent text-foam-black hover:border-foam-black hover:bg-foam-neon hover:text-foam-black hover:shadow-[2px_2px_0px_#0A0A0A]'
+                      ? 'text-foam-terracotta font-bold border-b-2 border-foam-terracotta'
+                      : 'text-foam-navy hover:text-foam-terracotta'
                   }`}
                 >
                   {link.label}
@@ -69,16 +69,16 @@ export default function Header() {
           {/* Right: Cart & Mobile Menu */}
           <div className="flex-1 flex items-center justify-end gap-3">
             
-            {/* Cart Trigger Button: Neo-Brutalist in Punchy Hop Orange */}
+            {/* Cart Button: Warm Terracotta Ocre */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative flex items-center gap-2.5 py-2.5 px-4 bg-foam-orange hover:bg-foam-orangeHover text-foam-black hover:text-white font-mono text-xs font-black uppercase tracking-wider border-2 border-foam-black shadow-brutal hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all active:translate-x-1 active:translate-y-1"
+              className="relative flex items-center gap-2.5 py-2.5 px-4 rounded-xl bg-foam-terracotta hover:bg-foam-terracottaDark text-white font-bold text-xs sm:text-sm shadow-sm hover:shadow-terracotta-glow transition-all transform active:scale-95"
               aria-label="Voir le panier"
             >
               <div className="relative">
-                <ShoppingBag className="w-4 h-4 stroke-[2.5]" />
+                <ShoppingBag className="w-4 h-4 stroke-[2.2]" />
                 {totalCount > 0 && (
-                  <span className="absolute -top-2.5 -right-3 w-5 h-5 bg-foam-neon text-foam-black font-mono text-[11px] font-black border-2 border-foam-black flex items-center justify-center shadow-[1px_1px_0px_#0A0A0A]">
+                  <span className="absolute -top-2.5 -right-3 w-5 h-5 bg-foam-navy text-white text-[11px] font-black rounded-full flex items-center justify-center border-2 border-white shadow-xs">
                     {totalCount}
                   </span>
                 )}
@@ -91,18 +91,18 @@ export default function Header() {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-foam-black border-2 border-foam-black bg-white hover:bg-foam-neon transition-colors shadow-[2px_2px_0px_#0A0A0A]"
+              className="lg:hidden p-2 text-foam-navy rounded-xl hover:bg-foam-subtle transition-colors"
               aria-label="Menu"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5 stroke-[2.5]" /> : <Menu className="w-5 h-5 stroke-[2.5]" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 stroke-[2]" /> : <Menu className="w-5 h-5 stroke-[2]" />}
             </button>
           </div>
 
         </div>
 
-        {/* Mobile Dropdown Menu (Centered Brutalist Grid) */}
+        {/* Mobile Dropdown Menu (Centré) */}
         {mobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t-2 border-foam-black bg-foam-bg animate-fade-in space-y-2 text-center">
+          <div className="lg:hidden py-4 border-t border-foam-border bg-[#FAF6F0] animate-fade-in space-y-1 text-center">
             {navLinks.map((link) => {
               const active = isActive(link.path);
               return (
@@ -110,10 +110,10 @@ export default function Header() {
                   key={link.path}
                   to={link.path}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider border-2 mx-2 transition-all ${
+                  className={`block px-4 py-2.5 rounded-xl text-sm font-bold transition-all mx-2 ${
                     active
-                      ? 'bg-foam-black text-foam-neon border-foam-black shadow-[2px_2px_0px_#0A0A0A]'
-                      : 'bg-white text-foam-black border-foam-black hover:bg-foam-neon'
+                      ? 'bg-foam-terracottaSoft text-foam-terracotta'
+                      : 'text-foam-navy hover:bg-foam-subtle'
                   }`}
                 >
                   {link.label}
@@ -124,18 +124,18 @@ export default function Header() {
         )}
       </div>
 
-      {/* Clean Navigation Bar for Mobile */}
-      <div className="lg:hidden flex items-center gap-2 overflow-x-auto py-2 px-3 bg-white border-t-2 border-foam-black scrollbar-none">
+      {/* Clean Navigation Scroll Bar for Mobile */}
+      <div className="lg:hidden flex items-center gap-2 overflow-x-auto py-2.5 px-4 bg-[#FAF6F0] border-t border-foam-border scrollbar-none text-xs">
         {navLinks.map((link) => {
           const active = isActive(link.path);
           return (
             <Link
               key={link.path}
               to={link.path}
-              className={`shrink-0 px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-wider border-2 transition-all ${
+              className={`shrink-0 px-3 py-1 font-semibold rounded-full transition-all text-xs border ${
                 active
-                  ? 'bg-foam-black text-foam-neon border-foam-black'
-                  : 'bg-foam-bg text-foam-black border-foam-black hover:bg-foam-neon'
+                  ? 'bg-foam-terracotta text-white border-foam-terracotta'
+                  : 'bg-white text-foam-navy border-foam-border hover:border-foam-terracotta'
               }`}
             >
               {link.label}

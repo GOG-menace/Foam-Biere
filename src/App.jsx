@@ -53,7 +53,7 @@ export default function App() {
     <CartProvider>
       <Router>
         <NavigationHelper />
-        <div className="min-h-screen flex flex-col bg-foam-bg text-foam-black selection:bg-foam-orange selection:text-white font-sans">
+        <div className="min-h-screen flex flex-col bg-foam-bg text-foam-text selection:bg-foam-terracotta selection:text-white font-sans">
           
           {/* Legal Age Gate (Loi Évin) */}
           <LegalAgeModal />

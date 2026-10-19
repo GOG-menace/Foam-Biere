@@ -8,50 +8,50 @@ export default {
     extend: {
       colors: {
         foam: {
-          bg: '#F2F2EF',        // Béton ultra clair / Papier atelier contemporain
-          concrete: '#E7E7E3',  // Gris béton technique
-          card: '#FFFFFF',      // Blanc pur pour fort contraste
-          black: '#0A0A0A',     // Noir encre franc brut
-          navy: '#0A0A0A',      // Alias vers noir encre
-          navyLight: '#1A1A1A',
-          orange: '#FF4800',    // Orange houblonné vif (Mikkeller / Brewdog punchy)
-          orangeHover: '#E03E00',
-          orangeSoft: '#FFF0EA',
-          neon: '#E2FF00',      // Jaune néon / acide pour stickers & tampons
-          neonHover: '#CEEB00',
-          cobalt: '#0047FF',    // Bleu cobalt électrique
-          red: '#FF4800',       // Accent vif électrique remplaçant le bordeaux
-          redDark: '#E03E00',
-          redSoft: '#FFF0EA',
-          redBorder: '#0A0A0A',
-          amber: '#FF4800',     // Alias rétro-compatible
-          amberDark: '#E03E00',
-          amberSoft: '#FFF0EA',
-          muted: '#5A5A57',     // Texte secondaire
-          subtle: '#ECECE8',
-          border: '#0A0A0A',    // Bordures noires franches (1 ou 2 px)
-          borderLight: '#D4D4CE',
+          bg: '#FAF6F0',           // Crème lin texturé / papier kraft chaud Riviera
+          card: '#FFFFFF',         // Blanc pur pour lisibilité
+          subtle: '#F3ECE2',       // Sable doux & calcaire niçois
+          ivory: '#FDFCFA',
+          terracotta: '#C3532B',   // Ocre terracotta chaud des façades niçoises
+          terracottaDark: '#A63F1B',
+          terracottaSoft: '#FBF1EC',
+          navy: '#112338',         // Bleu marine profond (Quai des Deux Emmanuels)
+          navyLight: '#1E3A59',
+          navySoft: '#EEF3F8',
+          pine: '#1D3C2F',         // Vert pin sombre (Place du Pin)
+          pineSoft: '#EDF4F0',
+          gold: '#DCA037',         // Doré soleil couchant & laiton 1948
+          goldSoft: '#FDF7EC',
+          text: '#162534',         // Texte marine profond haute lisibilité
+          muted: '#627181',        // Texte secondaire doux
+          border: '#E6DED2',       // Ligne douce lin & craie
+          borderWarm: '#DBCFBE',
+          // Aliases rétro-compatibles
+          red: '#C3532B',
+          redDark: '#A63F1B',
+          redSoft: '#FBF1EC',
+          orange: '#C3532B',
+          amber: '#DCA037',
+          black: '#112338',
         }
       },
       fontFamily: {
-        display: ['Syne', 'Space Grotesk', 'sans-serif'],
-        serif: ['Syne', 'Space Grotesk', 'sans-serif'],
-        impact: ['Archivo Black', 'Syne', 'sans-serif'],
-        sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Space Mono', 'Consolas', 'monospace'],
+        serif: ['Fraunces', 'Georgia', 'serif'],           // Serif expressive et chaleureuse
+        display: ['Fraunces', 'Georgia', 'serif'],
+        sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'], // Sans-serif lisible et neutre
+        mono: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        'brutal-sm': '2px 2px 0px #0A0A0A',
-        'brutal': '3px 3px 0px #0A0A0A',
-        'brutal-lg': '5px 5px 0px #0A0A0A',
-        'brutal-orange': '3px 3px 0px #FF4800',
-        'brutal-neon': '3px 3px 0px #0A0A0A',
-        'shopify': '3px 3px 0px #0A0A0A',
-        'shopify-hover': '5px 5px 0px #0A0A0A',
-        'craft-flat': '3px 3px 0px #0A0A0A',
-        'craft-flat-red': '3px 3px 0px #FF4800',
-        'red-glow': '4px 4px 0px #0A0A0A',
-        'amber-glow': '4px 4px 0px #0A0A0A'
+        'riviera': '0 4px 20px -2px rgba(17, 35, 56, 0.06), 0 2px 6px -1px rgba(17, 35, 56, 0.04)',
+        'riviera-hover': '0 14px 34px -4px rgba(17, 35, 56, 0.12), 0 4px 12px rgba(17, 35, 56, 0.05)',
+        'riviera-card': '0 2px 10px rgba(17, 35, 56, 0.04)',
+        'terracotta-glow': '0 8px 24px -4px rgba(195, 83, 43, 0.35)',
+        'gold-glow': '0 8px 24px -4px rgba(220, 160, 55, 0.35)',
+        'shopify': '0 4px 20px -2px rgba(17, 35, 56, 0.06)',
+        'shopify-hover': '0 14px 34px -4px rgba(17, 35, 56, 0.12)',
+        'brutal': '0 4px 20px -2px rgba(17, 35, 56, 0.06)',
+        'brutal-sm': '0 2px 8px rgba(17, 35, 56, 0.04)',
+        'brutal-lg': '0 14px 34px -4px rgba(17, 35, 56, 0.12)',
       }
     },
   },

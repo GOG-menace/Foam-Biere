@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Trash2, Plus, Minus, ShoppingBag, MapPin, Truck, ArrowRight, ShieldCheck } from 'lucide-react';
+import { X, Trash2, Plus, Minus, ShoppingBag, MapPin, Truck, ArrowRight, ShieldCheck, Sun } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { BARS_DATA, SHIPPING_RATES } from '../data/products';
 
@@ -32,34 +32,34 @@ export default function SlideOverCart() {
     <div className="fixed inset-0 z-50 overflow-hidden animate-fade-in">
       <div 
         onClick={() => setIsCartOpen(false)}
-        className="absolute inset-0 bg-foam-black/80 backdrop-blur-xs transition-opacity" 
+        className="absolute inset-0 bg-foam-navy/60 backdrop-blur-xs transition-opacity" 
       />
 
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-md bg-foam-bg flex flex-col justify-between border-l-4 border-foam-black shadow-2xl">
+        <div className="w-screen max-w-md bg-[#FAF6F0] flex flex-col justify-between border-l border-foam-border shadow-2xl">
           
-          {/* Header Brutaliste */}
-          <div className="p-5 border-b-2 border-foam-black bg-white flex items-center justify-between">
+          {/* Header Riviera */}
+          <div className="p-5 border-b border-foam-border bg-white flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-foam-orange border-2 border-foam-black text-black flex items-center justify-center font-black shadow-[2px_2px_0px_#0A0A0A]">
-                <ShoppingBag className="w-5 h-5 stroke-[2.5]" />
+              <div className="w-10 h-10 rounded-xl bg-foam-terracottaSoft text-foam-terracotta flex items-center justify-center font-bold">
+                <ShoppingBag className="w-5 h-5 stroke-[2.2]" />
               </div>
               <div>
-                <h2 className="font-impact text-xl uppercase tracking-tight text-foam-black">
-                  VOTRE PANIER FOAM
+                <h2 className="font-serif text-xl font-bold text-foam-navy">
+                  Votre Panier FOAM
                 </h2>
-                <p className="font-mono text-xs font-bold text-foam-muted">
-                  [ {items.length} ARTICLE{items.length > 1 ? 'S' : ''} ]
+                <p className="text-xs text-foam-muted">
+                  {items.length} article{items.length > 1 ? 's' : ''} sélectionné{items.length > 1 ? 's' : ''}
                 </p>
               </div>
             </div>
 
             <button
               onClick={() => setIsCartOpen(false)}
-              className="p-2 text-foam-black border-2 border-foam-black bg-white hover:bg-foam-neon transition-colors shadow-[2px_2px_0px_#0A0A0A]"
+              className="p-2 text-foam-navy hover:text-foam-terracotta rounded-xl hover:bg-foam-subtle transition-colors"
               aria-label="Fermer"
             >
-              <X className="w-5 h-5 stroke-[2.5]" />
+              <X className="w-5 h-5 stroke-[2]" />
             </button>
           </div>
 
@@ -67,18 +67,18 @@ export default function SlideOverCart() {
           <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
             
             {/* Delivery Method Picker right in Cart */}
-            <div className="p-4 bg-white border-2 border-foam-black shadow-brutal-sm space-y-2.5 font-mono text-xs">
-              <span className="font-black uppercase tracking-wider text-foam-black block border-b border-foam-borderLight pb-1">
-                [ MODE DE RÉCEPTION ]
+            <div className="p-4 bg-white rounded-2xl border border-foam-border space-y-2.5 shadow-xs text-xs">
+              <span className="font-serif font-bold uppercase tracking-wider text-foam-navy block text-xs">
+                Mode de réception :
               </span>
 
               <div className="space-y-2">
                 {/* Click & Collect Option */}
                 <label 
-                  className={`flex items-start gap-2.5 p-3 border-2 cursor-pointer transition-all ${
+                  className={`flex items-start gap-2.5 p-3 rounded-xl border-2 cursor-pointer transition-all ${
                     deliveryMethod === 'clickAndCollect'
-                      ? 'border-foam-black bg-foam-neon shadow-brutal-sm'
-                      : 'border-foam-black bg-white hover:bg-foam-subtle'
+                      ? 'border-foam-pine bg-foam-pineSoft'
+                      : 'border-foam-border bg-white hover:border-foam-navy/30'
                   }`}
                 >
                   <input
@@ -86,19 +86,19 @@ export default function SlideOverCart() {
                     name="cartDeliveryOption"
                     checked={deliveryMethod === 'clickAndCollect'}
                     onChange={() => setDeliveryMethod('clickAndCollect')}
-                    className="mt-0.5 accent-black"
+                    className="mt-0.5 text-foam-pine accent-[#1D3C2F]"
                   />
                   <div className="flex-1">
-                    <div className="flex justify-between items-center font-black text-foam-black uppercase">
+                    <div className="flex justify-between items-center font-bold text-foam-pine">
                       <span className="flex items-center gap-1">
-                        <MapPin className="w-3.5 h-3.5 stroke-[2.5]" />
-                        CLICK & COLLECT AU BAR
+                        <MapPin className="w-3.5 h-3.5 stroke-[2]" />
+                        Retrait Click & Collect au bar
                       </span>
-                      <span className="sticker sticker-black text-[9px] py-0">
+                      <span className="bg-white px-2 py-0.5 rounded-full text-[10px] border border-foam-pine/30 font-bold">
                         GRATUIT (0 €)
                       </span>
                     </div>
-                    <p className="text-[11px] text-foam-black font-medium mt-0.5">
+                    <p className="text-[11px] text-foam-text mt-0.5">
                       Prêt sous 2h aux bars Port de Nice ou Place du Pin
                     </p>
                   </div>
@@ -106,10 +106,10 @@ export default function SlideOverCart() {
 
                 {/* Shipping Option */}
                 <label 
-                  className={`flex items-start gap-2.5 p-3 border-2 cursor-pointer transition-all ${
+                  className={`flex items-start gap-2.5 p-3 rounded-xl border-2 cursor-pointer transition-all ${
                     deliveryMethod === 'shipping'
-                      ? 'border-foam-black bg-foam-neon shadow-brutal-sm'
-                      : 'border-foam-black bg-white hover:bg-foam-subtle'
+                      ? 'border-foam-navy bg-foam-navySoft'
+                      : 'border-foam-border bg-white hover:border-foam-navy/30'
                   }`}
                 >
                   <input
@@ -117,19 +117,19 @@ export default function SlideOverCart() {
                     name="cartDeliveryOption"
                     checked={deliveryMethod === 'shipping'}
                     onChange={() => setDeliveryMethod('shipping')}
-                    className="mt-0.5 accent-black"
+                    className="mt-0.5 text-foam-navy accent-[#112338]"
                   />
                   <div className="flex-1">
-                    <div className="flex justify-between items-center font-black text-foam-black uppercase">
+                    <div className="flex justify-between items-center font-bold text-foam-navy">
                       <span className="flex items-center gap-1">
-                        <Truck className="w-3.5 h-3.5 stroke-[2.5]" />
-                        EXPÉDITION SÉCURISÉE
+                        <Truck className="w-3.5 h-3.5 stroke-[2]" />
+                        Expédition sécurisée anti-casse
                       </span>
-                      <span className="font-bold text-foam-black">
+                      <span className="font-semibold text-foam-muted">
                         {shippingCost.toFixed(2)} €
                       </span>
                     </div>
-                    <p className="text-[11px] text-foam-black font-medium mt-0.5">
+                    <p className="text-[11px] text-foam-text mt-0.5">
                       Colis anti-casse sous 48-72h ouvrées
                     </p>
                   </div>
@@ -138,14 +138,14 @@ export default function SlideOverCart() {
 
               {/* Bar selection dropdown if Click & Collect */}
               {deliveryMethod === 'clickAndCollect' && (
-                <div className="pt-2 border-t border-foam-borderLight">
-                  <label className="block text-[11px] font-black uppercase text-foam-black mb-1">
-                    BAR DE RETRAIT :
+                <div className="pt-2 border-t border-foam-border">
+                  <label className="block text-[11px] font-bold text-foam-navy mb-1">
+                    Choisir votre bar de retrait :
                   </label>
                   <select
                     value={selectedBar}
                     onChange={(e) => setSelectedBar(e.target.value)}
-                    className="w-full p-2 bg-foam-bg border-2 border-foam-black font-mono font-bold text-xs"
+                    className="w-full p-2 bg-[#FAF6F0] rounded-lg border border-foam-border font-medium text-xs text-foam-navy"
                   >
                     <option value="port">FOAM Port de Nice (3 Quai des Deux Emmanuels)</option>
                     <option value="pin">FOAM Place du Pin (Place du Pin)</option>
@@ -156,15 +156,15 @@ export default function SlideOverCart() {
 
             {/* Cart Items List */}
             {items.length === 0 ? (
-              <div className="p-8 text-center bg-white border-2 border-foam-black shadow-brutal space-y-3 font-mono">
+              <div className="p-8 text-center bg-white rounded-2xl border border-foam-border shadow-xs space-y-3">
                 <ShoppingBag className="w-12 h-12 text-foam-muted mx-auto stroke-[1.5]" />
-                <p className="font-impact text-lg uppercase text-foam-black">VOTRE PANIER EST VIDE</p>
+                <p className="font-serif text-lg font-bold text-foam-navy">Votre panier est vide</p>
                 <p className="text-xs text-foam-muted">Découvrez nos coffrets dégustation prêts à offrir.</p>
                 <button
                   onClick={() => setIsCartOpen(false)}
-                  className="btn-brutal-orange py-2 px-4 text-xs font-mono font-black"
+                  className="btn-riviera-terracotta text-xs py-2 px-4"
                 >
-                  VOIR LES COFFRETS
+                  Découvrir les coffrets
                 </button>
               </div>
             ) : (
@@ -172,52 +172,52 @@ export default function SlideOverCart() {
                 {items.map((item) => (
                   <div 
                     key={item.id}
-                    className="p-3.5 bg-white border-2 border-foam-black shadow-brutal-sm flex gap-3 items-center"
+                    className="p-3.5 bg-white rounded-2xl border border-foam-border shadow-xs flex gap-3 items-center"
                   >
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-16 h-16 object-cover border-2 border-foam-black shrink-0"
+                      className="w-16 h-16 object-cover rounded-xl border border-foam-border shrink-0"
                     />
 
-                    <div className="flex-1 min-w-0 font-mono">
+                    <div className="flex-1 min-w-0">
                       <div className="flex justify-between items-start">
-                        <h4 className="font-impact uppercase text-sm truncate text-foam-black">
+                        <h4 className="font-serif font-bold text-sm truncate text-foam-navy">
                           {item.name}
                         </h4>
                         <button
                           onClick={() => removeItem(item.id)}
-                          className="text-foam-muted hover:text-foam-orange p-1"
+                          className="text-foam-muted hover:text-foam-terracotta p-1 transition-colors"
                           aria-label="Supprimer"
                         >
-                          <Trash2 className="w-4 h-4 stroke-[2]" />
+                          <Trash2 className="w-4 h-4 stroke-[1.8]" />
                         </button>
                       </div>
 
-                      <p className="text-[11px] text-foam-orange font-bold uppercase">
+                      <p className="text-[11px] text-foam-terracotta font-semibold">
                         {item.formatName || 'Format Sélectionné'}
                       </p>
 
                       <div className="flex justify-between items-center mt-2">
-                        <div className="flex items-center border-2 border-foam-black bg-foam-bg">
+                        <div className="flex items-center border border-foam-border rounded-lg bg-[#FAF6F0]">
                           <button
                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                            className="w-6 h-6 flex items-center justify-center font-black hover:bg-white text-xs"
+                            className="w-6 h-6 flex items-center justify-center font-bold hover:bg-white text-xs rounded-l-lg transition-colors"
                           >
                             -
                           </button>
-                          <span className="w-7 text-center font-black text-xs">
+                          <span className="w-7 text-center font-bold text-xs">
                             {item.quantity}
                           </span>
                           <button
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            className="w-6 h-6 flex items-center justify-center font-black hover:bg-white text-xs"
+                            className="w-6 h-6 flex items-center justify-center font-bold hover:bg-white text-xs rounded-r-lg transition-colors"
                           >
                             +
                           </button>
                         </div>
 
-                        <span className="font-impact text-sm text-foam-black">
+                        <span className="font-serif font-bold text-sm text-foam-navy">
                           {(item.price * item.quantity).toFixed(2)} €
                         </span>
                       </div>
@@ -231,25 +231,25 @@ export default function SlideOverCart() {
 
           {/* Footer Checkout Action */}
           {items.length > 0 && (
-            <div className="p-4 sm:p-5 bg-white border-t-2 border-foam-black space-y-3 font-mono">
+            <div className="p-4 sm:p-5 bg-white border-t border-foam-border space-y-3">
               <div className="space-y-1.5 text-xs">
-                <div className="flex justify-between text-foam-black">
-                  <span>SOUS-TOTAL TTC :</span>
-                  <span className="font-bold">{subtotal.toFixed(2)} €</span>
+                <div className="flex justify-between text-foam-navy">
+                  <span>Sous-total TTC :</span>
+                  <span className="font-semibold">{subtotal.toFixed(2)} €</span>
                 </div>
-                <div className="flex justify-between text-foam-black">
-                  <span>LIVRAISON :</span>
-                  <span className="font-bold">
+                <div className="flex justify-between text-foam-navy">
+                  <span>Livraison :</span>
+                  <span className="font-semibold">
                     {deliveryMethod === 'clickAndCollect' ? (
-                      <span className="text-foam-black font-black bg-foam-neon px-1 border border-foam-black">0,00 € (OFFERT)</span>
+                      <span className="text-foam-pine font-bold bg-foam-pineSoft px-2 py-0.5 rounded-full">0,00 € (Offert)</span>
                     ) : (
                       `${shippingCost.toFixed(2)} €`
                     )}
                   </span>
                 </div>
-                <div className="flex justify-between text-sm sm:text-base font-impact uppercase text-foam-black pt-2 border-t-2 border-foam-black">
-                  <span>TOTAL À RÉGLER :</span>
-                  <span className="text-foam-orange text-lg sm:text-xl">
+                <div className="flex justify-between text-base font-serif font-bold text-foam-navy pt-2 border-t border-foam-border">
+                  <span>Total à régler :</span>
+                  <span className="text-foam-terracotta text-xl">
                     {grandTotal.toFixed(2)} €
                   </span>
                 </div>
@@ -258,14 +258,14 @@ export default function SlideOverCart() {
               <button
                 type="button"
                 onClick={handleGoToCheckout}
-                className="btn-brutal-orange w-full py-4 text-xs sm:text-sm font-mono font-black uppercase tracking-wider"
+                className="btn-riviera-terracotta w-full py-4 text-sm font-bold shadow-md hover:shadow-terracotta-glow"
               >
-                <span>VALIDER LA COMMANDE • {grandTotal.toFixed(2)} €</span>
-                <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                <span>Valider la commande • {grandTotal.toFixed(2)} €</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
 
-              <p className="text-[10px] text-center text-foam-muted font-bold uppercase">
-                PAIEMENT SÉCURISÉ SSL • RETRAIT SOUS 2H AU BAR OU EXPÉDITION ANTI-CASSE
+              <p className="text-[10px] text-center text-foam-muted font-normal">
+                Paiement sécurisé SSL • Retrait sous 2h au bar ou expédition anti-casse
               </p>
             </div>
           )}

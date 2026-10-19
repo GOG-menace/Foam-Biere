@@ -5,161 +5,186 @@
 @layer base {
   html {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    color: #0A0A0A;
-    background-color: #F2F2EF;
+    color: #162534;
+    background-color: #FAF6F0;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, h4, .font-display, .font-serif {
-    font-family: 'Syne', 'Space Grotesk', -apple-system, sans-serif;
-    letter-spacing: -0.035em;
-    font-weight: 800;
-    color: #0A0A0A;
+  h1, h2, h3, h4, .font-serif, .font-display {
+    font-family: 'Fraunces', Georgia, serif;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+    color: #112338;
+  }
+
+  /* Optical size tuning for Fraunces */
+  h1 {
+    font-variation-settings: "opsz" 72, "wght" 700;
+  }
+  h2 {
+    font-variation-settings: "opsz" 48, "wght" 700;
+  }
+  h3 {
+    font-variation-settings: "opsz" 32, "wght" 600;
   }
 }
 
-/* Craft Brutalist Utility Classes */
+/* Riviera Rétro & Héritage Portuaire Components */
+.card-riviera {
+  background-color: #FFFFFF;
+  border-radius: 1.25rem; /* rounded-2xl */
+  border: 1px solid #E6DED2;
+  box-shadow: 0 4px 20px -2px rgba(17, 35, 56, 0.06), 0 2px 6px -1px rgba(17, 35, 56, 0.04);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-riviera:hover {
+  transform: translateY(-3px);
+  border-color: #DBCFBE;
+  box-shadow: 0 14px 34px -4px rgba(17, 35, 56, 0.12), 0 4px 12px rgba(17, 35, 56, 0.05);
+}
+
+.btn-riviera-terracotta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #C3532B;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 0.875rem;
+  padding: 0.875rem 1.75rem;
+  box-shadow: 0 4px 14px rgba(195, 83, 43, 0.3);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-riviera-terracotta:hover {
+  background-color: #A63F1B;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -2px rgba(195, 83, 43, 0.45);
+}
+
+.btn-riviera-terracotta:active {
+  transform: translateY(0);
+}
+
+.btn-riviera-navy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #112338;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 0.875rem;
+  padding: 0.875rem 1.75rem;
+  box-shadow: 0 4px 14px rgba(17, 35, 56, 0.2);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-riviera-navy:hover {
+  background-color: #1E3A59;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(17, 35, 56, 0.3);
+}
+
+.btn-riviera-navy:active {
+  transform: translateY(0);
+}
+
+.btn-riviera-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #FFFFFF;
+  color: #112338;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 0.875rem;
+  border: 1px solid #E6DED2;
+  padding: 0.875rem 1.75rem;
+  box-shadow: 0 2px 8px rgba(17, 35, 56, 0.04);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-riviera-outline:hover {
+  background-color: #F3ECE2;
+  border-color: #C3532B;
+  color: #C3532B;
+  transform: translateY(-2px);
+}
+
+/* Backward compatibility helpers so any other components stay coherent */
+.btn-brutal-orange {
+  @apply btn-riviera-terracotta;
+}
+.btn-brutal-black {
+  @apply btn-riviera-navy;
+}
+.btn-brutal-white {
+  @apply btn-riviera-outline;
+}
+.card-brutal {
+  @apply card-riviera;
+}
 .sticker {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  font-weight: 800;
+  font-size: 0.72rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 0.2rem 0.55rem;
-  border: 2px solid #0A0A0A;
-  box-shadow: 2px 2px 0px #0A0A0A;
+  letter-spacing: 0.05em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px; /* Pill rétro */
+  border: 1px solid #E6DED2;
 }
-
-.sticker-orange {
-  background-color: #FF4800;
-  color: #FFFFFF;
-}
-
 .sticker-neon {
-  background-color: #E2FF00;
-  color: #0A0A0A;
+  background-color: #FDF7EC;
+  color: #A0681B;
+  border-color: #EED7B3;
 }
-
+.sticker-orange {
+  background-color: #FBF1EC;
+  color: #C3532B;
+  border-color: #F0D0C4;
+}
 .sticker-black {
-  background-color: #0A0A0A;
+  background-color: #112338;
   color: #FFFFFF;
+  border-color: #112338;
 }
-
 .sticker-white {
   background-color: #FFFFFF;
-  color: #0A0A0A;
+  color: #112338;
+  border-color: #E6DED2;
 }
 
-.card-brutal {
-  background-color: #FFFFFF;
-  border: 2px solid #0A0A0A;
-  box-shadow: 4px 4px 0px #0A0A0A;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.card-brutal:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px #0A0A0A;
-}
-
-.btn-brutal-orange {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background-color: #FF4800;
-  color: #0A0A0A;
-  font-weight: 900;
-  font-family: 'Syne', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  border: 2px solid #0A0A0A;
-  box-shadow: 3px 3px 0px #0A0A0A;
-  transition: all 0.15s ease;
-}
-
-.btn-brutal-orange:hover {
-  background-color: #E03E00;
-  color: #FFFFFF;
-  transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0px #0A0A0A;
-}
-
-.btn-brutal-orange:active {
-  transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0px #0A0A0A;
-}
-
-.btn-brutal-black {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background-color: #0A0A0A;
-  color: #FFFFFF;
-  font-weight: 900;
-  font-family: 'Syne', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  border: 2px solid #0A0A0A;
-  box-shadow: 3px 3px 0px #0A0A0A;
-  transition: all 0.15s ease;
-}
-
-.btn-brutal-black:hover {
-  background-color: #E2FF00;
-  color: #0A0A0A;
-  transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0px #0A0A0A;
-}
-
-.btn-brutal-white {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background-color: #FFFFFF;
-  color: #0A0A0A;
-  font-weight: 800;
-  font-family: 'Syne', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  border: 2px solid #0A0A0A;
-  box-shadow: 3px 3px 0px #0A0A0A;
-  transition: all 0.15s ease;
-}
-
-.btn-brutal-white:hover {
-  background-color: #F2F2EF;
-  transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0px #0A0A0A;
-}
-
-/* Custom scrollbar Brutaliste */
+/* Custom scrollbar Riviera */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F2F2EF;
-  border-left: 2px solid #0A0A0A;
+  background: #FAF6F0;
 }
 ::-webkit-scrollbar-thumb {
-  background: #FF4800;
-  border: 2px solid #0A0A0A;
+  background: #C3532B;
+  border-radius: 9999px;
+  border: 2px solid #FAF6F0;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #E2FF00;
+  background: #A63F1B;
 }
 
 /* Selection */
 ::selection {
-  background-color: #FF4800;
+  background-color: #C3532B;
   color: #FFFFFF;
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
   Package, Check, Star, MapPin, Truck, ChevronRight, 
-  Utensils, Award, Info, Beer, ShieldCheck, ArrowRight, Flame 
+  Utensils, Award, Info, Beer, ShieldCheck, ArrowRight, Sun, Waves 
 } from 'lucide-react';
 import { BEERS } from '../data/products';
 
@@ -13,77 +13,77 @@ export default function BeerProductPage({ defaultSlug }) {
   const otherBeers = Object.values(BEERS).filter(b => b.slug !== beer.slug);
 
   return (
-    <div className="py-8 sm:py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 font-mono">
+    <div className="py-8 sm:py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
       
       {/* Breadcrumbs */}
-      <nav className="flex items-center gap-2 text-xs font-bold uppercase text-foam-muted">
-        <Link to="/" className="hover:text-foam-orange transition-colors">ACCUEIL</Link>
-        <span>/</span>
-        <Link to="/bieres" className="hover:text-foam-orange transition-colors">NOS BIÈRES</Link>
-        <span>/</span>
-        <span className="text-foam-black bg-foam-neon px-1.5 py-0.5 border border-foam-black">{beer.name}</span>
+      <nav className="flex items-center gap-2 text-xs font-semibold text-foam-muted">
+        <Link to="/" className="hover:text-foam-terracotta transition-colors">Accueil</Link>
+        <ChevronRight className="w-3.5 h-3.5 text-foam-borderWarm" />
+        <Link to="/bieres" className="hover:text-foam-terracotta transition-colors">Nos Bières</Link>
+        <ChevronRight className="w-3.5 h-3.5 text-foam-borderWarm" />
+        <span className="text-foam-navy font-bold truncate">{beer.name}</span>
       </nav>
 
-      {/* Main 2-Column Product Layout Brutaliste */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      {/* Main 2-Column Product Layout Riviera */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
         
-        {/* Left Column: Image au Flash Direct & Technical Specs */}
+        {/* Left Column: Image en lumière naturelle & Sensory Gauges */}
         <div className="lg:col-span-6 space-y-6">
-          <div className="overflow-hidden bg-white border-2 border-foam-black shadow-brutal aspect-[4/3] relative group">
+          <div className="rounded-2xl overflow-hidden bg-white border border-foam-borderWarm/80 shadow-riviera aspect-[4/3] relative">
             <img
               src={beer.image}
               alt={beer.fullName}
-              className="w-full h-full object-cover group-hover:scale-102 transition-transform"
+              className="w-full h-full object-cover"
             />
-            <div className="absolute top-3 left-3 sticker sticker-black text-[10px]">
+            <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-foam-navy text-white text-[11px] font-semibold tracking-wide">
               {beer.style}
             </div>
-            <div className="absolute bottom-3 right-3 sticker sticker-neon text-[10px]">
+            <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-white/95 text-foam-navy text-[11px] font-bold shadow-xs border border-foam-borderWarm">
               {beer.abv} • IBU {beer.ibu}
             </div>
           </div>
 
-          {/* Sensory Gauges Brutalistes */}
-          <div className="p-6 bg-white border-2 border-foam-black shadow-brutal space-y-4">
-            <span className="sticker sticker-orange text-[10px]">
-              [ PROFIL SENSORIEL DU BRASSEUR ]
-            </span>
+          {/* Sensory Gauges Riviera */}
+          <div className="p-6 bg-white rounded-2xl border border-foam-border shadow-xs space-y-4">
+            <h3 className="font-serif text-lg font-bold text-foam-navy">
+              Profil Sensoriel du Brasseur
+            </h3>
 
             <div className="space-y-3 text-xs">
               <div>
-                <div className="flex justify-between font-black uppercase text-foam-black mb-1">
-                  <span>AMERTUME ({beer.ibu} IBU)</span>
-                  <span className="text-foam-orange">{beer.sensoryProfile.amertume} / 5</span>
+                <div className="flex justify-between font-semibold text-foam-navy mb-1">
+                  <span>Amertume ({beer.ibu} IBU)</span>
+                  <span className="text-foam-terracotta font-bold">{beer.sensoryProfile.amertume} / 5</span>
                 </div>
-                <div className="w-full bg-foam-bg h-3 border-2 border-foam-black overflow-hidden">
+                <div className="w-full bg-[#FAF6F0] h-2.5 rounded-full overflow-hidden border border-foam-border">
                   <div
-                    className="bg-foam-orange h-full transition-all"
+                    className="bg-foam-terracotta h-full rounded-full transition-all"
                     style={{ width: `${(beer.sensoryProfile.amertume / 5) * 100}%` }}
                   />
                 </div>
               </div>
 
               <div>
-                <div className="flex justify-between font-black uppercase text-foam-black mb-1">
-                  <span>FRAÎCHEUR EN BOUCHE</span>
-                  <span className="text-black">{beer.sensoryProfile.fraicheur} / 5</span>
+                <div className="flex justify-between font-semibold text-foam-navy mb-1">
+                  <span>Fraîcheur en bouche</span>
+                  <span className="text-foam-pine font-bold">{beer.sensoryProfile.fraicheur} / 5</span>
                 </div>
-                <div className="w-full bg-foam-bg h-3 border-2 border-foam-black overflow-hidden">
+                <div className="w-full bg-[#FAF6F0] h-2.5 rounded-full overflow-hidden border border-foam-border">
                   <div
-                    className="bg-foam-neon h-full transition-all"
+                    className="bg-foam-pine h-full rounded-full transition-all"
                     style={{ width: `${(beer.sensoryProfile.fraicheur / 5) * 100}%` }}
                   />
                 </div>
               </div>
 
               <div>
-                <div className="flex justify-between font-black uppercase text-foam-black mb-1">
-                  <span>ARÔMES FRUITÉS</span>
-                  <span className="text-foam-orange">{beer.sensoryProfile.fruite} / 5</span>
+                <div className="flex justify-between font-semibold text-foam-navy mb-1">
+                  <span>Arômes fruités</span>
+                  <span className="text-foam-gold font-bold">{beer.sensoryProfile.fruite} / 5</span>
                 </div>
-                <div className="w-full bg-foam-bg h-3 border-2 border-foam-black overflow-hidden">
+                <div className="w-full bg-[#FAF6F0] h-2.5 rounded-full overflow-hidden border border-foam-border">
                   <div
-                    className="bg-foam-orange h-full transition-all"
+                    className="bg-foam-gold h-full rounded-full transition-all"
                     style={{ width: `${(beer.sensoryProfile.fruite / 5) * 100}%` }}
                   />
                 </div>
@@ -95,79 +95,80 @@ export default function BeerProductPage({ defaultSlug }) {
         {/* Right Column: Recipe Deep-dive & Drive to Coffret Découverte */}
         <div className="lg:col-span-6 space-y-6">
           <div className="space-y-2">
-            <div className="sticker sticker-neon text-[10px]">
-              ★ RECETTE PERMANENTE // PORT DE NICE
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-foam-borderWarm text-foam-navy text-xs font-semibold">
+              <Sun className="w-3.5 h-3.5 text-foam-gold" />
+              <span>Recette permanente • Port de Nice</span>
             </div>
-            <h1 className="font-impact text-3xl sm:text-5xl uppercase tracking-tight text-foam-black leading-none">
+            <h1 className="font-serif text-3xl sm:text-4xl font-bold text-foam-navy leading-tight">
               {beer.fullName}
             </h1>
-            <p className="font-mono text-xs font-black uppercase tracking-wider text-foam-orange">
-              // {beer.style} • {beer.abv} • IBU {beer.ibu}
+            <p className="text-xs font-bold uppercase tracking-wider text-foam-terracotta">
+              {beer.style} • {beer.abv} • IBU {beer.ibu}
             </p>
-            <p className="text-xs sm:text-sm text-foam-black font-medium leading-relaxed font-sans pt-1">
+            <p className="text-xs sm:text-sm text-foam-text leading-relaxed font-sans pt-1">
               {beer.description}
             </p>
           </div>
 
           {/* Technical Specs Table */}
-          <div className="card-brutal p-4 space-y-2 text-xs">
-            <div className="flex justify-between border-b border-foam-borderLight pb-1.5">
-              <span className="text-foam-muted font-bold">STYLE :</span>
-              <span className="font-black text-foam-black uppercase">{beer.style}</span>
+          <div className="card-riviera p-5 space-y-2.5 text-xs">
+            <div className="flex justify-between border-b border-foam-border pb-2">
+              <span className="text-foam-muted font-medium">Style :</span>
+              <span className="font-bold text-foam-navy">{beer.style}</span>
             </div>
-            <div className="flex justify-between border-b border-foam-borderLight pb-1.5">
-              <span className="text-foam-muted font-bold">DEGRÉ D'ALCOOL :</span>
-              <span className="font-black text-foam-black">{beer.abv}</span>
+            <div className="flex justify-between border-b border-foam-border pb-2">
+              <span className="text-foam-muted font-medium">Degré d'alcool :</span>
+              <span className="font-bold text-foam-navy">{beer.abv}</span>
             </div>
-            <div className="flex justify-between border-b border-foam-borderLight pb-1.5">
-              <span className="text-foam-muted font-bold">INDICE AMERTUME (IBU) :</span>
-              <span className="font-black text-foam-black">{beer.ibu} / 100</span>
+            <div className="flex justify-between border-b border-foam-border pb-2">
+              <span className="text-foam-muted font-medium">Indice d'amertume (IBU) :</span>
+              <span className="font-bold text-foam-navy">{beer.ibu} / 100</span>
             </div>
-            <div className="flex justify-between border-b border-foam-borderLight pb-1.5">
-              <span className="text-foam-muted font-bold">HOUBLONS :</span>
-              <span className="font-black text-foam-black">{beer.hops}</span>
+            <div className="flex justify-between border-b border-foam-border pb-2">
+              <span className="text-foam-muted font-medium">Houblons utilisés :</span>
+              <span className="font-bold text-foam-navy">{beer.hops}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-foam-muted font-bold">ACCORDS RECOMMANDÉS :</span>
-              <span className="font-black text-foam-black text-right">{beer.pairing}</span>
+              <span className="text-foam-muted font-medium">Accords mets & bière :</span>
+              <span className="font-bold text-foam-navy text-right">{beer.pairing}</span>
             </div>
           </div>
 
           {/* Callout: Exclusively sold in Coffret Découverte */}
-          <div className="card-brutal p-6 bg-foam-neon space-y-4">
+          <div className="card-riviera p-6 bg-foam-terracottaSoft/80 border-foam-terracotta/30 space-y-4">
             <div className="space-y-1">
-              <span className="sticker sticker-black text-[10px]">
-                DISPONIBILITÉ BOUTIQUE
+              <span className="text-[11px] font-serif font-bold uppercase tracking-wider text-foam-terracotta block">
+                Disponibilité Boutique
               </span>
-              <h3 className="font-impact text-xl sm:text-2xl uppercase tracking-tight text-foam-black">
-                CETTE BIÈRE EST DISPONIBLE DANS NOTRE COFFRET DÉCOUVERTE
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-foam-navy">
+                Cette bière est disponible dans notre Coffret Découverte
               </h3>
-              <p className="text-xs text-foam-black font-sans leading-relaxed">
+              <p className="text-xs text-foam-text font-sans leading-relaxed">
                 Nos bières ne sont pas vendues à l'unité sur la boutique en ligne. Retrouvez cette recette dans le <strong>Coffret Découverte</strong> (format Pack de 3 ou Pack de 6 bouteilles) avec retrait gratuit au bar ou expédition anti-casse.
               </p>
             </div>
 
             <Link
               to="/coffrets/decouverte"
-              className="btn-brutal-orange w-full py-4 text-xs sm:text-sm font-mono font-black uppercase text-center"
+              className="btn-riviera-terracotta w-full text-xs sm:text-sm text-center flex items-center justify-center gap-2"
             >
-              <Package className="w-4 h-4 stroke-[2.5]" />
-              <span>COMMANDER DANS LE COFFRET DÉCOUVERTE</span>
-              <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+              <Package className="w-4 h-4 stroke-[2]" />
+              <span>Commander dans le Coffret Découverte</span>
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
           {/* Other beers navigation */}
           <div className="pt-2">
-            <span className="font-mono text-[11px] font-black uppercase text-foam-muted block mb-2">
-              DÉCOUVRIR LES AUTRES BIÈRES DE LA GAMME :
+            <span className="text-xs font-serif font-bold text-foam-navy block mb-2">
+              Découvrir les autres bières de notre brasserie :
             </span>
             <div className="flex flex-wrap gap-2">
               {otherBeers.map((ob) => (
                 <Link
                   key={ob.slug}
                   to={`/bieres/${ob.slug}`}
-                  className="btn-brutal-white py-2 px-3 text-xs font-mono font-black"
+                  className="btn-riviera-outline py-2 px-3.5 text-xs"
                 >
                   {ob.name} ({ob.style})
                 </Link>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CheckCircle2, MapPin, Truck, ArrowRight, Copy, Check, Gift, Sparkles } from 'lucide-react';
+import { CheckCircle2, MapPin, Truck, ArrowRight, Copy, Check, Gift, Sparkles, Sun } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
 export default function ConfirmationModal() {
@@ -23,79 +23,75 @@ export default function ConfirmationModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foam-black/80 backdrop-blur-xs overflow-y-auto animate-fade-in font-mono">
-      <div className="relative w-full max-w-lg bg-white border-2 border-foam-black shadow-brutal overflow-hidden p-6 sm:p-8 text-center text-xs text-foam-black my-6">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foam-navy/70 backdrop-blur-xs overflow-y-auto animate-fade-in">
+      <div className="relative w-full max-w-lg bg-white rounded-3xl border border-foam-borderWarm shadow-2xl overflow-hidden p-6 sm:p-8 text-center text-xs text-foam-navy my-6">
         
         <img
           src="/logo-foam.png"
           alt="FOAM Nice"
-          className="w-16 h-16 object-contain bg-white border-2 border-foam-black mx-auto mb-3 shadow-brutal-sm"
+          className="w-16 h-16 object-contain rounded-full mx-auto mb-3 shadow-xs border border-foam-border bg-white"
         />
 
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <span className="sticker sticker-neon text-[10px]">
-            ✓ COMMANDE CONFIRMÉE
-          </span>
-          <span className="sticker sticker-black text-[10px]">
-            PORT DE NICE
-          </span>
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-foam-pineSoft text-foam-pine font-semibold text-xs border border-foam-pine/20 mb-2">
+          <CheckCircle2 className="w-4 h-4 text-foam-pine" />
+          <span>Commande Confirmée avec succès</span>
         </div>
 
-        <h2 className="font-impact text-2xl sm:text-3xl uppercase tracking-tight text-foam-black mt-1">
-          MERCI POUR VOTRE COMMANDE, {orderConfirmed.customer.firstName.toUpperCase()} !
+        <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy mt-1">
+          Merci pour votre confiance, {orderConfirmed.customer.firstName} !
         </h2>
 
-        <p className="text-xs text-foam-muted font-bold mt-1">
-          N° DE COMMANDE : <strong className="font-mono text-foam-black bg-foam-neon px-1.5 py-0.5 border border-foam-black">{orderConfirmed.orderNumber}</strong>
+        <p className="text-xs text-foam-muted mt-1">
+          N° de commande : <strong className="font-mono text-foam-navy font-bold">{orderConfirmed.orderNumber}</strong>
         </p>
 
-        {/* Viral Reward Box */}
-        <div className="mt-4 p-4 bg-foam-bg border-2 border-foam-black text-left flex items-start gap-3">
-          <div className="w-10 h-10 bg-foam-orange border-2 border-foam-black text-black flex items-center justify-center shrink-0 font-black shadow-[2px_2px_0px_#0A0A0A]">
-            <Gift className="w-5 h-5 stroke-[2.5]" />
+        {/* Gift Box */}
+        <div className="mt-4 p-4 rounded-2xl bg-foam-terracottaSoft border border-foam-terracotta/20 text-left flex items-start gap-3">
+          <div className="w-10 h-10 rounded-xl bg-white text-foam-terracotta flex items-center justify-center shrink-0 border border-foam-terracotta/20 shadow-xs">
+            <Gift className="w-5 h-5 stroke-[2]" />
           </div>
           <div>
-            <strong className="text-xs font-black uppercase text-foam-black block">
-              🎁 CADEAU DÉBLOQUÉ : SOUS-BOCK COLLECTOR FOAM !
+            <strong className="text-xs font-serif font-bold text-foam-navy block">
+              🎁 Cadeau Débloqué : Sous-bock Collector FOAM !
             </strong>
-            <p className="text-[11px] text-foam-black mt-0.5 leading-snug font-sans">
+            <p className="text-[11px] text-foam-text mt-0.5 leading-snug font-sans">
               Un sous-bock collector en édition limitée a été glissé dans votre commande pour sublimer votre dégustation.
             </p>
           </div>
         </div>
 
         {/* Order Details Card */}
-        <div className="mt-4 p-4 bg-foam-bg border-2 border-foam-black text-left space-y-2.5 font-mono">
-          <div className="flex justify-between border-b-2 border-foam-black pb-1.5 font-impact uppercase text-sm">
-            <span>ARTICLES RÉSERVÉS</span>
-            <span className="text-foam-orange">{orderConfirmed.grandTotal.toFixed(2)} €</span>
+        <div className="mt-4 p-4 bg-[#FAF6F0] rounded-2xl border border-foam-border text-left space-y-2.5">
+          <div className="flex justify-between border-b border-foam-border pb-1.5 font-serif font-bold text-sm text-foam-navy">
+            <span>Articles réservés</span>
+            <span className="text-foam-terracotta">{orderConfirmed.grandTotal.toFixed(2)} €</span>
           </div>
 
-          <ul className="space-y-1 text-foam-black text-xs font-bold">
+          <ul className="space-y-1 text-foam-text text-xs">
             {orderConfirmed.items.map((it) => (
-              <li key={it.key} className="flex justify-between">
+              <li key={it.key} className="flex justify-between font-medium">
                 <span>{it.quantity}x {it.name} ({it.formatLabel})</span>
-                <span className="font-black">{(it.price * it.quantity).toFixed(2)} €</span>
+                <span className="font-semibold text-foam-navy">{(it.price * it.quantity).toFixed(2)} €</span>
               </li>
             ))}
           </ul>
 
-          <div className="pt-2 border-t border-foam-borderLight">
+          <div className="pt-2 border-t border-foam-border">
             {orderConfirmed.deliveryMethod === 'clickAndCollect' ? (
-              <div className="flex items-start gap-2 text-foam-black">
-                <MapPin className="w-4 h-4 shrink-0 mt-0.5 text-foam-orange stroke-[2.5]" />
+              <div className="flex items-start gap-2 text-foam-pine">
+                <MapPin className="w-4 h-4 shrink-0 mt-0.5 stroke-[2]" />
                 <div>
-                  <strong className="block text-xs uppercase font-black">RETRAIT CLICK & COLLECT 0 € :</strong>
-                  <span className="font-bold">{orderConfirmed.bar?.name}</span>
+                  <strong className="block text-xs font-serif font-bold">Retrait Click & Collect 0 € :</strong>
+                  <span className="font-semibold text-foam-navy">{orderConfirmed.bar?.name}</span>
                   <span className="text-[11px] text-foam-muted block">{orderConfirmed.bar?.address}</span>
                 </div>
               </div>
             ) : (
-              <div className="flex items-start gap-2 text-foam-black">
-                <Truck className="w-4 h-4 shrink-0 mt-0.5 text-foam-orange stroke-[2.5]" />
+              <div className="flex items-start gap-2 text-foam-navy">
+                <Truck className="w-4 h-4 shrink-0 mt-0.5 text-foam-terracotta stroke-[2]" />
                 <div>
-                  <strong className="block text-xs uppercase font-black">EXPÉDITION SÉCURISÉE ANTI-CASSE :</strong>
-                  <span className="text-foam-black font-bold">
+                  <strong className="block text-xs font-serif font-bold">Expédition sécurisée anti-casse :</strong>
+                  <span className="text-foam-text">
                     {orderConfirmed.customer.address}, {orderConfirmed.customer.zip} {orderConfirmed.customer.city}
                   </span>
                 </div>
@@ -105,21 +101,21 @@ export default function ConfirmationModal() {
         </div>
 
         {/* Action Buttons */}
-        <div className="mt-5 space-y-2 font-mono">
+        <div className="mt-5 space-y-2">
           <button
             onClick={handleCopyStory}
-            className="btn-brutal-white w-full py-3 text-xs font-black uppercase"
+            className="btn-riviera-outline w-full py-3 text-xs"
           >
-            {copied ? <Check className="w-4 h-4 text-emerald-600 stroke-[3]" /> : <Copy className="w-4 h-4 stroke-[2.5]" />}
-            <span>{copied ? 'MESSAGE COPIÉ DANS LE PRESSE-PAPIER !' : 'PARTAGER SUR INSTAGRAM / X'}</span>
+            {copied ? <Check className="w-4 h-4 text-emerald-600 stroke-[2.5]" /> : <Copy className="w-4 h-4 stroke-[2]" />}
+            <span>{copied ? 'Message copié dans le presse-papier !' : 'Partager sur Instagram / Réseaux'}</span>
           </button>
 
           <button
             onClick={handleClose}
-            className="btn-brutal-orange w-full py-3.5 text-xs font-black uppercase"
+            className="btn-riviera-terracotta w-full py-3.5 text-xs font-bold"
           >
-            <span>RETOURNER À L'ACCUEIL</span>
-            <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+            <span>Retourner à l'accueil</span>
+            <ArrowRight className="w-4 h-4" />
           </button>
         </div>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, MapPin, Beer, Package, Star, ShieldCheck, Sparkles, Check, Flame } from 'lucide-react';
+import { ArrowRight, MapPin, Beer, Package, Star, ShieldCheck, Sun, Waves, Sparkles, Heart } from 'lucide-react';
 import { SETS } from '../data/products';
 
 export default function HomePage() {
@@ -10,123 +10,120 @@ export default function HomePage() {
   return (
     <div className="space-y-16 sm:space-y-24 pb-20">
       
-      {/* 1. HERO SECTION CRAFT BRUTALISTE & CONTEMPORAIN */}
-      <section className="relative overflow-hidden bg-foam-bg pt-8 pb-14 sm:pt-16 sm:pb-20 border-b-2 border-foam-black">
+      {/* 1. HERO SECTION RIVIERA RÉTRO & HÉRITAGE PORTUAIRE */}
+      <section className="relative overflow-hidden bg-[#FAF6F0] pt-10 pb-16 sm:pt-16 sm:pb-24 border-b border-foam-border">
         
-        {/* Visible industrial background grid */}
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[radial-gradient(#0A0A0A_1.5px,transparent_1.5px)] [background-size:20px_20px]" />
+        {/* Subtle warm Mediterranean sunlight overlay */}
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-foam-goldSoft rounded-full blur-3xl pointer-events-none opacity-60" />
+        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-foam-terracottaSoft rounded-full blur-3xl pointer-events-none opacity-50" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
             
-            {/* Left Column: Massive Grotesk & Brutalist Badges */}
-            <div className="lg:col-span-7 text-left space-y-6">
+            {/* Left Column: Expressive Warm Retro Serif & Sun-drenched Narrative */}
+            <div className="lg:col-span-7 text-center lg:text-left space-y-6">
               
-              {/* Sticker Badges Row */}
-              <div className="flex flex-wrap items-center gap-2.5">
-                <span className="sticker sticker-neon -rotate-1">
-                  [ DIRECT CUVES // PORT DE NICE ]
-                </span>
-                <span className="sticker sticker-orange rotate-1">
-                  [ 100% INDÉPENDANT ]
-                </span>
-                <span className="sticker sticker-white hidden sm:inline-flex">
-                  [ QUAI DES 2 EMMANUELS ]
-                </span>
+              {/* Mediterranean Pill Badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-foam-borderWarm text-foam-navy text-xs font-semibold shadow-xs">
+                <Sun className="w-3.5 h-3.5 text-foam-gold shrink-0 animate-spin-slow" />
+                <span>Quai des Deux Emmanuels • Port de Nice</span>
+                <span className="text-foam-borderWarm">•</span>
+                <span className="text-foam-terracotta font-bold">Depuis 1948</span>
               </div>
 
-              {/* Massive Main Title */}
-              <h1 className="font-impact text-4xl sm:text-6xl lg:text-7xl uppercase leading-[0.95] tracking-tight text-foam-black">
-                LA BIÈRE ARTISANALE DU PORT DE NICE, <span className="text-foam-orange underline decoration-foam-black decoration-4">EN DIRECT</span> DE NOS CUVES.
+              {/* Expressive Warm Retro Serif Title */}
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-foam-navy leading-[1.12] tracking-tight">
+                La bière artisanale de la Riviera, <span className="italic font-normal text-foam-terracotta">brassée sous le soleil</span> du Port de Nice.
               </h1>
 
-              <p className="text-base sm:text-lg text-foam-black font-medium leading-relaxed max-w-2xl">
-                Brassée au Quai des Deux Emmanuels par Stéphane, notre maître brasseur. 
-                Commandez nos coffrets dégustation prêts à offrir avec <strong className="font-black bg-foam-neon px-1.5 py-0.5 border border-foam-black text-black">Retrait Click & Collect GRATUIT</strong> dans nos 2 bars à Nice ou expédition sécurisée.
+              <p className="text-base sm:text-lg text-foam-text font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                Face aux pointus colorés du Quai des Deux Emmanuels, Stéphane brasse nos recettes méditerranéennes avec amour et authenticité. 
+                Commandez nos coffrets dégustation prêts à offrir avec <strong className="text-foam-navy font-semibold">Retrait Click & Collect GRATUIT</strong> dans nos 2 bars à Nice ou livraison soignée chez vous.
               </p>
 
-              {/* Technical Spec Row (Monospace) */}
-              <div className="p-3.5 bg-white border-2 border-foam-black shadow-brutal-sm flex flex-wrap items-center gap-3 text-xs font-mono font-bold">
-                <span className="text-foam-orange flex items-center gap-1">
-                  <Flame className="w-4 h-4 fill-foam-orange" />
-                  MICROBRASSERIE POINTUE
-                </span>
-                <span className="text-foam-borderLight">|</span>
-                <span>NON PASTEURISÉE</span>
-                <span className="text-foam-borderLight">|</span>
-                <span>HOUBLONS SELECTIONNÉS</span>
-                <span className="text-foam-borderLight">|</span>
-                <span className="text-foam-black bg-foam-neon px-1.5 py-0.2 border border-foam-black">NOTE : 4.9/5 (1 200+ AVIS)</span>
+              {/* Mediterranean Trust Rating */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 text-xs text-foam-muted font-medium pt-1">
+                <div className="flex items-center gap-1 text-foam-gold">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-foam-gold text-foam-gold" />
+                  ))}
+                </div>
+                <span className="font-bold text-foam-navy text-sm">4.9 / 5</span>
+                <span className="text-foam-borderWarm">•</span>
+                <span className="text-foam-text">Plus de 1 200 dégustations par semaine au Port de Nice</span>
               </div>
 
-              {/* Dual Brutalist CTAs */}
-              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+              {/* Warm Dual CTAs */}
+              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                 <Link
                   to="/coffrets"
-                  className="btn-brutal-orange py-4 px-8 text-sm sm:text-base"
+                  className="btn-riviera-terracotta w-full sm:w-auto text-sm sm:text-base"
                 >
-                  <Package className="w-5 h-5 stroke-[2.5]" />
-                  <span>DÉCOUVRIR NOS COFFRETS</span>
-                  <ArrowRight className="w-5 h-5 stroke-[2.5]" />
+                  <Package className="w-5 h-5 stroke-[2]" />
+                  <span>Découvrir nos Coffrets Cadeaux</span>
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
 
                 <Link
                   to="/bieres"
-                  className="btn-brutal-white py-4 px-7 text-sm sm:text-base"
+                  className="btn-riviera-outline w-full sm:w-auto text-sm sm:text-base"
                 >
-                  <Beer className="w-5 h-5 text-foam-orange stroke-[2.5]" />
-                  <span>DÉCOUVRIR NOS BIÈRES</span>
+                  <Beer className="w-5 h-5 text-foam-terracotta stroke-[2]" />
+                  <span>Découvrir nos Bières Artisanales</span>
                 </Link>
               </div>
 
               {/* Click & Collect note */}
-              <div className="pt-1 flex items-center gap-2 text-xs font-mono font-bold text-foam-black">
-                <MapPin className="w-4 h-4 text-foam-orange shrink-0 stroke-[2.5]" />
-                <span>RETRAIT 0 € EN 2H AUX BARS FOAM PORT & PLACE DU PIN</span>
-              </div>
+              <p className="text-xs text-foam-pine font-medium flex items-center justify-center lg:justify-start gap-1.5">
+                <MapPin className="w-4 h-4 shrink-0 text-foam-terracotta" />
+                <span>Retrait gratuit 0 € disponible sous 2h aux bars FOAM Port et Place du Pin</span>
+              </p>
 
             </div>
 
-            {/* Right Column: Packshot au flash direct / lumière dure */}
+            {/* Right Column: Lifestyle Photo en lumière dorée */}
             <div className="lg:col-span-5">
               <div className="relative mx-auto max-w-md lg:max-w-none">
                 
-                {/* Floating Stamp Badge */}
-                <div className="absolute -top-4 -right-2 z-10 sticker sticker-neon rotate-6 shadow-brutal text-xs sm:text-sm">
-                  ★ PACK PRÊT À OFFRIR ★
+                {/* Floating Retro Stamp */}
+                <div className="absolute -top-3 -right-3 z-10 bg-foam-gold text-white font-serif italic text-xs font-semibold py-1.5 px-3.5 rounded-full shadow-md flex items-center gap-1 border-2 border-white">
+                  <Sun className="w-3.5 h-3.5 fill-white" />
+                  <span>Cuvée Méditerranée</span>
                 </div>
 
-                <div className="card-brutal p-4 space-y-4">
-                  <div className="aspect-[4/3] overflow-hidden border-2 border-foam-black relative bg-foam-subtle group">
+                <div className="card-riviera p-4 sm:p-5 space-y-4">
+                  <div className="aspect-[4/3] rounded-xl overflow-hidden bg-foam-subtle relative border border-foam-borderWarm/60 group">
                     <img
                       src={decouverte.image}
                       alt="Coffret Découverte bières artisanales FOAM Nice"
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
                     />
-                    <div className="absolute top-2 left-2 sticker sticker-black text-[10px]">
-                      COFFRET SIGNATURE
-                    </div>
-                    <div className="absolute bottom-0 inset-x-0 bg-foam-black/90 p-3 text-white border-t-2 border-foam-black">
-                      <p className="font-mono text-[10px] text-foam-neon font-bold uppercase tracking-wider">
-                        FRENCH IPA • LOU FOAM D'AQUI • WHEAT ALE
-                      </p>
-                      <h3 className="font-impact text-lg uppercase tracking-tight text-white">
-                        COFFRET DÉCOUVERTE 3 OU 6 BIÈRES
-                      </h3>
+                    <div className="absolute inset-0 bg-gradient-to-t from-foam-navy/85 via-foam-navy/20 to-transparent flex items-end p-5">
+                      <div className="text-white">
+                        <span className="text-xs font-serif italic text-foam-gold block mb-1">
+                          Prêt à offrir dans son étui kraft
+                        </span>
+                        <h3 className="font-serif text-xl sm:text-2xl font-bold">
+                          Coffret Découverte de la Riviera
+                        </h3>
+                        <p className="text-xs text-slate-200 mt-0.5">
+                          French IPA • Lou FOAM d’Aqui • Wheat Ale
+                        </p>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between pt-1">
-                    <div className="font-mono text-xs">
-                      <span className="text-foam-muted block text-[10px] uppercase font-bold">FORMATS DISPONIBLES</span>
-                      <strong className="text-foam-black font-black uppercase text-xs sm:text-sm">PACK 3 OU 6 BOUTEILLES</strong>
+                  <div className="flex items-center justify-between pt-1 text-xs">
+                    <div>
+                      <span className="text-foam-muted block text-[11px]">Format au choix</span>
+                      <strong className="text-foam-navy font-serif font-bold text-sm">Pack de 3 ou 6 bouteilles</strong>
                     </div>
 
                     <Link
                       to="/coffrets/decouverte"
-                      className="btn-brutal-orange py-2.5 px-4 text-xs font-mono font-black"
+                      className="py-2.5 px-4 rounded-xl bg-foam-navy hover:bg-foam-terracotta text-white font-bold text-xs flex items-center gap-1.5 transition-colors shadow-xs"
                     >
-                      <span>VOIR L'OFFRE</span>
+                      <span>Voir l'offre</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
@@ -138,40 +135,37 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* 3 Pillars Trust Bar (Visible Grid) */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t-2 border-foam-black">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* 3 Pillars Trust Bar (Ensoleillée & Portuaire) */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 pt-10 border-t border-foam-borderWarm/60">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             
-            <div className="p-4 bg-white border-2 border-foam-black shadow-brutal-sm flex items-center gap-3.5">
-              <div className="w-12 h-12 bg-foam-orange border-2 border-foam-black text-black flex items-center justify-center shrink-0 font-black shadow-[2px_2px_0px_#0A0A0A]">
-                <Beer className="w-6 h-6 stroke-[2.5]" />
+            <div className="p-4 rounded-2xl bg-white border border-foam-border flex items-center gap-3.5 shadow-riviera-card">
+              <div className="w-12 h-12 rounded-xl bg-foam-terracottaSoft text-foam-terracotta flex items-center justify-center shrink-0 border border-foam-terracotta/20">
+                <Beer className="w-6 h-6 stroke-[2]" />
               </div>
               <div>
-                <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-foam-orange block">ATELIER DU PORT</span>
-                <h4 className="font-impact uppercase text-sm text-foam-black">BRASSÉE AU PORT DE NICE</h4>
-                <p className="text-xs text-foam-muted font-medium">Par Stéphane au Quai des 2 Emmanuels</p>
+                <h4 className="font-serif font-bold text-sm text-foam-navy">Brassée au Port de Nice</h4>
+                <p className="text-xs text-foam-muted font-normal">Au 3 Quai des Deux Emmanuels par Stéphane</p>
               </div>
             </div>
 
-            <div className="p-4 bg-white border-2 border-foam-black shadow-brutal-sm flex items-center gap-3.5">
-              <div className="w-12 h-12 bg-foam-neon border-2 border-foam-black text-black flex items-center justify-center shrink-0 font-black shadow-[2px_2px_0px_#0A0A0A]">
-                <MapPin className="w-6 h-6 stroke-[2.5]" />
+            <div className="p-4 rounded-2xl bg-white border border-foam-border flex items-center gap-3.5 shadow-riviera-card">
+              <div className="w-12 h-12 rounded-xl bg-foam-pineSoft text-foam-pine flex items-center justify-center shrink-0 border border-foam-pine/20">
+                <MapPin className="w-6 h-6 stroke-[2]" />
               </div>
               <div>
-                <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-foam-black block">RETRAIT EXPRESS</span>
-                <h4 className="font-impact uppercase text-sm text-foam-black">CLICK & COLLECT 0 €</h4>
-                <p className="text-xs text-foam-muted font-medium">Prêt sous 2h au Port et Place du Pin</p>
+                <h4 className="font-serif font-bold text-sm text-foam-navy">Click & Collect Gratuit 0 €</h4>
+                <p className="text-xs text-foam-muted font-normal">Retrait immédiat sous 2h au Port et Place du Pin</p>
               </div>
             </div>
 
-            <div className="p-4 bg-white border-2 border-foam-black shadow-brutal-sm flex items-center gap-3.5">
-              <div className="w-12 h-12 bg-white border-2 border-foam-black text-black flex items-center justify-center shrink-0 font-black shadow-[2px_2px_0px_#0A0A0A]">
-                <Package className="w-6 h-6 stroke-[2.5]" />
+            <div className="p-4 rounded-2xl bg-white border border-foam-border flex items-center gap-3.5 shadow-riviera-card">
+              <div className="w-12 h-12 rounded-xl bg-foam-goldSoft text-foam-gold flex items-center justify-center shrink-0 border border-foam-gold/20">
+                <Package className="w-6 h-6 stroke-[2]" />
               </div>
               <div>
-                <span className="font-mono text-[10px] uppercase tracking-wider font-bold text-foam-black block">EXPÉDITION SÉCURISÉE</span>
-                <h4 className="font-impact uppercase text-sm text-foam-black">ÉTUIS KRAFT ULTRA-RIGIDES</h4>
-                <p className="text-xs text-foam-muted font-medium">Protection anti-casse recyclable</p>
+                <h4 className="font-serif font-bold text-sm text-foam-navy">Étuis Carton Kraft Rigides</h4>
+                <p className="text-xs text-foam-muted font-normal">Protection anti-casse écoresponsable</p>
               </div>
             </div>
 
@@ -181,25 +175,23 @@ export default function HomePage() {
       </section>
 
 
-      {/* 2. SECTION COFFRETS CADEAUX (GRILLE BRUTALISTE AVEC STICKERS) */}
+      {/* 2. SECTION COFFRETS CADEAUX (GRILLE CHALEUREUSE RIVIERA) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
-        <div className="text-left md:text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2">
-            <span className="sticker sticker-neon">
-              [ ÉDITIONS CADEAUX & DÉGUSTATION ]
-            </span>
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-foam-subtle border border-foam-borderWarm text-foam-navy text-xs font-semibold">
+            <Waves className="w-3.5 h-3.5 text-foam-navy" />
+            <span>Sélection Cadeaux & Dégustation</span>
           </div>
-          <h2 className="font-impact text-3xl sm:text-5xl uppercase tracking-tight text-foam-black">
-            NOS DEUX COFFRETS DE LA RIVIERA
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-foam-navy">
+            Nos Deux Coffrets de la Riviera
           </h2>
-          <p className="text-sm sm:text-base text-foam-black font-medium leading-relaxed">
-            Chaque coffret est disponible en format <strong>Pack de 3</strong> ou <strong>Pack de 6 bouteilles</strong>, prêt à offrir dans son étui carton kraft ultra-rigide.
+          <p className="text-sm sm:text-base text-foam-text leading-relaxed">
+            Chaque coffret est disponible en format <strong>Pack de 3</strong> ou <strong>Pack de 6 bouteilles</strong>, prêt à offrir dans son étui carton kraft rigide écoresponsable.
           </p>
           <div className="pt-1">
-            <Link to="/coffrets" className="font-mono text-xs font-bold text-foam-orange hover:text-foam-black uppercase tracking-wider inline-flex items-center gap-1.5 underline decoration-2">
-              <span>CONSULTER LA PAGE RÉCAPITULATIVE DES OFFRES</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+            <Link to="/coffrets" className="text-xs font-bold text-foam-terracotta hover:underline inline-flex items-center gap-1 font-serif italic text-sm">
+              <span>Consulter la page récapitulative de toutes nos offres →</span>
             </Link>
           </div>
         </div>
@@ -207,143 +199,137 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           
           {/* CARTE 1 : COFFRET DÉCOUVERTE */}
-          <div className="card-brutal p-6 sm:p-8 flex flex-col justify-between group">
+          <div className="card-riviera p-6 sm:p-8 flex flex-col justify-between group">
             <div className="space-y-5">
               
-              <div className="aspect-[16/10] overflow-hidden border-2 border-foam-black relative bg-foam-subtle">
+              <div className="aspect-[16/10] rounded-xl overflow-hidden bg-foam-subtle border border-foam-borderWarm/60 relative">
                 <img
                   src={decouverte.image}
                   alt={decouverte.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
                 />
-                <span className="absolute top-3 left-3 sticker sticker-neon text-[10px]">
-                  ★ INCONTOURNABLE
-                </span>
-                <span className="absolute bottom-3 right-3 sticker sticker-black text-[10px]">
-                  PORT DE NICE
+                <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-foam-navy text-white text-[11px] font-semibold tracking-wide shadow-xs">
+                  ★ Incontournable
                 </span>
               </div>
 
               <div>
-                <p className="font-mono text-[11px] font-bold text-foam-orange uppercase tracking-wider">
+                <p className="text-xs font-bold uppercase tracking-wider text-foam-terracotta">
                   {decouverte.subtitle}
                 </p>
-                <h3 className="font-impact text-2xl sm:text-3xl uppercase tracking-tight text-foam-black group-hover:text-foam-orange transition-colors mt-1">
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy group-hover:text-foam-terracotta transition-colors mt-1">
                   {decouverte.name}
                 </h3>
-                <p className="text-xs sm:text-sm text-foam-black mt-2 leading-relaxed">
+                <p className="text-xs sm:text-sm text-foam-text mt-2 leading-relaxed">
                   {decouverte.description}
                 </p>
               </div>
 
               {/* Inclus dans le coffret */}
-              <div className="p-4 bg-foam-bg border-2 border-foam-black space-y-2 text-xs font-mono">
-                <strong className="text-foam-black block uppercase tracking-wider text-[11px] font-black border-b border-foam-borderLight pb-1">
-                  [ COMPOSITION DU COFFRET ]
+              <div className="p-4 rounded-xl bg-foam-subtle/70 border border-foam-borderWarm/60 space-y-2 text-xs">
+                <strong className="text-foam-navy font-serif font-bold block text-sm">
+                  Les 3 bières permanentes de Stéphane incluses :
                 </strong>
-                <ul className="space-y-2 text-foam-black pt-1">
+                <ul className="space-y-1.5 text-foam-text">
                   <li className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 bg-foam-orange border border-foam-black shrink-0" />
-                    <span><strong>FOAM FRENCH IPA</strong> (Houblonnée & fruitée)</span>
+                    <span className="w-2 h-2 rounded-full bg-foam-terracotta shrink-0" />
+                    <span><strong>FOAM French IPA</strong> (Houblonnée & fruitée)</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 bg-foam-neon border border-foam-black shrink-0" />
-                    <span><strong>LOU FOAM D’AQUI</strong> (Blonde fraîche & désaltérante)</span>
+                    <span className="w-2 h-2 rounded-full bg-foam-gold shrink-0" />
+                    <span><strong>Lou FOAM d’Aqui</strong> (Blonde fraîche & désaltérante)</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 bg-white border border-foam-black shrink-0" />
-                    <span><strong>FOAM WHEAT ALE</strong> (Froment doux & agrumes)</span>
+                    <span className="w-2 h-2 rounded-full bg-foam-pine shrink-0" />
+                    <span><strong>FOAM Wheat Ale</strong> (Froment doux aux agrumes)</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            <div className="pt-6 mt-6 border-t-2 border-foam-black flex items-center justify-between">
+            <div className="pt-6 mt-6 border-t border-foam-border flex items-center justify-between">
               <div>
-                <span className="font-mono text-[10px] uppercase font-bold text-foam-muted block">FORMAT AU CHOIX</span>
-                <div className="font-impact uppercase text-base sm:text-lg text-foam-black">
-                  PACK 3 OU 6 BOUTEILLES
+                <span className="text-xs text-foam-muted block">Format au choix</span>
+                <div className="font-serif text-lg font-bold text-foam-navy">
+                  Pack de 3 ou 6 bières
                 </div>
-                <span className="font-mono text-[11px] text-foam-orange font-bold">CLICK & COLLECT 0 €</span>
+                <span className="text-[11px] text-foam-pine font-semibold">Click & Collect 0 € sous 2h</span>
               </div>
 
               <Link
                 to="/coffrets/decouverte"
-                className="btn-brutal-orange py-3 px-5 text-xs font-mono font-black"
+                className="btn-riviera-terracotta text-xs sm:text-sm"
               >
-                <span>VOIR L'OFFRE</span>
-                <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                <span>Découvrir l'offre</span>
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
 
           {/* CARTE 2 : COFFRET EXOTIQUE */}
-          <div className="card-brutal p-6 sm:p-8 flex flex-col justify-between group">
+          <div className="card-riviera p-6 sm:p-8 flex flex-col justify-between group">
             <div className="space-y-5">
               
-              <div className="aspect-[16/10] overflow-hidden border-2 border-foam-black relative bg-foam-subtle">
+              <div className="aspect-[16/10] rounded-xl overflow-hidden bg-foam-subtle border border-foam-borderWarm/60 relative">
                 <img
                   src={exotique.image}
                   alt={exotique.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
                 />
-                <span className="absolute top-3 left-3 sticker sticker-orange text-[10px]">
-                  ⚡ ÉDITION LIMITÉE
-                </span>
-                <span className="absolute bottom-3 right-3 sticker sticker-black text-[10px]">
-                  CUVÉE DU BRASSEUR
+                <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-foam-pine text-white text-[11px] font-semibold tracking-wide shadow-xs">
+                  ⚡ Cuvée Rare & Éphémère
                 </span>
               </div>
 
               <div>
-                <p className="font-mono text-[11px] font-bold text-foam-orange uppercase tracking-wider">
+                <p className="text-xs font-bold uppercase tracking-wider text-foam-pine">
                   {exotique.subtitle}
                 </p>
-                <h3 className="font-impact text-2xl sm:text-3xl uppercase tracking-tight text-foam-black group-hover:text-foam-orange transition-colors mt-1">
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy group-hover:text-foam-pine transition-colors mt-1">
                   {exotique.name}
                 </h3>
-                <p className="text-xs sm:text-sm text-foam-black mt-2 leading-relaxed">
+                <p className="text-xs sm:text-sm text-foam-text mt-2 leading-relaxed">
                   {exotique.description}
                 </p>
               </div>
 
               {/* Inclus dans le coffret exotique */}
-              <div className="p-4 bg-foam-bg border-2 border-foam-black space-y-2 text-xs font-mono">
-                <strong className="text-foam-black block uppercase tracking-wider text-[11px] font-black border-b border-foam-borderLight pb-1">
-                  [ CUVÉES ÉPHÉMÈRES DU BRASSEUR ]
+              <div className="p-4 rounded-xl bg-foam-subtle/70 border border-foam-borderWarm/60 space-y-2 text-xs">
+                <strong className="text-foam-navy font-serif font-bold block text-sm">
+                  Cuvées éphémères du Brasseur incluses :
                 </strong>
-                <ul className="space-y-2 text-foam-black pt-1">
+                <ul className="space-y-1.5 text-foam-text">
                   <li className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 bg-foam-orange border border-foam-black shrink-0" />
-                    <span><strong>BRASSIN RIVIERA TROPICALE</strong> (Mangue & passion)</span>
+                    <span className="w-2 h-2 rounded-full bg-foam-navy shrink-0" />
+                    <span><strong>Brassin Riviera Tropicale</strong> (Mangue & fruits de la passion)</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 bg-foam-neon border border-foam-black shrink-0" />
-                    <span><strong>CUVÉE HOUBLON NIÇOIS SOLAIRE</strong> (Houblons solaires)</span>
+                    <span className="w-2 h-2 rounded-full bg-foam-gold shrink-0" />
+                    <span><strong>Cuvée Houblon Niçois Solaire</strong> (Houblons cultivés à Nice)</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 bg-white border border-foam-black shrink-0" />
-                    <span><strong>BLANCHE EXOTIQUE ÉPHÉMÈRE</strong> (Zestes d'agrumes)</span>
+                    <span className="w-2 h-2 rounded-full bg-foam-terracotta shrink-0" />
+                    <span><strong>Blanche Exotique Éphémère</strong> (Zestes d'agrumes rares)</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            <div className="pt-6 mt-6 border-t-2 border-foam-black flex items-center justify-between">
+            <div className="pt-6 mt-6 border-t border-foam-border flex items-center justify-between">
               <div>
-                <span className="font-mono text-[10px] uppercase font-bold text-foam-muted block">FORMAT AU CHOIX</span>
-                <div className="font-impact uppercase text-base sm:text-lg text-foam-black">
-                  PACK 3 OU 6 BOUTEILLES
+                <span className="text-xs text-foam-muted block">Format au choix</span>
+                <div className="font-serif text-lg font-bold text-foam-navy">
+                  Pack de 3 ou 6 bières
                 </div>
-                <span className="font-mono text-[11px] text-foam-orange font-bold">BRASSIN ÉPHÉMÈRE</span>
+                <span className="text-[11px] text-foam-pine font-semibold">Édition limitée du brasseur</span>
               </div>
 
               <Link
                 to="/coffrets/exotique"
-                className="btn-brutal-black py-3 px-5 text-xs font-mono font-black"
+                className="btn-riviera-navy text-xs sm:text-sm"
               >
-                <span>VOIR L'OFFRE</span>
-                <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                <span>Découvrir l'offre</span>
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -353,52 +339,52 @@ export default function HomePage() {
       </section>
 
 
-      {/* 3. BANNIÈRES PALOMA 1948 & NOS BARS (GRILLE BRUTALISTE) */}
+      {/* 3. BANNIÈRES PALOMA 1948 & NOS BARS (ÉLÉGANCE RIVIERA) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
         
         {/* Carte Groupe Paloma 1948 */}
-        <div className="p-8 sm:p-10 bg-foam-black text-white border-2 border-foam-black shadow-brutal flex flex-col justify-between space-y-6 relative overflow-hidden">
+        <div className="rounded-2xl bg-foam-navy text-white p-8 sm:p-10 flex flex-col justify-between space-y-6 shadow-riviera relative overflow-hidden">
           <div className="space-y-4">
-            <div className="sticker sticker-neon">
-              [ MAISON FONDÉE EN 1948 ]
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-foam-gold text-xs font-semibold border border-white/15">
+              <span>Maison Familiale Fondée en 1948</span>
             </div>
-            <h3 className="font-impact text-2xl sm:text-3xl uppercase tracking-tight text-white leading-tight">
-              76 ANS DE PASSION CULINAIRE & ARTISANAT DU PORT
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white leading-tight">
+              76 Ans d'Amour Culinaire & d'Artisanat Azuréen
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
-              De la trattoria historique <em>Le Virginie</em> fondée en 1948 au Port de Nice par la famille Vannini jusqu’à l'inauguration de la microbrasserie FOAM en 2022. Découvrez pourquoi nous brassons nos propres bières sur place au quai des Deux Emmanuels.
+              De la trattoria historique <em>Le Virginie</em> fondée en 1948 au Port de Nice par la famille Vannini jusqu’à l'inauguration de la microbrasserie FOAM en 2022. Découvrez pourquoi nous sommes l’un des rares groupes de restauration à brasser nos propres bières sur place.
             </p>
           </div>
 
           <Link
             to="/groupe-paloma"
-            className="btn-brutal-orange py-3 px-5 text-xs font-mono font-black self-start"
+            className="inline-flex items-center gap-2 py-3 px-5 rounded-xl bg-white text-foam-navy hover:bg-foam-terracotta hover:text-white font-bold text-xs self-start transition-all shadow-xs"
           >
-            <span>DÉCOUVRIR LE GROUPE PALOMA</span>
-            <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
+            <span>Découvrir l'Histoire du Groupe Paloma</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
         {/* Carte Nos Bars à Nice */}
-        <div className="p-8 sm:p-10 bg-white border-2 border-foam-black shadow-brutal flex flex-col justify-between space-y-6">
+        <div className="card-riviera p-8 sm:p-10 flex flex-col justify-between space-y-6">
           <div className="space-y-4">
-            <div className="sticker sticker-orange">
-              [ CLICK & COLLECT 0 € SOUS 2H ]
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-foam-subtle text-foam-navy text-xs font-semibold border border-foam-borderWarm">
+              <span>Click & Collect Gratuit 0 €</span>
             </div>
-            <h3 className="font-impact text-2xl sm:text-3xl uppercase tracking-tight text-foam-black leading-tight">
-              NOS 2 BARS FOAM AU PORT ET PLACE DU PIN
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy leading-tight">
+              Nos 2 Bars FOAM au Port et Place du Pin
             </h3>
-            <p className="text-xs sm:text-sm text-foam-black leading-relaxed font-sans">
+            <p className="text-xs sm:text-sm text-foam-text leading-relaxed font-sans">
               Venez savourer nos bières fraîches à la pression sur nos terrasses ensoleillées ou retirez vos commandes de coffrets gratuitement sous 2h. Cuves inox visibles au Port, ambiance festive sous les pins de la Place du Pin.
             </p>
           </div>
 
           <Link
             to="/nos-bars"
-            className="btn-brutal-white py-3 px-5 text-xs font-mono font-black self-start"
+            className="inline-flex items-center gap-2 py-3 px-5 rounded-xl bg-foam-navy hover:bg-foam-terracotta text-white font-bold text-xs self-start transition-all shadow-xs"
           >
-            <span>VOIR ADRESSES & HORAIRES</span>
-            <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
+            <span>Voir les adresses, horaires & terrasses</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 

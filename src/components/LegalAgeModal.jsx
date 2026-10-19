@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck, AlertCircle, X } from 'lucide-react';
+import { ShieldCheck, AlertCircle, X, Sun } from 'lucide-react';
 
 export default function LegalAgeModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,49 +37,45 @@ export default function LegalAgeModal() {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foam-black/80 backdrop-blur-xs animate-fade-in font-mono">
-      <div className="relative w-full max-w-lg bg-white border-2 border-foam-black shadow-brutal p-6 sm:p-8 text-center text-foam-black">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foam-navy/70 backdrop-blur-xs animate-fade-in">
+      <div className="relative w-full max-w-lg bg-[#FAF6F0] rounded-3xl border border-foam-borderWarm shadow-2xl p-6 sm:p-8 text-center text-foam-navy">
         
         {/* Quick dismiss for preview/testing */}
         <button
           onClick={handleDismiss}
-          className="absolute top-4 right-4 p-1.5 text-foam-black border-2 border-foam-black hover:bg-foam-neon transition-colors shadow-brutal-sm"
+          className="absolute top-4 right-4 p-2 text-foam-muted hover:text-foam-navy hover:bg-foam-subtle rounded-xl transition-colors"
           title="Fermer"
           aria-label="Fermer"
         >
-          <X className="w-4 h-4 stroke-[2.5]" />
+          <X className="w-5 h-5 stroke-[2]" />
         </button>
 
         {/* Brand logo image */}
         <img
           src="/logo-foam.png"
           alt="FOAM"
-          className="w-16 h-16 object-contain border-2 border-foam-black mx-auto mb-3 shadow-brutal-sm bg-white"
+          className="w-16 h-16 object-contain rounded-full border border-foam-borderWarm mx-auto mb-3 shadow-xs bg-white"
         />
 
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-2">
-          <span className="sticker sticker-neon text-[10px]">
-            [ PORT DE NICE // 06300 ]
-          </span>
-          <span className="sticker sticker-black text-[10px]">
-            [ VÉRIFICATION D'ÂGE ]
-          </span>
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-foam-borderWarm text-foam-navy text-xs font-semibold mb-2">
+          <Sun className="w-3.5 h-3.5 text-foam-gold" />
+          <span>Port de Nice • Quai des Deux Emmanuels</span>
         </div>
 
-        <h2 className="font-impact text-3xl sm:text-4xl uppercase tracking-tight text-foam-black">
+        <h2 className="font-serif text-3xl font-bold tracking-tight text-foam-navy">
           FOAM
         </h2>
-        <p className="font-mono text-xs uppercase tracking-wider text-foam-orange font-black mt-1">
-          MICROBRASSERIE ARTISANALE INDÉPENDANTE
+        <p className="text-xs uppercase tracking-widest text-foam-terracotta font-bold mt-1 font-serif">
+          Microbrasserie Artisanale Indépendante
         </p>
 
         {!refused ? (
           <div className="mt-5 space-y-4">
-            <div className="p-4 bg-foam-bg border-2 border-foam-black text-left">
-              <p className="font-impact text-base uppercase text-foam-black">
-                AVEZ-VOUS 18 ANS OU PLUS ?
+            <div className="p-4 bg-white rounded-2xl border border-foam-border text-left">
+              <p className="font-serif font-bold text-base text-foam-navy">
+                Avez-vous 18 ans ou plus ?
               </p>
-              <p className="text-xs text-foam-black mt-1 font-sans font-medium leading-relaxed">
+              <p className="text-xs text-foam-text mt-1 font-sans leading-relaxed">
                 L’accès à notre boutique de bières artisanales du Port de Nice est strictement réservé aux personnes majeures conformément à la Loi Évin.
               </p>
             </div>
@@ -87,32 +83,32 @@ export default function LegalAgeModal() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
               <button
                 onClick={handleAccept}
-                className="btn-brutal-orange py-3.5 px-4 text-xs font-mono font-black uppercase"
+                className="btn-riviera-terracotta text-xs sm:text-sm py-3.5"
               >
-                <ShieldCheck className="w-4 h-4 stroke-[2.5]" />
-                <span>OUI, J'AI 18 ANS OU PLUS</span>
+                <ShieldCheck className="w-4 h-4 stroke-[2]" />
+                <span>Oui, j'ai 18 ans ou plus</span>
               </button>
 
               <button
                 onClick={() => setRefused(true)}
-                className="btn-brutal-white py-3.5 px-4 text-xs font-mono font-black uppercase"
+                className="btn-riviera-outline text-xs sm:text-sm py-3.5"
               >
-                NON, JE SUIS MINEUR
+                Non, je suis mineur
               </button>
             </div>
           </div>
         ) : (
-          <div className="mt-5 p-4 bg-foam-bg border-2 border-foam-black text-left text-xs font-mono space-y-2">
+          <div className="mt-5 p-4 bg-white rounded-2xl border border-red-200 text-left text-xs space-y-2">
             <div className="flex items-start gap-2.5">
-              <AlertCircle className="w-5 h-5 text-foam-orange shrink-0 mt-0.5 stroke-[2.5]" />
+              <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5 stroke-[2]" />
               <div>
-                <strong className="block font-black uppercase text-foam-black">ACCÈS STRICTEMENT RÉSERVÉ AUX MAJEURS</strong>
-                <p className="mt-1 text-foam-black font-sans font-medium leading-relaxed">
+                <strong className="block font-bold text-red-900">Accès strictement réservé aux majeurs</strong>
+                <p className="mt-1 text-red-800 leading-relaxed font-sans">
                   Conformément à l’article L. 3342-1 du Code de la santé publique, la vente d’alcool est strictement interdite aux mineurs de moins de 18 ans.
                 </p>
                 <button
                   onClick={() => setRefused(false)}
-                  className="mt-2 text-xs font-mono font-bold underline hover:text-foam-orange"
+                  className="mt-2 text-xs font-semibold underline text-foam-navy hover:text-foam-terracotta"
                 >
                   ← Recommencer la vérification
                 </button>
@@ -121,8 +117,8 @@ export default function LegalAgeModal() {
           </div>
         )}
 
-        <div className="mt-6 pt-3 border-t-2 border-foam-black text-[10px] text-foam-muted font-bold uppercase tracking-wider">
-          ⚠️ L'abus d'alcool est dangereux pour la santé, à consommer avec modération.
+        <div className="mt-6 pt-3 border-t border-foam-border text-[11px] text-foam-muted font-medium">
+          L'abus d'alcool est dangereux pour la santé, à consommer avec modération.
         </div>
 
       </div>
