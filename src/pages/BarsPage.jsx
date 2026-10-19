@@ -9,7 +9,7 @@ export default function BarsPage() {
       
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-3.5">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-foam-oliveSoft border border-foam-olive/30 text-foam-olive text-[11px] font-bold uppercase tracking-widest">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-foam-border text-foam-navy text-[11px] font-bold uppercase tracking-widest shadow-xs">
           <span className="w-1.5 h-1.5 rounded-full bg-foam-olive" />
           <span>Dégustation Pression & Retrait Click & Collect 0 €</span>
         </div>
@@ -26,7 +26,7 @@ export default function BarsPage() {
         {BARS_DATA.map((bar) => (
           <div
             key={bar.id}
-            className="rounded-2xl bg-white border border-foam-border p-6 sm:p-10 shadow-shopify flex flex-col justify-between space-y-6"
+            className="rounded-xl bg-white border border-foam-border p-6 sm:p-8 shadow-shopify flex flex-col justify-between space-y-6"
           >
             <div className="space-y-5">
               
@@ -59,7 +59,7 @@ export default function BarsPage() {
               </p>
 
               {/* Specific Features List */}
-              <div className="p-4 rounded-xl bg-foam-bg border border-foam-border space-y-2">
+              <div className="p-4 rounded-lg bg-foam-subtle/60 border border-foam-border space-y-2">
                 <strong className="text-xs font-bold uppercase tracking-wider text-foam-navy block">
                   Ce que vous trouverez sur place :
                 </strong>
@@ -81,7 +81,7 @@ export default function BarsPage() {
             <div className="pt-4 border-t border-foam-border">
               <Link
                 to="/coffrets/decouverte"
-                className="w-full py-3.5 px-5 rounded-xl bg-foam-navy hover:bg-foam-red text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shadow-xs"
+                className="w-full py-3.5 px-5 rounded-lg bg-foam-navy hover:bg-foam-red text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shadow-xs"
               >
                 <ShoppingBag className="w-4 h-4" />
                 <span>Commander avec retrait dans ce bar (0 €)</span>
@@ -92,7 +92,7 @@ export default function BarsPage() {
       </div>
 
       {/* Explanatory Banner Click & Collect */}
-      <div className="rounded-2xl bg-foam-oliveSoft border border-foam-olive/30 p-8 sm:p-10 space-y-4 text-foam-navy shadow-shopify">
+      <div className="rounded-xl bg-white border border-foam-border p-8 sm:p-10 space-y-4 text-foam-navy shadow-shopify">
         <div className="flex items-center gap-2.5">
           <MapPin className="w-6 h-6 text-foam-olive" />
           <h3 className="font-serif text-2xl font-bold text-foam-navy">
@@ -101,24 +101,24 @@ export default function BarsPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2 text-xs sm:text-sm text-foam-text">
-          <div className="p-4 bg-white/90 rounded-xl border border-foam-olive/20 space-y-1">
-            <strong className="font-bold text-foam-navy block text-sm">1. Choisissez vos bières</strong>
+          <div className="p-4 bg-foam-subtle/60 rounded-lg border border-foam-border space-y-1">
+            <strong className="font-bold text-foam-navy block text-sm">1. Choisissez votre coffret</strong>
             <p className="text-foam-muted text-xs leading-relaxed">
-              Sélectionnez vos coffrets de 3 ou 6 bières ou vos bouteilles favorites sur notre boutique.
+              Sélectionnez vos coffrets de 3 ou 6 bières sur notre boutique.
             </p>
           </div>
 
-          <div className="p-4 bg-white/90 rounded-xl border border-foam-olive/20 space-y-1">
+          <div className="p-4 bg-foam-subtle/60 rounded-lg border border-foam-border space-y-1">
             <strong className="font-bold text-foam-navy block text-sm">2. Sélectionnez votre bar</strong>
             <p className="text-foam-muted text-xs leading-relaxed">
               Cochez <strong>FOAM Port de Nice</strong> ou <strong>FOAM Place du Pin</strong> lors de la validation.
             </p>
           </div>
 
-          <div className="p-4 bg-white/90 rounded-xl border border-foam-olive/20 space-y-1">
+          <div className="p-4 bg-foam-subtle/60 rounded-lg border border-foam-border space-y-1">
             <strong className="font-bold text-foam-navy block text-sm">3. Retirez vos bières fraîches</strong>
             <p className="text-foam-muted text-xs leading-relaxed">
-              Vos bouteilles sont prêtes sous 2h en étui rigide prêt à offrir, sans payer de frais de livraison.
+              Vos bouteilles sont prêtes sous 2h en étui carton kraft rigide prêt à offrir, sans payer de frais de port.
             </p>
           </div>
         </div>

@@ -107,7 +107,7 @@ export default function SetSalesPage({ defaultSlug }) {
           </div>
 
           {/* Price Header (Live updated based on selected format) */}
-          <div className="p-4 bg-white rounded-2xl border border-foam-border shadow-2xs flex items-baseline justify-between">
+          <div className="p-4 bg-white rounded-xl border border-foam-border shadow-xs flex items-baseline justify-between">
             <div>
               <div className="flex items-baseline gap-2">
                 <span className="font-serif text-3xl font-black text-foam-navy">
@@ -143,9 +143,9 @@ export default function SetSalesPage({ defaultSlug }) {
               <button
                 type="button"
                 onClick={() => setSelectedFormat('pack3')}
-                className={`p-3.5 rounded-xl border-2 text-left transition-all ${
+                className={`p-3.5 rounded-lg border-2 text-left transition-all ${
                   selectedFormat === 'pack3'
-                    ? 'border-foam-red bg-foam-redSoft shadow-xs ring-2 ring-foam-red/20'
+                    ? 'border-foam-red bg-foam-redSoft shadow-xs ring-1 ring-foam-red/20'
                     : 'border-foam-border bg-white hover:border-foam-navy/40'
                 }`}
               >
@@ -161,15 +161,15 @@ export default function SetSalesPage({ defaultSlug }) {
               <button
                 type="button"
                 onClick={() => setSelectedFormat('pack6')}
-                className={`p-3.5 rounded-xl border-2 text-left transition-all ${
+                className={`p-3.5 rounded-lg border-2 text-left transition-all ${
                   selectedFormat === 'pack6'
-                    ? 'border-foam-red bg-foam-redSoft shadow-xs ring-2 ring-foam-red/20'
+                    ? 'border-foam-red bg-foam-redSoft shadow-xs ring-1 ring-foam-red/20'
                     : 'border-foam-border bg-white hover:border-foam-navy/40'
                 }`}
               >
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-xs text-foam-navy">Pack de 6</span>
-                  <span className="font-serif font-black text-sm text-foam-redDark">26,00 €</span>
+                  <span className="font-serif font-black text-sm text-foam-red">26,00 €</span>
                 </div>
                 <p className="text-[11px] text-foam-muted mt-0.5">6 bouteilles (33cl)</p>
                 <p className="text-[10px] text-foam-red font-bold mt-0.5">-10 € d'économie (4,33 € / unité)</p>
@@ -203,7 +203,7 @@ export default function SetSalesPage({ defaultSlug }) {
 
             <div className="space-y-2">
               <label 
-                className={`flex items-start gap-3 p-3 rounded-xl border-2 cursor-pointer transition-all ${
+                className={`flex items-start gap-3 p-3 rounded-lg border-2 cursor-pointer transition-all ${
                   deliveryMethod === 'clickAndCollect'
                     ? 'border-foam-olive bg-foam-oliveSoft'
                     : 'border-foam-border bg-white'
@@ -233,7 +233,7 @@ export default function SetSalesPage({ defaultSlug }) {
               </label>
 
               <label 
-                className={`flex items-start gap-3 p-3 rounded-xl border-2 cursor-pointer transition-all ${
+                className={`flex items-start gap-3 p-3 rounded-lg border-2 cursor-pointer transition-all ${
                   deliveryMethod === 'homeDelivery'
                     ? 'border-foam-navy bg-white'
                     : 'border-foam-border bg-white'
@@ -269,11 +269,11 @@ export default function SetSalesPage({ defaultSlug }) {
             
             <div className="flex items-center gap-3">
               {/* Quantity Picker */}
-              <div className="flex items-center border-2 border-foam-border rounded-xl bg-white p-1 shadow-2xs">
+              <div className="flex items-center border border-foam-border rounded-lg bg-white p-1 shadow-xs">
                 <button
                   type="button"
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-9 h-9 rounded-lg text-foam-navy hover:bg-foam-subtle flex items-center justify-center font-black text-base"
+                  className="w-9 h-9 rounded-md text-foam-navy hover:bg-foam-subtle flex items-center justify-center font-black text-base"
                 >
                   -
                 </button>
@@ -283,7 +283,7 @@ export default function SetSalesPage({ defaultSlug }) {
                 <button
                   type="button"
                   onClick={() => setQuantity(quantity + 1)}
-                  className="w-9 h-9 rounded-lg text-foam-navy hover:bg-foam-subtle flex items-center justify-center font-black text-base"
+                  className="w-9 h-9 rounded-md text-foam-navy hover:bg-foam-subtle flex items-center justify-center font-black text-base"
                 >
                   +
                 </button>
@@ -293,7 +293,7 @@ export default function SetSalesPage({ defaultSlug }) {
               <button
                 type="button"
                 onClick={handleAddToCart}
-                className="flex-1 py-4 px-6 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all active:scale-98"
+                className="flex-1 py-4 px-6 rounded-lg bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-craft-flat-red transition-all active:scale-98"
               >
                 <ShoppingBag className="w-5 h-5" />
                 <span>
@@ -306,7 +306,7 @@ export default function SetSalesPage({ defaultSlug }) {
             <button
               type="button"
               onClick={handleBuyNow}
-              className="w-full py-3.5 px-6 rounded-xl bg-foam-navy hover:bg-foam-navyLight text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shadow-2xs"
+              className="w-full py-3.5 px-6 rounded-lg bg-foam-navy hover:bg-foam-navyLight text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shadow-xs"
             >
               <span>Commander immédiatement</span>
               <ArrowRight className="w-4 h-4" />
@@ -321,7 +321,7 @@ export default function SetSalesPage({ defaultSlug }) {
           <div className="pt-3 border-t border-foam-border">
             <Link
               to={`/coffrets/${otherSlug === 'coffret-exotique' ? 'exotique' : 'decouverte'}`}
-              className="p-3.5 rounded-2xl bg-white border border-foam-border hover:border-foam-navy/40 flex items-center justify-between text-xs group transition-all"
+              className="p-3.5 rounded-xl bg-white border border-foam-border hover:border-foam-navy/40 flex items-center justify-between text-xs group transition-all"
             >
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-foam-red block">
@@ -350,15 +350,15 @@ export default function SetSalesPage({ defaultSlug }) {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
-          <div className="p-6 bg-white rounded-2xl border border-foam-border shadow-shopify space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-foam-redSoft text-foam-red flex items-center justify-center">
+          <div className="p-6 bg-white rounded-xl border border-foam-border shadow-shopify space-y-3">
+            <div className="w-10 h-10 rounded-lg bg-foam-redSoft text-foam-red flex items-center justify-center border border-foam-redBorder/40">
               <Package className="w-5 h-5" />
             </div>
             <h3 className="font-serif text-lg font-bold text-foam-navy">
               Packaging Écoresponsable
             </h3>
             <p className="text-xs text-foam-text leading-relaxed">
-              Étui carton rigide fabriqué à partir de fibres recyclées, équipé d'alvéoles de calage individuel pour garantir la sécurité absolue des bouteilles de verre.
+              Étui carton kraft rigide fabriqué à partir de fibres recyclées, équipé d'alvéoles de calage individuel pour garantir la sécurité absolue des bouteilles de verre.
             </p>
             <ul className="text-xs text-foam-muted space-y-1 pt-1">
               {product.goodiesIncluded.map((g, i) => (
@@ -370,8 +370,8 @@ export default function SetSalesPage({ defaultSlug }) {
             </ul>
           </div>
 
-          <div className="p-6 bg-white rounded-2xl border border-foam-border shadow-shopify space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-foam-oliveSoft text-foam-olive flex items-center justify-center">
+          <div className="p-6 bg-white rounded-xl border border-foam-border shadow-shopify space-y-3">
+            <div className="w-10 h-10 rounded-lg bg-foam-oliveSoft text-foam-olive flex items-center justify-center border border-foam-olive/20">
               <Award className="w-5 h-5" />
             </div>
             <h3 className="font-serif text-lg font-bold text-foam-navy">
@@ -390,9 +390,9 @@ export default function SetSalesPage({ defaultSlug }) {
             </ul>
           </div>
 
-          <div className="p-6 bg-white rounded-2xl border border-foam-border shadow-shopify space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-foam-navy text-white flex items-center justify-center">
-              <MapPin className="w-5 h-5 text-foam-redSoft" />
+          <div className="p-6 bg-white rounded-xl border border-foam-border shadow-shopify space-y-3">
+            <div className="w-10 h-10 rounded-lg bg-foam-subtle text-foam-navy flex items-center justify-center border border-foam-border">
+              <MapPin className="w-5 h-5 text-foam-navy" />
             </div>
             <h3 className="font-serif text-lg font-bold text-foam-navy">
               Retrait 0 € aux Bars FOAM

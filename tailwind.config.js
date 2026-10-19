@@ -8,36 +8,40 @@ export default {
     extend: {
       colors: {
         foam: {
-          bg: '#FAF8F5',        // Crème solaire chaude Riviera
-          card: '#FFFFFF',      // Blanc pur
-          subtle: '#F4EFEA',    // Lin & beige pierre du Port
-          navy: '#0F2438',      // Bleu Marin Profond du Port de Nice
-          navyLight: '#183B5C', // Bleu nuit secondaire
-          red: '#904545',       // Rouge Terracotta officiel FOAM
-          redDark: '#7A3535',   // Hover CTA rouge
-          redSoft: '#F8EFEF',   // Fond doux rouge
-          redBorder: '#D8BABA', // Bordure rouge adoucie
+          bg: '#F4EFE6',        // Papier kraft atelier / calcaire niçois
+          card: '#FFFFFF',      // Blanc pur net
+          subtle: '#ECE5D8',    // Beige kraft doux
+          navy: '#15191E',      // Anthracite d'encre d'atelier (structure & titres)
+          navyLight: '#262E38', // Ardoise atelier secondaire
+          red: '#904545',       // Rouge officiel FOAM
+          redDark: '#783535',   // Hover CTA rouge
+          redSoft: '#F8EDED',   // Fond doux rouge atelier
+          redBorder: '#D9A7A7', // Bordure rouge adoucie
           amber: '#904545',     // Alias rétro-compatible
-          amberDark: '#7A3535',
-          amberSoft: '#F8EFEF',
-          olive: '#2D4B39',     // Vert Garrigue / Pin parasol (Click & Collect & local)
-          oliveSoft: '#EEF4F0',
-          gold: '#BFA15F',      // Or Brasseur raffiné (Maison 1948)
-          goldSoft: '#FBF6EA',
-          text: '#16202A',      // Texte foncé haute lisibilité
-          muted: '#526071',     // Texte secondaire équilibré (contraste WCAG AAA)
-          border: '#E5DDD0'     // Bordure lin soignée
+          amberDark: '#783535',
+          amberSoft: '#F8EDED',
+          olive: '#264936',     // Vert garrigue & houblon d'atelier
+          oliveSoft: '#EDF4F0',
+          gold: '#A88636',      // Laiton d'atelier (Maison 1948)
+          goldSoft: '#F8F3E6',
+          text: '#15191E',      // Texte haute lisibilité d'encre
+          muted: '#4B5668',     // Texte secondaire net (WCAG AAA)
+          border: '#D8CEBF'     // Lignes kraft / métal atelier
         }
       },
       fontFamily: {
-        serif: ['Fraunces', 'Playfair Display', 'Georgia', 'serif'],
+        serif: ['Space Grotesk', 'Syne', 'system-ui', 'sans-serif'], // Titres percutants Craft Brut
+        display: ['Space Grotesk', 'Syne', 'sans-serif'],
+        craft: ['Syne', 'Space Grotesk', 'sans-serif'],
         sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        'shopify': '0 1px 3px rgba(15, 36, 56, 0.05), 0 6px 16px -2px rgba(15, 36, 56, 0.06)',
-        'shopify-hover': '0 12px 28px -4px rgba(15, 36, 56, 0.12), 0 4px 10px rgba(15, 36, 56, 0.05)',
-        'red-glow': '0 4px 20px rgba(144, 69, 69, 0.28)',
-        'amber-glow': '0 4px 20px rgba(144, 69, 69, 0.28)'
+        'shopify': '0 1px 2px rgba(21, 25, 30, 0.06), 0 2px 6px -1px rgba(21, 25, 30, 0.04)',
+        'shopify-hover': '0 6px 16px -2px rgba(21, 25, 30, 0.10), 0 2px 6px rgba(21, 25, 30, 0.04)',
+        'craft-flat': '2px 2px 0px rgba(21, 25, 30, 0.9)',
+        'craft-flat-red': '2px 2px 0px #904545',
+        'red-glow': '0 2px 14px rgba(144, 69, 69, 0.25)',
+        'amber-glow': '0 2px 14px rgba(144, 69, 69, 0.25)'
       }
     },
   },

@@ -68,7 +68,7 @@ export default function CheckoutModal() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foam-navy/80 backdrop-blur-xs overflow-y-auto animate-fade-in">
-      <div className="relative w-full max-w-xl bg-white rounded-2xl border border-foam-border shadow-2xl overflow-hidden my-8">
+      <div className="relative w-full max-w-xl bg-white rounded-xl border border-foam-border shadow-2xl overflow-hidden my-8">
         
         {/* Header */}
         <div className="p-6 bg-foam-navy text-white flex items-center justify-between">
@@ -94,7 +94,7 @@ export default function CheckoutModal() {
         <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-5 max-h-[75vh] overflow-y-auto text-xs text-foam-navy">
           
           {/* Order quick summary box */}
-          <div className="p-4 bg-foam-bg rounded-2xl border border-foam-border flex items-center justify-between">
+          <div className="p-4 bg-foam-subtle/60 rounded-lg border border-foam-border flex items-center justify-between">
             <div>
               <span className="font-bold text-foam-navy text-sm">
                 {items.length} article{items.length > 1 ? 's' : ''} ({deliveryMethod === 'clickAndCollect' ? 'Click & Collect 0 €' : 'Livraison à domicile'})
@@ -125,7 +125,7 @@ export default function CheckoutModal() {
                   required
                   value={formData.firstName}
                   onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                  className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
+                  className="w-full p-2.5 rounded-lg border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
                   placeholder="Léa"
                 />
               </div>
@@ -137,7 +137,7 @@ export default function CheckoutModal() {
                   required
                   value={formData.lastName}
                   onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                  className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
+                  className="w-full p-2.5 rounded-lg border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
                   placeholder="Vannini"
                 />
               </div>
@@ -149,7 +149,7 @@ export default function CheckoutModal() {
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
+                  className="w-full p-2.5 rounded-lg border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
                   placeholder="lea@exemple.fr"
                 />
               </div>
@@ -161,7 +161,7 @@ export default function CheckoutModal() {
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
+                  className="w-full p-2.5 rounded-lg border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
                   placeholder="06 12 34 56 78"
                 />
               </div>
@@ -181,7 +181,7 @@ export default function CheckoutModal() {
                   required
                   value={formData.address}
                   onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                  className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
+                  className="w-full p-2.5 rounded-lg border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
                   placeholder="12 Quai des Deux Emmanuels"
                 />
               </div>
@@ -193,7 +193,7 @@ export default function CheckoutModal() {
                     required
                     value={formData.zip}
                     onChange={(e) => setFormData({ ...formData, zip: e.target.value })}
-                    className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
+                    className="w-full p-2.5 rounded-lg border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
                     placeholder="06300"
                   />
                 </div>
@@ -204,7 +204,7 @@ export default function CheckoutModal() {
                     required
                     value={formData.city}
                     onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                    className="w-full p-2.5 rounded-xl border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
+                    className="w-full p-2.5 rounded-lg border border-foam-border bg-white text-foam-navy focus:outline-none focus:ring-2 focus:ring-foam-red"
                     placeholder="Nice"
                   />
                 </div>
@@ -213,7 +213,7 @@ export default function CheckoutModal() {
           )}
 
           {/* Craft guarantee callout */}
-          <div className="p-3.5 bg-foam-redSoft rounded-2xl border border-foam-redBorder flex items-start gap-2.5 text-xs text-foam-navy">
+          <div className="p-3.5 bg-foam-redSoft rounded-lg border border-foam-redBorder flex items-start gap-2.5 text-xs text-foam-navy">
             <Lock className="w-4 h-4 text-foam-red shrink-0 mt-0.5" />
             <div>
               <strong className="block text-foam-red">🔒 Engagement Brasserie FOAM Nice :</strong>
@@ -251,7 +251,7 @@ export default function CheckoutModal() {
           </div>
 
           {error && (
-            <p className="text-xs text-red-600 font-bold bg-red-50 p-3 rounded-xl border border-red-200">
+            <p className="text-xs text-red-600 font-bold bg-red-50 p-3 rounded-lg border border-red-200">
               ⚠️ {error}
             </p>
           )}
@@ -259,7 +259,7 @@ export default function CheckoutModal() {
           <div className="pt-3 border-t border-foam-border">
             <button
               type="submit"
-              className="w-full py-4 px-6 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all"
+              className="w-full py-4 px-6 rounded-lg bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-craft-flat-red transition-all"
             >
               <span>Valider ma commande</span>
               <ArrowRight className="w-5 h-5" />

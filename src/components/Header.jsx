@@ -43,8 +43,8 @@ export default function Header() {
               <span className="font-serif text-2xl font-black tracking-tight text-foam-navy group-hover:text-foam-red transition-colors">
                 FOAM NICE
               </span>
-              <span className="text-[10px] font-semibold text-foam-muted uppercase tracking-widest">
-                Microbrasserie du Port • Paloma 1948
+              <span className="text-[10px] font-bold text-foam-muted uppercase tracking-widest">
+                Microbrasserie du Port • Quai des 2 Emmanuels
               </span>
             </div>
           </Link>
@@ -72,7 +72,7 @@ export default function Header() {
             {/* Cart Trigger Button in FOAM Red #904545 */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative flex items-center gap-2.5 py-2.5 px-4 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-bold text-sm shadow-shopify hover:shadow-red-glow transition-all transform active:scale-95 group"
+              className="relative flex items-center gap-2.5 py-2.5 px-4 rounded-lg bg-foam-red hover:bg-foam-redDark text-white font-bold text-sm shadow-shopify hover:shadow-red-glow transition-all transform active:scale-95 group"
               aria-label="Voir le panier"
             >
               <div className="relative">
@@ -91,7 +91,7 @@ export default function Header() {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-foam-navy hover:bg-foam-subtle rounded-xl transition-colors"
+              className="lg:hidden p-2 text-foam-navy hover:bg-foam-subtle rounded-lg transition-colors"
               aria-label="Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

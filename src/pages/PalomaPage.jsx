@@ -8,7 +8,7 @@ export default function PalomaPage() {
       
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-3.5">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-foam-goldSoft border border-foam-gold/30 text-foam-navy text-[11px] font-bold uppercase tracking-widest">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-foam-border text-foam-navy text-[11px] font-bold uppercase tracking-widest shadow-xs">
           <span className="w-1.5 h-1.5 rounded-full bg-foam-red" />
           <span>Maison Familiale Azuréenne • Fondée en 1948</span>
         </div>
@@ -21,10 +21,10 @@ export default function PalomaPage() {
       </div>
 
       {/* Main Narrative Card */}
-      <div className="rounded-2xl bg-white border border-foam-border p-6 sm:p-12 shadow-shopify space-y-8 text-foam-text text-sm sm:text-base leading-relaxed">
+      <div className="rounded-xl bg-white border border-foam-border p-6 sm:p-12 shadow-shopify space-y-8 text-foam-text text-sm sm:text-base leading-relaxed">
         
         {/* Quote Block */}
-        <div className="border-l-4 border-foam-red pl-4 sm:pl-6 py-2 italic font-serif text-lg sm:text-xl text-foam-navy font-semibold bg-foam-redSoft rounded-r-xl">
+        <div className="border-l-4 border-foam-red pl-4 sm:pl-6 py-2 italic font-serif text-lg sm:text-xl text-foam-navy font-semibold bg-foam-redSoft rounded-r-lg">
           « De la trattoria historique Le Virginie en 1948 jusqu'aux cuves de notre microbrasserie du Port en 2022, une même passion guide la famille Vannini : le goût du partage et l'authenticité niçoise. »
         </div>
 
@@ -42,7 +42,7 @@ export default function PalomaPage() {
         </div>
 
         {/* Chapter 2 : 2022 FOAM */}
-        <div className="p-6 sm:p-8 bg-foam-subtle rounded-xl border border-foam-border space-y-4">
+        <div className="p-6 sm:p-8 bg-foam-subtle/70 rounded-lg border border-foam-border space-y-4">
           <div className="flex items-center gap-2 text-foam-navy font-serif font-bold text-xl">
             <Beer className="w-6 h-6 text-foam-red" />
             <span>2022 : La Naissance de la Microbrasserie FOAM au Port</span>
@@ -70,7 +70,7 @@ export default function PalomaPage() {
 
         {/* 4 Pillars of Commitment */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-foam-border">
-          <div className="p-4 bg-white rounded-2xl border border-foam-border shadow-2xs space-y-1">
+          <div className="p-4 bg-white rounded-lg border border-foam-border shadow-xs space-y-1">
             <strong className="text-xs font-bold uppercase tracking-wider text-foam-navy flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 text-foam-olive" />
               Circuit Ultra-Court
@@ -80,7 +80,7 @@ export default function PalomaPage() {
             </p>
           </div>
 
-          <div className="p-4 bg-white rounded-2xl border border-foam-border shadow-2xs space-y-1">
+          <div className="p-4 bg-white rounded-lg border border-foam-border shadow-xs space-y-1">
             <strong className="text-xs font-bold uppercase tracking-wider text-foam-navy flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 text-foam-olive" />
               100% Non Pasteurisée
@@ -90,7 +90,7 @@ export default function PalomaPage() {
             </p>
           </div>
 
-          <div className="p-4 bg-white rounded-2xl border border-foam-border shadow-2xs space-y-1">
+          <div className="p-4 bg-white rounded-lg border border-foam-border shadow-xs space-y-1">
             <strong className="text-xs font-bold uppercase tracking-wider text-foam-navy flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 text-foam-olive" />
               Indépendance Familiale
@@ -100,7 +100,7 @@ export default function PalomaPage() {
             </p>
           </div>
 
-          <div className="p-4 bg-white rounded-2xl border border-foam-border shadow-2xs space-y-1">
+          <div className="p-4 bg-white rounded-lg border border-foam-border shadow-xs space-y-1">
             <strong className="text-xs font-bold uppercase tracking-wider text-foam-navy flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 text-foam-olive" />
               Convivialité Azuréenne
@@ -117,7 +117,7 @@ export default function PalomaPage() {
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
         <Link
           to="/coffrets/decouverte"
-          className="w-full sm:w-auto py-3.5 px-6 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all"
+          className="w-full sm:w-auto py-3.5 px-6 rounded-lg bg-foam-red hover:bg-foam-redDark text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-shopify hover:shadow-craft-flat-red transition-all"
         >
           <Beer className="w-4 h-4" />
           <span>Découvrir nos Coffrets Découverte</span>
@@ -125,7 +125,7 @@ export default function PalomaPage() {
 
         <Link
           to="/nos-bars"
-          className="w-full sm:w-auto py-3.5 px-6 rounded-xl bg-white hover:bg-foam-subtle text-foam-navy font-bold text-xs sm:text-sm border border-foam-border hover:border-foam-navy flex items-center justify-center gap-2 shadow-xs transition-all"
+          className="w-full sm:w-auto py-3.5 px-6 rounded-lg bg-white hover:bg-foam-subtle text-foam-navy font-bold text-xs sm:text-sm border border-foam-border hover:border-foam-navy flex items-center justify-center gap-2 shadow-xs transition-all"
         >
           <MapPin className="w-4 h-4 text-foam-red" />
           <span>Visiter nos Bars au Port & Place du Pin</span>

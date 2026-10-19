@@ -24,12 +24,12 @@ export default function ConfirmationModal() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foam-navy/85 backdrop-blur-xs overflow-y-auto animate-fade-in">
-      <div className="relative w-full max-w-lg bg-white rounded-2xl border border-foam-border shadow-2xl overflow-hidden p-6 sm:p-8 text-center text-xs text-foam-navy my-6">
+      <div className="relative w-full max-w-lg bg-white rounded-xl border border-foam-border shadow-2xl overflow-hidden p-6 sm:p-8 text-center text-xs text-foam-navy my-6">
         
         <img
           src="/logo-foam.png"
           alt="FOAM Nice"
-          className="w-16 h-16 object-contain rounded-full mx-auto mb-3 shadow-md border-2 border-foam-red"
+          className="w-16 h-16 object-contain rounded-full mx-auto mb-3 shadow-xs border border-foam-border"
         />
 
         <div className="flex items-center justify-center gap-1.5 text-foam-olive text-xs font-bold uppercase tracking-wider mb-2">
@@ -46,8 +46,8 @@ export default function ConfirmationModal() {
         </p>
 
         {/* Viral Reward Box */}
-        <div className="mt-4 p-4 rounded-2xl bg-foam-redSoft border border-foam-redBorder text-left flex items-start gap-3">
-          <div className="p-2 rounded-xl bg-white text-foam-red border border-foam-redBorder shrink-0">
+        <div className="mt-4 p-4 rounded-lg bg-foam-redSoft border border-foam-redBorder text-left flex items-start gap-3">
+          <div className="p-2 rounded-md bg-white text-foam-red border border-foam-redBorder shrink-0">
             <Gift className="w-5 h-5 text-foam-red" />
           </div>
           <div>
@@ -61,7 +61,7 @@ export default function ConfirmationModal() {
         </div>
 
         {/* Order Details Card */}
-        <div className="mt-4 p-4 bg-foam-bg rounded-2xl border border-foam-border text-left space-y-2.5">
+        <div className="mt-4 p-4 bg-foam-subtle/60 rounded-lg border border-foam-border text-left space-y-2.5">
           <div className="flex justify-between border-b border-foam-border pb-1.5 font-bold text-foam-navy text-sm">
             <span>Articles réservés</span>
             <span className="text-foam-red">{orderConfirmed.grandTotal.toFixed(2)} €</span>
@@ -101,14 +101,14 @@ export default function ConfirmationModal() {
         </div>
 
         {/* Instagram Share Loop */}
-        <div className="mt-4 p-3 bg-pink-50 rounded-2xl border border-pink-200 flex items-center justify-between gap-2">
+        <div className="mt-4 p-3 bg-pink-50 rounded-lg border border-pink-200 flex items-center justify-between gap-2">
           <div className="text-left">
             <span className="font-bold text-[11px] text-pink-900 block">Identifiez @foam_nice en story</span>
             <span className="text-[10px] text-pink-700">Tentez de remporter un brassin dédicacé</span>
           </div>
           <button
             onClick={handleCopyStory}
-            className="py-1.5 px-3 rounded-lg bg-white text-pink-900 font-bold text-[10px] border border-pink-300 flex items-center gap-1 shadow-2xs"
+            className="py-1.5 px-3 rounded-md bg-white text-pink-900 font-bold text-[10px] border border-pink-300 flex items-center gap-1 shadow-2xs"
           >
             {copied ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
             <span>{copied ? 'Copié !' : 'Copier texte'}</span>
@@ -118,7 +118,7 @@ export default function ConfirmationModal() {
         <div className="mt-6 pt-3 border-t border-foam-border">
           <button
             onClick={handleClose}
-            className="w-full py-3.5 px-6 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-xs flex items-center justify-center gap-2 transition-colors shadow-shopify hover:shadow-red-glow"
+            className="w-full py-3.5 px-6 rounded-lg bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-xs flex items-center justify-center gap-2 transition-colors shadow-shopify hover:shadow-craft-flat-red"
           >
             <span>Retourner sur la boutique FOAM</span>
             <ArrowRight className="w-4 h-4" />

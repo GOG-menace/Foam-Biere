@@ -12,9 +12,9 @@ export default function SetsOverviewPage() {
       
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-3.5">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-foam-goldSoft border border-foam-gold/30 text-foam-navy text-[11px] font-bold uppercase tracking-widest">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-foam-border text-foam-navy text-[11px] font-bold uppercase tracking-widest shadow-xs">
           <span className="w-1.5 h-1.5 rounded-full bg-foam-red" />
-          <span>Microbrasserie du Port de Nice • Maison 1948</span>
+          <span>Microbrasserie du Port de Nice • Quai des Deux Emmanuels</span>
         </div>
         <h1 className="font-serif text-3xl sm:text-5xl font-black text-foam-navy leading-tight">
           Nos Deux Coffrets de la Riviera
@@ -28,15 +28,15 @@ export default function SetsOverviewPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
         
         {/* CARTE 1 : COFFRET DÉCOUVERTE */}
-        <div className="rounded-2xl bg-white border border-foam-border hover:border-foam-red p-6 sm:p-8 shadow-shopify hover:shadow-shopify-hover transition-all flex flex-col justify-between group">
+        <div className="rounded-xl bg-white border border-foam-border hover:border-foam-red p-6 sm:p-8 shadow-shopify hover:shadow-shopify-hover transition-all flex flex-col justify-between group">
           <div className="space-y-5">
-            <div className="aspect-[16/10] rounded-xl overflow-hidden bg-foam-subtle border border-foam-border relative">
+            <div className="aspect-[16/10] rounded-lg overflow-hidden bg-foam-subtle border border-foam-border relative">
               <img
                 src={decouverte.image}
                 alt={decouverte.name}
                 className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
               />
-              <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-foam-navy/90 backdrop-blur-xs text-white text-[10px] font-bold uppercase tracking-wider">
+              <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-foam-navy text-white text-[10px] font-bold uppercase tracking-wider">
                 Les Incontournables
               </span>
             </div>
@@ -53,7 +53,7 @@ export default function SetsOverviewPage() {
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-foam-bg border border-foam-border text-xs text-foam-text space-y-1.5">
+            <div className="p-4 rounded-lg bg-foam-subtle/60 border border-foam-border text-xs text-foam-text space-y-1.5">
               <p className="font-bold text-foam-navy uppercase tracking-wider text-[11px]">Composition du coffret :</p>
               <p>• 1 ou 2 FOAM West Coast IPA (Houblonnée & fruitée)</p>
               <p>• 1 ou 2 FOAM Lager Méditerranéenne (Fraîche & maltée)</p>
@@ -75,7 +75,7 @@ export default function SetsOverviewPage() {
           <div className="pt-6 mt-6 border-t border-foam-border">
             <Link
               to="/coffrets/decouverte"
-              className="w-full py-3.5 px-6 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all active:scale-98"
+              className="w-full py-3.5 px-6 rounded-lg bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-shopify hover:shadow-craft-flat-red transition-all active:scale-98"
             >
               <span>Accéder à la page du Coffret Découverte</span>
               <ArrowRight className="w-4 h-4" />
@@ -84,15 +84,15 @@ export default function SetsOverviewPage() {
         </div>
 
         {/* CARTE 2 : COFFRET EXOTIQUE */}
-        <div className="rounded-2xl bg-white border border-foam-border hover:border-foam-navy p-6 sm:p-8 shadow-shopify hover:shadow-shopify-hover transition-all flex flex-col justify-between group">
+        <div className="rounded-xl bg-white border border-foam-border hover:border-foam-navy p-6 sm:p-8 shadow-shopify hover:shadow-shopify-hover transition-all flex flex-col justify-between group">
           <div className="space-y-5">
-            <div className="aspect-[16/10] rounded-xl overflow-hidden bg-foam-subtle border border-foam-border relative">
+            <div className="aspect-[16/10] rounded-lg overflow-hidden bg-foam-subtle border border-foam-border relative">
               <img
                 src={exotique.image}
                 alt={exotique.name}
                 className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
               />
-              <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-foam-navy/90 backdrop-blur-xs text-white text-[10px] font-bold uppercase tracking-wider">
+              <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-foam-navy text-white text-[10px] font-bold uppercase tracking-wider">
                 Édition Limitée
               </span>
             </div>
@@ -109,7 +109,7 @@ export default function SetsOverviewPage() {
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-foam-bg border border-foam-border text-xs text-foam-text space-y-1.5">
+            <div className="p-4 rounded-lg bg-foam-subtle/60 border border-foam-border text-xs text-foam-text space-y-1.5">
               <p className="font-bold text-foam-navy uppercase tracking-wider text-[11px]">Composition du coffret :</p>
               <p>• 1 ou 2 Brassin Riviera Tropicale (Mangue & passion)</p>
               <p>• 1 ou 2 Cuvée Houblon Niçois Solaire (Houblons locaux)</p>
@@ -131,7 +131,7 @@ export default function SetsOverviewPage() {
           <div className="pt-6 mt-6 border-t border-foam-border">
             <Link
               to="/coffrets/exotique"
-              className="w-full py-3.5 px-6 rounded-xl bg-foam-navy hover:bg-foam-navyLight text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-shopify transition-all active:scale-98"
+              className="w-full py-3.5 px-6 rounded-lg bg-foam-navy hover:bg-foam-navyLight text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-shopify transition-all active:scale-98"
             >
               <span>Accéder à la page du Coffret Exotique</span>
               <ArrowRight className="w-4 h-4" />
@@ -142,7 +142,7 @@ export default function SetsOverviewPage() {
       </div>
 
       {/* CTA vers la page "Nos bières" */}
-      <div className="rounded-2xl bg-white border border-foam-border p-8 sm:p-12 text-center space-y-4 shadow-xs">
+      <div className="rounded-xl bg-white border border-foam-border p-8 sm:p-12 text-center space-y-4 shadow-xs">
         <p className="text-[11px] font-bold uppercase tracking-widest text-foam-red">
           Dégustation & Notes Aromatiques
         </p>
@@ -155,7 +155,7 @@ export default function SetsOverviewPage() {
         <div className="pt-2">
           <Link
             to="/bieres"
-            className="inline-flex items-center gap-2 py-3 px-6 rounded-xl bg-foam-subtle hover:bg-foam-border border border-foam-border text-foam-navy font-bold text-xs sm:text-sm transition-colors"
+            className="inline-flex items-center gap-2 py-3 px-6 rounded-lg bg-foam-subtle hover:bg-foam-border border border-foam-border text-foam-navy font-bold text-xs sm:text-sm transition-colors"
           >
             <Beer className="w-4 h-4 text-foam-red" />
             <span>Découvrir la présentation détaillée de nos bières</span>

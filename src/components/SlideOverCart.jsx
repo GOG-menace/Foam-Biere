@@ -66,7 +66,7 @@ export default function SlideOverCart() {
           <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
             
             {/* Delivery Method Picker right in Cart (Shopify standard) */}
-            <div className="p-4 bg-white rounded-2xl border-2 border-foam-border space-y-2.5 shadow-2xs">
+            <div className="p-4 bg-white rounded-xl border border-foam-border space-y-2.5 shadow-xs">
               <span className="text-xs font-bold uppercase tracking-wider text-foam-navy block">
                 Mode de réception :
               </span>
@@ -74,7 +74,7 @@ export default function SlideOverCart() {
               <div className="space-y-2">
                 {/* Click & Collect Option */}
                 <label 
-                  className={`flex items-start gap-2.5 p-3 rounded-xl border-2 cursor-pointer text-xs transition-all ${
+                  className={`flex items-start gap-2.5 p-3 rounded-lg border-2 cursor-pointer text-xs transition-all ${
                     deliveryMethod === 'clickAndCollect'
                       ? 'border-foam-olive bg-foam-oliveSoft ring-1 ring-foam-olive/30'
                       : 'border-foam-border bg-white hover:border-foam-navy/30'
@@ -119,7 +119,7 @@ export default function SlideOverCart() {
 
                 {/* Home Delivery Option */}
                 <label 
-                  className={`flex items-start gap-2.5 p-3 rounded-xl border-2 cursor-pointer text-xs transition-all ${
+                  className={`flex items-start gap-2.5 p-3 rounded-lg border-2 cursor-pointer text-xs transition-all ${
                     deliveryMethod === 'homeDelivery'
                       ? 'border-foam-navy bg-white ring-1 ring-foam-navy/20'
                       : 'border-foam-border bg-white hover:border-foam-navy/30'
@@ -162,7 +162,7 @@ export default function SlideOverCart() {
                 {items.map((item) => (
                   <div
                     key={item.key}
-                    className="p-3.5 bg-white rounded-2xl border border-foam-border flex items-center justify-between gap-3 text-xs shadow-2xs"
+                    className="p-3.5 bg-white rounded-lg border border-foam-border flex items-center justify-between gap-3 text-xs shadow-xs"
                   >
                     <div className="flex-1 min-w-0">
                       <h4 className="font-bold text-foam-navy truncate text-sm">{item.name}</h4>
@@ -175,7 +175,7 @@ export default function SlideOverCart() {
                     <div className="flex items-center gap-1.5 shrink-0">
                       <button
                         onClick={() => updateQuantity(item.key, -1)}
-                        className="w-7 h-7 rounded-lg border border-foam-border text-foam-navy hover:bg-foam-subtle flex items-center justify-center font-bold"
+                        className="w-7 h-7 rounded-md border border-foam-border text-foam-navy hover:bg-foam-subtle flex items-center justify-center font-bold"
                       >
                         -
                       </button>
@@ -184,7 +184,7 @@ export default function SlideOverCart() {
                       </span>
                       <button
                         onClick={() => updateQuantity(item.key, 1)}
-                        className="w-7 h-7 rounded-lg border border-foam-border text-foam-navy hover:bg-foam-subtle flex items-center justify-center font-bold"
+                        className="w-7 h-7 rounded-md border border-foam-border text-foam-navy hover:bg-foam-subtle flex items-center justify-center font-bold"
                       >
                         +
                       </button>
@@ -224,13 +224,13 @@ export default function SlideOverCart() {
               </div>
 
               {/* Brewery reassurance reminder */}
-              <div className="p-2.5 rounded-xl bg-foam-redSoft text-foam-navy border border-foam-redBorder text-[11px] text-center font-medium">
+              <div className="p-2.5 rounded-lg bg-foam-redSoft text-foam-navy border border-foam-redBorder text-[11px] text-center font-medium">
                 🔒 Préparation artisanale au Port de Nice • Retrait gratuit au bar ou expédition soignée.
               </div>
 
               <button
                 onClick={handleGoToCheckout}
-                className="w-full py-4 px-6 rounded-xl bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-red-glow transition-all"
+                className="w-full py-4 px-6 rounded-lg bg-foam-red hover:bg-foam-redDark text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-shopify hover:shadow-craft-flat-red transition-all"
               >
                 <span>Commander mon panier</span>
                 <ArrowRight className="w-4 h-4" />
