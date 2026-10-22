@@ -1,16 +1,18 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { 
   Package, Check, Star, MapPin, Truck, ChevronRight, 
   Utensils, Award, Info, Beer, ShieldCheck, ArrowRight, Sun, Waves 
 } from 'lucide-react';
 import { BEERS } from '../data/products';
+import ScrollReveal from '../components/ScrollReveal';
 
 export default function BeerProductPage({ defaultSlug }) {
+  const navigate = useNavigate();
   const { slug } = useParams();
   const beerSlug = slug || defaultSlug || 'french-ipa';
   const beer = BEERS[beerSlug] || BEERS['french-ipa'];
-  const otherBeers = Object.values(BEERS).filter(b => b.slug !== beer.slug);
+  const otherBeers = Array.from(new Map(Object.values(BEERS).filter(b => b.slug !== beer.slug).map(b => [b.slug, b])).values());
 
   return (
     <div className="py-8 sm:py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
@@ -28,19 +30,13 @@ export default function BeerProductPage({ defaultSlug }) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
         
         {/* Left Column: Image en lumière naturelle & Sensory Gauges */}
-        <div className="lg:col-span-6 space-y-6">
+        <ScrollReveal className="lg:col-span-6 space-y-6" delay={0}>
           <div className="rounded-2xl overflow-hidden bg-white border border-foam-borderWarm/80 shadow-riviera aspect-[4/3] relative">
             <img
               src={beer.image}
               alt={beer.fullName}
               className="w-full h-full object-cover"
             />
-            <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-foam-navy text-white text-[11px] font-semibold tracking-wide">
-              {beer.style}
-            </div>
-            <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-white/95 text-foam-navy text-[11px] font-bold shadow-xs border border-foam-borderWarm">
-              {beer.abv} • IBU {beer.ibu}
-            </div>
           </div>
 
           {/* Sensory Gauges Riviera */}
@@ -90,15 +86,12 @@ export default function BeerProductPage({ defaultSlug }) {
               </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Right Column: Recipe Deep-dive & Drive to Coffret Découverte */}
-        <div className="lg:col-span-6 space-y-6">
+        <ScrollReveal className="lg:col-span-6 space-y-6" delay={80}>
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-foam-borderWarm text-foam-navy text-xs font-semibold">
-              <Sun className="w-3.5 h-3.5 text-foam-gold" />
-              <span>Recette permanente • Port de Nice</span>
-            </div>
+
             <h1 className="font-serif text-3xl sm:text-4xl font-bold text-foam-navy leading-tight">
               {beer.fullName}
             </h1>
@@ -134,28 +127,28 @@ export default function BeerProductPage({ defaultSlug }) {
             </div>
           </div>
 
-          {/* Callout: Exclusively sold in Coffret Découverte */}
-          <div className="card-riviera p-6 bg-foam-terracottaSoft/80 border-foam-terracotta/30 space-y-4">
+          {/* Callout: Exclusively sold in Coffret (100% clickable) */}
+          <div 
+            onClick={() => navigate('/coffrets')}
+            className="card-riviera p-6 bg-foam-terracottaSoft/80 border-foam-terracotta/30 space-y-4 cursor-pointer hover:border-foam-terracotta/70 hover:shadow-riviera transition-all duration-300 group"
+          >
             <div className="space-y-1">
               <span className="text-[11px] font-serif font-bold uppercase tracking-wider text-foam-terracotta block">
                 Disponibilité Boutique
               </span>
-              <h3 className="font-serif text-xl sm:text-2xl font-bold text-foam-navy">
-                Cette bière est disponible dans notre Coffret Découverte
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-foam-navy group-hover:text-foam-terracotta transition-colors">
+                Cette bière est disponible dans nos Coffrets Cadeaux
               </h3>
               <p className="text-xs text-foam-text font-sans leading-relaxed">
-                Nos bières ne sont pas vendues à l'unité sur la boutique en ligne. Retrouvez cette recette dans le <strong>Coffret Découverte</strong> (format Pack de 3 ou Pack de 6 bouteilles) avec retrait gratuit au bar ou expédition anti-casse.
+                Nos bières sont brassées artisanalement et proposées dans nos <strong>Coffrets Cadeaux FOAM</strong> (format Pack de 3 ou Pack de 6 bouteilles de 33cl) avec retrait Click & Collect gratuit sous 2h au bar ou expédition anti-casse à domicile.
               </p>
             </div>
 
-            <Link
-              to="/coffrets/decouverte"
-              className="btn-riviera-terracotta w-full text-xs sm:text-sm text-center flex items-center justify-center gap-2"
-            >
+            <div className="btn-riviera-terracotta w-full text-xs sm:text-sm text-center flex items-center justify-center gap-2 group-hover:shadow-terracotta-glow transition-all">
               <Package className="w-4 h-4 stroke-[2]" />
-              <span>Commander dans le Coffret Découverte</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+              <span>Commander en Coffret Cadeau</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </div>
           </div>
 
           {/* Other beers navigation */}
@@ -176,7 +169,7 @@ export default function BeerProductPage({ defaultSlug }) {
             </div>
           </div>
 
-        </div>
+        </ScrollReveal>
 
       </div>
 

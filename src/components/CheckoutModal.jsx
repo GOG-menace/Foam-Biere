@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Lock, MapPin, Truck, ArrowRight, ShieldCheck, Sun } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { BARS_DATA } from '../data/products';
+import { trackBeginCheckout } from '../utils/analytics';
 import confetti from 'canvas-confetti';
 
 export default function CheckoutModal() {
@@ -52,16 +53,8 @@ export default function CheckoutModal() {
       return;
     }
 
-    try {
-      confetti({
-        particleCount: 70,
-        spread: 60,
-        origin: { y: 0.6 },
-        colors: ['#C3532B', '#DCA037', '#112338', '#FFFFFF']
-      });
-    } catch (e) {
-      console.warn(e);
-    }
+    // GA4 KPI: begin_checkout
+    trackBeginCheckout({ items, totalValue: grandTotal });
 
     completeOrder(formData);
   };
@@ -258,7 +251,7 @@ export default function CheckoutModal() {
               type="submit"
               className="btn-riviera-terracotta w-full py-4 text-sm font-bold shadow-md hover:shadow-terracotta-glow"
             >
-              <span>Confirmer ma commande • {grandTotal.toFixed(2)} €</span>
+              <span>Valider la réservation • {grandTotal.toFixed(2)} €</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

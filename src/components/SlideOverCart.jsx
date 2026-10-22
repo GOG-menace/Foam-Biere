@@ -2,6 +2,7 @@ import React from 'react';
 import { X, Trash2, Plus, Minus, ShoppingBag, MapPin, Truck, ArrowRight, ShieldCheck, Sun } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { BARS_DATA, SHIPPING_RATES } from '../data/products';
+import { trackBeginCheckout } from '../utils/analytics';
 
 export default function SlideOverCart() {
   const { 
@@ -18,14 +19,28 @@ export default function SlideOverCart() {
     setSelectedBar,
     shippingCost, 
     grandTotal,
-    setIsCheckoutOpen
+    setIsCheckoutOpen,
+    setOrderConfirmed
   } = useCart();
 
   if (!isCartOpen) return null;
 
   const handleGoToCheckout = () => {
+    // GA4 KPI Event: begin_checkout
+    trackBeginCheckout({ items, totalValue: grandTotal });
+
     setIsCartOpen(false);
-    setIsCheckoutOpen(true);
+
+    // As online payment is temporarily unavailable, open the priority email waitlist modal
+    setOrderConfirmed({
+      orderNumber: 'FOAM-' + Math.floor(100000 + Math.random() * 900000),
+      items: [...items],
+      subtotal,
+      shippingCost,
+      grandTotal,
+      deliveryMethod,
+      customer: {}
+    });
   };
 
   return (
@@ -94,7 +109,7 @@ export default function SlideOverCart() {
                         <MapPin className="w-3.5 h-3.5 stroke-[2]" />
                         Retrait Click & Collect au bar
                       </span>
-                      <span className="bg-white px-2 py-0.5 rounded-full text-[10px] border border-foam-pine/30 font-bold">
+                      <span className="bg-white px-2 py-0.5 rounded text-[10px] border border-foam-pine/30 font-bold">
                         GRATUIT (0 €)
                       </span>
                     </div>
@@ -169,61 +184,78 @@ export default function SlideOverCart() {
               </div>
             ) : (
               <div className="space-y-3">
-                {items.map((item) => (
-                  <div 
-                    key={item.id}
-                    className="p-3.5 bg-white rounded-2xl border border-foam-border shadow-xs flex gap-3 items-center"
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-16 h-16 object-cover rounded-xl border border-foam-border shrink-0"
-                    />
+                {items.map((item) => {
+                  const itemKey = item.key || item.id;
+                  const itemImg = item.image || (
+                    item.slug === 'coffret-exotique' 
+                      ? '/images/coffret-exotique-packshot.jpg' 
+                      : '/images/classique-team.jpg'
+                  );
+                  const itemFormat = item.formatLabel || item.formatName || (
+                    item.format === 'pack3' ? 'Coffret 3 Bouteilles (3 x 33cl)' : 'Coffret 6 Bouteilles (6 x 33cl)'
+                  );
 
-                    <div className="flex-1 min-w-0">
-                      <div className="flex justify-between items-start">
-                        <h4 className="font-serif font-bold text-sm truncate text-foam-navy">
-                          {item.name}
-                        </h4>
-                        <button
-                          onClick={() => removeItem(item.id)}
-                          className="text-foam-muted hover:text-foam-terracotta p-1 transition-colors"
-                          aria-label="Supprimer"
-                        >
-                          <Trash2 className="w-4 h-4 stroke-[1.8]" />
-                        </button>
-                      </div>
+                  return (
+                    <div 
+                      key={itemKey}
+                      className="p-3.5 bg-white rounded-2xl border border-foam-border shadow-xs flex gap-3 items-center"
+                    >
+                      <img
+                        src={itemImg}
+                        alt={item.name}
+                        className="w-16 h-16 object-cover rounded-xl border border-foam-border shrink-0 bg-[#FAF6F0]"
+                      />
 
-                      <p className="text-[11px] text-foam-terracotta font-semibold">
-                        {item.formatName || 'Format Sélectionné'}
-                      </p>
-
-                      <div className="flex justify-between items-center mt-2">
-                        <div className="flex items-center border border-foam-border rounded-lg bg-[#FAF6F0]">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex justify-between items-start">
+                          <h4 className="font-serif font-bold text-sm truncate text-foam-navy">
+                            {item.name}
+                          </h4>
                           <button
-                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                            className="w-6 h-6 flex items-center justify-center font-bold hover:bg-white text-xs rounded-l-lg transition-colors"
+                            type="button"
+                            onClick={() => removeItem(itemKey)}
+                            className="text-foam-muted hover:text-foam-terracotta p-1.5 transition-colors cursor-pointer rounded-lg hover:bg-foam-subtle"
+                            aria-label="Supprimer"
                           >
-                            -
-                          </button>
-                          <span className="w-7 text-center font-bold text-xs">
-                            {item.quantity}
-                          </span>
-                          <button
-                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            className="w-6 h-6 flex items-center justify-center font-bold hover:bg-white text-xs rounded-r-lg transition-colors"
-                          >
-                            +
+                            <Trash2 className="w-4 h-4 stroke-[1.8]" />
                           </button>
                         </div>
 
-                        <span className="font-serif font-bold text-sm text-foam-navy">
-                          {(item.price * item.quantity).toFixed(2)} €
-                        </span>
+                        <p className="text-[11px] text-foam-terracotta font-semibold">
+                          {itemFormat}
+                        </p>
+
+                        <div className="flex justify-between items-center mt-2">
+                          <div className="flex items-center border border-foam-border rounded-lg bg-[#FAF6F0] overflow-hidden">
+                            <button
+                              type="button"
+                              onClick={() => updateQuantity(itemKey, -1)}
+                              className="w-7 h-7 flex items-center justify-center font-bold hover:bg-white text-xs transition-colors cursor-pointer select-none"
+                              aria-label="Diminuer la quantité"
+                            >
+                              -
+                            </button>
+                            <span className="w-8 text-center font-bold text-xs select-none">
+                              {item.quantity}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => updateQuantity(itemKey, 1)}
+                              className="w-7 h-7 flex items-center justify-center font-bold hover:bg-white text-xs transition-colors cursor-pointer select-none"
+                              aria-label="Augmenter la quantité"
+                            >
+                              +
+                            </button>
+                          </div>
+
+                          <span className="font-serif font-bold text-sm text-foam-navy">
+                            {(item.price * item.quantity).toFixed(2)} €
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
 
@@ -241,7 +273,7 @@ export default function SlideOverCart() {
                   <span>Livraison :</span>
                   <span className="font-semibold">
                     {deliveryMethod === 'clickAndCollect' ? (
-                      <span className="text-foam-pine font-bold bg-foam-pineSoft px-2 py-0.5 rounded-full">0,00 € (Offert)</span>
+                      <span className="text-foam-pine font-bold bg-foam-pineSoft px-2 py-0.5 rounded">0,00 € (Offert)</span>
                     ) : (
                       `${shippingCost.toFixed(2)} €`
                     )}
@@ -258,9 +290,9 @@ export default function SlideOverCart() {
               <button
                 type="button"
                 onClick={handleGoToCheckout}
-                className="btn-riviera-terracotta w-full py-4 text-sm font-bold shadow-md hover:shadow-terracotta-glow"
+                className="btn-riviera-terracotta w-full py-4 text-sm font-bold shadow-md hover:shadow-terracotta-glow cursor-pointer"
               >
-                <span>Valider la commande • {grandTotal.toFixed(2)} €</span>
+                <span>Procéder au paiement • {grandTotal.toFixed(2)} €</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 

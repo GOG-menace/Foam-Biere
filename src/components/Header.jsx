@@ -132,7 +132,7 @@ export default function Header() {
             <Link
               key={link.path}
               to={link.path}
-              className={`shrink-0 px-3 py-1 font-semibold rounded-full transition-all text-xs border ${
+              className={`shrink-0 px-3 py-1 font-semibold rounded-lg transition-all text-xs border ${
                 active
                   ? 'bg-foam-terracotta text-white border-foam-terracotta'
                   : 'bg-white text-foam-navy border-foam-border hover:border-foam-terracotta'

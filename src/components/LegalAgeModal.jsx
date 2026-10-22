@@ -57,10 +57,7 @@ export default function LegalAgeModal() {
           className="w-16 h-16 object-contain rounded-full border border-foam-borderWarm mx-auto mb-3 shadow-xs bg-white"
         />
 
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-foam-borderWarm text-foam-navy text-xs font-semibold mb-2">
-          <Sun className="w-3.5 h-3.5 text-foam-gold" />
-          <span>Port de Nice • Quai des Deux Emmanuels</span>
-        </div>
+
 
         <h2 className="font-serif text-3xl font-bold tracking-tight text-foam-navy">
           FOAM

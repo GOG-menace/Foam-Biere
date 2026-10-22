@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { SHIPPING_RATES, BARS_DATA } from '../data/products';
+import { trackAddToCart } from '../utils/analytics';
 
 const CartContext = createContext();
 
@@ -7,7 +8,23 @@ export function CartProvider({ children }) {
   const [items, setItems] = useState(() => {
     try {
       const saved = localStorage.getItem('foam_cart');
-      return saved ? JSON.parse(saved) : [];
+      if (!saved) return [];
+      const parsed = JSON.parse(saved);
+      return parsed.map(it => {
+        const itemKey = it.key || it.id || `${it.slug}_${it.format || 'pack6'}`;
+        const itemImage = it.image || (
+          it.slug === 'coffret-exotique' 
+            ? '/images/coffret-exotique-packshot.jpg' 
+            : '/images/classique-team.jpg'
+        );
+        return {
+          ...it,
+          id: itemKey,
+          key: itemKey,
+          image: itemImage,
+          formatLabel: it.formatLabel || it.formatName || (it.format === 'pack3' ? 'Coffret 3 Bouteilles (3 x 33cl)' : 'Coffret 6 Bouteilles (6 x 33cl)')
+        };
+      });
     } catch {
       return [];
     }
@@ -37,17 +54,25 @@ export function CartProvider({ children }) {
       formatLabel = product.pack6.format;
     }
 
+    const itemImage = product.image || (
+      product.slug === 'coffret-exotique' 
+        ? '/images/coffret-exotique-packshot.jpg' 
+        : '/images/classique-team.jpg'
+    );
+
     setItems(prev => {
-      const index = prev.findIndex(item => item.key === key);
+      const index = prev.findIndex(item => item.key === key || item.id === key);
       if (index > -1) {
         const next = [...prev];
         next[index] = {
           ...next[index],
-          quantity: next[index].quantity + quantity
+          quantity: next[index].quantity + quantity,
+          image: next[index].image || itemImage
         };
         return next;
       }
       return [...prev, {
+        id: key,
         key,
         slug: product.slug,
         name: product.name,
@@ -56,32 +81,48 @@ export function CartProvider({ children }) {
         price: itemPrice,
         quantity,
         badge: product.badge,
+        image: itemImage,
         imagePlaceholder: product.imagePlaceholder
       }];
+    });
+
+    // GA4 Standard e-commerce event: add_to_cart
+    trackAddToCart({
+      id: key,
+      name: product.name || product.fullName,
+      price: itemPrice,
+      quantity,
+      format: formatLabel
     });
 
     setIsCartOpen(true);
   };
 
-  const updateQuantity = (key, delta) => {
+  const updateQuantity = (keyOrId, deltaOrNewQty) => {
     setItems(prev => prev.map(item => {
-      if (item.key === key) {
-        const newQty = item.quantity + delta;
+      if (item.key === keyOrId || item.id === keyOrId) {
+        let newQty;
+        if (deltaOrNewQty === 1 || deltaOrNewQty === -1) {
+          newQty = item.quantity + deltaOrNewQty;
+        } else {
+          newQty = deltaOrNewQty;
+        }
         return newQty > 0 ? { ...item, quantity: newQty } : null;
       }
       return item;
     }).filter(Boolean));
   };
 
-  const removeItem = (key) => {
-    setItems(prev => prev.filter(item => item.key !== key));
+  const removeItem = (keyOrId) => {
+    setItems(prev => prev.filter(item => item.key !== keyOrId && item.id !== keyOrId));
   };
 
   const clearCart = () => setItems([]);
 
   const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const totalCount = items.reduce((sum, item) => sum + item.quantity, 0);
-  const shippingCost = deliveryMethod === 'clickAndCollect' ? SHIPPING_RATES.clickAndCollect : SHIPPING_RATES.homeDelivery;
+  const isClickAndCollect = deliveryMethod === 'clickAndCollect' || deliveryMethod === 'click_and_collect';
+  const shippingCost = isClickAndCollect ? 0.00 : (SHIPPING_RATES.homeDelivery || SHIPPING_RATES.shipping || 6.90);
   const grandTotal = subtotal + (items.length > 0 ? shippingCost : 0);
 
   const completeOrder = (customerData) => {

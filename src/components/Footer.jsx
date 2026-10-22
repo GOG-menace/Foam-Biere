@@ -101,7 +101,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-foam-gold text-[11px] font-semibold mt-2 border border-white/15">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/10 text-foam-gold text-[11px] font-semibold mt-2 border border-white/15">
                   <Sun className="w-3.5 h-3.5 text-foam-gold" />
                   Click & Collect sous 2h
                 </span>

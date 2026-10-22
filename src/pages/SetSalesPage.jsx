@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { 
   ShoppingBag, Check, Star, MapPin, Truck, ShieldCheck, 
   Package, ChevronRight, ChevronDown, Sparkles, Heart, Award, ArrowRight, Beer, Camera, Sun 
 } from 'lucide-react';
 import { SETS, SHIPPING_RATES, BARS_DATA } from '../data/products';
 import { useCart } from '../context/CartContext';
+import { trackBeginCheckout } from '../utils/analytics';
+import ScrollReveal from '../components/ScrollReveal';
 
 export default function SetSalesPage({ defaultSlug }) {
+  const navigate = useNavigate();
   const { slug } = useParams();
-  const setSlug = slug || defaultSlug || 'coffret-decouverte';
+  let setSlug = slug || defaultSlug || 'coffret-decouverte';
+  if (setSlug === 'decouverte') setSlug = 'coffret-decouverte';
+  if (setSlug === 'exotique') setSlug = 'coffret-exotique';
   const product = SETS[setSlug] || SETS['coffret-decouverte'];
-  const otherSlug = setSlug === 'coffret-decouverte' ? 'coffret-exotique' : 'coffret-decouverte';
-  const otherSet = SETS[otherSlug];
+  const otherSlug = (product.slug === 'coffret-decouverte' || product.id === 'coffret-decouverte') ? 'coffret-exotique' : 'coffret-decouverte';
+  const otherSet = SETS[otherSlug] || SETS['coffret-exotique'] || SETS['coffret-decouverte'];
 
-  const { addItem, deliveryMethod, setDeliveryMethod, setIsCartOpen, setIsCheckoutOpen } = useCart();
+  const { addItem, deliveryMethod, setDeliveryMethod, setIsCartOpen, setIsCheckoutOpen, setOrderConfirmed } = useCart();
 
   // State: 'pack3' (15€) or 'pack6' (26€)
   const [selectedFormat, setSelectedFormat] = useState('pack6');
@@ -37,8 +42,38 @@ export default function SetSalesPage({ defaultSlug }) {
 
   const handleBuyNow = () => {
     addItem(product, selectedFormat, quantity);
+    
+    // GA4 KPI Event: begin_checkout
+    trackBeginCheckout({
+      items: [{
+        id: `${product.slug}_${selectedFormat}`,
+        name: product.name,
+        formatLabel: currentPack.format,
+        price: currentPack.price,
+        quantity
+      }],
+      totalValue: currentPack.price * quantity
+    });
+
     setIsCartOpen(false);
-    setIsCheckoutOpen(true);
+
+    // As online payment is temporarily unavailable, open the priority email waitlist modal
+    setOrderConfirmed({
+      orderNumber: 'FOAM-' + Math.floor(100000 + Math.random() * 900000),
+      items: [{
+        id: `${product.slug}_${selectedFormat}`,
+        key: `${product.slug}_${selectedFormat}`,
+        name: product.name,
+        formatLabel: currentPack.format,
+        price: currentPack.price,
+        quantity
+      }],
+      subtotal: currentPack.price * quantity,
+      shippingCost: 0,
+      grandTotal: currentPack.price * quantity,
+      deliveryMethod,
+      customer: {}
+    });
   };
 
   return (
@@ -57,7 +92,7 @@ export default function SetSalesPage({ defaultSlug }) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
         
         {/* Left Column: Image Showcase & Gallery en lumière naturelle */}
-        <div className="lg:col-span-7 space-y-4">
+        <ScrollReveal className="lg:col-span-7 space-y-4" delay={0}>
           
           {/* Main Photo Display */}
           <div className="rounded-2xl overflow-hidden bg-white border border-foam-borderWarm/80 shadow-riviera aspect-[4/3] relative group">
@@ -66,13 +101,6 @@ export default function SetSalesPage({ defaultSlug }) {
               alt={product.fullName}
               className="w-full h-full object-cover transition-all duration-500 group-hover:scale-102"
             />
-            <div className="absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 rounded-full bg-foam-navy/90 backdrop-blur-xs text-white text-[11px] font-semibold tracking-wide">
-              <Camera className="w-3.5 h-3.5 text-foam-gold" />
-              <span>Photo officielle FOAM</span>
-            </div>
-            <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-white/95 text-foam-navy text-[11px] font-semibold tracking-wide shadow-xs border border-foam-border">
-              Quai des Deux Emmanuels
-            </div>
           </div>
 
           {/* Interactive Thumbnails Gallery */}
@@ -106,26 +134,35 @@ export default function SetSalesPage({ defaultSlug }) {
 
           {/* Guarantees row below image */}
           <div className="grid grid-cols-3 gap-3 text-center text-xs text-foam-navy pt-2">
-            <div className="p-3.5 bg-white rounded-xl border border-foam-border shadow-xs">
-              <Beer className="w-5 h-5 text-foam-terracotta mx-auto mb-1 stroke-[2]" />
-              <p className="font-bold text-[11px]">100% Artisanal</p>
+            <div 
+              onClick={() => navigate('/bieres')}
+              className="p-3.5 bg-white rounded-xl border border-foam-border shadow-xs cursor-pointer hover:border-foam-terracotta/50 hover:shadow-riviera transition-all duration-300 group"
+            >
+              <Beer className="w-5 h-5 text-foam-terracotta mx-auto mb-1 stroke-[2] group-hover:scale-110 transition-transform" />
+              <p className="font-bold text-[11px] group-hover:text-foam-terracotta transition-colors">100% Artisanal</p>
               <p className="text-[10px] text-foam-muted">Brassée au Port de Nice</p>
             </div>
-            <div className="p-3.5 bg-foam-pineSoft rounded-xl border border-foam-pine/20 shadow-xs">
-              <MapPin className="w-5 h-5 text-foam-pine mx-auto mb-1 stroke-[2]" />
+            <div 
+              onClick={() => navigate('/nos-bars')}
+              className="p-3.5 bg-foam-pineSoft rounded-xl border border-foam-pine/20 shadow-xs cursor-pointer hover:border-foam-pine/60 hover:shadow-riviera transition-all duration-300 group"
+            >
+              <MapPin className="w-5 h-5 text-foam-pine mx-auto mb-1 stroke-[2] group-hover:scale-110 transition-transform" />
               <p className="font-bold text-[11px] text-foam-pine">Click & Collect 0 €</p>
               <p className="text-[10px] text-foam-pine">Prêt en 2h au bar</p>
             </div>
-            <div className="p-3.5 bg-white rounded-xl border border-foam-border shadow-xs">
-              <ShieldCheck className="w-5 h-5 text-foam-navy mx-auto mb-1 stroke-[2]" />
-              <p className="font-bold text-[11px]">Garantie Anti-Casse</p>
+            <div 
+              onClick={() => navigate('/coffrets')}
+              className="p-3.5 bg-white rounded-xl border border-foam-border shadow-xs cursor-pointer hover:border-foam-navy/50 hover:shadow-riviera transition-all duration-300 group"
+            >
+              <ShieldCheck className="w-5 h-5 text-foam-navy mx-auto mb-1 stroke-[2] group-hover:scale-110 transition-transform" />
+              <p className="font-bold text-[11px] group-hover:text-foam-navy transition-colors">Garantie Anti-Casse</p>
               <p className="text-[10px] text-foam-muted">Étui kraft renforcé</p>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Right Column: Buying Options & E-Commerce Core */}
-        <div className="lg:col-span-5 space-y-6">
+        <ScrollReveal className="lg:col-span-5 space-y-6" delay={90}>
           
           <div>
             <div className="flex items-center gap-2 mb-2">
@@ -166,20 +203,17 @@ export default function SetSalesPage({ defaultSlug }) {
               </span>
             </div>
 
-            <span className="text-xs font-semibold text-foam-pine bg-foam-pineSoft px-2.5 py-1 rounded-full border border-foam-pine/20">
+            <span className="text-xs font-semibold text-foam-pine bg-foam-pineSoft px-2.5 py-1 rounded-md border border-foam-pine/20">
               ✓ En stock à Nice
             </span>
           </div>
 
           {/* 1. VARIANT SELECTOR (Pack 3 vs Pack 6) */}
           <div className="space-y-3">
-            <div className="flex justify-between items-center text-xs">
+            <div className="text-xs">
               <label className="font-bold uppercase tracking-wider text-foam-navy font-serif">
                 Format de Coffret :
               </label>
-              <span className="text-foam-terracotta font-semibold">
-                {selectedFormat === 'pack6' ? '✓ Format Recommandé' : 'Format Découverte'}
-              </span>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
@@ -222,7 +256,7 @@ export default function SetSalesPage({ defaultSlug }) {
           </div>
 
           {/* 2. DYNAMIC CONTENTS OF SELECTED FORMAT */}
-          <div className="p-4 bg-white rounded-2xl border border-foam-border space-y-2 text-xs">
+          <div className="p-4 bg-white rounded-2xl border border-foam-border space-y-3 text-xs">
             <span className="font-serif font-bold uppercase tracking-wider text-foam-navy block">
               Contenu de votre {currentPack.format} :
             </span>
@@ -237,6 +271,17 @@ export default function SetSalesPage({ defaultSlug }) {
                 </li>
               ))}
             </ul>
+
+            <div className="pt-2.5 border-t border-foam-borderWarm/60">
+              <Link
+                to="/bieres"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-foam-terracottaSoft/80 border border-foam-terracotta/30 text-foam-terracotta hover:bg-foam-terracotta hover:text-white transition-all text-xs font-semibold shadow-2xs group/beerlink"
+              >
+                <Beer className="w-3.5 h-3.5 stroke-[2]" />
+                <span>En savoir plus sur les bières</span>
+                <ChevronRight className="w-3.5 h-3.5 group-hover/beerlink:translate-x-0.5 transition-transform" />
+              </Link>
+            </div>
           </div>
 
           {/* 3. DELIVERY SELECTOR (Click & Collect 0€ vs Colis) */}
@@ -264,7 +309,7 @@ export default function SetSalesPage({ defaultSlug }) {
                   <div className="flex items-center gap-2 font-bold text-foam-pine">
                     <MapPin className="w-3.5 h-3.5 stroke-[2]" />
                     <span>Retrait Click & Collect au bar</span>
-                    <span className="bg-white px-2 py-0.5 rounded-full text-[10px] border border-foam-pine/30 font-bold">
+                    <span className="bg-white px-2 py-0.5 rounded text-[10px] border border-foam-pine/30 font-bold">
                       GRATUIT (0 €)
                     </span>
                   </div>
@@ -276,7 +321,7 @@ export default function SetSalesPage({ defaultSlug }) {
 
               <label 
                 className={`flex items-start gap-3 p-3.5 rounded-xl border-2 cursor-pointer transition-all ${
-                  deliveryMethod === 'shipping'
+                  (deliveryMethod === 'shipping' || deliveryMethod === 'homeDelivery')
                     ? 'border-foam-navy bg-foam-navySoft'
                     : 'border-foam-border bg-white hover:border-foam-navy/30'
                 }`}
@@ -284,7 +329,7 @@ export default function SetSalesPage({ defaultSlug }) {
                 <input
                   type="radio"
                   name="setDelivery"
-                  checked={deliveryMethod === 'shipping'}
+                  checked={deliveryMethod === 'shipping' || deliveryMethod === 'homeDelivery'}
                   onChange={() => setDeliveryMethod('shipping')}
                   className="mt-0.5 text-foam-navy accent-[#112338]"
                 />
@@ -293,7 +338,7 @@ export default function SetSalesPage({ defaultSlug }) {
                     <Truck className="w-3.5 h-3.5 stroke-[2]" />
                     <span>Expédition à domicile anti-casse</span>
                     <span className="font-semibold text-foam-muted">
-                      ({SHIPPING_RATES[selectedFormat].price.toFixed(2)} €)
+                      ({(SHIPPING_RATES.homeDelivery || SHIPPING_RATES.shipping || 6.90).toFixed(2)} €)
                     </span>
                   </div>
                   <p className="text-[11px] text-foam-text mt-0.5 leading-snug">
@@ -362,22 +407,38 @@ export default function SetSalesPage({ defaultSlug }) {
             )}
           </div>
 
-          {/* Other set link */}
-          <div className="pt-2 text-center">
-            <Link 
-              to={`/coffrets/${otherSlug === 'coffret-exotique' ? 'exotique' : 'decouverte'}`}
-              className="text-xs font-serif font-bold text-foam-navy hover:text-foam-terracotta underline inline-flex items-center gap-1.5"
-            >
-              <span>Découvrir aussi : {otherSet.name} ({otherSet.subtitle}) →</span>
-            </Link>
+          {/* Other set showcase card (100% clickable) */}
+          <div 
+            onClick={() => navigate(`/coffrets/${otherSlug === 'coffret-exotique' ? 'exotique' : 'decouverte'}`)}
+            className="p-4 rounded-2xl bg-[#FAF6F0] border border-foam-borderWarm hover:border-foam-terracotta/60 hover:shadow-riviera transition-all duration-300 cursor-pointer flex items-center justify-between group"
+          >
+            <div className="flex items-center gap-3">
+              <img 
+                src={otherSet.image} 
+                alt={otherSet.name} 
+                className="w-14 h-14 rounded-xl object-cover border border-foam-border group-hover:scale-105 transition-transform"
+              />
+              <div className="text-left">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-foam-terracotta block">
+                  Découvrir aussi l'autre coffret
+                </span>
+                <h4 className="font-serif font-bold text-sm text-foam-navy group-hover:text-foam-terracotta transition-colors">
+                  {otherSet.name}
+                </h4>
+                <span className="text-[11px] text-foam-muted block">
+                  {otherSet.subtitle} • À partir de 15 €
+                </span>
+              </div>
+            </div>
+            <ArrowRight className="w-4 h-4 text-foam-navy group-hover:text-foam-terracotta group-hover:translate-x-1 transition-all shrink-0 ml-2" />
           </div>
 
-        </div>
+        </ScrollReveal>
 
       </div>
 
       {/* Accordions Riviera (Dégustation, Retrait & Sécurité) */}
-      <div className="border-t border-foam-borderWarm/60 pt-10 space-y-3">
+      <ScrollReveal className="border-t border-foam-borderWarm/60 pt-10 space-y-3" delay={0}>
         <h3 className="font-serif text-2xl font-bold text-foam-navy mb-4">
           Notes de Dégustation & Informations Pratiques
         </h3>
@@ -427,7 +488,7 @@ export default function SetSalesPage({ defaultSlug }) {
             Nos coffrets sont confectionnés en carton kraft rigide certifié FSC, 100% recyclable et conçu sur-mesure pour caler individuellement chaque bouteille de 33cl contre les chocs du transport.
           </div>
         </details>
-      </div>
+      </ScrollReveal>
 
     </div>
   );
