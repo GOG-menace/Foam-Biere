@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { 
-  Package, Check, Star, MapPin, Truck, ChevronRight, 
+  Package, Check, MapPin, Truck, ChevronRight, 
   Utensils, Award, Info, Beer, ShieldCheck, ArrowRight, Sun, Waves 
 } from 'lucide-react';
 import { BEERS } from '../data/products';

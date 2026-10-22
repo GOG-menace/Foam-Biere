@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Eye, Star, Info, Utensils, Check, Gift } from 'lucide-react';
+import { ShoppingBag, Eye, Info, Utensils, Check, Gift } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
 export default function ProductCard({ product, type = 'bottle' }) {

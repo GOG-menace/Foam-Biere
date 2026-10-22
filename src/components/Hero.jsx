@@ -1,5 +1,5 @@
 import React from 'react';
-import { Gift, Sliders, ShieldCheck, MapPin, Truck, Beer, Star, ArrowDown, Sparkles } from 'lucide-react';
+import { Gift, Sliders, ShieldCheck, MapPin, Truck, Beer, ArrowDown, Sparkles } from 'lucide-react';
 
 export default function Hero() {
   const scrollTo = (selector) => {
@@ -38,18 +38,6 @@ export default function Hero() {
             <p className="mt-5 text-base sm:text-lg text-foam-navy/80 leading-relaxed max-w-2xl mx-auto lg:mx-0">
               Commandez vos bouteilles FOAM à l'unité, en packs ou en coffrets cadeaux prêts à offrir. <strong className="text-foam-navy font-semibold underline decoration-foam-amber/60">Retrait Click & Collect GRATUIT</strong> dans nos bars FOAM (Port & Place du Pin) ou livraison sécurisée anti-casse.
             </p>
-
-            {/* Social Proof Bar */}
-            <div className="mt-5 flex flex-wrap items-center justify-center lg:justify-start gap-3 text-xs text-foam-gray">
-              <div className="flex items-center gap-1 text-amber-500">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              <span className="font-semibold text-foam-navy">4.9 / 5</span>
-              <span className="hidden sm:inline text-foam-border">•</span>
-              <span>Plus de 1 200 dégustations par semaine au Quai Cassini</span>
-            </div>
 
             {/* Double CTA */}
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">

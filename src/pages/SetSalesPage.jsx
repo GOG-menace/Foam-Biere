@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { 
-  ShoppingBag, Check, Star, MapPin, Truck, ShieldCheck, 
+  ShoppingBag, Check, MapPin, Truck, ShieldCheck, 
   Package, ChevronRight, ChevronDown, Sparkles, Heart, Award, ArrowRight, Beer, Camera, Sun 
 } from 'lucide-react';
 import { SETS, SHIPPING_RATES, BARS_DATA } from '../data/products';
@@ -165,16 +165,6 @@ export default function SetSalesPage({ defaultSlug }) {
         <ScrollReveal className="lg:col-span-5 space-y-6" delay={90}>
           
           <div>
-            <div className="flex items-center gap-2 mb-2">
-              <div className="flex items-center text-foam-gold">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-foam-gold text-foam-gold" />
-                ))}
-              </div>
-              <span className="text-xs font-bold text-foam-navy">{product.rating} / 5</span>
-              <span className="text-xs text-foam-muted font-medium">({product.reviewsCount} avis clients vérifiés)</span>
-            </div>
-
             <h1 className="font-serif text-3xl sm:text-4xl font-bold text-foam-navy leading-tight">
               {product.fullName}
             </h1>

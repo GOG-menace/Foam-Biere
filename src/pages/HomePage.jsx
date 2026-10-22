@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowRight, MapPin, Beer, Package, Star, Waves } from 'lucide-react';
+import { ArrowRight, MapPin, Beer, Package, Waves } from 'lucide-react';
 import { SETS } from '../data/products';
 import ScrollReveal from '../components/ScrollReveal';
 
@@ -34,18 +34,6 @@ export default function HomePage() {
                 Face aux pointus colorés du Quai des Deux Emmanuels, Stéphane brasse nos recettes méditerranéennes avec amour et authenticité. 
                 Commandez nos coffrets dégustation prêts à offrir avec <strong className="text-foam-navy font-semibold">Retrait Click & Collect GRATUIT</strong> dans nos 2 bars à Nice ou livraison soignée chez vous.
               </p>
-
-              {/* Mediterranean Trust Rating */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 text-xs text-foam-muted font-medium pt-1">
-                <div className="flex items-center gap-1 text-foam-gold">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-foam-gold text-foam-gold" />
-                  ))}
-                </div>
-                <span className="font-bold text-foam-navy text-sm">4.9 / 5</span>
-                <span className="text-foam-borderWarm">•</span>
-                <span className="text-foam-text">Plus de 1 200 dégustations par semaine au Port de Nice</span>
-              </div>
 
               {/* Warm Dual CTAs */}
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
