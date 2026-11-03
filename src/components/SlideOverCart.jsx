@@ -26,19 +26,23 @@ export default function SlideOverCart() {
   if (!isCartOpen) return null;
 
   const handleGoToCheckout = () => {
-    // GA4 KPI Event: begin_checkout
-    trackBeginCheckout({ items, totalValue: grandTotal });
+    const isClickAndCollect = deliveryMethod === 'clickAndCollect';
+    const chosenBar = BARS_DATA.find(b => b.id === selectedBar) || BARS_DATA[0];
+
+    // GA4 KPI Events: begin_checkout + add_shipping_info
+    trackBeginCheckout({ items, totalValue: grandTotal, deliveryMethod, pickupBar: chosenBar.name });
 
     setIsCartOpen(false);
 
     // As online payment is temporarily unavailable, open the priority email waitlist modal
     setOrderConfirmed({
-      orderNumber: 'FOAM-' + Math.floor(100000 + Math.random() * 900000),
+      orderNumber: 'FAOM-' + Math.floor(100000 + Math.random() * 900000),
       items: [...items],
       subtotal,
       shippingCost,
       grandTotal,
       deliveryMethod,
+      bar: isClickAndCollect ? chosenBar : null,
       customer: {}
     });
   };
@@ -61,7 +65,7 @@ export default function SlideOverCart() {
               </div>
               <div>
                 <h2 className="font-serif text-xl font-bold text-foam-navy">
-                  Votre Panier FOAM
+                  Votre Panier FAOM
                 </h2>
                 <p className="text-xs text-foam-muted">
                   {items.length} article{items.length > 1 ? 's' : ''} sélectionné{items.length > 1 ? 's' : ''}
@@ -162,8 +166,9 @@ export default function SlideOverCart() {
                     onChange={(e) => setSelectedBar(e.target.value)}
                     className="w-full p-2 bg-[#FAF6F0] rounded-lg border border-foam-border font-medium text-xs text-foam-navy"
                   >
-                    <option value="port">FOAM Port de Nice (3 Quai des Deux Emmanuels)</option>
-                    <option value="pin">FOAM Place du Pin (Place du Pin)</option>
+                    {BARS_DATA.map((bar) => (
+                      <option key={bar.id} value={bar.id}>{bar.name} ({bar.address})</option>
+                    ))}
                   </select>
                 </div>
               )}

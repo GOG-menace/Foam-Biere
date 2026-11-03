@@ -44,7 +44,7 @@ export function AnalyticsProvider({ children }) {
   const [isJuryDrawerOpen, setIsJuryDrawerOpen] = useState(false);
   const [eventLogs, setEventLogs] = useState(() => {
     return [
-      { id: 1, timestamp: new Date(Date.now() - 1000 * 60 * 12).toLocaleTimeString('fr-FR'), type: 'SCAN_QR', message: 'Visiteur QR code scanné au bar FOAM Port de Nice' },
+      { id: 1, timestamp: new Date(Date.now() - 1000 * 60 * 12).toLocaleTimeString('fr-FR'), type: 'SCAN_QR', message: 'Visiteur QR code scanné au bar FAOM Port de Nice' },
       { id: 2, timestamp: new Date(Date.now() - 1000 * 60 * 8).toLocaleTimeString('fr-FR'), type: 'AGE_VERIFY', message: 'Vérification légale +18 ans validée' },
       { id: 3, timestamp: new Date(Date.now() - 1000 * 60 * 3).toLocaleTimeString('fr-FR'), type: 'CART_ADD', message: 'Ajout Coffret Signature "Fêtes Riviera" (30,00 €)' }
     ];

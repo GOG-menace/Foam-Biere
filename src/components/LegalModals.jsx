@@ -42,20 +42,20 @@ export default function LegalModals({ activeModal, onClose }) {
           {activeModal === 'mentions' && (
             <>
               <p>
-                <strong>Éditeur du site :</strong> Micro-Brasserie FOAM (Groupe Paloma), Maison fondée en 1948 par la famille Vannini.
+                <strong>Éditeur du site :</strong> Micro-Brasserie FAOM (Maison Rosamar), maison fondée en 1951 par la famille Calvani.
                 <br />
                 <strong>Siège d'exploitation :</strong> Quai Cassini / 3 Rue Robilant, 06300 Nice, France.
                 <br />
-                <strong>Établissement secondaire :</strong> FOAM Place du Pin, 06300 Nice.
+                <strong>Établissement secondaire :</strong> FAOM Place du Pin, 06300 Nice.
                 <br />
                 <strong>SIRET :</strong> 842 194 800 00012 — RCS Nice.
                 <br />
                 <strong>N° de TVA Intracommunautaire :</strong> FR 48 842194800.
                 <br />
-                <strong>Directeur de la publication :</strong> Direction Groupe Paloma & Brasserie FOAM Nice.
+                <strong>Directeur de la publication :</strong> Direction Maison Rosamar & Brasserie FAOM Nice.
               </p>
               <p>
-                <strong>Éditeur du site :</strong> Microbrasserie artisanale FOAM Nice, filiale du Groupe Paloma (fondé en 1948 au Port de Nice).
+                <strong>Éditeur du site :</strong> Microbrasserie artisanale FAOM Nice, filiale de la Maison Rosamar (fondée en 1951 au Port de Nice).
               </p>
               <p>
                 <strong>Hébergement :</strong> Serveurs sécurisés situés dans l'Union Européenne (Vercel / Cloudflare).
@@ -81,7 +81,7 @@ export default function LegalModals({ activeModal, onClose }) {
               <p>
                 <strong>Article 3 : Modalités de Click & Collect (Gratuit)</strong>
                 <br />
-                Le client retire sa commande gratuitement dans l'un des deux établissements FOAM à Nice (Port Quai Cassini ou Place du Pin) aux horaires d'ouverture des bars. Une pièce d'identité attestant de la majorité de l'acheteur pourra être requise lors du retrait au comptoir.
+                Le client retire sa commande gratuitement dans l'un des deux établissements FAOM à Nice (Port Quai Cassini ou Place du Pin) aux horaires d'ouverture des bars. Une pièce d'identité attestant de la majorité de l'acheteur pourra être requise lors du retrait au comptoir.
               </p>
 
               <p>
@@ -95,7 +95,7 @@ export default function LegalModals({ activeModal, onClose }) {
           {activeModal === 'rgpd' && (
             <>
               <p>
-                <strong>Responsable du traitement :</strong> FOAM Nice / Groupe Paloma.
+                <strong>Responsable du traitement :</strong> FAOM Nice / Maison Rosamar.
               </p>
               <p>
                 <strong>Finalités des données collectées :</strong>

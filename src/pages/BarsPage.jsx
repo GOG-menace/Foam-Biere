@@ -13,7 +13,7 @@ export default function BarsPage() {
       {/* Header Riviera Rétro */}
       <ScrollReveal className="text-center max-w-3xl mx-auto space-y-4">
         <h1 className="font-serif text-3xl sm:text-5xl font-bold text-foam-navy leading-tight">
-          Nos 2 Bars FOAM à Nice
+          Nos 2 Bars FAOM à Nice
         </h1>
         <p className="text-base text-foam-text leading-relaxed">
           Deux adresses emblématiques pour savourer nos bières fraîches à la pression au comptoir ou pour récupérer vos commandes de coffrets sans aucun frais de port.
@@ -120,7 +120,7 @@ export default function BarsPage() {
             </div>
             <div className="p-4 rounded-xl bg-foam-subtle/70 border border-foam-borderWarm/60">
               <span className="font-bold text-foam-terracotta block mb-1">Étape 2</span>
-              <p className="text-foam-text leading-relaxed">Sélectionnez le bar de votre choix : FOAM Port de Nice ou FOAM Place du Pin.</p>
+              <p className="text-foam-text leading-relaxed">Sélectionnez le bar de votre choix : FAOM Port de Nice ou FAOM Place du Pin.</p>
             </div>
             <div className="p-4 rounded-xl bg-foam-subtle/70 border border-foam-borderWarm/60">
               <span className="font-bold text-foam-terracotta block mb-1">Étape 3</span>

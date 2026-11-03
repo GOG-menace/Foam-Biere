@@ -148,7 +148,7 @@ export default function PackConfigurator() {
               <span className="text-xs font-bold text-foam-navy">IBU 55</span>
             </div>
             <h4 className="font-editorial text-lg font-bold text-foam-navy mt-2">
-              FOAM West Coast IPA
+              FAOM West Coast IPA
             </h4>
             <p className="text-xs text-foam-gray mt-1 leading-snug">
               Amertume résineuse franche et notes fruitées d’agrumes.
@@ -191,7 +191,7 @@ export default function PackConfigurator() {
               <span className="text-xs font-bold text-foam-navy">IBU 22</span>
             </div>
             <h4 className="font-editorial text-lg font-bold text-foam-navy mt-2">
-              FOAM Lager
+              FAOM Lager
             </h4>
             <p className="text-xs text-foam-gray mt-1 leading-snug">
               Blonde de soif, pureté des céréales et fraîcheur florale.
@@ -234,7 +234,7 @@ export default function PackConfigurator() {
               <span className="text-xs font-bold text-foam-navy">IBU 15</span>
             </div>
             <h4 className="font-editorial text-lg font-bold text-foam-navy mt-2">
-              FOAM Blanche
+              FAOM Blanche
             </h4>
             <p className="text-xs text-foam-gray mt-1 leading-snug">
               Notes de froment, zestes d'agrumes locaux et douceur vive.
@@ -273,7 +273,7 @@ export default function PackConfigurator() {
       <div className="mt-8 pt-6 border-t border-foam-border flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2 text-xs text-foam-gray">
           <ShieldCheck className="w-4 h-4 text-foam-olive shrink-0" />
-          <span>Retrait gratuit sous 2h en Click & Collect aux bars FOAM Port ou Place du Pin.</span>
+          <span>Retrait gratuit sous 2h en Click & Collect aux bars FAOM Port ou Place du Pin.</span>
         </div>
 
         <button

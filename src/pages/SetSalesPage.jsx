@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { SETS, SHIPPING_RATES, BARS_DATA } from '../data/products';
 import { useCart } from '../context/CartContext';
-import { trackBeginCheckout } from '../utils/analytics';
+import { trackAddToCart, trackBeginCheckout, trackViewItem } from '../utils/analytics';
 import ScrollReveal from '../components/ScrollReveal';
 
 export default function SetSalesPage({ defaultSlug }) {
@@ -19,7 +19,7 @@ export default function SetSalesPage({ defaultSlug }) {
   const otherSlug = (product.slug === 'coffret-decouverte' || product.id === 'coffret-decouverte') ? 'coffret-exotique' : 'coffret-decouverte';
   const otherSet = SETS[otherSlug] || SETS['coffret-exotique'] || SETS['coffret-decouverte'];
 
-  const { addItem, deliveryMethod, setDeliveryMethod, setIsCartOpen, setIsCheckoutOpen, setOrderConfirmed } = useCart();
+  const { addItem, deliveryMethod, setDeliveryMethod, selectedBar, setIsCartOpen, setOrderConfirmed } = useCart();
 
   // State: 'pack3' (15€) or 'pack6' (26€)
   const [selectedFormat, setSelectedFormat] = useState('pack6');
@@ -32,6 +32,16 @@ export default function SetSalesPage({ defaultSlug }) {
     setActiveImage(product.image);
   }, [product.image]);
 
+  // GA4 KPI Event: view_item (une fois par fiche coffret affichée, format par défaut Pack de 6)
+  useEffect(() => {
+    trackViewItem({
+      id: `${product.slug}_pack6`,
+      name: product.name,
+      price: product.pack6.price,
+      format: product.pack6.format
+    });
+  }, [product.slug]);
+
   const currentPack = selectedFormat === 'pack3' ? product.pack3 : product.pack6;
 
   const handleAddToCart = () => {
@@ -40,38 +50,51 @@ export default function SetSalesPage({ defaultSlug }) {
     setTimeout(() => setAddedAlert(false), 2500);
   };
 
+  // Commande Express : n'ajoute pas l'article au panier (sinon il y resterait après la fenêtre
+  // « paiement indisponible » et pourrait générer un second begin_checkout), mais envoie
+  // le même add_to_cart que le panier pour garder un entonnoir complet.
   const handleBuyNow = () => {
-    addItem(product, selectedFormat, quantity);
-    
-    // GA4 KPI Event: begin_checkout
+    const expressItem = {
+      id: `${product.slug}_${selectedFormat}`,
+      key: `${product.slug}_${selectedFormat}`,
+      name: product.name,
+      formatLabel: currentPack.format,
+      price: currentPack.price,
+      quantity
+    };
+    const isClickAndCollect = deliveryMethod === 'clickAndCollect';
+    const subtotal = currentPack.price * quantity;
+    const shippingCost = isClickAndCollect ? 0 : (SHIPPING_RATES.homeDelivery || SHIPPING_RATES.shipping || 6.90);
+    const grandTotal = subtotal + shippingCost;
+    const chosenBar = BARS_DATA.find(b => b.id === selectedBar) || BARS_DATA[0];
+
+    trackAddToCart({
+      id: expressItem.id,
+      name: expressItem.name,
+      price: expressItem.price,
+      quantity,
+      format: expressItem.formatLabel
+    });
+
+    // GA4 KPI Events: begin_checkout + add_shipping_info
     trackBeginCheckout({
-      items: [{
-        id: `${product.slug}_${selectedFormat}`,
-        name: product.name,
-        formatLabel: currentPack.format,
-        price: currentPack.price,
-        quantity
-      }],
-      totalValue: currentPack.price * quantity
+      items: [expressItem],
+      totalValue: grandTotal,
+      deliveryMethod,
+      pickupBar: chosenBar.name
     });
 
     setIsCartOpen(false);
 
     // As online payment is temporarily unavailable, open the priority email waitlist modal
     setOrderConfirmed({
-      orderNumber: 'FOAM-' + Math.floor(100000 + Math.random() * 900000),
-      items: [{
-        id: `${product.slug}_${selectedFormat}`,
-        key: `${product.slug}_${selectedFormat}`,
-        name: product.name,
-        formatLabel: currentPack.format,
-        price: currentPack.price,
-        quantity
-      }],
-      subtotal: currentPack.price * quantity,
-      shippingCost: 0,
-      grandTotal: currentPack.price * quantity,
+      orderNumber: 'FAOM-' + Math.floor(100000 + Math.random() * 900000),
+      items: [expressItem],
+      subtotal,
+      shippingCost,
+      grandTotal,
       deliveryMethod,
+      bar: isClickAndCollect ? chosenBar : null,
       customer: {}
     });
   };
@@ -437,7 +460,7 @@ export default function SetSalesPage({ defaultSlug }) {
           <summary className="flex items-center justify-between font-serif font-bold text-sm cursor-pointer select-none text-foam-navy">
             <span className="flex items-center gap-2">
               <Beer className="w-4 h-4 text-foam-terracotta stroke-[2]" />
-              Le mot du Maître Brasseur Stéphane
+              Le mot du Maître Brasseur Julien
             </span>
             <ChevronDown className="w-4 h-4 transition-transform group-open:rotate-180 text-foam-muted" />
           </summary>
@@ -459,8 +482,8 @@ export default function SetSalesPage({ defaultSlug }) {
               Le retrait gratuit est disponible dans nos deux adresses niçoises :
             </p>
             <ul className="list-disc pl-5 space-y-1">
-              <li><strong>FOAM Port de Nice</strong> : 3 Quai des Deux Emmanuels, 06300 Nice (Tous les jours 12h-00h).</li>
-              <li><strong>FOAM Place du Pin</strong> : Place du Pin, 06300 Nice (Mardi au Dimanche 17h-00h).</li>
+              <li><strong>FAOM Port de Nice</strong> : 3 Quai des Deux Emmanuels, 06300 Nice (Tous les jours 12h-00h).</li>
+              <li><strong>FAOM Place du Pin</strong> : Place du Pin, 06300 Nice (Mardi au Dimanche 17h-00h).</li>
             </ul>
             <p>Votre commande est préparée sous 2h et mise de côté à votre nom.</p>
           </div>

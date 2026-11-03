@@ -31,7 +31,7 @@ export default function HomePage() {
               </h1>
 
               <p className="text-base sm:text-lg text-foam-text font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                Face aux pointus colorés du Quai des Deux Emmanuels, Stéphane brasse nos recettes méditerranéennes avec amour et authenticité. 
+                Face aux pointus colorés du Quai des Deux Emmanuels, Julien brasse nos recettes méditerranéennes avec amour et authenticité. 
                 Commandez nos coffrets dégustation prêts à offrir avec <strong className="text-foam-navy font-semibold">Retrait Click & Collect GRATUIT</strong> dans nos 2 bars à Nice ou livraison soignée chez vous.
               </p>
 
@@ -58,12 +58,12 @@ export default function HomePage() {
               {/* Click & Collect note */}
               <p className="text-xs text-foam-pine font-medium flex items-center justify-center lg:justify-start gap-1.5">
                 <MapPin className="w-4 h-4 shrink-0 text-foam-terracotta" />
-                <span>Retrait gratuit 0 € disponible sous 2h aux bars FOAM Port et Place du Pin</span>
+                <span>Retrait gratuit 0 € disponible sous 2h aux bars FAOM Port et Place du Pin</span>
               </p>
 
             </ScrollReveal>
 
-            {/* Right Column: Trio de Bouteilles Artisanales FOAM (Détourage Studio Haute Définition) */}
+            {/* Right Column: Trio de Bouteilles Artisanales FAOM (Détourage Studio Haute Définition) */}
             <ScrollReveal animation="scale-up" delay={120} className="lg:col-span-5 flex items-center justify-center">
               <div className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none w-full flex flex-col items-center justify-center py-2 sm:py-4">
                 
@@ -76,7 +76,7 @@ export default function HomePage() {
                 <div className="relative z-10 flex flex-col items-center select-none">
                   <img
                     src="/foam-3-bottles-hd.png"
-                    alt="Trio de bières artisanales FOAM Nice - French IPA, Lou FOAM d'Aqui, Wheat Ale"
+                    alt="Trio de bières artisanales FAOM Nice - French IPA, Lou FAOM d'Aqui, Wheat Ale"
                     className="h-[380px] sm:h-[450px] lg:h-[500px] w-auto object-contain filter drop-shadow-[0_22px_28px_rgba(15,37,55,0.16)]"
                     loading="eager"
                   />
@@ -195,20 +195,20 @@ export default function HomePage() {
                 {/* Inclus dans le coffret */}
                 <div className="p-4 rounded-xl bg-foam-subtle/70 border border-foam-borderWarm/60 space-y-2 text-xs">
                   <strong className="text-foam-navy font-serif font-bold block text-sm">
-                    Les 3 bières permanentes de Stéphane incluses :
+                    Les 3 bières permanentes de Julien incluses :
                   </strong>
                   <ul className="space-y-1.5 text-foam-text">
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-foam-terracotta shrink-0" />
-                      <span><strong>FOAM French IPA</strong> (Houblonnée & fruitée)</span>
+                      <span><strong>FAOM French IPA</strong> (Houblonnée & fruitée)</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-foam-gold shrink-0" />
-                      <span><strong>Lou FOAM d’Aqui</strong> (Blonde fraîche & désaltérante)</span>
+                      <span><strong>Lou FAOM d’Aqui</strong> (Blonde fraîche & désaltérante)</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-foam-pine shrink-0" />
-                      <span><strong>FOAM Wheat Ale</strong> (Froment doux aux agrumes)</span>
+                      <span><strong>FAOM Wheat Ale</strong> (Froment doux aux agrumes)</span>
                     </li>
                   </ul>
                 </div>
@@ -267,15 +267,15 @@ export default function HomePage() {
                   <ul className="space-y-1.5 text-foam-text">
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-foam-gold shrink-0" />
-                      <span><strong>Lou FOAM d’Aqui</strong> (Blonde fraîche & maltée)</span>
+                      <span><strong>Lou FAOM d’Aqui</strong> (Blonde fraîche & maltée)</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-foam-pine shrink-0" />
-                      <span><strong>FOAM Wheat Ale</strong> (Froment doux & agrumes)</span>
+                      <span><strong>FAOM Wheat Ale</strong> (Froment doux & agrumes)</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-foam-terracotta shrink-0" />
-                      <span><strong>FOAM French IPA</strong> (Houblonnée & fruitée)</span>
+                      <span><strong>FAOM French IPA</strong> (Houblonnée & fruitée)</span>
                     </li>
                   </ul>
                 </div>
@@ -303,29 +303,29 @@ export default function HomePage() {
       </section>
 
 
-      {/* 3. BANNIÈRES PALOMA 1948 & NOS BARS (ÉLÉGANCE RIVIERA) */}
+      {/* 3. BANNIÈRES MAISON ROSAMAR & NOS BARS (ÉLÉGANCE RIVIERA) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
         
-        {/* Carte Groupe Paloma 1948 */}
+        {/* Carte Maison Rosamar */}
         <ScrollReveal delay={0}>
           <div 
-            onClick={() => navigate('/groupe-paloma')}
+            onClick={() => navigate('/notre-histoire')}
             className="rounded-2xl bg-foam-navy text-white p-8 sm:p-10 flex flex-col justify-between space-y-6 shadow-riviera relative overflow-hidden group cursor-pointer hover:ring-2 hover:ring-foam-gold/50 hover:shadow-2xl transition-all duration-300 h-full"
           >
             <div className="space-y-4">
               <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white leading-tight">
-                Maison Paloma • Depuis 1948
+                Maison Rosamar • Depuis 1951
               </h3>
               <h4 className="font-serif text-xl sm:text-2xl font-normal text-foam-gold">
-                76 Ans d'Amour Culinaire & d'Artisanat Azuréen
+                Trois Générations d'Accueil & d'Artisanat Azuréen
               </h4>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
-                De la trattoria historique <em>Le Virginie</em> fondée en 1948 au Port de Nice par la famille Vannini jusqu’à l'inauguration de la microbrasserie FOAM en 2022. Découvrez pourquoi nous sommes l’un des rares groupes de restauration à brasser nos propres bières sur place.
+                De la petite osteria <em>Chez Rosa</em> ouverte en 1951 au Port de Nice par Rosa et Marius Calvani jusqu’à l'inauguration de la microbrasserie FAOM en 2022. Découvrez pourquoi nous sommes l’un des rares groupes de restauration à brasser nos propres bières sur place.
               </p>
             </div>
 
             <div className="inline-flex items-center gap-2 py-3 px-5 rounded-xl bg-white text-foam-navy group-hover:bg-foam-terracotta group-hover:text-white font-bold text-xs self-start transition-all shadow-xs">
-              <span>Découvrir l'Histoire du Groupe Paloma</span>
+              <span>Découvrir l'Histoire de la Maison Rosamar</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </div>
           </div>
@@ -339,7 +339,7 @@ export default function HomePage() {
           >
             <div className="space-y-4">
               <h3 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy group-hover:text-foam-terracotta transition-colors leading-tight">
-                Nos 2 Bars FOAM au Port et Place du Pin
+                Nos 2 Bars FAOM au Port et Place du Pin
               </h3>
               <p className="text-xs sm:text-sm text-foam-text leading-relaxed font-sans">
                 Venez savourer nos bières fraîches à la pression sur nos terrasses ensoleillées ou retirez vos commandes de coffrets gratuitement sous 2h. Cuves inox visibles au Port, ambiance festive sous les pins de la Place du Pin.

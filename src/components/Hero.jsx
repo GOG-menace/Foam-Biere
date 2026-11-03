@@ -25,7 +25,7 @@ export default function Hero() {
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-foam-gold/50 shadow-xs mb-5">
               <span className="w-2 h-2 rounded-full bg-foam-amber animate-ping" />
               <span className="text-[11px] sm:text-xs font-bold tracking-wider uppercase text-foam-navy">
-                MICRO-BRASSERIE DU PORT DE NICE • PAR LE GROUPE PALOMA (1948)
+                MICRO-BRASSERIE DU PORT DE NICE • PAR LA MAISON ROSAMAR (1951)
               </span>
             </div>
 
@@ -36,7 +36,7 @@ export default function Hero() {
 
             {/* Sous-titre orienté bénéfice & Click & Collect */}
             <p className="mt-5 text-base sm:text-lg text-foam-navy/80 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Commandez vos bouteilles FOAM à l'unité, en packs ou en coffrets cadeaux prêts à offrir. <strong className="text-foam-navy font-semibold underline decoration-foam-amber/60">Retrait Click & Collect GRATUIT</strong> dans nos bars FOAM (Port & Place du Pin) ou livraison sécurisée anti-casse.
+              Commandez vos bouteilles FAOM à l'unité, en packs ou en coffrets cadeaux prêts à offrir. <strong className="text-foam-navy font-semibold underline decoration-foam-amber/60">Retrait Click & Collect GRATUIT</strong> dans nos bars FAOM (Port & Place du Pin) ou livraison sécurisée anti-casse.
             </p>
 
             {/* Double CTA */}
@@ -91,7 +91,7 @@ export default function Hero() {
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-foam-stone">
                   <img
                     src="https://images.unsplash.com/photo-1571613316887-6f8d5cbf7ef7?auto=format&fit=crop&w=1000&q=80"
-                    alt="Bières artisanales FOAM et coffret de Noël au Port de Nice"
+                    alt="Bières artisanales FAOM et coffret de Noël au Port de Nice"
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-foam-navy/80 via-transparent to-transparent" />
@@ -144,7 +144,7 @@ export default function Hero() {
               </div>
               <div>
                 <h4 className="font-bold text-sm text-foam-olive">Click & Collect 0 €</h4>
-                <p className="text-xs text-foam-olive/80">Retrait FOAM Port & FOAM Place du Pin</p>
+                <p className="text-xs text-foam-olive/80">Retrait FAOM Port & FAOM Place du Pin</p>
               </div>
             </div>
 

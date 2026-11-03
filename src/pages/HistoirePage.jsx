@@ -3,48 +3,60 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Beer, CheckCircle2, ArrowRight } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
 
-export default function PalomaPage() {
+export default function HistoirePage() {
   const navigate = useNavigate();
 
   return (
     <div className="py-12 sm:py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
-      
+
       {/* Header Riviera Rétro */}
       <ScrollReveal className="text-center max-w-3xl mx-auto space-y-4">
         <h1 className="font-serif text-3xl sm:text-5xl font-bold text-foam-navy leading-tight">
-          L'Histoire du Groupe Paloma & de FOAM
+          L'Histoire de la Maison Rosamar & de FAOM
         </h1>
         <p className="text-base text-foam-text font-medium leading-relaxed">
-          76 ans d'hospitalité, d'amour de la gastronomie et d'artisanat indépendant sur la Côte d'Azur.
+          Trois générations d'hospitalité, de cuisine de port et d'artisanat indépendant sur la Côte d'Azur.
         </p>
       </ScrollReveal>
 
       {/* Main Narrative Card Riviera */}
       <div className="card-riviera p-8 sm:p-14 space-y-8 text-foam-text text-sm sm:text-base leading-relaxed font-sans">
-        
+
         {/* Quote Block */}
         <ScrollReveal delay={0}>
           <div className="border-l-4 border-foam-terracotta pl-5 sm:pl-7 py-3 italic font-serif text-lg sm:text-xl text-foam-navy font-semibold bg-foam-terracottaSoft rounded-r-2xl">
-            « De la trattoria historique Le Virginie en 1948 jusqu'aux cuves de notre microbrasserie du Port en 2022, une même passion guide la famille Vannini : le goût du partage et l'authenticité niçoise. »
+            « Des six tables de l'osteria de Rosa en 1951 jusqu'aux cuves de notre microbrasserie du Port en 2022, une même idée guide la famille Calvani : on reçoit les gens comme à la maison. »
           </div>
         </ScrollReveal>
 
-        {/* Chapter 1 : 1948 */}
+        {/* Chapter 1 : 1951 */}
         <ScrollReveal delay={80}>
           <div className="space-y-3">
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy flex items-center gap-2">
-              <span className="text-foam-terracotta font-serif">1948 :</span> Une dynastie de restaurateurs niçois
+              <span className="text-foam-terracotta font-serif">1951 :</span> L'osteria de Rosa et Marius
             </h2>
             <p>
-              L’aventure commence au lendemain de la Seconde Guerre mondiale avec l’ouverture de la célèbre trattoria <em>Le Virginie</em> au Port de Nice. Fondée par la <strong>famille Vannini</strong>, la maison a grandi au fil des décennies en préservant scrupuleusement son indépendance, sa convivialité et son attachement viscéral au terroir méditerranéen.
-            </p>
-            <p>
-              Aujourd’hui fédéré sous le nom de <strong>Groupe Paloma</strong>, ce groupe familial indépendant rassemble plusieurs des établissements les plus vivants de la gastronomie et de la fête azuréenne, toujours guidés par l'accueil bienveillant et la fraîcheur des produits.
+              Tout commence au début des années 1950, quand <strong>Rosa et Marius Calvani</strong> ouvrent <em>Chez Rosa</em>, une petite osteria de six tables au bord du Port de Nice. Marius rentre de la pêche au lever du jour, Rosa cuisine ce qu'il rapporte : socca brûlante, pissaladière, soupe de poissons. Les pêcheurs, les dockers et bientôt tout le quartier y prennent leurs habitudes.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Chapter 2 : 2022 FOAM (100% Clickable to /bieres) */}
+        {/* Chapter 2 : la maison grandit */}
+        <ScrollReveal delay={80}>
+          <div className="space-y-3">
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy flex items-center gap-2">
+              <span className="text-foam-gold font-serif">1978 – 2015 :</span> Une famille, plusieurs maisons
+            </h2>
+            <p>
+              Leur fille <strong>Lucienne</strong> reprend la salle à la fin des années 1970, agrandit la terrasse et transforme l'osteria en rendez-vous des soirées niçoises. Ses enfants poursuivent l'aventure : un bar à vins dans la vieille ville, puis une guinguette les pieds dans l'eau, chacun avec sa personnalité mais le même sens de l'accueil.
+            </p>
+            <p>
+              Pour rester libres de leurs choix, les Calvani réunissent ces adresses sous un seul nom, la <strong>Maison Rosamar</strong>, en hommage à Rosa et à la mer qui a tout commencé. Un groupe familial resté indépendant, attaché aux produits frais et aux fournisseurs du coin.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        {/* Chapter 3 : 2022 FAOM (100% Clickable to /bieres) */}
         <ScrollReveal delay={120}>
           <div 
             onClick={() => navigate('/bieres')}
@@ -53,27 +65,27 @@ export default function PalomaPage() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5 text-foam-navy font-serif font-bold text-xl group-hover:text-foam-terracotta transition-colors">
                 <Beer className="w-6 h-6 text-foam-terracotta stroke-[2] group-hover:scale-110 transition-transform" />
-                <span>2022 : La Naissance de la Microbrasserie FOAM au Port</span>
+                <span>2022 : La Naissance de la Microbrasserie FAOM au Port</span>
               </div>
               <ArrowRight className="w-5 h-5 text-foam-muted group-hover:text-foam-terracotta group-hover:translate-x-1 transition-all" />
             </div>
             <p className="text-sm text-foam-text leading-relaxed">
-              Parce que nous voulions maîtriser l'ensemble de notre chaîne de valeur et offrir à nos clients une bière d’une fraîcheur absolue, nous avons franchi le pas en installant notre propre microbrasserie au <strong>3 Quai des Deux Emmanuels</strong>, face aux pointus colorés du Port de Nice.
+              La troisième génération voulait servir une bière aussi fraîche que le poisson de Marius. Plutôt que de la faire venir de loin, la Maison Rosamar a installé sa propre microbrasserie au <strong>3 Quai des Deux Emmanuels</strong>, face aux pointus colorés du Port de Nice.
             </p>
             <p className="text-sm font-semibold leading-relaxed text-foam-navy">
-              FOAM fait ainsi partie des très rares acteurs de la restauration indépendante en France à brasser et embouteiller sa propre bière sur place, en circuit ultra-court.
+              FAOM fait ainsi partie des très rares acteurs de la restauration indépendante en France à brasser et embouteiller sa propre bière sur place, en circuit ultra-court.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Chapter 3 : Stéphane */}
+        {/* Chapter 4 : le brasseur */}
         <ScrollReveal delay={80}>
           <div className="space-y-3">
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foam-navy flex items-center gap-2">
-              <span className="text-foam-pine font-serif">Le Brasseur :</span> Stéphane et les saveurs de la Riviera
+              <span className="text-foam-pine font-serif">Le Brasseur :</span> Julien et les saveurs de la Riviera
             </h2>
             <p>
-              Toutes les créations FOAM sont imaginées et brassées par <strong>Stéphane</strong>, notre maître brasseur. Chaque recette célèbre la lumière et les saveurs de la Riviera : de l'aromatique fruitée de la <em>FOAM French IPA</em> à la douceur veloutée de la <em>FOAM Wheat Ale</em> aux agrumes, jusqu'à la fraîcheur dorée de <em>Lou FOAM d'Aqui</em>.
+              Toutes les créations FAOM sont imaginées et brassées par <strong>Julien</strong>, notre maître brasseur. Chaque recette célèbre la lumière et les saveurs de la Riviera : de l'aromatique fruitée de la <em>FAOM French IPA</em> à la douceur veloutée de la <em>FAOM Wheat Ale</em> aux agrumes, jusqu'à la fraîcheur dorée de <em>Lou FAOM d'Aqui</em>.
             </p>
           </div>
         </ScrollReveal>

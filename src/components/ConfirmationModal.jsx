@@ -33,7 +33,8 @@ export default function ConfirmationModal() {
     trackGenerateLead({
       email: emailInput.trim(),
       source: 'payment_unavailable_waitlist',
-      value: orderConfirmed.grandTotal || 0
+      value: orderConfirmed.grandTotal || 0,
+      deliveryMethod: orderConfirmed.deliveryMethod
     });
 
     setEmailSubmitted(true);
@@ -55,7 +56,7 @@ export default function ConfirmationModal() {
 
         <img
           src="/logo-foam.png"
-          alt="FOAM Nice"
+          alt="FAOM Nice"
           className="w-16 h-16 object-contain rounded-full mx-auto mb-3 shadow-xs border border-foam-border bg-white"
         />
 
@@ -136,7 +137,7 @@ export default function ConfirmationModal() {
                 <MapPin className="w-3.5 h-3.5 shrink-0 mt-0.5 stroke-[2]" />
                 <div>
                   <span className="font-bold">Mode sélectionné : Retrait Click & Collect 0 €</span>
-                  <span className="text-foam-muted block">({orderConfirmed.bar?.name || 'FOAM Port de Nice'})</span>
+                  <span className="text-foam-muted block">({orderConfirmed.bar?.name || 'FAOM Port de Nice'})</span>
                 </div>
               </div>
             ) : (

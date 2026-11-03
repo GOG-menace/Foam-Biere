@@ -15,15 +15,15 @@ export default function Footer() {
             <Link to="/" className="flex items-center gap-3 group">
               <img
                 src="/logo-foam.png"
-                alt="FOAM Logo"
+                alt="FAOM Logo"
                 className="w-12 h-12 object-contain rounded-full border border-white/40 shadow-xs bg-white"
               />
               <span className="font-serif text-3xl font-bold tracking-tight text-white group-hover:text-foam-terracotta transition-colors">
-                FOAM
+                FAOM
               </span>
             </Link>
             <p className="text-xs text-slate-300 leading-relaxed font-sans">
-              Microbrasserie artisanale du Port de Nice. Créée avec amour par le <strong>Groupe Paloma</strong>, maison familiale azuréenne fondée en 1948 par la famille Vannini.
+              Microbrasserie artisanale du Port de Nice. Créée avec amour par la <strong>Maison Rosamar</strong>, maison familiale azuréenne fondée en 1951 par la famille Calvani.
             </p>
             <div className="text-xs text-foam-gold font-semibold flex items-center gap-1.5">
               <MapPin className="w-4 h-4 text-foam-terracotta shrink-0" />
@@ -63,17 +63,17 @@ export default function Footer() {
             <ul className="space-y-2 text-xs text-slate-300">
               <li>
                 <Link to="/bieres" className="hover:text-white transition-colors">
-                  FOAM French IPA (6.2%)
+                  FAOM French IPA (6.2%)
                 </Link>
               </li>
               <li>
                 <Link to="/bieres" className="hover:text-white transition-colors">
-                  Lou FOAM d’Aqui (5.0%)
+                  Lou FAOM d’Aqui (5.0%)
                 </Link>
               </li>
               <li>
                 <Link to="/bieres" className="hover:text-white transition-colors">
-                  FOAM Wheat Ale (4.8%)
+                  FAOM Wheat Ale (4.8%)
                 </Link>
               </li>
               <li>
@@ -87,12 +87,12 @@ export default function Footer() {
           {/* Histoire & Bars */}
           <div className="space-y-3">
             <h4 className="font-serif font-bold uppercase tracking-wider text-xs text-slate-200">
-              La Maison FOAM
+              La Maison FAOM
             </h4>
             <ul className="space-y-2 text-xs text-slate-300">
               <li>
-                <Link to="/groupe-paloma" className="hover:text-white transition-colors">
-                  Groupe Paloma (Depuis 1948)
+                <Link to="/notre-histoire" className="hover:text-white transition-colors">
+                  Notre Histoire (Depuis 1951)
                 </Link>
               </li>
               <li>
@@ -119,7 +119,7 @@ export default function Footer() {
           </div>
 
           <div className="text-[11px] text-slate-400 text-center md:text-right">
-            © {new Date().getFullYear()} FOAM NICE • GROUPE PALOMA 1948 • TOUS DROITS RÉSERVÉS
+            © {new Date().getFullYear()} FAOM NICE • MAISON ROSAMAR 1951 • TOUS DROITS RÉSERVÉS
           </div>
         </div>
 

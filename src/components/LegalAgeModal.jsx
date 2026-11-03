@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck, AlertCircle, X, Sun } from 'lucide-react';
+import { ShieldCheck, AlertCircle, Sun } from 'lucide-react';
 
 export default function LegalAgeModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,42 +25,23 @@ export default function LegalAgeModal() {
     setIsOpen(false);
   };
 
-  const handleDismiss = () => {
-    try {
-      localStorage.setItem('foam_age_verified', 'true');
-    } catch (e) {
-      console.warn('LocalStorage write failed:', e);
-    }
-    setIsOpen(false);
-  };
-
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foam-navy/70 backdrop-blur-xs animate-fade-in">
       <div className="relative w-full max-w-lg bg-[#FAF6F0] rounded-3xl border border-foam-borderWarm shadow-2xl p-6 sm:p-8 text-center text-foam-navy">
-        
-        {/* Quick dismiss for preview/testing */}
-        <button
-          onClick={handleDismiss}
-          className="absolute top-4 right-4 p-2 text-foam-muted hover:text-foam-navy hover:bg-foam-subtle rounded-xl transition-colors"
-          title="Fermer"
-          aria-label="Fermer"
-        >
-          <X className="w-5 h-5 stroke-[2]" />
-        </button>
 
         {/* Brand logo image */}
         <img
           src="/logo-foam.png"
-          alt="FOAM"
+          alt="FAOM"
           className="w-16 h-16 object-contain rounded-full border border-foam-borderWarm mx-auto mb-3 shadow-xs bg-white"
         />
 
 
 
         <h2 className="font-serif text-3xl font-bold tracking-tight text-foam-navy">
-          FOAM
+          FAOM
         </h2>
         <p className="text-xs uppercase tracking-widest text-foam-terracotta font-bold mt-1 font-serif">
           Microbrasserie Artisanale Indépendante

@@ -140,7 +140,7 @@ export default function BeerProductPage({ defaultSlug }) {
                 Cette bière est disponible dans nos Coffrets Cadeaux
               </h3>
               <p className="text-xs text-foam-text font-sans leading-relaxed">
-                Nos bières sont brassées artisanalement et proposées dans nos <strong>Coffrets Cadeaux FOAM</strong> (format Pack de 3 ou Pack de 6 bouteilles de 33cl) avec retrait Click & Collect gratuit sous 2h au bar ou expédition anti-casse à domicile.
+                Nos bières sont brassées artisanalement et proposées dans nos <strong>Coffrets Cadeaux FAOM</strong> (format Pack de 3 ou Pack de 6 bouteilles de 33cl) avec retrait Click & Collect gratuit sous 2h au bar ou expédition anti-casse à domicile.
               </p>
             </div>
 

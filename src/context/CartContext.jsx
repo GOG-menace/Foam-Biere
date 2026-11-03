@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { SHIPPING_RATES, BARS_DATA } from '../data/products';
-import { trackAddToCart } from '../utils/analytics';
+import { trackAddToCart, trackRemoveFromCart } from '../utils/analytics';
 
 const CartContext = createContext();
 
@@ -98,7 +98,27 @@ export function CartProvider({ children }) {
     setIsCartOpen(true);
   };
 
+  // GA4 Standard e-commerce event: remove_from_cart
+  const trackRemoval = (item, removedQty) => {
+    if (!item || removedQty <= 0) return;
+    trackRemoveFromCart({
+      id: item.key || item.id,
+      name: item.name,
+      price: item.price,
+      quantity: removedQty,
+      format: item.formatLabel
+    });
+  };
+
   const updateQuantity = (keyOrId, deltaOrNewQty) => {
+    const current = items.find(item => item.key === keyOrId || item.id === keyOrId);
+    if (current) {
+      const nextQty = (deltaOrNewQty === 1 || deltaOrNewQty === -1)
+        ? current.quantity + deltaOrNewQty
+        : deltaOrNewQty;
+      trackRemoval(current, current.quantity - Math.max(nextQty, 0));
+    }
+
     setItems(prev => prev.map(item => {
       if (item.key === keyOrId || item.id === keyOrId) {
         let newQty;
@@ -114,6 +134,8 @@ export function CartProvider({ children }) {
   };
 
   const removeItem = (keyOrId) => {
+    const current = items.find(item => item.key === keyOrId || item.id === keyOrId);
+    trackRemoval(current, current?.quantity || 0);
     setItems(prev => prev.filter(item => item.key !== keyOrId && item.id !== keyOrId));
   };
 
@@ -126,7 +148,7 @@ export function CartProvider({ children }) {
   const grandTotal = subtotal + (items.length > 0 ? shippingCost : 0);
 
   const completeOrder = (customerData) => {
-    const orderNumber = 'FOAM-' + Math.floor(100000 + Math.random() * 900000);
+    const orderNumber = 'FAOM-' + Math.floor(100000 + Math.random() * 900000);
     const chosenBar = BARS_DATA.find(b => b.id === selectedBar) || BARS_DATA[0];
 
     const order = {

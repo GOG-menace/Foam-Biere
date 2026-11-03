@@ -94,7 +94,7 @@ export default function NewsletterSection() {
                     className="mt-1 h-4 w-4 rounded border-white/30 text-foam-amber focus:ring-foam-amber focus:ring-offset-foam-navy bg-white/10 shrink-0 cursor-pointer"
                   />
                   <label htmlFor="rgpd-consent-newsletter" className="text-xs text-slate-300 cursor-pointer select-none leading-relaxed">
-                    J'accepte de recevoir par e-mail les actualités des brassins FOAM (1 à 2 emails par mois). Désinscription possible à tout moment via un lien unique.
+                    J'accepte de recevoir par e-mail les actualités des brassins FAOM (1 à 2 emails par mois). Désinscription possible à tout moment via un lien unique.
                   </label>
                 </div>
 
@@ -114,14 +114,14 @@ export default function NewsletterSection() {
 
                 <p className="mt-3 text-center text-[10px] text-slate-400 flex items-center justify-center gap-1">
                   <ShieldCheck className="w-3.5 h-3.5 text-foam-gold" />
-                  <span>Vos données restent à Nice chez FOAM et ne seront jamais vendues.</span>
+                  <span>Vos données restent à Nice chez FAOM et ne seront jamais vendues.</span>
                 </p>
               </form>
             ) : (
               <div className="mt-8 p-6 bg-emerald-950/60 rounded-2xl border border-emerald-500/40 text-center animate-fade-in">
                 <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto mb-2" />
                 <h4 className="font-editorial text-xl font-bold text-white">
-                  Bienvenue dans le cercle FOAM, {firstName} !
+                  Bienvenue dans le cercle FAOM, {firstName} !
                 </h4>
                 <p className="text-xs sm:text-sm text-emerald-200 mt-1 max-w-md mx-auto">
                   Votre invitation prioritaire a bien été enregistrée. Vous serez le premier informé du prochain embouteillage de Noël.

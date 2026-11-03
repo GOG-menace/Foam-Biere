@@ -16,7 +16,7 @@ import SetsOverviewPage from './pages/SetsOverviewPage';
 import SetSalesPage from './pages/SetSalesPage';
 import BeerProductPage from './pages/BeerProductPage';
 import BeersOverviewPage from './pages/BeersOverviewPage';
-import PalomaPage from './pages/PalomaPage';
+import HistoirePage from './pages/HistoirePage';
 import BarsPage from './pages/BarsPage';
 
 // Top route progress bar giving instant visual feedback on page changes
@@ -191,9 +191,9 @@ function AppContent() {
             <Route path="/biere-wheat-ale" element={<BeerProductPage defaultSlug="wheat-ale" />} />
             <Route path="/biere-french-ipa" element={<BeerProductPage defaultSlug="french-ipa" />} />
 
-            {/* Dedicated Groupe Paloma 1948 Page */}
-            <Route path="/groupe-paloma" element={<PalomaPage />} />
-            <Route path="/paloma" element={<PalomaPage />} />
+            {/* Dedicated Maison Rosamar History Page */}
+            <Route path="/notre-histoire" element={<HistoirePage />} />
+            <Route path="/maison-rosamar" element={<HistoirePage />} />
 
             {/* Dedicated Nos Bars Page */}
             <Route path="/nos-bars" element={<BarsPage />} />

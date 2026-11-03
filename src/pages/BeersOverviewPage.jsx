@@ -25,12 +25,12 @@ export default function BeersOverviewPage() {
           Nos Bières Artisanales
         </h1>
         <p className="text-base text-foam-text leading-relaxed">
-          Élaborées et brassées au 3 Quai des Deux Emmanuels par Stéphane, notre maître brasseur. 
+          Élaborées et brassées au 3 Quai des Deux Emmanuels par Julien, notre maître brasseur. 
           Découvrez les 6 recettes permanentes et signatures de notre maison : profils gustatifs, houblons maîtres et accords mets-bières de la Riviera.
         </p>
       </ScrollReveal>
 
-      {/* Grille des 6 Bières FOAM */}
+      {/* Grille des 6 Bières FAOM */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {beers.map((beer, idx) => (
           <ScrollReveal key={beer.slug} delay={(idx % 3) * 110}>
@@ -135,7 +135,7 @@ export default function BeersOverviewPage() {
             >
               <span className="px-2 py-0.5 rounded bg-foam-terracotta text-white text-[10px] font-semibold mb-2 inline-block">Coffret Signature</span>
               <h4 className="font-serif font-bold text-sm text-foam-navy">Coffret Découverte</h4>
-              <p className="text-[11px] text-foam-text mt-1">L'assortiment classique : French IPA, Lou FOAM d’Aqui et Wheat Ale. À partir de 15 €.</p>
+              <p className="text-[11px] text-foam-text mt-1">L'assortiment classique : French IPA, Lou FAOM d’Aqui et Wheat Ale. À partir de 15 €.</p>
             </div>
 
             <div 
@@ -147,7 +147,7 @@ export default function BeersOverviewPage() {
             >
               <span className="px-2 py-0.5 rounded bg-foam-pine text-white text-[10px] font-semibold mb-2 inline-block">Édition Spéciale</span>
               <h4 className="font-serif font-bold text-sm text-foam-navy">Coffret Exotique</h4>
-              <p className="text-[11px] text-foam-text mt-1">Sélection cuvées phares : Lou FOAM d’Aqui, Wheat Ale et French IPA. À partir de 15 €.</p>
+              <p className="text-[11px] text-foam-text mt-1">Sélection cuvées phares : Lou FAOM d’Aqui, Wheat Ale et French IPA. À partir de 15 €.</p>
             </div>
           </div>
 

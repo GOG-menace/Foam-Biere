@@ -66,13 +66,13 @@ export default function CheckoutModal() {
         {/* Header Riviera */}
         <div className="p-6 bg-foam-navy text-white flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src="/logo-foam.png" alt="FOAM Logo" className="w-10 h-10 object-contain rounded-full border border-white/30 bg-white" />
+            <img src="/logo-foam.png" alt="FAOM Logo" className="w-10 h-10 object-contain rounded-full border border-white/30 bg-white" />
             <div>
               <span className="text-[10px] font-bold uppercase tracking-wider text-foam-gold block font-serif">
                 Paiement Sécurisé & Réservation
               </span>
               <h2 className="font-serif text-xl font-bold text-white">
-                Finaliser votre commande FOAM
+                Finaliser votre commande FAOM
               </h2>
             </div>
           </div>
@@ -206,7 +206,7 @@ export default function CheckoutModal() {
           <div className="p-3.5 bg-foam-terracottaSoft rounded-xl border border-foam-terracotta/20 flex items-start gap-2.5 text-xs text-foam-navy">
             <Lock className="w-4 h-4 text-foam-terracotta shrink-0 mt-0.5 stroke-[2]" />
             <div>
-              <strong className="block text-foam-terracotta font-serif font-bold">Engagement Brasserie FOAM Nice :</strong>
+              <strong className="block text-foam-terracotta font-serif font-bold">Engagement Brasserie FAOM Nice :</strong>
               <p className="text-[11px] text-foam-text mt-0.5 leading-relaxed font-sans">
                 Votre commande enregistre directement votre réservation auprès de la brasserie au Port de Nice. Préparation soignée sous 2h pour le Click & Collect ou expédition sécurisée anti-casse.
               </p>

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, ShoppingBag, Beer } from 'lucide-react';
 import { SETS } from '../data/products';
 import { useCart } from '../context/CartContext';
+import { trackViewItemList } from '../utils/analytics';
 import ScrollReveal from '../components/ScrollReveal';
 
 export default function SetsOverviewPage() {
@@ -14,6 +15,20 @@ export default function SetsOverviewPage() {
 
   const [decouverteFormat, setDecouverteFormat] = useState('pack6');
   const [exotiqueFormat, setExotiqueFormat] = useState('pack6');
+
+  // GA4 KPI Event: view_item_list (les 2 coffrets dans leurs 2 formats)
+  useEffect(() => {
+    trackViewItemList({
+      listId: 'coffrets',
+      listName: 'Nos coffrets',
+      items: [decouverte, exotique].flatMap((set) => ['pack3', 'pack6'].map((format) => ({
+        id: `${set.slug}_${format}`,
+        name: set.name,
+        format: set[format].format,
+        price: set[format].price
+      })))
+    });
+  }, []);
 
   const handleAddToCart = (e, product, format) => {
     e.stopPropagation();
@@ -56,7 +71,7 @@ export default function SetsOverviewPage() {
                   {decouverte.name}
                 </h2>
                 <p className="text-sm text-foam-text leading-relaxed pt-1">
-                  L'assortiment signature pour découvrir le savoir-faire de Stéphane au Port de Nice. Réunit nos trois bières permanentes : la French IPA houblonnée, Lou FOAM d’Aqui dorée et rafraîchissante, et la Wheat Ale douce aux notes d'agrumes.
+                  L'assortiment signature pour découvrir le savoir-faire de Julien au Port de Nice. Réunit nos trois bières permanentes : la French IPA houblonnée, Lou FAOM d’Aqui dorée et rafraîchissante, et la Wheat Ale douce aux notes d'agrumes.
                 </p>
               </div>
 
@@ -65,9 +80,9 @@ export default function SetsOverviewPage() {
                 <p className="font-serif font-bold text-foam-navy uppercase tracking-wider text-xs">
                   Composition du coffret :
                 </p>
-                <p>• 1 ou 2 FOAM French IPA (Houblonnée & fruitée)</p>
-                <p>• 1 ou 2 Lou FOAM d’Aqui (Blonde fraîche & maltée)</p>
-                <p>• 1 ou 2 FOAM Wheat Ale (Froment doux & agrumes)</p>
+                <p>• 1 ou 2 FAOM French IPA (Houblonnée & fruitée)</p>
+                <p>• 1 ou 2 Lou FAOM d’Aqui (Blonde fraîche & maltée)</p>
+                <p>• 1 ou 2 FAOM Wheat Ale (Froment doux & agrumes)</p>
               </div>
 
               {/* Tarifs explicites & Sélecteur rapide */}
@@ -151,7 +166,7 @@ export default function SetsOverviewPage() {
                   {exotique.name}
                 </h2>
                 <p className="text-sm text-foam-text leading-relaxed pt-1">
-                  Une sélection artisanale niçoise réunissant nos cuvées phares du Port de Nice. Retrouvez la fraîcheur dorée de Lou FOAM d’Aqui, la douceur d'agrumes de la Wheat Ale et le houblonnage vif de la French IPA.
+                  Une sélection artisanale niçoise réunissant nos cuvées phares du Port de Nice. Retrouvez la fraîcheur dorée de Lou FAOM d’Aqui, la douceur d'agrumes de la Wheat Ale et le houblonnage vif de la French IPA.
                 </p>
               </div>
 
@@ -160,9 +175,9 @@ export default function SetsOverviewPage() {
                 <p className="font-serif font-bold text-foam-navy uppercase tracking-wider text-xs">
                   Composition du coffret :
                 </p>
-                <p>• 1 ou 2 Lou FOAM d’Aqui (Blonde fraîche & maltée)</p>
-                <p>• 1 ou 2 FOAM Wheat Ale (Froment doux & agrumes)</p>
-                <p>• 1 ou 2 FOAM French IPA (Houblonnée & fruitée)</p>
+                <p>• 1 ou 2 Lou FAOM d’Aqui (Blonde fraîche & maltée)</p>
+                <p>• 1 ou 2 FAOM Wheat Ale (Froment doux & agrumes)</p>
+                <p>• 1 ou 2 FAOM French IPA (Houblonnée & fruitée)</p>
               </div>
 
               {/* Tarifs explicites & Sélecteur rapide */}
@@ -241,7 +256,7 @@ export default function SetsOverviewPage() {
             Envie d'en savoir plus sur chaque recette ?
           </h3>
           <p className="text-sm text-foam-text max-w-2xl mx-auto leading-relaxed">
-            Consultez les caractéristiques techniques, les degrés d'alcool, les indices d'amertume (IBU) et les accords mets-bières imaginés par notre brasseur Stéphane.
+            Consultez les caractéristiques techniques, les degrés d'alcool, les indices d'amertume (IBU) et les accords mets-bières imaginés par notre brasseur Julien.
           </p>
           <div className="pt-2">
             <div className="btn-riviera-outline inline-flex group-hover:bg-foam-navy group-hover:text-white group-hover:border-foam-navy transition-all">

@@ -11,11 +11,11 @@ export default function Header() {
   // Clean navigation links per user request:
   // - "Nos Coffrets" -> intermediate offers page (/coffrets)
   // - "Nos Bières" -> beers presentation page (/bieres)
-  // - "Groupe Paloma" & "Nos Bars"
+  // - "Notre Histoire" & "Nos Bars"
   const navLinks = [
     { label: 'Nos Coffrets', path: '/coffrets' },
     { label: 'Nos Bières', path: '/bieres' },
-    { label: 'Groupe Paloma', path: '/groupe-paloma' },
+    { label: 'Notre Histoire', path: '/notre-histoire' },
     { label: 'Nos Bars', path: '/nos-bars' },
   ];
 
@@ -32,16 +32,16 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Left: Logo FOAM strictly */}
+          {/* Left: Logo FAOM strictly */}
           <div className="flex-1 flex items-center justify-start">
             <Link to="/" className="flex items-center gap-3 group">
               <img
                 src="/logo-foam.png"
-                alt="Logo FOAM"
+                alt="Logo FAOM"
                 className="w-11 h-11 sm:w-12 sm:h-12 object-contain rounded-full border border-foam-borderWarm shadow-xs group-hover:scale-105 transition-transform bg-white"
               />
               <span className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-foam-navy group-hover:text-foam-terracotta transition-colors">
-                FOAM
+                FAOM
               </span>
             </Link>
           </div>

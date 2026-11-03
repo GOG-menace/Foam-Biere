@@ -48,7 +48,7 @@ export default function JuryMetricsDrawer() {
               <div>
                 <div className="flex items-center gap-2">
                   <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-foam-red text-white">
-                    FOAM Analytics
+                    FAOM Analytics
                   </span>
                   <span className="text-xs text-foam-gold font-mono">Performance E-Commerce</span>
                 </div>
@@ -75,12 +75,12 @@ export default function JuryMetricsDrawer() {
                 <Award className="w-5 h-5 text-foam-amber shrink-0 mt-0.5" />
                 <div>
                   <h4 className="font-bold text-xs uppercase tracking-wider text-foam-navy">
-                    Double Objectif Stratégique du Dispositif FOAM :
+                    Double Objectif Stratégique du Dispositif FAOM :
                   </h4>
                   <p className="text-xs text-foam-navy/80 mt-1 leading-relaxed">
                     1. <strong>Valider l'intention d'achat réelle</strong> en bières et coffrets sans risque bancaire via les précommandes test.
                     <br />
-                    2. <strong>Contourner les frais d'expédition du verre</strong> en maximisant le Click & Collect dans les 2 bars FOAM (Cible ≥ 70%).
+                    2. <strong>Contourner les frais d'expédition du verre</strong> en maximisant le Click & Collect dans les 2 bars FAOM (Cible ≥ 70%).
                   </p>
                 </div>
               </div>
@@ -223,7 +223,7 @@ export default function JuryMetricsDrawer() {
                 
                 <div className="mt-2 pt-2 border-t border-foam-olive/20 text-[11px] space-y-1 text-foam-navy/80">
                   <div className="flex justify-between">
-                    <span>Retraits Bar (FOAM Port & Pin) :</span>
+                    <span>Retraits Bar (FAOM Port & Pin) :</span>
                     <strong className="text-foam-olive">{metrics.clickAndCollectOrders} commandes</strong>
                   </div>
                   <div className="flex justify-between">

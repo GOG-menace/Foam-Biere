@@ -1,11 +1,11 @@
-// FOAM Nice Official Beers Data & E-commerce Product Specifications
-// Based on real beers and official photography provided by FOAM
+// FAOM Nice Official Beers Data & E-commerce Product Specifications
+// Based on real beers and official photography provided by FAOM
 
 export const BEERS = {
   'foam-west-coast': {
     slug: 'foam-west-coast',
-    name: 'FOAM West Coast',
-    fullName: 'FOAM West Coast • IPA Blonde',
+    name: 'FAOM West Coast',
+    fullName: 'FAOM West Coast • IPA Blonde',
     tagline: 'IPA blonde dorée, dense & résineuse aux houblons Waimea et Mosaïc',
     badge: 'IPA Signature',
     badgeColor: 'red',
@@ -24,7 +24,7 @@ export const BEERS = {
     shortDesc: "Une IPA blonde à la robe dorée et dense, coiffée d'une mousse crémeuse. Au nez, des arômes fruités et résineux éclatants. En bouche, une texture sèche et nette sublimée par une amertume subtile et rafraîchissante.",
     description: "Une IPA blonde à la robe dorée et dense, coiffée d'une mousse crémeuse. Au nez, des arômes fruités et résineux éclatants. En bouche, une texture sèche et nette sublimée par une amertume subtile et rafraîchissante.",
     hops: 'Waimea & Mosaïc',
-    fullDesc: "Brassée dans les cuves de notre microbrasserie au Port de Nice. La FOAM West Coast est une véritable interprétation niçoise des IPA de la côte Ouest. Les houblons Waimea et Mosaïc apportent un bouquet puissant d'agrumes tropicaux et d'effluves résineux de pin, avec un corps sec et une finale franche.",
+    fullDesc: "Brassée dans les cuves de notre microbrasserie au Port de Nice. La FAOM West Coast est une véritable interprétation niçoise des IPA de la côte Ouest. Les houblons Waimea et Mosaïc apportent un bouquet puissant d'agrumes tropicaux et d'effluves résineux de pin, avec un corps sec et une finale franche.",
     sensoryProfile: {
       amertume: 4,
       fraicheur: 4,
@@ -49,13 +49,13 @@ export const BEERS = {
     pairing: 'Socca niçoise croustillante, burger au gorgonzola, pissaladière, ceviche épicé ou tapas du port.',
     serviceTemperature: '7°C – 9°C',
     recommendedGlass: 'Verre Teku ou Tulipe pour concentrer les huiles essentielles des houblons.',
-    imagePlaceholder: '🍺 Bouteille FOAM West Coast (33cl)',
+    imagePlaceholder: '🍺 Bouteille FAOM West Coast (33cl)',
     image: '/images/beer-foam-west-coast.jpg'
   },
   'foam-lager': {
     slug: 'foam-lager',
-    name: 'FOAM Lager',
-    fullName: 'FOAM Lager • Bière Blonde de Soif',
+    name: 'FAOM Lager',
+    fullName: 'FAOM Lager • Bière Blonde de Soif',
     tagline: 'Blonde fraîche, florale, céréalière et herbacée au houblon Hallertau Mittelfrüh',
     badge: 'La Fraîcheur du Port',
     badgeColor: 'gold',
@@ -74,7 +74,7 @@ export const BEERS = {
     shortDesc: "Une bière blonde offrant une grande fraîcheur, aux notes florales, céréalières et herbacées au nez. Sèche en bouche, avec une faible amertume et des saveurs florales délicates.",
     description: "Une bière blonde offrant une grande fraîcheur, aux notes florales, céréalières et herbacées au nez. Sèche en bouche, avec une faible amertume et des saveurs florales délicates.",
     hops: 'Hallertau Mittelfrüh',
-    fullDesc: "La bière de soif par excellence du Port de Nice. Brassée avec le noble houblon allemand Hallertau Mittelfrüh, la FOAM Lager allie la légèreté des céréales de printemps à une fraîcheur florale désaltérante. Mousse fine, finale nette et pureté totale.",
+    fullDesc: "La bière de soif par excellence du Port de Nice. Brassée avec le noble houblon allemand Hallertau Mittelfrüh, la FAOM Lager allie la légèreté des céréales de printemps à une fraîcheur florale désaltérante. Mousse fine, finale nette et pureté totale.",
     sensoryProfile: {
       amertume: 2,
       fraicheur: 5,
@@ -99,13 +99,13 @@ export const BEERS = {
     pairing: 'Panisses chaudes, fritto misto de la mer, carpaccio de daurade au citron de Nice, planche de charcuterie.',
     serviceTemperature: '4°C – 6°C',
     recommendedGlass: 'Chope haute ou verre droit pour préserver la vivacité des bulles.',
-    imagePlaceholder: '🍺 Bouteille FOAM Lager (33cl)',
+    imagePlaceholder: '🍺 Bouteille FAOM Lager (33cl)',
     image: '/images/beer-foam-lager.jpg'
   },
   'foam-blanche': {
     slug: 'foam-blanche',
-    name: 'FOAM Blanche',
-    fullName: 'FOAM Blanche • Bière Blanche Rafraîchissante',
+    name: 'FAOM Blanche',
+    fullName: 'FAOM Blanche • Bière Blanche Rafraîchissante',
     tagline: "Bière blanche aux arômes d'agrumes et de fruits tropicaux (Cascade & Mosaïc)",
     badge: 'Agrumes & Douceur',
     badgeColor: 'olive',
@@ -124,7 +124,7 @@ export const BEERS = {
     shortDesc: "Une création rafraîchissante aux arômes délicats d'agrumes et de fruits tropicaux, complétée par une amertume légère et équilibrée avec une mousse fine.",
     description: "Une création rafraîchissante aux arômes délicats d'agrumes et de fruits tropicaux, complétée par une amertume légère et équilibrée avec une mousse fine.",
     hops: 'Cascade & Mosaïc',
-    fullDesc: "Inspirée par la brise méditerranéenne et le soleil niçois, la FOAM Blanche met à l'honneur le duo de houblons Cascade et Mosaïc. Sa texture soyeuse et son bouquet d'agrumes frais et de fruits exotiques en font la référence absolue des journées ensoleillées.",
+    fullDesc: "Inspirée par la brise méditerranéenne et le soleil niçois, la FAOM Blanche met à l'honneur le duo de houblons Cascade et Mosaïc. Sa texture soyeuse et son bouquet d'agrumes frais et de fruits exotiques en font la référence absolue des journées ensoleillées.",
     sensoryProfile: {
       amertume: 1,
       fraicheur: 5,
@@ -149,13 +149,13 @@ export const BEERS = {
     pairing: 'Salade niçoise, chèvre frais du pays, ceviche de loup, beignets de fleurs de courgettes.',
     serviceTemperature: '5°C – 7°C',
     recommendedGlass: 'Grand verre calice ou verre évasé pour libérer l’onctuosité des bulles.',
-    imagePlaceholder: '🍺 Bouteille FOAM Blanche (33cl)',
+    imagePlaceholder: '🍺 Bouteille FAOM Blanche (33cl)',
     image: '/images/beer-foam-blanche.jpg'
   },
   'lou-foam-daqui': {
     slug: 'lou-foam-daqui',
-    name: 'Lou FOAM d’Aqui',
-    fullName: 'Lou FOAM d’Aqui • Blonde du Port de Nice',
+    name: 'Lou FAOM d’Aqui',
+    fullName: 'Lou FAOM d’Aqui • Blonde du Port de Nice',
     tagline: 'Blonde artisanale de soif fraîche, florale & délicate',
     badge: 'La Classique du Port',
     badgeColor: 'gold',
@@ -174,7 +174,7 @@ export const BEERS = {
     shortDesc: 'La bière blonde emblématique du Port de Nice, d’une fraîcheur remarquable, dominée par la pureté des céréales d’orge et une délicate trame florale.',
     description: 'La bière blonde emblématique du Port de Nice, d’une fraîcheur remarquable, dominée par la pureté des céréales d’orge et une délicate trame florale.',
     hops: 'Sélection florale et noble de printemps',
-    fullDesc: 'La compagne idéale des fins d’après-midi sur les quais du Port de Nice. "Lou FOAM d\'Aqui" célèbre l\'identité et l’artisanat niçois. Imaginée par Stéphane pour offrir une buvabilité absolue sans compromis sur la finesse aromatique.',
+    fullDesc: 'La compagne idéale des fins d’après-midi sur les quais du Port de Nice. "Lou FAOM d\'Aqui" célèbre l\'identité et l’artisanat niçois. Imaginée par Julien pour offrir une buvabilité absolue sans compromis sur la finesse aromatique.',
     sensoryProfile: {
       amertume: 2,
       fraicheur: 5,
@@ -199,13 +199,13 @@ export const BEERS = {
     pairing: 'Petits farcis niçois, daurade royale ou loup grillé au fenouil, panisses chaudes dorées, foccacia maison à l’huile d’olive et romarin.',
     serviceTemperature: '4°C – 6°C',
     recommendedGlass: 'Chope haute ou verre droit pour préserver la vivacité des bulles.',
-    imagePlaceholder: '🍺 Bouteille Lou FOAM d’Aqui (33cl)',
+    imagePlaceholder: '🍺 Bouteille Lou FAOM d’Aqui (33cl)',
     image: '/images/beer-lou-foam-daqui.jpg'
   },
   'wheat-ale': {
     slug: 'wheat-ale',
-    name: 'FOAM Wheat Ale',
-    fullName: 'FOAM Wheat Ale • Blanche de Blé (Hoppy Wheat)',
+    name: 'FAOM Wheat Ale',
+    fullName: 'FAOM Wheat Ale • Blanche de Blé (Hoppy Wheat)',
     tagline: 'Bière de blé soyeuse et veloutée aux agrumes solaires (Cascade, Chinook, Mosaïc)',
     badge: 'Fraîcheur Côtière',
     badgeColor: 'olive',
@@ -249,13 +249,13 @@ export const BEERS = {
     pairing: 'Salade niçoise traditionnelle, chèvre frais du pays, carpaccio de poulpe à l’huile d’olive citronnée, tourte de blettes sucrée.',
     serviceTemperature: '5°C – 7°C',
     recommendedGlass: 'Grand verre calice ou verre évasé pour libérer l’onctuosité de la mousse.',
-    imagePlaceholder: '🍺 Bouteille FOAM Wheat Ale (33cl)',
+    imagePlaceholder: '🍺 Bouteille FAOM Wheat Ale (33cl)',
     image: '/images/beer-foam-wheat-ale.jpg'
   },
   'french-ipa': {
     slug: 'french-ipa',
-    name: 'FOAM French IPA',
-    fullName: 'FOAM French India Pale Ale',
+    name: 'FAOM French IPA',
+    fullName: 'FAOM French India Pale Ale',
     tagline: 'IPA artisanale aux houblons français du Port de Nice',
     badge: 'Coup de Cœur Houblonné',
     badgeColor: 'red',
@@ -274,7 +274,7 @@ export const BEERS = {
     shortDesc: 'Une French IPA au profil franc et houblonné, alliant notes éclatantes d’agrumes mûrs, de fruits du verger et de résine de pin maritime.',
     description: 'Une French IPA au profil franc et houblonné, alliant notes éclatantes d’agrumes mûrs, de fruits du verger et de résine de pin maritime.',
     hops: 'Houblons aromatiques français sélectionnés (résineux & agrumes)',
-    fullDesc: 'Élaborée avec passion par Stéphane, maître brasseur de FOAM, dans les cuves de notre microbrasserie au Port de Nice (3 Quai des Deux Emmanuels). La FOAM French IPA met à l’honneur les houblons français. Son bouquet aromatique vif d’agrumes et d’aiguilles de pin maritime est sublimé par une amertume franche et désaltérante.',
+    fullDesc: 'Élaborée avec passion par Julien, maître brasseur de FAOM, dans les cuves de notre microbrasserie au Port de Nice (3 Quai des Deux Emmanuels). La FAOM French IPA met à l’honneur les houblons français. Son bouquet aromatique vif d’agrumes et d’aiguilles de pin maritime est sublimé par une amertume franche et désaltérante.',
     sensoryProfile: {
       amertume: 4,
       fraicheur: 4,
@@ -299,7 +299,7 @@ export const BEERS = {
     pairing: 'Socca niçoise croustillante et poivrée, pissaladière aux oignons fondants, daube provençale mijotée, burger au gorgonzola ou fromages affinés.',
     serviceTemperature: '7°C – 9°C',
     recommendedGlass: 'Verre Tulipe ou Teku pour concentrer les huiles essentielles de houblon.',
-    imagePlaceholder: '🍺 Bouteille FOAM French IPA (33cl)',
+    imagePlaceholder: '🍺 Bouteille FAOM French IPA (33cl)',
     image: '/images/beer-foam-french-ipa.jpg'
   }
 };
@@ -318,7 +318,7 @@ export const SETS = {
   'coffret-decouverte': {
     id: 'coffret-decouverte',
     slug: 'coffret-decouverte',
-    name: 'Coffret Classique FOAM',
+    name: 'Coffret Classique FAOM',
     fullName: 'Coffret Classique "Les Incontournables du Port"',
     subtitle: '1 bière classique de chaque recette du Port de Nice',
     badge: 'Idée Cadeau n°1',
@@ -327,7 +327,7 @@ export const SETS = {
     reviewsCount: 62,
     inStock: true,
     bannerAccent: 'from-amber-600 to-orange-700',
-    description: 'Le coffret incontournable pour faire découvrir le savoir-faire de la microbrasserie FOAM au Port de Nice. Réunit nos trois bières signatures (FOAM French IPA, Lou FOAM d’Aqui et FOAM Wheat Ale) élaborées par Stéphane, dans un élégant étui carton kraft rigide protecteur prêt à offrir.',
+    description: 'Le coffret incontournable pour faire découvrir le savoir-faire de la microbrasserie FAOM au Port de Nice. Réunit nos trois bières signatures (FAOM French IPA, Lou FAOM d’Aqui et FAOM Wheat Ale) élaborées par Julien, dans un élégant étui carton kraft rigide protecteur prêt à offrir.',
     image: '/images/classique-team.jpg',
     gallery: [
       '/images/classique-team.jpg',
@@ -349,9 +349,9 @@ export const SETS = {
       unitPrice: '5,00 € / bouteille',
       savingNote: 'Idéal dégustation solo ou duo',
       contents: [
-        { name: 'FOAM French IPA (33cl)', desc: 'IPA houblonnée résineuse et fruitée' },
-        { name: 'Lou FOAM d’Aqui (33cl)', desc: 'Blonde emblématique fraîche et désaltérante' },
-        { name: 'FOAM Wheat Ale (33cl)', desc: 'Bière de blé veloutée aux agrumes solaires' }
+        { name: 'FAOM French IPA (33cl)', desc: 'IPA houblonnée résineuse et fruitée' },
+        { name: 'Lou FAOM d’Aqui (33cl)', desc: 'Blonde emblématique fraîche et désaltérante' },
+        { name: 'FAOM Wheat Ale (33cl)', desc: 'Bière de blé veloutée aux agrumes solaires' }
       ]
     },
     pack6: {
@@ -363,27 +363,27 @@ export const SETS = {
       savingNote: 'Économisez 10,00 € par rapport au prix unitaire',
       isPopular: true,
       contents: [
-        { name: '2x FOAM French IPA (33cl)', desc: 'IPA houblonnée résineuse et fruitée' },
-        { name: '2x Lou FOAM d’Aqui (33cl)', desc: 'Blonde emblématique fraîche et désaltérante' },
-        { name: '2x FOAM Wheat Ale (33cl)', desc: 'Bière de blé veloutée aux agrumes solaires' }
+        { name: '2x FAOM French IPA (33cl)', desc: 'IPA houblonnée résineuse et fruitée' },
+        { name: '2x Lou FAOM d’Aqui (33cl)', desc: 'Blonde emblématique fraîche et désaltérante' },
+        { name: '2x FAOM Wheat Ale (33cl)', desc: 'Bière de blé veloutée aux agrumes solaires' }
       ]
     },
     goodiesIncluded: [
       'Étui rigide carton kraft épais recyclable avec calage individuel anti-casse',
-      'Sous-bocks collector FOAM Nice offerts',
-      'Fiche mémo de dégustation et accords mets-bières du brasseur Stéphane'
+      'Sous-bocks collector FAOM Nice offerts',
+      'Fiche mémo de dégustation et accords mets-bières du brasseur Julien'
     ],
     technicalHighlights: [
       'Bouteilles 33cl en verre ambré protecteur anti-UV',
       'Bières non pasteurisées, conservant toute leur fraîcheur aromatique',
       'Direct cuves du Port de Nice (circuit le plus court de la Côte d’Azur)'
     ],
-    imagePlaceholder: '📦 Coffret Classique FOAM (3 ou 6 bières)'
+    imagePlaceholder: '📦 Coffret Classique FAOM (3 ou 6 bières)'
   },
   'coffret-exotique': {
     id: 'coffret-exotique',
     slug: 'coffret-exotique',
-    name: 'Coffret Exotique FOAM',
+    name: 'Coffret Exotique FAOM',
     fullName: 'Coffret Exotique "Les Éphémères du Brasseur"',
     subtitle: 'Les créations exclusives & brassins éphémères du Port',
     badge: 'Édition Éphémère Limitée',
@@ -392,7 +392,7 @@ export const SETS = {
     reviewsCount: 39,
     inStock: true,
     bannerAccent: 'from-emerald-700 to-teal-800',
-    description: 'Une sélection rare de cuvées éphémères et de recettes créatives imaginées par Stéphane dans nos fermenteurs du port : houblons solaires, éditions spéciales et créations habituellement servies uniquement aux tireuses du bar.',
+    description: 'Une sélection rare de cuvées éphémères et de recettes créatives imaginées par Julien dans nos fermenteurs du port : houblons solaires, éditions spéciales et créations habituellement servies uniquement aux tireuses du bar.',
     image: '/images/coffret-exotique-packshot.jpg',
     gallery: [
       '/images/coffret-exotique-packshot.jpg',
@@ -411,9 +411,9 @@ export const SETS = {
       unitPrice: '5,00 € / bouteille',
       savingNote: 'Idéal dégustation solo ou duo',
       contents: [
-        { name: '1x Lou FOAM d’Aqui (33cl)', desc: 'Blonde emblématique fraîche et désaltérante' },
-        { name: '1x FOAM Wheat Ale (33cl)', desc: 'Bière de blé soyeuse aux agrumes solaires' },
-        { name: '1x FOAM French IPA (33cl)', desc: 'IPA houblonnée résineuse et fruitée' }
+        { name: '1x Lou FAOM d’Aqui (33cl)', desc: 'Blonde emblématique fraîche et désaltérante' },
+        { name: '1x FAOM Wheat Ale (33cl)', desc: 'Bière de blé soyeuse aux agrumes solaires' },
+        { name: '1x FAOM French IPA (33cl)', desc: 'IPA houblonnée résineuse et fruitée' }
       ]
     },
     pack6: {
@@ -425,22 +425,22 @@ export const SETS = {
       savingNote: 'Économisez 10,00 € par rapport au prix unitaire',
       isPopular: true,
       contents: [
-        { name: '2x Lou FOAM d’Aqui (33cl)', desc: 'Blonde emblématique fraîche et désaltérante' },
-        { name: '2x FOAM Wheat Ale (33cl)', desc: 'Bière de blé soyeuse aux agrumes solaires' },
-        { name: '2x FOAM French IPA (33cl)', desc: 'IPA houblonnée résineuse et fruitée' }
+        { name: '2x Lou FAOM d’Aqui (33cl)', desc: 'Blonde emblématique fraîche et désaltérante' },
+        { name: '2x FAOM Wheat Ale (33cl)', desc: 'Bière de blé soyeuse aux agrumes solaires' },
+        { name: '2x FAOM French IPA (33cl)', desc: 'IPA houblonnée résineuse et fruitée' }
       ]
     },
     goodiesIncluded: [
-      'Étui carton kraft collector sérigraphié FOAM Nice',
+      'Étui carton kraft collector sérigraphié FAOM Nice',
       'Sous-bocks collector de l’édition éphémère',
-      'Note personnelle numérotée du maître brasseur Stéphane'
+      'Note personnelle numérotée du maître brasseur Julien'
     ],
     technicalHighlights: [
       'Série limitée à seulement 200 coffrets par embouteillage',
       'Houblons locaux niçois récoltés sous le soleil de la Côte d’Azur',
       'Non pasteurisé, direct des fûts de garde'
     ],
-    imagePlaceholder: '📦 Coffret Exotique Éphémère FOAM (3 ou 6 bières)'
+    imagePlaceholder: '📦 Coffret Exotique Éphémère FAOM (3 ou 6 bières)'
   }
 };
 
@@ -451,13 +451,13 @@ SETS['exotique'] = SETS['coffret-exotique'];
 export const BARS_DATA = [
   {
     id: 'foam-port',
-    name: 'FOAM Port de Nice',
+    name: 'FAOM Port de Nice',
     badge: 'Microbrasserie & Bar',
     address: '3 Quai des Deux Emmanuels, 06300 Nice',
     zone: 'Port de Nice',
     hours: 'Mardi au Dimanche : 16h00 – 00h30 (Fermé le lundi)',
     phone: '04 93 00 00 00',
-    description: 'Le berceau historique de FOAM. C’est ici, face aux pointus traditionnels et aux yachts du port, que Stéphane brasse l’ensemble de nos bières dans nos cuves inox visibles depuis la salle. Vous y trouverez un grand mur de tireuses en libre-service avec carte magnétique et une terrasse baignée par la lumière du port.',
+    description: 'Le berceau historique de FAOM. C’est ici, face aux pointus traditionnels et aux yachts du port, que Julien brasse l’ensemble de nos bières dans nos cuves inox visibles depuis la salle. Vous y trouverez un grand mur de tireuses en libre-service avec carte magnétique et une terrasse baignée par la lumière du port.',
     features: [
       'Cuves de brassage et fermenteurs inox ouverts sur la salle',
       'Mur de tireuses de bières artisanales en libre-service (carte sans contact)',
@@ -468,15 +468,15 @@ export const BARS_DATA = [
   },
   {
     id: 'foam-pin',
-    name: 'FOAM Place du Pin',
+    name: 'FAOM Place du Pin',
     badge: 'Taproom & Convivialité',
     address: 'Place du Pin, 06300 Nice',
     zone: 'Le Petit Marais Niçois',
     hours: 'Tous les jours : 17h00 – 01h00',
     phone: '04 93 11 11 11',
-    description: 'Implanté au cœur de la Place du Pin, épicentre de la vie nocturne et piétonne niçoise. Le bar propose toutes les bières FOAM à la pression ainsi que des brassins invités, accompagnés de planches et street food méditerranéenne sous les grands pins de la place.',
+    description: 'Implanté au cœur de la Place du Pin, épicentre de la vie nocturne et piétonne niçoise. Le bar propose toutes les bières FAOM à la pression ainsi que des brassins invités, accompagnés de planches et street food méditerranéenne sous les grands pins de la place.',
     features: [
-      'Toutes les créations FOAM en pression extra-fraîche',
+      'Toutes les créations FAOM en pression extra-fraîche',
       'Terrasse piétonne animée sous les pins méditerranéens',
       'Tireuses connectées en libre-service',
       'Comptoir de retrait Click & Collect 0 €'
