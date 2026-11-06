@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, MapPin, Beer, Package, Waves } from 'lucide-react';
 import { SETS } from '../data/products';
+import { toListItem, trackSelectItem, trackViewItemList } from '../utils/analytics';
 import ScrollReveal from '../components/ScrollReveal';
+
+const LIST = { listId: 'accueil', listName: 'Accueil' };
 
 export default function HomePage() {
   const navigate = useNavigate();
   const decouverte = SETS['coffret-decouverte'];
   const exotique = SETS['coffret-exotique'];
+
+  // GA4 KPI Event: view_item_list
+  useEffect(() => {
+    trackViewItemList({ ...LIST, items: [decouverte, exotique].map(toListItem) });
+  }, []);
+
+  // GA4 KPI Event: select_item, puis ouverture de la fiche
+  const openSet = (product, path) => {
+    trackSelectItem({ ...LIST, item: toListItem(product) });
+    navigate(path);
+  };
 
   return (
     <div className="space-y-16 sm:space-y-24 pb-20">
@@ -167,7 +181,7 @@ export default function HomePage() {
           {/* CARTE 1 : COFFRET DÉCOUVERTE */}
           <ScrollReveal delay={0}>
             <div 
-              onClick={() => navigate('/coffrets/decouverte')}
+              onClick={() => openSet(decouverte, '/coffrets/decouverte')}
               className="card-riviera p-6 sm:p-8 flex flex-col justify-between group cursor-pointer hover:border-foam-terracotta/50 hover:shadow-riviera transition-all duration-300 h-full"
             >
               <div className="space-y-5">
@@ -234,7 +248,7 @@ export default function HomePage() {
           {/* CARTE 2 : COFFRET EXOTIQUE */}
           <ScrollReveal delay={140}>
             <div 
-              onClick={() => navigate('/coffrets/exotique')}
+              onClick={() => openSet(exotique, '/coffrets/exotique')}
               className="card-riviera p-6 sm:p-8 flex flex-col justify-between group cursor-pointer hover:border-foam-pine/50 hover:shadow-riviera transition-all duration-300 h-full"
             >
               <div className="space-y-5">

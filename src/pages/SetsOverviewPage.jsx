@@ -3,8 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, ShoppingBag, Beer } from 'lucide-react';
 import { SETS } from '../data/products';
 import { useCart } from '../context/CartContext';
-import { trackViewItemList } from '../utils/analytics';
+import { toListItem, trackSelectItem, trackViewItemList } from '../utils/analytics';
 import ScrollReveal from '../components/ScrollReveal';
+
+const LIST = { listId: 'coffrets', listName: 'Page Nos coffrets' };
 
 export default function SetsOverviewPage() {
   const navigate = useNavigate();
@@ -16,19 +18,16 @@ export default function SetsOverviewPage() {
   const [decouverteFormat, setDecouverteFormat] = useState('pack6');
   const [exotiqueFormat, setExotiqueFormat] = useState('pack6');
 
-  // GA4 KPI Event: view_item_list (les 2 coffrets dans leurs 2 formats)
+  // GA4 KPI Event: view_item_list
   useEffect(() => {
-    trackViewItemList({
-      listId: 'coffrets',
-      listName: 'Nos coffrets',
-      items: [decouverte, exotique].flatMap((set) => ['pack3', 'pack6'].map((format) => ({
-        id: `${set.slug}_${format}`,
-        name: set.name,
-        format: set[format].format,
-        price: set[format].price
-      })))
-    });
+    trackViewItemList({ ...LIST, items: [decouverte, exotique].map(toListItem) });
   }, []);
+
+  // GA4 KPI Event: select_item, puis ouverture de la fiche
+  const openSet = (product, path) => {
+    trackSelectItem({ ...LIST, item: toListItem(product) });
+    navigate(path);
+  };
 
   const handleAddToCart = (e, product, format) => {
     e.stopPropagation();
@@ -54,7 +53,7 @@ export default function SetsOverviewPage() {
         {/* CARTE 1 : COFFRET DÉCOUVERTE */}
         <ScrollReveal delay={0}>
           <div 
-            onClick={() => navigate('/coffrets/decouverte')}
+            onClick={() => openSet(decouverte, '/coffrets/decouverte')}
             className="card-riviera p-6 sm:p-8 flex flex-col justify-between group cursor-pointer hover:border-foam-terracotta/50 hover:shadow-riviera transition-all duration-300 h-full"
           >
             <div className="space-y-5">
@@ -149,7 +148,7 @@ export default function SetsOverviewPage() {
         {/* CARTE 2 : COFFRET EXOTIQUE */}
         <ScrollReveal delay={130}>
           <div 
-            onClick={() => navigate('/coffrets/exotique')}
+            onClick={() => openSet(exotique, '/coffrets/exotique')}
             className="card-riviera p-6 sm:p-8 flex flex-col justify-between group cursor-pointer hover:border-foam-pine/50 hover:shadow-riviera transition-all duration-300 h-full"
           >
             <div className="space-y-5">

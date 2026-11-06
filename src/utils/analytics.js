@@ -1,8 +1,6 @@
 // Google Analytics 4 (GA4) Integration Helper
 // Measurement ID: G-QZQX48D1GM
 
-export const GA_MEASUREMENT_ID = 'G-QZQX48D1GM';
-
 /**
  * Safely invoke gtag if present on window
  */
@@ -117,6 +115,40 @@ export function trackViewItemList({ listId, listName, items = [] }) {
 }
 
 /**
+ * Article de liste commun à view_item_list et select_item :
+ * le même item_id des deux côtés permet à GA4 de calculer le taux de clics par article
+ */
+export function toListItem(product) {
+  return {
+    id: product.slug,
+    name: product.name,
+    price: product.pack3?.price ?? product.price
+  };
+}
+
+/**
+ * Événement GA4: select_item
+ * Déclenché au clic sur une carte article dans une liste
+ */
+export function trackSelectItem({ listId, listName, item }) {
+  gtag('event', 'select_item', {
+    item_list_id: listId,
+    item_list_name: listName,
+    items: [{
+      item_id: item.id,
+      item_name: item.name,
+      price: Number(item.price) || 0,
+      item_list_id: listId,
+      item_list_name: listName
+    }]
+  });
+
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('[GA4] Event tracked: select_item', { listId, id: item.id });
+  }
+}
+
+/**
  * Libellé GA4 du mode de réception (paramètre shipping_tier)
  */
 export function getShippingTier(deliveryMethod) {
@@ -168,6 +200,63 @@ export function trackBeginCheckout({ items = [], totalValue = 0, deliveryMethod,
 }
 
 /**
+ * Événement GA4: purchase (achat fictif)
+ * Déclenché quand le visiteur valide son intention d'achat, juste avant le message
+ * « paiements indisponibles » : aucun paiement n'a lieu, la valeur mesure le revenu potentiel.
+ * Une même commande n'est comptée qu'une fois par session.
+ */
+export function trackFictivePurchase({ transactionId, items = [], totalValue = 0, shipping = 0, deliveryMethod, pickupBar }) {
+  const formattedItems = formatCheckoutItems(items);
+  const value = Number(totalValue) || 0;
+  const shippingTier = getShippingTier(deliveryMethod);
+  const signature = `${formattedItems.map((it) => `${it.item_id}x${it.quantity}`).sort().join('|')}@${value}`;
+
+  try {
+    const seen = JSON.parse(sessionStorage.getItem('foam_fictive_orders') || '[]');
+    if (seen.includes(signature)) return;
+    sessionStorage.setItem('foam_fictive_orders', JSON.stringify([...seen, signature]));
+  } catch (err) {
+    console.warn('sessionStorage indisponible :', err);
+  }
+
+  gtag('event', 'purchase', {
+    transaction_id: transactionId,
+    affiliation: 'achat_fictif',
+    currency: 'EUR',
+    value,
+    shipping: Number(shipping) || 0,
+    shipping_tier: shippingTier,
+    pickup_bar: shippingTier === 'click_and_collect' ? pickupBar : undefined,
+    items: formattedItems
+  });
+
+  recordFirstParty({
+    type: 'achat_fictif',
+    orderNumber: transactionId,
+    value,
+    shippingTier,
+    items: formattedItems.map((it) => `${it.quantity}x ${it.item_name} (${it.item_variant})`).join(' + ')
+  }).catch(() => {});
+
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('[GA4] Event tracked: purchase', { transactionId, value, shippingTier });
+  }
+}
+
+/**
+ * Enregistre un achat fictif ou un email sur notre propre serveur (/api/lead) :
+ * ces chiffres ne dépendent pas de GA4, donc pas des bloqueurs de publicité.
+ */
+export function recordFirstParty(payload) {
+  return fetch('/api/lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+    keepalive: true
+  });
+}
+
+/**
  * Événement GA4: generate_lead
  * Déclenché à la soumission du formulaire de capture d'email (paiement bloqué / indisponible)
  */
@@ -213,17 +302,4 @@ export function saveLeadEmail(email, source = 'payment_unavailable_waitlist') {
   } catch (err) {
     console.warn('Could not store email in localStorage:', err);
   }
-}
-
-/**
- * Page view tracking for React Router SPA.
- * La balise de index.html est configurée avec send_page_view: false :
- * c'est le seul endroit qui envoie un page_view, une fois par changement de route.
- */
-export function trackPageView(path, title) {
-  gtag('event', 'page_view', {
-    page_path: path,
-    page_location: typeof window !== 'undefined' ? window.location.href : undefined,
-    page_title: title || (typeof document !== 'undefined' ? document.title : '')
-  });
 }

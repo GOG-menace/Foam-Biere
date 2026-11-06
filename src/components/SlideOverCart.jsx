@@ -2,7 +2,7 @@ import React from 'react';
 import { X, Trash2, Plus, Minus, ShoppingBag, MapPin, Truck, ArrowRight, ShieldCheck, Sun } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { BARS_DATA, SHIPPING_RATES } from '../data/products';
-import { trackBeginCheckout } from '../utils/analytics';
+import { trackBeginCheckout, trackFictivePurchase } from '../utils/analytics';
 
 export default function SlideOverCart() {
   const { 
@@ -32,11 +32,22 @@ export default function SlideOverCart() {
     // GA4 KPI Events: begin_checkout + add_shipping_info
     trackBeginCheckout({ items, totalValue: grandTotal, deliveryMethod, pickupBar: chosenBar.name });
 
+    // GA4 KPI Event: purchase (achat fictif, aucun paiement réel)
+    const orderNumber = 'FAOM-' + Math.floor(100000 + Math.random() * 900000);
+    trackFictivePurchase({
+      transactionId: orderNumber,
+      items,
+      totalValue: grandTotal,
+      shipping: shippingCost,
+      deliveryMethod,
+      pickupBar: chosenBar.name
+    });
+
     setIsCartOpen(false);
 
     // As online payment is temporarily unavailable, open the priority email waitlist modal
     setOrderConfirmed({
-      orderNumber: 'FAOM-' + Math.floor(100000 + Math.random() * 900000),
+      orderNumber,
       items: [...items],
       subtotal,
       shippingCost,

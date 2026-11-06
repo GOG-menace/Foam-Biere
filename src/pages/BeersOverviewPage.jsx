@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Beer, ArrowRight, Package } from 'lucide-react';
 import { BEERS } from '../data/products';
+import { toListItem, trackSelectItem, trackViewItemList } from '../utils/analytics';
 import ScrollReveal from '../components/ScrollReveal';
+
+const LIST = { listId: 'bieres', listName: 'Page Nos bières' };
 
 export default function BeersOverviewPage() {
   const navigate = useNavigate();
@@ -15,6 +18,11 @@ export default function BeersOverviewPage() {
     BEERS['wheat-ale'],
     BEERS['french-ipa']
   ];
+
+  // GA4 KPI Event: view_item_list
+  useEffect(() => {
+    trackViewItemList({ ...LIST, items: beers.map(toListItem) });
+  }, []);
 
   return (
     <div className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
@@ -35,7 +43,10 @@ export default function BeersOverviewPage() {
         {beers.map((beer, idx) => (
           <ScrollReveal key={beer.slug} delay={(idx % 3) * 110}>
             <div
-              onClick={() => navigate(`/bieres/${beer.slug}`)}
+              onClick={() => {
+                trackSelectItem({ ...LIST, item: toListItem(beer) });
+                navigate(`/bieres/${beer.slug}`);
+              }}
               className="card-riviera p-6 sm:p-7 flex flex-col justify-between space-y-6 group cursor-pointer hover:border-foam-terracotta/50 hover:shadow-riviera transition-all duration-300 h-full"
             >
               <div className="space-y-5">

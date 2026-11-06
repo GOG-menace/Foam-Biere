@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { SETS, SHIPPING_RATES, BARS_DATA } from '../data/products';
 import { useCart } from '../context/CartContext';
-import { trackAddToCart, trackBeginCheckout, trackViewItem } from '../utils/analytics';
+import { trackAddToCart, trackBeginCheckout, trackFictivePurchase, trackViewItem } from '../utils/analytics';
 import ScrollReveal from '../components/ScrollReveal';
 
 export default function SetSalesPage({ defaultSlug }) {
@@ -84,11 +84,22 @@ export default function SetSalesPage({ defaultSlug }) {
       pickupBar: chosenBar.name
     });
 
+    // GA4 KPI Event: purchase (achat fictif, aucun paiement réel)
+    const orderNumber = 'FAOM-' + Math.floor(100000 + Math.random() * 900000);
+    trackFictivePurchase({
+      transactionId: orderNumber,
+      items: [expressItem],
+      totalValue: grandTotal,
+      shipping: shippingCost,
+      deliveryMethod,
+      pickupBar: chosenBar.name
+    });
+
     setIsCartOpen(false);
 
     // As online payment is temporarily unavailable, open the priority email waitlist modal
     setOrderConfirmed({
-      orderNumber: 'FAOM-' + Math.floor(100000 + Math.random() * 900000),
+      orderNumber,
       items: [expressItem],
       subtotal,
       shippingCost,

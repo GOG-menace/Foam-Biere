@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowUp } from 'lucide-react';
 import { CartProvider } from './context/CartContext';
-import { trackPageView } from './utils/analytics';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -128,11 +127,6 @@ function NavigationHelper() {
     }
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [pathname, hash]);
-
-  // GA4 Page View tracking on SPA route navigation
-  useEffect(() => {
-    trackPageView(pathname);
-  }, [pathname]);
 
   return null;
 }
