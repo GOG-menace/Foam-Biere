@@ -4,7 +4,7 @@ import {
   AlertCircle, Mail, MapPin, Truck, ArrowRight, Check, Beer, X 
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
-import { trackGenerateLead } from '../utils/analytics';
+import { getShippingTier, recordFirstParty, trackGenerateLead } from '../utils/analytics';
 
 export default function ConfirmationModal() {
   const { orderConfirmed, setOrderConfirmed } = useCart();
@@ -12,6 +12,7 @@ export default function ConfirmationModal() {
   
   const [emailInput, setEmailInput] = useState(() => orderConfirmed?.customer?.email || '');
   const [emailSubmitted, setEmailSubmitted] = useState(false);
+  const [emailError, setEmailError] = useState('');
 
   if (!orderConfirmed) return null;
 
@@ -25,9 +26,24 @@ export default function ConfirmationModal() {
     navigate('/nos-bars');
   };
 
-  const handleEmailSubmit = (e) => {
+  const handleEmailSubmit = async (e) => {
     e.preventDefault();
     if (!emailInput.trim()) return;
+    setEmailError('');
+
+    try {
+      const response = await recordFirstParty({
+        type: 'email',
+        email: emailInput.trim(),
+        value: orderConfirmed.grandTotal || 0,
+        shippingTier: getShippingTier(orderConfirmed.deliveryMethod)
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    } catch (err) {
+      console.warn("Enregistrement de l'email impossible :", err);
+      setEmailError("Votre email n'a pas pu être enregistré. Merci de réessayer dans un instant.");
+      return;
+    }
 
     // GA4 KPI: generate_lead + persistent storage
     trackGenerateLead({
@@ -106,6 +122,16 @@ export default function ConfirmationModal() {
               {emailSubmitted ? '✓ Enregistré' : 'Être prévenu(e)'}
             </button>
           </form>
+
+          <p className="text-[10px] text-foam-muted leading-snug">
+            Votre email sert uniquement à vous prévenir de l'ouverture des ventes. Il n'est ni revendu ni partagé.
+          </p>
+
+          {emailError && (
+            <p className="p-3 bg-red-50 border border-red-200 text-red-800 rounded-xl text-[11px] font-semibold">
+              {emailError}
+            </p>
+          )}
 
           {emailSubmitted && (
             <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl text-[11px] font-semibold flex items-center gap-2">
