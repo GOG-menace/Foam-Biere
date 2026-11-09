@@ -214,15 +214,15 @@ export default function HomePage() {
                   <ul className="space-y-1.5 text-foam-text">
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-foam-terracotta shrink-0" />
-                      <span><strong>FAOM French IPA</strong> (Houblonnée & fruitée)</span>
+                      <span><strong>FAOM West Coast</strong> (IPA blonde & résineuse)</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-foam-gold shrink-0" />
-                      <span><strong>Lou FAOM d’Aqui</strong> (Blonde fraîche & désaltérante)</span>
+                      <span><strong>FAOM Lager</strong> (Blonde fraîche & florale)</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-foam-pine shrink-0" />
-                      <span><strong>FAOM Wheat Ale</strong> (Froment doux aux agrumes)</span>
+                      <span><strong>FAOM Blanche</strong> (Agrumes & fruits tropicaux)</span>
                     </li>
                   </ul>
                 </div>

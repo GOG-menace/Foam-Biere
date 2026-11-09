@@ -70,7 +70,7 @@ export default function SetsOverviewPage() {
                   {decouverte.name}
                 </h2>
                 <p className="text-sm text-foam-text leading-relaxed pt-1">
-                  L'assortiment signature pour découvrir le savoir-faire de Julien au Port de Nice. Réunit nos trois bières permanentes : la French IPA houblonnée, Lou FAOM d’Aqui dorée et rafraîchissante, et la Wheat Ale douce aux notes d'agrumes.
+                  L'assortiment signature pour découvrir le savoir-faire de Julien au Port de Nice. Réunit trois bières de notre gamme : la West Coast dense et résineuse, la Lager fraîche et florale, et la Blanche aux notes d'agrumes et de fruits tropicaux.
                 </p>
               </div>
 
@@ -79,9 +79,9 @@ export default function SetsOverviewPage() {
                 <p className="font-serif font-bold text-foam-navy uppercase tracking-wider text-xs">
                   Composition du coffret :
                 </p>
-                <p>• 1 ou 2 FAOM French IPA (Houblonnée & fruitée)</p>
-                <p>• 1 ou 2 Lou FAOM d’Aqui (Blonde fraîche & maltée)</p>
-                <p>• 1 ou 2 FAOM Wheat Ale (Froment doux & agrumes)</p>
+                <p>• 1 ou 2 FAOM West Coast (IPA blonde & résineuse)</p>
+                <p>• 1 ou 2 FAOM Lager (Blonde fraîche & florale)</p>
+                <p>• 1 ou 2 FAOM Blanche (Agrumes & fruits tropicaux)</p>
               </div>
 
               {/* Tarifs explicites & Sélecteur rapide */}

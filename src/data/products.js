@@ -327,7 +327,7 @@ export const SETS = {
     reviewsCount: 62,
     inStock: true,
     bannerAccent: 'from-amber-600 to-orange-700',
-    description: 'Le coffret incontournable pour faire découvrir le savoir-faire de la microbrasserie FAOM au Port de Nice. Réunit nos trois bières signatures (FAOM French IPA, Lou FAOM d’Aqui et FAOM Wheat Ale) élaborées par Julien, dans un élégant étui carton kraft rigide protecteur prêt à offrir.',
+    description: 'Le coffret incontournable pour faire découvrir le savoir-faire de la microbrasserie FAOM au Port de Nice. Réunit trois bières de notre gamme (FAOM West Coast, FAOM Lager et FAOM Blanche) élaborées par Julien, dans un élégant étui carton kraft rigide protecteur prêt à offrir.',
     image: '/images/classique-team.jpg',
     gallery: [
       '/images/classique-team.jpg',
@@ -349,9 +349,9 @@ export const SETS = {
       unitPrice: '5,00 € / bouteille',
       savingNote: 'Idéal dégustation solo ou duo',
       contents: [
-        { name: 'FAOM French IPA (33cl)', desc: 'IPA houblonnée résineuse et fruitée' },
-        { name: 'Lou FAOM d’Aqui (33cl)', desc: 'Blonde emblématique fraîche et désaltérante' },
-        { name: 'FAOM Wheat Ale (33cl)', desc: 'Bière de blé veloutée aux agrumes solaires' }
+        { name: 'FAOM West Coast (33cl)', desc: "IPA blonde dorée, dense et résineuse" },
+        { name: 'FAOM Lager (33cl)', desc: "Blonde fraîche, florale et céréalière" },
+        { name: 'FAOM Blanche (33cl)', desc: "Blanche aux arômes d'agrumes et de fruits tropicaux" }
       ]
     },
     pack6: {
@@ -363,9 +363,9 @@ export const SETS = {
       savingNote: 'Économisez 10,00 € par rapport au prix unitaire',
       isPopular: true,
       contents: [
-        { name: '2x FAOM French IPA (33cl)', desc: 'IPA houblonnée résineuse et fruitée' },
-        { name: '2x Lou FAOM d’Aqui (33cl)', desc: 'Blonde emblématique fraîche et désaltérante' },
-        { name: '2x FAOM Wheat Ale (33cl)', desc: 'Bière de blé veloutée aux agrumes solaires' }
+        { name: '2x FAOM West Coast (33cl)', desc: "IPA blonde dorée, dense et résineuse" },
+        { name: '2x FAOM Lager (33cl)', desc: "Blonde fraîche, florale et céréalière" },
+        { name: '2x FAOM Blanche (33cl)', desc: "Blanche aux arômes d'agrumes et de fruits tropicaux" }
       ]
     },
     goodiesIncluded: [

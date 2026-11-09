@@ -146,7 +146,7 @@ export default function BeersOverviewPage() {
             >
               <span className="px-2 py-0.5 rounded bg-foam-terracotta text-white text-[10px] font-semibold mb-2 inline-block">Coffret Signature</span>
               <h4 className="font-serif font-bold text-sm text-foam-navy">Coffret Découverte</h4>
-              <p className="text-[11px] text-foam-text mt-1">L'assortiment classique : French IPA, Lou FAOM d’Aqui et Wheat Ale. À partir de 15 €.</p>
+              <p className="text-[11px] text-foam-text mt-1">L'assortiment classique : West Coast, Lager et Blanche. À partir de 15 €.</p>
             </div>
 
             <div 
