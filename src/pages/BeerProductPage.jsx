@@ -6,12 +6,18 @@ import {
 } from 'lucide-react';
 import { BEERS } from '../data/products';
 import ScrollReveal from '../components/ScrollReveal';
+import usePageMeta from '../utils/usePageMeta';
 
 export default function BeerProductPage({ defaultSlug }) {
   const navigate = useNavigate();
   const { slug } = useParams();
   const beerSlug = slug || defaultSlug || 'french-ipa';
   const beer = BEERS[beerSlug] || BEERS['french-ipa'];
+  usePageMeta({
+    title: `${beer.name} • Bière artisanale de Nice`,
+    description: `${beer.tagline}. Bière artisanale brassée au Port de Nice.`,
+    path: `/bieres/${beer.slug}`
+  });
   const otherBeers = Array.from(new Map(Object.values(BEERS).filter(b => b.slug !== beer.slug).map(b => [b.slug, b])).values());
 
   return (

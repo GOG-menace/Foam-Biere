@@ -8,6 +8,7 @@ import { SETS, SHIPPING_RATES, BARS_DATA } from '../data/products';
 import { useCart } from '../context/CartContext';
 import { trackAddToCart, trackBeginCheckout, trackFictivePurchase, trackViewItem } from '../utils/analytics';
 import ScrollReveal from '../components/ScrollReveal';
+import usePageMeta from '../utils/usePageMeta';
 
 export default function SetSalesPage({ defaultSlug }) {
   const navigate = useNavigate();
@@ -16,6 +17,11 @@ export default function SetSalesPage({ defaultSlug }) {
   if (setSlug === 'decouverte') setSlug = 'coffret-decouverte';
   if (setSlug === 'exotique') setSlug = 'coffret-exotique';
   const product = SETS[setSlug] || SETS['coffret-decouverte'];
+  usePageMeta({
+    title: `${product.name} • Coffret de bières de Nice`,
+    description: `${product.fullName} : ${product.subtitle.toLowerCase()}. Pack de 3 à 15 €, pack de 6 à 26 €. Click & collect gratuit à Nice.`,
+    path: product.slug.replace('coffret-', '/coffrets/')
+  });
   const otherSlug = (product.slug === 'coffret-decouverte' || product.id === 'coffret-decouverte') ? 'coffret-exotique' : 'coffret-decouverte';
   const otherSet = SETS[otherSlug] || SETS['coffret-exotique'] || SETS['coffret-decouverte'];
 

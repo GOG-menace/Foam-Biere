@@ -4,11 +4,17 @@ import { ArrowRight, MapPin, Beer, Package, Waves } from 'lucide-react';
 import { SETS } from '../data/products';
 import { toListItem, trackSelectItem, trackViewItemList } from '../utils/analytics';
 import ScrollReveal from '../components/ScrollReveal';
+import usePageMeta from '../utils/usePageMeta';
 
 const LIST = { listId: 'accueil', listName: 'Accueil' };
 
 export default function HomePage() {
   const navigate = useNavigate();
+  usePageMeta({
+    title: 'FAOM • Bières artisanales du Port de Nice',
+    description: 'Coffrets de bières artisanales brassées au Port de Nice. Click & collect gratuit dans nos 2 bars ou livraison à domicile.',
+    path: '/'
+  });
   const decouverte = SETS['coffret-decouverte'];
   const exotique = SETS['coffret-exotique'];
 

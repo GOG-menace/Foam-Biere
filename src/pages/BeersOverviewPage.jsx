@@ -4,11 +4,17 @@ import { Beer, ArrowRight, Package } from 'lucide-react';
 import { BEERS } from '../data/products';
 import { toListItem, trackSelectItem, trackViewItemList } from '../utils/analytics';
 import ScrollReveal from '../components/ScrollReveal';
+import usePageMeta from '../utils/usePageMeta';
 
 const LIST = { listId: 'bieres', listName: 'Page Nos bières' };
 
 export default function BeersOverviewPage() {
   const navigate = useNavigate();
+  usePageMeta({
+    title: 'Nos bières artisanales | FAOM',
+    description: "Les 6 bières de la microbrasserie FAOM au Port de Nice : West Coast, Lager, Blanche, Lou FAOM d'Aqui, Wheat Ale et French IPA.",
+    path: '/bieres'
+  });
 
   const beers = [
     BEERS['foam-west-coast'],

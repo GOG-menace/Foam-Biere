@@ -5,11 +5,17 @@ import { SETS } from '../data/products';
 import { useCart } from '../context/CartContext';
 import { toListItem, trackSelectItem, trackViewItemList } from '../utils/analytics';
 import ScrollReveal from '../components/ScrollReveal';
+import usePageMeta from '../utils/usePageMeta';
 
 const LIST = { listId: 'coffrets', listName: 'Page Nos coffrets' };
 
 export default function SetsOverviewPage() {
   const navigate = useNavigate();
+  usePageMeta({
+    title: 'Coffrets de bières artisanales | FAOM',
+    description: 'Coffret Classique et Coffret Exotique, en 3 ou 6 bouteilles, dès 15 €. Retrait gratuit à Nice ou livraison à domicile.',
+    path: '/coffrets'
+  });
   const { addItem } = useCart();
 
   const decouverte = SETS['coffret-decouverte'];

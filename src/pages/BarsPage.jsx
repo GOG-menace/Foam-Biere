@@ -3,9 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { MapPin, Clock, Navigation, CheckCircle2, ShoppingBag, ArrowRight } from 'lucide-react';
 import { BARS_DATA } from '../data/products';
 import ScrollReveal from '../components/ScrollReveal';
+import usePageMeta from '../utils/usePageMeta';
 
 export default function BarsPage() {
   const navigate = useNavigate();
+  usePageMeta({
+    title: 'Nos bars à Nice | FAOM',
+    description: 'Nos 2 bars à Nice, au Port et place du Pin : dégustation et retrait gratuit de vos coffrets en click & collect.',
+    path: '/nos-bars'
+  });
 
   return (
     <div className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">

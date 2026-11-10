@@ -2,9 +2,15 @@ import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Beer, CheckCircle2, ArrowRight } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
+import usePageMeta from '../utils/usePageMeta';
 
 export default function HistoirePage() {
   const navigate = useNavigate();
+  usePageMeta({
+    title: 'Notre histoire | FAOM',
+    description: "De l'osteria de Rosa et Marius en 1951 à la microbrasserie FAOM : l'histoire de la Maison Rosamar au Port de Nice.",
+    path: '/notre-histoire'
+  });
 
   return (
     <div className="py-12 sm:py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
