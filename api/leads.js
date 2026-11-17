@@ -2,6 +2,9 @@ import { get, list } from '@vercel/blob';
 
 const COLUMNS = ['date', 'type', 'email', 'montant', 'livraison', 'articles', 'commande'];
 
+// Commandes de test retirées des statistiques (gardées dans le stockage, absentes de l'export)
+const EXCLUDED_ORDERS = new Set(['FAOM-127113']);
+
 // Les guillemets protègent le CSV, l'apostrophe neutralise les formules dans Excel
 const csvCell = (value) => {
   const cell = String(value ?? '');
@@ -29,7 +32,7 @@ export default async function handler(req, res) {
     cursor = page.hasMore ? page.cursor : undefined;
   } while (cursor);
 
-  const records = (await Promise.all(blobs.map((blob) => readRecord(blob.pathname)))).filter(Boolean);
+  const records = (await Promise.all(blobs.map((blob) => readRecord(blob.pathname)))).filter((r) => r && !EXCLUDED_ORDERS.has(r.commande));
   records.sort((a, b) => a.date.localeCompare(b.date));
 
   const lines = [COLUMNS.join(';'), ...records.map((r) => COLUMNS.map((c) => csvCell(r[c])).join(';'))];
