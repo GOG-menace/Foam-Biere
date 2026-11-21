@@ -5,6 +5,7 @@ import {
   Package, ChevronRight, ChevronDown, Sparkles, Heart, Award, ArrowRight, Beer, Camera, Sun 
 } from 'lucide-react';
 import { SETS, SHIPPING_RATES, BARS_DATA } from '../data/products';
+import { computeTotals } from '../data/wheel';
 import { useCart } from '../context/CartContext';
 import { trackAddToCart, trackBeginCheckout, trackFictivePurchase, trackViewItem } from '../utils/analytics';
 import ScrollReveal from '../components/ScrollReveal';
@@ -25,7 +26,7 @@ export default function SetSalesPage({ defaultSlug }) {
   const otherSlug = (product.slug === 'coffret-decouverte' || product.id === 'coffret-decouverte') ? 'coffret-exotique' : 'coffret-decouverte';
   const otherSet = SETS[otherSlug] || SETS['coffret-exotique'] || SETS['coffret-decouverte'];
 
-  const { addItem, deliveryMethod, setDeliveryMethod, selectedBar, setIsCartOpen, setOrderConfirmed } = useCart();
+  const { addItem, deliveryMethod, setDeliveryMethod, selectedBar, setIsCartOpen, setOrderConfirmed, coupon } = useCart();
 
   // State: 'pack3' (15€) or 'pack6' (26€)
   const [selectedFormat, setSelectedFormat] = useState('pack6');
@@ -70,8 +71,7 @@ export default function SetSalesPage({ defaultSlug }) {
     };
     const isClickAndCollect = deliveryMethod === 'clickAndCollect';
     const subtotal = currentPack.price * quantity;
-    const shippingCost = isClickAndCollect ? 0 : (SHIPPING_RATES.homeDelivery || SHIPPING_RATES.shipping || 6.90);
-    const grandTotal = subtotal + shippingCost;
+    const { shippingCost, discount, grandTotal } = computeTotals({ subtotal, isClickAndCollect, coupon });
     const chosenBar = BARS_DATA.find(b => b.id === selectedBar) || BARS_DATA[0];
 
     trackAddToCart({
@@ -97,6 +97,8 @@ export default function SetSalesPage({ defaultSlug }) {
       items: [expressItem],
       totalValue: grandTotal,
       shipping: shippingCost,
+      coupon,
+      discount,
       deliveryMethod,
       pickupBar: chosenBar.name
     });
@@ -109,6 +111,8 @@ export default function SetSalesPage({ defaultSlug }) {
       items: [expressItem],
       subtotal,
       shippingCost,
+      discount,
+      coupon,
       grandTotal,
       deliveryMethod,
       bar: isClickAndCollect ? chosenBar : null,

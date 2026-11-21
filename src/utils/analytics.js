@@ -205,7 +205,7 @@ export function trackBeginCheckout({ items = [], totalValue = 0, deliveryMethod,
  * « paiements indisponibles » : aucun paiement n'a lieu, la valeur mesure le revenu potentiel.
  * Une même commande n'est comptée qu'une fois par session.
  */
-export function trackFictivePurchase({ transactionId, items = [], totalValue = 0, shipping = 0, deliveryMethod, pickupBar }) {
+export function trackFictivePurchase({ transactionId, items = [], totalValue = 0, shipping = 0, coupon, discount = 0, deliveryMethod, pickupBar }) {
   const formattedItems = formatCheckoutItems(items);
   const value = Number(totalValue) || 0;
   const shippingTier = getShippingTier(deliveryMethod);
@@ -225,6 +225,8 @@ export function trackFictivePurchase({ transactionId, items = [], totalValue = 0
     currency: 'EUR',
     value,
     shipping: Number(shipping) || 0,
+    coupon: coupon?.code,
+    discount: Number(discount) || undefined,
     shipping_tier: shippingTier,
     pickup_bar: shippingTier === 'click_and_collect' ? pickupBar : undefined,
     items: formattedItems
@@ -235,6 +237,8 @@ export function trackFictivePurchase({ transactionId, items = [], totalValue = 0
     orderNumber: transactionId,
     value,
     shippingTier,
+    origine: 'commande',
+    lot: coupon?.code,
     items: formattedItems.map((it) => `${it.quantity}x ${it.item_name} (${it.item_variant})`).join(' + ')
   }).catch(() => {});
 
@@ -302,4 +306,28 @@ export function saveLeadEmail(email, source = 'payment_unavailable_waitlist') {
   } catch (err) {
     console.warn('Could not store email in localStorage:', err);
   }
+}
+
+/**
+ * Roue 100 % gagnante : affichage (view_promotion), refus (roue_refus),
+ * participation (generate_lead + select_promotion, email stocké avec le lot gagné).
+ */
+const WHEEL_PROMO = { promotion_id: 'roue_faom', promotion_name: 'Roue 100 % gagnante' };
+
+export function trackWheelView() {
+  gtag('event', 'view_promotion', WHEEL_PROMO);
+}
+
+export function trackWheelDecline() {
+  gtag('event', 'roue_refus', WHEEL_PROMO);
+}
+
+export async function trackWheelSpin({ email, prize }) {
+  const cleanEmail = email.trim().toLowerCase();
+  const response = await recordFirstParty({ type: 'email', email: cleanEmail, origine: 'roue', lot: prize.code });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+  saveLeadEmail(cleanEmail, 'roue');
+  gtag('event', 'generate_lead', { lead_source: 'roue', lead_type: 'roue_100_gagnante', coupon: prize.code });
+  gtag('event', 'select_promotion', { ...WHEEL_PROMO, creative_name: prize.code });
 }

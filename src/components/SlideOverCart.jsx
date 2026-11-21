@@ -3,6 +3,7 @@ import { X, Trash2, Plus, Minus, ShoppingBag, MapPin, Truck, ArrowRight, ShieldC
 import { useCart } from '../context/CartContext';
 import { BARS_DATA, SHIPPING_RATES } from '../data/products';
 import { trackBeginCheckout, trackFictivePurchase } from '../utils/analytics';
+import { couponLine } from '../data/wheel';
 
 export default function SlideOverCart() {
   const { 
@@ -18,12 +19,16 @@ export default function SlideOverCart() {
     selectedBar, 
     setSelectedBar,
     shippingCost, 
+    discount,
+    coupon,
     grandTotal,
     setIsCheckoutOpen,
     setOrderConfirmed
   } = useCart();
 
   if (!isCartOpen) return null;
+
+  const promo = couponLine(coupon, discount);
 
   const handleGoToCheckout = () => {
     const isClickAndCollect = deliveryMethod === 'clickAndCollect';
@@ -39,6 +44,8 @@ export default function SlideOverCart() {
       items,
       totalValue: grandTotal,
       shipping: shippingCost,
+      coupon,
+      discount,
       deliveryMethod,
       pickupBar: chosenBar.name
     });
@@ -51,6 +58,8 @@ export default function SlideOverCart() {
       items: [...items],
       subtotal,
       shippingCost,
+      discount,
+      coupon,
       grandTotal,
       deliveryMethod,
       bar: isClickAndCollect ? chosenBar : null,
@@ -156,7 +165,9 @@ export default function SlideOverCart() {
                         Expédition sécurisée anti-casse
                       </span>
                       <span className="font-semibold text-foam-muted">
-                        {shippingCost.toFixed(2)} €
+                        {coupon?.type === 'shipping'
+                          ? 'Offerte'
+                          : `${(SHIPPING_RATES.homeDelivery || SHIPPING_RATES.shipping || 6.90).toFixed(2)} €`}
                       </span>
                     </div>
                     <p className="text-[11px] text-foam-text mt-0.5">
@@ -285,10 +296,16 @@ export default function SlideOverCart() {
                   <span>Sous-total TTC :</span>
                   <span className="font-semibold">{subtotal.toFixed(2)} €</span>
                 </div>
+                {promo && (
+                  <div className="flex justify-between text-foam-pine">
+                    <span>{promo.label} :</span>
+                    <span className="font-bold">{promo.amount}</span>
+                  </div>
+                )}
                 <div className="flex justify-between text-foam-navy">
                   <span>Livraison :</span>
                   <span className="font-semibold">
-                    {deliveryMethod === 'clickAndCollect' ? (
+                    {shippingCost === 0 ? (
                       <span className="text-foam-pine font-bold bg-foam-pineSoft px-2 py-0.5 rounded">0,00 € (Offert)</span>
                     ) : (
                       `${shippingCost.toFixed(2)} €`

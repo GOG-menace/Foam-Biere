@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { SHIPPING_RATES, BARS_DATA } from '../data/products';
+import { BARS_DATA } from '../data/products';
+import { computeTotals } from '../data/wheel';
 import { trackAddToCart, trackRemoveFromCart } from '../utils/analytics';
 
 const CartContext = createContext();
@@ -35,6 +36,25 @@ export function CartProvider({ children }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState(null);
+
+  // Lot gagné à la roue, appliqué automatiquement au panier
+  const [coupon, setCoupon] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('foam_coupon') || 'null');
+    } catch {
+      return null;
+    }
+  });
+
+  const applyCoupon = (prize) => {
+    const next = { code: prize.code, type: prize.type, value: prize.value, title: prize.title };
+    setCoupon(next);
+    try {
+      localStorage.setItem('foam_coupon', JSON.stringify(next));
+    } catch (e) {
+      console.warn('LocalStorage write failed:', e);
+    }
+  };
 
   useEffect(() => {
     localStorage.setItem('foam_cart', JSON.stringify(items));
@@ -144,8 +164,7 @@ export function CartProvider({ children }) {
   const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const totalCount = items.reduce((sum, item) => sum + item.quantity, 0);
   const isClickAndCollect = deliveryMethod === 'clickAndCollect' || deliveryMethod === 'click_and_collect';
-  const shippingCost = isClickAndCollect ? 0.00 : (SHIPPING_RATES.homeDelivery || SHIPPING_RATES.shipping || 6.90);
-  const grandTotal = subtotal + (items.length > 0 ? shippingCost : 0);
+  const { shippingCost, discount, grandTotal } = computeTotals({ subtotal, isClickAndCollect, coupon, hasItems: items.length > 0 });
 
   const completeOrder = (customerData) => {
     const orderNumber = 'FAOM-' + Math.floor(100000 + Math.random() * 900000);
@@ -158,6 +177,8 @@ export function CartProvider({ children }) {
       items: [...items],
       subtotal,
       shippingCost,
+      discount,
+      coupon,
       grandTotal,
       deliveryMethod,
       bar: deliveryMethod === 'clickAndCollect' ? chosenBar : null
@@ -179,6 +200,9 @@ export function CartProvider({ children }) {
       totalCount,
       subtotal,
       shippingCost,
+      discount,
+      coupon,
+      applyCoupon,
       grandTotal,
       deliveryMethod,
       setDeliveryMethod,

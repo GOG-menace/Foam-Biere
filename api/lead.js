@@ -27,7 +27,9 @@ export default async function handler(req, res) {
     montant: Number(body.value) || 0,
     livraison: text(body.shippingTier, 40),
     articles: text(body.items, 500),
-    commande: text(body.orderNumber, 40)
+    commande: text(body.orderNumber, 40),
+    origine: text(body.origine, 20),
+    lot: text(body.lot, 30)
   };
 
   await put(`leads/${type}/${Date.now()}-${randomUUID()}.json`, JSON.stringify(record), {

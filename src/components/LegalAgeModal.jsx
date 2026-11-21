@@ -23,6 +23,7 @@ export default function LegalAgeModal() {
       console.warn('LocalStorage write failed:', e);
     }
     setIsOpen(false);
+    window.dispatchEvent(new Event('foam:age-verified'));
   };
 
   if (!isOpen) return null;

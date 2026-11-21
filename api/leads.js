@@ -1,6 +1,6 @@
 import { get, list } from '@vercel/blob';
 
-const COLUMNS = ['date', 'type', 'email', 'montant', 'livraison', 'articles', 'commande'];
+const COLUMNS = ['date', 'type', 'origine', 'email', 'lot', 'montant', 'livraison', 'articles', 'commande'];
 
 // Commandes de test retirées des statistiques (gardées dans le stockage, absentes de l'export)
 const EXCLUDED_ORDERS = new Set(['FAOM-127113']);

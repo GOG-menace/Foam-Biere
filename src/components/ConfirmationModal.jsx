@@ -35,6 +35,8 @@ export default function ConfirmationModal() {
       const response = await recordFirstParty({
         type: 'email',
         email: emailInput.trim(),
+        origine: 'commande',
+        lot: orderConfirmed.coupon?.code,
         value: orderConfirmed.grandTotal || 0,
         shippingTier: getShippingTier(orderConfirmed.deliveryMethod)
       });

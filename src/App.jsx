@@ -9,6 +9,7 @@ import SlideOverCart from './components/SlideOverCart';
 import CheckoutModal from './components/CheckoutModal';
 import ConfirmationModal from './components/ConfirmationModal';
 import LegalAgeModal from './components/LegalAgeModal';
+import PrizeWheel from './components/PrizeWheel';
 
 import HomePage from './pages/HomePage';
 import SetsOverviewPage from './pages/SetsOverviewPage';
@@ -213,6 +214,9 @@ function AppContent() {
 
       {/* Order Confirmation */}
       <ConfirmationModal />
+
+      {/* Roue 100 % gagnante (email ou refus) */}
+      <PrizeWheel />
 
     </div>
   );
