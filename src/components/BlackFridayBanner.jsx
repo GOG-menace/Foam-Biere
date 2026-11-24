@@ -28,7 +28,7 @@ export default function BlackFridayBanner() {
     trackPromoView({ ...promo, creative_slot: 'bandeau' });
   }, [mode]);
 
-  if (mode === 'off') return null;
+  if (mode === 'off' || typeof window === 'undefined') return null;
 
   const timeLeft = `${days > 0 ? `${days} j ` : ''}${pad(hours)} h ${pad(minutes)} min ${pad(seconds)} s`;
 

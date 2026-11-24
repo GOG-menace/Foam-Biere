@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter, StaticRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowUp } from 'lucide-react';
 import { CartProvider } from './context/CartContext';
 
@@ -239,12 +239,19 @@ function AppContent() {
   );
 }
 
-export default function App() {
+// url fournie = génération de la page HTML au build (StaticRouter), sinon navigation normale
+export default function App({ url }) {
   return (
     <CartProvider>
-      <Router>
-        <AppContent />
-      </Router>
+      {url ? (
+        <StaticRouter location={url}>
+          <AppContent />
+        </StaticRouter>
+      ) : (
+        <BrowserRouter>
+          <AppContent />
+        </BrowserRouter>
+      )}
     </CartProvider>
   );
 }

@@ -7,7 +7,7 @@ export default function NotFoundPage() {
   usePageMeta({
     title: 'Page introuvable | FAOM',
     description: 'Cette page n’existe pas ou plus sur le site FAOM.',
-    path: '/'
+    path: null
   });
 
   useEffect(() => {

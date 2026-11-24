@@ -1,8 +1,96 @@
 {
-  "rewrites": [
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/accueil",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/coffret",
+      "destination": "/coffrets",
+      "permanent": true
+    },
+    {
+      "source": "/nos-coffrets",
+      "destination": "/coffrets",
+      "permanent": true
+    },
+    {
+      "source": "/coffret/decouverte",
+      "destination": "/coffrets/decouverte",
+      "permanent": true
+    },
+    {
+      "source": "/coffret/exotique",
+      "destination": "/coffrets/exotique",
+      "permanent": true
+    },
+    {
+      "source": "/coffret-decouverte",
+      "destination": "/coffrets/decouverte",
+      "permanent": true
+    },
+    {
+      "source": "/coffret-exotique",
+      "destination": "/coffrets/exotique",
+      "permanent": true
+    },
+    {
+      "source": "/biere",
+      "destination": "/bieres",
+      "permanent": true
+    },
+    {
+      "source": "/nos-bieres",
+      "destination": "/bieres",
+      "permanent": true
+    },
+    {
+      "source": "/biere/:slug",
+      "destination": "/bieres/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/biere-west-coast",
+      "destination": "/bieres/foam-west-coast",
+      "permanent": true
+    },
+    {
+      "source": "/biere-lager",
+      "destination": "/bieres/foam-lager",
+      "permanent": true
+    },
+    {
+      "source": "/biere-blanche",
+      "destination": "/bieres/foam-blanche",
+      "permanent": true
+    },
+    {
+      "source": "/biere-lou-foam-daqui",
+      "destination": "/bieres/lou-foam-daqui",
+      "permanent": true
+    },
+    {
+      "source": "/biere-wheat-ale",
+      "destination": "/bieres/wheat-ale",
+      "permanent": true
+    },
+    {
+      "source": "/biere-french-ipa",
+      "destination": "/bieres/french-ipa",
+      "permanent": true
+    },
+    {
+      "source": "/maison-rosamar",
+      "destination": "/notre-histoire",
+      "permanent": true
+    },
+    {
+      "source": "/bars",
+      "destination": "/nos-bars",
+      "permanent": true
     }
   ]
 }

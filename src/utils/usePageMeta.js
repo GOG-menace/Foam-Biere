@@ -16,6 +16,11 @@ function setHeadTag(selector, create, attribute, value) {
  * `path` est l'adresse officielle de la page : les alias (/coffret, /nos-bieres...) pointent vers elle.
  */
 export default function usePageMeta({ title, description, path }) {
+  // Génération des pages HTML au build : on relève les balises pour les écrire dans le <head>
+  if (typeof document === 'undefined') {
+    globalThis.__SSR_HEAD__ = { title, description, canonical: path ? `${SITE_URL}${path}` : null };
+  }
+
   useEffect(() => {
     document.title = title;
 
@@ -25,6 +30,10 @@ export default function usePageMeta({ title, description, path }) {
       return meta;
     }, 'content', description);
 
+    if (!path) {
+      document.head.querySelector('link[rel="canonical"]')?.remove();
+      return;
+    }
     setHeadTag('link[rel="canonical"]', () => {
       const link = document.createElement('link');
       link.setAttribute('rel', 'canonical');

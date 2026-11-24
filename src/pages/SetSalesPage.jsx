@@ -236,6 +236,7 @@ export default function SetSalesPage({ defaultSlug }) {
           <div>
             <h1 className="font-serif text-3xl sm:text-4xl font-bold text-foam-navy leading-tight">
               {product.fullName}
+              <span className="block font-sans text-base sm:text-lg font-semibold text-foam-muted mt-1">Coffret de bières artisanales de Nice</span>
             </h1>
             <p className="text-xs font-bold uppercase tracking-wider text-foam-terracotta mt-1">
               {product.subtitle}
