@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { SETS, SHIPPING_RATES, BARS_DATA } from '../data/products';
 import { computeTotals } from '../data/wheel';
+import { usePromoMode, promoPrice } from '../data/promo';
 import { useCart } from '../context/CartContext';
 import { trackAddToCart, trackBeginCheckout, trackFictivePurchase, trackViewItem } from '../utils/analytics';
 import ScrollReveal from '../components/ScrollReveal';
@@ -50,6 +51,9 @@ export default function SetSalesPage({ defaultSlug }) {
   }, [product.slug]);
 
   const currentPack = selectedFormat === 'pack3' ? product.pack3 : product.pack6;
+  const promoMode = usePromoMode();
+  const isBf = promoMode === 'black_friday';
+  const packPrice = promoPrice(currentPack.price, promoMode);
 
   const handleAddToCart = () => {
     addItem(product, selectedFormat, quantity);
@@ -66,11 +70,12 @@ export default function SetSalesPage({ defaultSlug }) {
       key: `${product.slug}_${selectedFormat}`,
       name: product.name,
       formatLabel: currentPack.format,
-      price: currentPack.price,
-      quantity
+      price: packPrice,
+      quantity,
+      ...(isBf ? { promo: 'black_friday', originalPrice: currentPack.price } : {})
     };
     const isClickAndCollect = deliveryMethod === 'clickAndCollect';
-    const subtotal = currentPack.price * quantity;
+    const subtotal = packPrice * quantity;
     const { shippingCost, discount, grandTotal } = computeTotals({ subtotal, isClickAndCollect, coupon });
     const chosenBar = BARS_DATA.find(b => b.id === selectedBar) || BARS_DATA[0];
 
@@ -225,13 +230,23 @@ export default function SetSalesPage({ defaultSlug }) {
           <div className="p-4 bg-white rounded-2xl border border-foam-border shadow-xs flex items-baseline justify-between">
             <div>
               <div className="flex items-baseline gap-2">
-                <span className="font-serif text-3xl sm:text-4xl font-bold text-foam-navy">
-                  {currentPack.price.toFixed(2)} €
+                {isBf && (
+                  <span className="text-base font-semibold text-foam-muted line-through">
+                    {currentPack.price.toFixed(2)} €
+                  </span>
+                )}
+                <span className={`font-serif text-3xl sm:text-4xl font-bold ${isBf ? 'text-foam-terracotta' : 'text-foam-navy'}`}>
+                  {packPrice.toFixed(2)} €
                 </span>
                 <span className="text-xs font-semibold text-foam-muted">
                   TTC ({currentPack.unitPrice})
                 </span>
               </div>
+              {isBf && (
+                <span className="inline-block mt-1 text-[11px] font-bold uppercase tracking-wider text-white bg-foam-navy px-2 py-0.5 rounded">
+                  Black Friday · -20 %
+                </span>
+              )}
               <span className="text-xs font-semibold text-foam-pine block mt-0.5">
                 {currentPack.savingNote}
               </span>
@@ -414,7 +429,7 @@ export default function SetSalesPage({ defaultSlug }) {
                 className="btn-riviera-terracotta flex-1 text-sm py-3.5"
               >
                 <ShoppingBag className="w-4 h-4 stroke-[2]" />
-                <span>Ajouter au Panier • {(currentPack.price * quantity).toFixed(2)} €</span>
+                <span>Ajouter au Panier • {(packPrice * quantity).toFixed(2)} €</span>
               </button>
             </div>
 

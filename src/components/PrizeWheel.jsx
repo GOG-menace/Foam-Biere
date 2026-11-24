@@ -2,24 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { X, Gift, ShoppingBag } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { useCart } from '../context/CartContext';
-import { WHEEL_PRIZES, drawPrize } from '../data/wheel';
+import { WHEEL_PRIZES, BF_WHEEL_PRIZES, drawPrize } from '../data/wheel';
+import { usePromoMode } from '../data/promo';
 import { trackWheelView, trackWheelDecline, trackWheelSpin } from '../utils/analytics';
 
-const STORAGE_KEY = 'foam_wheel';
 const DELAY_MS = 8000;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const SLICE = 360 / WHEEL_PRIZES.length;
 
-const readStatus = () => {
+const readStatus = (key) => {
   try {
-    return localStorage.getItem(STORAGE_KEY);
+    return localStorage.getItem(key);
   } catch {
     return 'indisponible';
   }
 };
-const writeStatus = (value) => {
+const writeStatus = (key, value) => {
   try {
-    localStorage.setItem(STORAGE_KEY, value);
+    localStorage.setItem(key, value);
   } catch (e) {
     console.warn('LocalStorage write failed:', e);
   }
@@ -38,7 +38,7 @@ const point = (angle, r) => {
   return [100 + r * Math.sin(rad), 100 - r * Math.cos(rad)];
 };
 
-function WheelSvg({ rotation, spinning }) {
+function WheelSvg({ prizes, rotation, spinning }) {
   return (
     <div className="relative w-64 h-64 sm:w-72 sm:h-72 mx-auto">
       {/* Pointeur */}
@@ -60,7 +60,7 @@ function WheelSvg({ rotation, spinning }) {
         aria-label="Roue des lots FAOM"
       >
         <circle cx="100" cy="100" r="99" fill="#FAF6F0" />
-        {WHEEL_PRIZES.map((prize, i) => {
+        {prizes.map((prize, i) => {
           const start = i * SLICE;
           const [x1, y1] = point(start, 94);
           const [x2, y2] = point(start + SLICE, 94);
@@ -88,7 +88,7 @@ function WheelSvg({ rotation, spinning }) {
           );
         })}
         {/* Points décoratifs du bord */}
-        {WHEEL_PRIZES.map((prize, i) => {
+        {prizes.map((prize, i) => {
           const [cx, cy] = point(i * SLICE, 94);
           return <circle key={`dot-${prize.id}`} cx={cx} cy={cy} r="2.6" fill="#DCA037" />;
         })}
@@ -101,6 +101,11 @@ function WheelSvg({ rotation, spinning }) {
 
 export default function PrizeWheel() {
   const { isCartOpen, orderConfirmed, applyCoupon, setIsCartOpen } = useCart();
+  const mode = usePromoMode();
+  const isBf = mode === 'black_friday';
+  const prizes = isBf ? BF_WHEEL_PRIZES : WHEEL_PRIZES;
+  const storageKey = isBf ? 'foam_wheel_bf' : 'foam_wheel';
+  const promoId = isBf ? 'roue_black_friday' : 'roue_faom';
   const [ready, setReady] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState('intro'); // intro | spinning | won
@@ -110,10 +115,13 @@ export default function PrizeWheel() {
   const [rotation, setRotation] = useState(0);
   const [prize, setPrize] = useState(null);
 
-  // Une seule fois par visiteur, 8 s après la vérification d'âge (?roue=1 force l'ouverture)
+  // Une seule fois par visiteur et par version (la roue Black Friday réapparaît), 8 s après la vérification d'âge.
+  // Avant le Black Friday, la fenêtre « Me prévenir » prend sa place. ?roue=1 force l'ouverture.
   useEffect(() => {
+    setReady(false);
     const forced = new URLSearchParams(window.location.search).has('roue');
-    if (!forced && readStatus()) return undefined;
+    if (mode === 'teaser' && !forced) return undefined;
+    if (!forced && readStatus(storageKey)) return undefined;
 
     let timer;
     const start = () => {
@@ -128,22 +136,22 @@ export default function PrizeWheel() {
       window.removeEventListener('foam:age-verified', start);
       clearTimeout(timer);
     };
-  }, []);
+  }, [mode, storageKey]);
 
   // N'interrompt ni le panier ni la fenêtre de commande
   useEffect(() => {
     if (ready && !isOpen && step === 'intro' && !isCartOpen && !orderConfirmed) {
       setIsOpen(true);
-      trackWheelView();
+      trackWheelView(promoId);
     }
-  }, [ready, isOpen, step, isCartOpen, orderConfirmed]);
+  }, [ready, isOpen, step, isCartOpen, orderConfirmed, promoId]);
 
   if (!isOpen) return null;
 
   const close = () => {
     if (step === 'intro') {
-      writeStatus('refus');
-      trackWheelDecline();
+      writeStatus(storageKey, 'refus');
+      trackWheelDecline(promoId);
     }
     setIsOpen(false);
     setReady(false);
@@ -157,10 +165,10 @@ export default function PrizeWheel() {
     }
     setError('');
     setSubmitting(true);
-    const won = drawPrize();
+    const won = drawPrize(prizes);
 
     try {
-      await trackWheelSpin({ email, prize: won });
+      await trackWheelSpin({ email, prize: won, promoId });
     } catch (err) {
       console.warn('Participation non enregistrée :', err);
       setError('Votre participation n’a pas pu être enregistrée. Merci de réessayer dans un instant.');
@@ -169,10 +177,10 @@ export default function PrizeWheel() {
     }
 
     // Arrêt au centre du lot tiré, avec un léger décalage pour un rendu naturel
-    const index = WHEEL_PRIZES.findIndex((p) => p.id === won.id);
+    const index = prizes.findIndex((p) => p.id === won.id);
     const jitter = (Math.random() - 0.5) * SLICE * 0.6;
     const target = 360 * 6 + (360 - (index * SLICE + SLICE / 2)) + jitter;
-    writeStatus('gagne');
+    writeStatus(storageKey, 'gagne');
     setPrize(won);
     setStep('spinning');
     setSubmitting(false);
@@ -206,14 +214,14 @@ export default function PrizeWheel() {
         )}
 
         <p className="text-[11px] uppercase tracking-widest text-foam-terracotta font-bold font-serif">
-          {step === 'won' ? 'Félicitations' : '100 % gagnant'}
+          {step === 'won' ? 'Félicitations' : isBf ? 'Black Friday · 100 % gagnant' : '100 % gagnant'}
         </p>
         <h2 id="roue-titre" className="font-serif text-2xl sm:text-3xl font-bold mt-1 leading-tight">
-          {step === 'won' ? prize.title : 'Tentez votre chance !'}
+          {step === 'won' ? prize.title : isBf ? 'Un lot en plus des -20 %' : 'Tentez votre chance !'}
         </h2>
 
         <div className="mt-5" onTransitionEnd={handleSpinEnd}>
-          <WheelSvg rotation={rotation} spinning={step !== 'intro'} />
+          <WheelSvg prizes={prizes} rotation={rotation} spinning={step !== 'intro'} />
         </div>
 
         {step === 'intro' && (

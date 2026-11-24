@@ -10,6 +10,8 @@ import CheckoutModal from './components/CheckoutModal';
 import ConfirmationModal from './components/ConfirmationModal';
 import LegalAgeModal from './components/LegalAgeModal';
 import PrizeWheel from './components/PrizeWheel';
+import BlackFridayBanner from './components/BlackFridayBanner';
+import BlackFridayTeaser from './components/BlackFridayTeaser';
 
 import HomePage from './pages/HomePage';
 import SetsOverviewPage from './pages/SetsOverviewPage';
@@ -18,6 +20,7 @@ import BeerProductPage from './pages/BeerProductPage';
 import BeersOverviewPage from './pages/BeersOverviewPage';
 import HistoirePage from './pages/HistoirePage';
 import BarsPage from './pages/BarsPage';
+import BlackFridayPage from './pages/BlackFridayPage';
 
 // Top route progress bar giving instant visual feedback on page changes
 function TopProgressBar() {
@@ -147,6 +150,9 @@ function AppContent() {
       {/* Legal Age Gate (Loi Évin) */}
       <LegalAgeModal />
 
+      {/* Bandeau Black Friday (pendant l'offre) */}
+      <BlackFridayBanner />
+
       {/* Shopify-Standard Header with authentic Logo */}
       <Header />
 
@@ -194,6 +200,9 @@ function AppContent() {
             <Route path="/nos-bars" element={<BarsPage />} />
             <Route path="/bars" element={<BarsPage />} />
 
+            {/* Black Friday */}
+            <Route path="/black-friday" element={<BlackFridayPage />} />
+
             {/* Fallback to Home */}
             <Route path="*" element={<HomePage />} />
           </Routes>
@@ -217,6 +226,9 @@ function AppContent() {
 
       {/* Roue 100 % gagnante (email ou refus) */}
       <PrizeWheel />
+
+      {/* Avant le Black Friday : « Me prévenir » par email */}
+      <BlackFridayTeaser />
 
     </div>
   );

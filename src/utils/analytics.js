@@ -163,7 +163,9 @@ function formatCheckoutItems(items) {
     item_name: it.name,
     item_variant: it.formatLabel || it.format,
     price: Number(it.price) || 0,
-    quantity: Number(it.quantity) || 1
+    quantity: Number(it.quantity) || 1,
+    discount: it.originalPrice ? Math.round((it.originalPrice - it.price) * 100) / 100 : undefined,
+    promotion_name: it.promo ? 'Black Friday -20 %' : undefined
   }));
 }
 
@@ -312,22 +314,49 @@ export function saveLeadEmail(email, source = 'payment_unavailable_waitlist') {
  * Roue 100 % gagnante : affichage (view_promotion), refus (roue_refus),
  * participation (generate_lead + select_promotion, email stocké avec le lot gagné).
  */
-const WHEEL_PROMO = { promotion_id: 'roue_faom', promotion_name: 'Roue 100 % gagnante' };
+const WHEEL_NAMES = { roue_faom: 'Roue 100 % gagnante', roue_black_friday: 'Roue Black Friday' };
+const wheelPromo = (id = 'roue_faom') => ({ promotion_id: id, promotion_name: WHEEL_NAMES[id] });
 
-export function trackWheelView() {
-  gtag('event', 'view_promotion', WHEEL_PROMO);
+export function trackWheelView(id) {
+  gtag('event', 'view_promotion', wheelPromo(id));
 }
 
-export function trackWheelDecline() {
-  gtag('event', 'roue_refus', WHEEL_PROMO);
+export function trackWheelDecline(id) {
+  gtag('event', 'roue_refus', wheelPromo(id));
 }
 
-export async function trackWheelSpin({ email, prize }) {
+export async function trackWheelSpin({ email, prize, promoId = 'roue_faom' }) {
+  const WHEEL_PROMO = wheelPromo(promoId);
   const cleanEmail = email.trim().toLowerCase();
-  const response = await recordFirstParty({ type: 'email', email: cleanEmail, origine: 'roue', lot: prize.code });
+  const response = await recordFirstParty({ type: 'email', email: cleanEmail, origine: promoId === 'roue_faom' ? 'roue' : 'roue_bf', lot: prize.code });
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
   saveLeadEmail(cleanEmail, 'roue');
-  gtag('event', 'generate_lead', { lead_source: 'roue', lead_type: 'roue_100_gagnante', coupon: prize.code });
+  gtag('event', 'generate_lead', { lead_source: promoId, lead_type: 'roue_100_gagnante', coupon: prize.code });
   gtag('event', 'select_promotion', { ...WHEEL_PROMO, creative_name: prize.code });
+}
+
+/**
+ * Black Friday : bandeau (view_promotion / select_promotion), fenêtre « Me prévenir »
+ * (view_promotion, bf_alerte_refus, generate_lead avec l'email stocké, origine bf_alerte).
+ */
+export function trackPromoView(promo) {
+  gtag('event', 'view_promotion', promo);
+}
+
+export function trackPromoClick(promo, placement) {
+  gtag('event', 'select_promotion', { ...promo, creative_slot: placement });
+}
+
+export function trackBfAlertDecline() {
+  gtag('event', 'bf_alerte_refus', { promotion_id: 'bf_alerte', promotion_name: 'Alerte Black Friday' });
+}
+
+export async function trackBfAlert({ email, placement }) {
+  const cleanEmail = email.trim().toLowerCase();
+  const response = await recordFirstParty({ type: 'email', email: cleanEmail, origine: 'bf_alerte' });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+  saveLeadEmail(cleanEmail, 'bf_alerte');
+  gtag('event', 'generate_lead', { lead_source: 'bf_alerte', lead_type: 'alerte_black_friday', creative_slot: placement });
 }

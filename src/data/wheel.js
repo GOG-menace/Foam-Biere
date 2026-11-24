@@ -10,14 +10,24 @@ export const WHEEL_PRIZES = [
   { id: 'pct20', lines: ['-20 %'], title: '-20 % sur votre commande', code: 'ROUE20', type: 'percent', value: 20, weight: 3, color: '#2D5E4A' }
 ];
 
-export function drawPrize() {
-  const total = WHEEL_PRIZES.reduce((sum, p) => sum + p.weight, 0);
+// Roue Black Friday : lots plus gros, cumulables avec les -20 % (le -25 % reste rare)
+export const BF_WHEEL_PRIZES = [
+  { id: 'bf10', lines: ['-10 %'], title: '-10 % en plus du Black Friday', code: 'BF10', type: 'percent', value: 10, weight: 35, color: '#C3532B' },
+  { id: 'bfship', lines: ['Livraison', 'offerte'], title: 'La livraison offerte', code: 'BFLIVRAISON', type: 'shipping', value: 0, weight: 20, color: '#1D3C2F' },
+  { id: 'bf15', lines: ['-15 %'], title: '-15 % en plus du Black Friday', code: 'BF15', type: 'percent', value: 15, weight: 20, color: '#DCA037' },
+  { id: 'bfgift', lines: ['1 bière', 'offerte'], title: '1 bière offerte avec votre coffret', code: 'BFBIERE', type: 'gift', value: 0, weight: 12, color: '#112338' },
+  { id: 'bf20', lines: ['-20 %'], title: '-20 % en plus du Black Friday', code: 'BF20', type: 'percent', value: 20, weight: 9, color: '#B35422' },
+  { id: 'bf25', lines: ['-25 %'], title: '-25 % en plus du Black Friday', code: 'BF25', type: 'percent', value: 25, weight: 4, color: '#2D5E4A' }
+];
+
+export function drawPrize(prizes = WHEEL_PRIZES) {
+  const total = prizes.reduce((sum, p) => sum + p.weight, 0);
   let ticket = Math.random() * total;
-  for (const prize of WHEEL_PRIZES) {
+  for (const prize of prizes) {
     ticket -= prize.weight;
     if (ticket < 0) return prize;
   }
-  return WHEEL_PRIZES[0];
+  return prizes[0];
 }
 
 const round2 = (n) => Math.round(n * 100) / 100;

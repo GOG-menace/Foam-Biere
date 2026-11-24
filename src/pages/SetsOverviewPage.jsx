@@ -6,6 +6,7 @@ import { useCart } from '../context/CartContext';
 import { toListItem, trackSelectItem, trackViewItemList } from '../utils/analytics';
 import ScrollReveal from '../components/ScrollReveal';
 import usePageMeta from '../utils/usePageMeta';
+import { usePromoMode, promoPrice, euro } from '../data/promo';
 
 const LIST = { listId: 'coffrets', listName: 'Page Nos coffrets' };
 
@@ -17,6 +18,11 @@ export default function SetsOverviewPage() {
     path: '/coffrets'
   });
   const { addItem } = useCart();
+  const promoMode = usePromoMode();
+  const isBf = promoMode === 'black_friday';
+  const p3 = promoPrice(15, promoMode);
+  const p6 = promoPrice(26, promoMode);
+  const short = (n) => euro(n).replace(',00', '');
 
   const decouverte = SETS['coffret-decouverte'];
   const exotique = SETS['coffret-exotique'];
@@ -49,7 +55,7 @@ export default function SetsOverviewPage() {
           Nos Deux Coffrets de la Riviera
         </h1>
         <p className="text-base text-foam-text leading-relaxed">
-          Découvrez nos deux sélections de bières artisanales niçoises, disponibles en format <strong>Pack de 3 (15,00 €)</strong> ou <strong>Pack de 6 (26,00 €)</strong>. Retrait Click & Collect gratuit sous 2h dans nos deux bars à Nice.
+          Découvrez nos deux sélections de bières artisanales niçoises, disponibles en format <strong>Pack de 3 ({euro(p3)})</strong> ou <strong>Pack de 6 ({euro(p6)})</strong>{isBf && <> pendant le <strong>Black Friday (-20 %)</strong></>}. Retrait Click & Collect gratuit sous 2h dans nos deux bars à Nice.
         </p>
       </ScrollReveal>
 
@@ -94,7 +100,7 @@ export default function SetsOverviewPage() {
               <div className="pt-2 border-t border-foam-borderWarm/60 space-y-3">
                 <div className="flex items-baseline justify-between">
                   <p className="text-xl sm:text-2xl font-serif font-bold text-foam-navy">
-                    À partir de 15 €
+                    À partir de {short(p3)}{isBf && <span className="ml-2 text-xs align-middle font-sans font-bold text-white bg-foam-navy px-2 py-0.5 rounded">-20 %</span>}
                   </p>
                   <span className="text-xs font-semibold text-foam-terracotta font-serif italic">
                     Pack 3 ou Pack 6
@@ -115,7 +121,7 @@ export default function SetsOverviewPage() {
                         : 'text-foam-muted hover:text-foam-navy'
                     }`}
                   >
-                    Pack 3 (15 €)
+                    Pack 3 ({short(p3)})
                   </button>
                   <button
                     type="button"
@@ -126,7 +132,7 @@ export default function SetsOverviewPage() {
                         : 'text-foam-muted hover:text-foam-navy'
                     }`}
                   >
-                    Pack 6 (26 €)
+                    Pack 6 ({short(p6)})
                   </button>
                 </div>
               </div>
@@ -139,7 +145,7 @@ export default function SetsOverviewPage() {
                 className="btn-riviera-terracotta w-full text-xs sm:text-sm py-3.5 flex items-center justify-center gap-2 cursor-pointer shadow-md hover:shadow-terracotta-glow"
               >
                 <ShoppingBag className="w-4 h-4 stroke-[2]" />
-                <span>Ajouter au Panier • {decouverteFormat === 'pack3' ? '15,00 €' : '26,00 €'}</span>
+                <span>Ajouter au Panier • {euro(decouverteFormat === 'pack3' ? p3 : p6)}</span>
               </button>
 
               <div className="text-center">
@@ -189,7 +195,7 @@ export default function SetsOverviewPage() {
               <div className="pt-2 border-t border-foam-borderWarm/60 space-y-3">
                 <div className="flex items-baseline justify-between">
                   <p className="text-xl sm:text-2xl font-serif font-bold text-foam-navy">
-                    À partir de 15 €
+                    À partir de {short(p3)}{isBf && <span className="ml-2 text-xs align-middle font-sans font-bold text-white bg-foam-navy px-2 py-0.5 rounded">-20 %</span>}
                   </p>
                   <span className="text-xs font-semibold text-foam-pine font-serif italic">
                     Pack 3 ou Pack 6
@@ -210,7 +216,7 @@ export default function SetsOverviewPage() {
                         : 'text-foam-muted hover:text-foam-navy'
                     }`}
                   >
-                    Pack 3 (15 €)
+                    Pack 3 ({short(p3)})
                   </button>
                   <button
                     type="button"
@@ -221,7 +227,7 @@ export default function SetsOverviewPage() {
                         : 'text-foam-muted hover:text-foam-navy'
                     }`}
                   >
-                    Pack 6 (26 €)
+                    Pack 6 ({short(p6)})
                   </button>
                 </div>
               </div>
@@ -234,7 +240,7 @@ export default function SetsOverviewPage() {
                 className="btn-riviera-navy w-full text-xs sm:text-sm py-3.5 flex items-center justify-center gap-2 cursor-pointer shadow-md"
               >
                 <ShoppingBag className="w-4 h-4 stroke-[2]" />
-                <span>Ajouter au Panier • {exotiqueFormat === 'pack3' ? '15,00 €' : '26,00 €'}</span>
+                <span>Ajouter au Panier • {euro(exotiqueFormat === 'pack3' ? p3 : p6)}</span>
               </button>
 
               <div className="text-center">

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { BARS_DATA } from '../data/products';
 import { computeTotals } from '../data/wheel';
+import { getPromoMode, promoPrice } from '../data/promo';
 import { trackAddToCart, trackRemoveFromCart } from '../utils/analytics';
 
 const CartContext = createContext();
@@ -11,7 +12,12 @@ export function CartProvider({ children }) {
       const saved = localStorage.getItem('foam_cart');
       if (!saved) return [];
       const parsed = JSON.parse(saved);
+      const bfLive = getPromoMode() === 'black_friday';
       return parsed.map(it => {
+        // Fin de l'offre : les articles repassent au prix normal
+        if (it.promo === 'black_friday' && !bfLive) {
+          it = { ...it, price: it.originalPrice, promo: undefined, originalPrice: undefined };
+        }
         const itemKey = it.key || it.id || `${it.slug}_${it.format || 'pack6'}`;
         const itemImage = it.image || (
           it.slug === 'coffret-exotique' 
@@ -80,6 +86,11 @@ export function CartProvider({ children }) {
         : '/images/classique-team.jpg'
     );
 
+    // Black Friday : -20 % sur les coffrets
+    const isBf = getPromoMode() === 'black_friday';
+    const originalPrice = itemPrice;
+    itemPrice = promoPrice(itemPrice, isBf ? 'black_friday' : 'off');
+
     setItems(prev => {
       const index = prev.findIndex(item => item.key === key || item.id === key);
       if (index > -1) {
@@ -102,7 +113,8 @@ export function CartProvider({ children }) {
         quantity,
         badge: product.badge,
         image: itemImage,
-        imagePlaceholder: product.imagePlaceholder
+        imagePlaceholder: product.imagePlaceholder,
+        ...(isBf ? { promo: 'black_friday', originalPrice } : {})
       }];
     });
 
