@@ -23,6 +23,7 @@ import BarsPage from './pages/BarsPage';
 import BlackFridayPage from './pages/BlackFridayPage';
 import ConcoursPage from './pages/ConcoursPage';
 import ConcoursReglementPage from './pages/ConcoursReglementPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 // Top route progress bar giving instant visual feedback on page changes
 function TopProgressBar() {
@@ -207,8 +208,8 @@ function AppContent() {
             <Route path="/concours" element={<ConcoursPage />} />
             <Route path="/concours/reglement" element={<ConcoursReglementPage />} />
 
-            {/* Fallback to Home */}
-            <Route path="*" element={<HomePage />} />
+            {/* Adresse inconnue : page introuvable (noindex) */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
       </main>

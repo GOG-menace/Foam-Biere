@@ -134,9 +134,9 @@ export default function BeerProductPage({ defaultSlug }) {
           </div>
 
           {/* Callout: Exclusively sold in Coffret (100% clickable) */}
-          <div 
-            onClick={() => navigate('/coffrets')}
-            className="card-riviera p-6 bg-foam-terracottaSoft/80 border-foam-terracotta/30 space-y-4 cursor-pointer hover:border-foam-terracotta/70 hover:shadow-riviera transition-all duration-300 group"
+          <Link
+            to="/coffrets" 
+            className="block card-riviera p-6 bg-foam-terracottaSoft/80 border-foam-terracotta/30 space-y-4 cursor-pointer hover:border-foam-terracotta/70 hover:shadow-riviera transition-all duration-300 group"
           >
             <div className="space-y-1">
               <span className="text-[11px] font-serif font-bold uppercase tracking-wider text-foam-terracotta block">
@@ -155,7 +155,7 @@ export default function BeerProductPage({ defaultSlug }) {
               <span>Commander en Coffret Cadeau</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </div>
-          </div>
+          </Link>
 
           {/* Other beers navigation */}
           <div className="pt-2">

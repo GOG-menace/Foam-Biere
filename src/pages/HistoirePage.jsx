@@ -64,9 +64,9 @@ export default function HistoirePage() {
 
         {/* Chapter 3 : 2022 FAOM (100% Clickable to /bieres) */}
         <ScrollReveal delay={120}>
-          <div 
-            onClick={() => navigate('/bieres')}
-            className="p-6 sm:p-8 bg-foam-subtle/70 rounded-2xl border border-foam-borderWarm/60 space-y-4 cursor-pointer hover:border-foam-terracotta/50 hover:shadow-riviera transition-all duration-300 group"
+          <Link
+            to="/bieres" 
+            className="block p-6 sm:p-8 bg-foam-subtle/70 rounded-2xl border border-foam-borderWarm/60 space-y-4 cursor-pointer hover:border-foam-terracotta/50 hover:shadow-riviera transition-all duration-300 group"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5 text-foam-navy font-serif font-bold text-xl group-hover:text-foam-terracotta transition-colors">
@@ -81,7 +81,7 @@ export default function HistoirePage() {
             <p className="text-sm font-semibold leading-relaxed text-foam-navy">
               FAOM fait ainsi partie des très rares acteurs de la restauration indépendante en France à brasser et embouteiller sa propre bière sur place, en circuit ultra-court.
             </p>
-          </div>
+          </Link>
         </ScrollReveal>
 
         {/* Chapter 4 : le brasseur */}
@@ -99,9 +99,9 @@ export default function HistoirePage() {
         {/* 4 Pillars of Commitment (Clickable) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-foam-border">
           <ScrollReveal delay={0}>
-            <div 
-              onClick={() => navigate('/nos-bars')}
-              className="p-4 bg-white rounded-xl border border-foam-border shadow-xs space-y-1 cursor-pointer hover:border-foam-pine/60 hover:shadow-riviera transition-all duration-300 group h-full"
+            <Link
+              to="/nos-bars" 
+              className="block p-4 bg-white rounded-xl border border-foam-border shadow-xs space-y-1 cursor-pointer hover:border-foam-pine/60 hover:shadow-riviera transition-all duration-300 group h-full"
             >
               <strong className="text-xs font-serif font-bold uppercase tracking-wider text-foam-navy flex items-center gap-1.5 group-hover:text-foam-pine transition-colors">
                 <CheckCircle2 className="w-4 h-4 text-foam-pine group-hover:scale-110 transition-transform" />
@@ -110,13 +110,13 @@ export default function HistoirePage() {
               <p className="text-xs text-foam-muted font-sans">
                 Brassée au port, bue au bar ou emportée directement chez vous en Click & Collect.
               </p>
-            </div>
+            </Link>
           </ScrollReveal>
 
           <ScrollReveal delay={120}>
-            <div 
-              onClick={() => navigate('/bieres')}
-              className="p-4 bg-white rounded-xl border border-foam-border shadow-xs space-y-1 cursor-pointer hover:border-foam-gold/60 hover:shadow-riviera transition-all duration-300 group h-full"
+            <Link
+              to="/bieres" 
+              className="block p-4 bg-white rounded-xl border border-foam-border shadow-xs space-y-1 cursor-pointer hover:border-foam-gold/60 hover:shadow-riviera transition-all duration-300 group h-full"
             >
               <strong className="text-xs font-serif font-bold uppercase tracking-wider text-foam-navy flex items-center gap-1.5 group-hover:text-foam-gold transition-colors">
                 <CheckCircle2 className="w-4 h-4 text-foam-gold group-hover:scale-110 transition-transform" />
@@ -125,14 +125,14 @@ export default function HistoirePage() {
               <p className="text-xs text-foam-muted font-sans">
                 Une bière vivante qui conserve toute la pureté de ses huiles essentielles de houblon.
               </p>
-            </div>
+            </Link>
           </ScrollReveal>
         </div>
 
         {/* Call to action (100% Clickable to /coffrets) */}
         <ScrollReveal delay={0}>
-          <div 
-            onClick={() => navigate('/coffrets')}
+          <Link
+            to="/coffrets" 
             className="pt-6 border-t border-foam-border flex flex-col sm:flex-row items-center justify-between gap-4 cursor-pointer hover:opacity-95 group"
           >
             <span className="text-xs text-foam-navy font-semibold font-serif italic text-sm group-hover:text-foam-terracotta transition-colors">
@@ -142,7 +142,7 @@ export default function HistoirePage() {
               <span>Découvrir nos coffrets</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </div>
-          </div>
+          </Link>
         </ScrollReveal>
 
       </div>

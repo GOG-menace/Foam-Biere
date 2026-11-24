@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { MapPin, Clock, Navigation, CheckCircle2, ShoppingBag, ArrowRight } from 'lucide-react';
 import { BARS_DATA } from '../data/products';
 import ScrollReveal from '../components/ScrollReveal';
@@ -106,9 +106,9 @@ export default function BarsPage() {
 
       {/* Explanatory Banner Click & Collect (100% Clickable) */}
       <ScrollReveal delay={0}>
-        <div 
-          onClick={() => navigate('/coffrets')}
-          className="card-riviera p-8 sm:p-10 space-y-4 cursor-pointer hover:border-foam-pine/50 hover:shadow-riviera transition-all duration-300 group"
+        <Link
+          to="/coffrets" 
+          className="block card-riviera p-8 sm:p-10 space-y-4 cursor-pointer hover:border-foam-pine/50 hover:shadow-riviera transition-all duration-300 group"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
@@ -133,7 +133,7 @@ export default function BarsPage() {
               <p className="text-foam-text leading-relaxed">Votre commande est préparée sous 2h ouvrées. Passez la récupérer en toute simplicité !</p>
             </div>
           </div>
-        </div>
+        </Link>
       </ScrollReveal>
 
     </div>

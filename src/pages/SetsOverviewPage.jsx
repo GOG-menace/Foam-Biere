@@ -36,6 +36,8 @@ export default function SetsOverviewPage() {
   }, []);
 
   // GA4 KPI Event: select_item, puis ouverture de la fiche
+  const trackSet = (product) => trackSelectItem({ ...LIST, item: toListItem(product) });
+
   const openSet = (product, path) => {
     trackSelectItem({ ...LIST, item: toListItem(product) });
     navigate(path);
@@ -149,9 +151,16 @@ export default function SetsOverviewPage() {
               </button>
 
               <div className="text-center">
-                <span className="text-xs font-serif font-bold text-foam-navy group-hover:text-foam-terracotta transition-colors inline-flex items-center gap-1">
+                <Link
+                  to="/coffrets/decouverte"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    trackSet(decouverte);
+                  }}
+                  className="text-xs font-serif font-bold text-foam-navy group-hover:text-foam-terracotta transition-colors inline-flex items-center gap-1"
+                >
                   Accéder à la page du Coffret Découverte <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </span>
+                </Link>
               </div>
             </div>
           </div>
@@ -244,9 +253,16 @@ export default function SetsOverviewPage() {
               </button>
 
               <div className="text-center">
-                <span className="text-xs font-serif font-bold text-foam-navy group-hover:text-foam-pine transition-colors inline-flex items-center gap-1">
+                <Link
+                  to="/coffrets/exotique"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    trackSet(exotique);
+                  }}
+                  className="text-xs font-serif font-bold text-foam-navy group-hover:text-foam-pine transition-colors inline-flex items-center gap-1"
+                >
                   Accéder à la page du Coffret Exotique <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </span>
+                </Link>
               </div>
             </div>
           </div>
@@ -256,9 +272,9 @@ export default function SetsOverviewPage() {
 
       {/* CTA chaleureux vers "Nos bières" */}
       <ScrollReveal delay={0}>
-        <div 
-          onClick={() => navigate('/bieres')}
-          className="card-riviera p-8 sm:p-12 text-center space-y-4 cursor-pointer hover:border-foam-terracotta/50 hover:shadow-riviera transition-all duration-300 group"
+        <Link
+          to="/bieres" 
+          className="block card-riviera p-8 sm:p-12 text-center space-y-4 cursor-pointer hover:border-foam-terracotta/50 hover:shadow-riviera transition-all duration-300 group"
         >
           <p className="text-xs font-bold uppercase tracking-widest text-foam-terracotta">
             Dégustation & Notes Aromatiques
@@ -276,7 +292,7 @@ export default function SetsOverviewPage() {
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </div>
           </div>
-        </div>
+        </Link>
       </ScrollReveal>
 
     </div>

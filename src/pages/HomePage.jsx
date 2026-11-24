@@ -24,6 +24,8 @@ export default function HomePage() {
   }, []);
 
   // GA4 KPI Event: select_item, puis ouverture de la fiche
+  const trackSet = (product) => trackSelectItem({ ...LIST, item: toListItem(product) });
+
   const openSet = (product, path) => {
     trackSelectItem({ ...LIST, item: toListItem(product) });
     navigate(path);
@@ -115,8 +117,8 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             
             <ScrollReveal delay={0}>
-              <div 
-                onClick={() => navigate('/bieres')}
+              <Link
+                to="/bieres" 
                 className="p-4 rounded-2xl bg-white border border-foam-border flex items-center gap-3.5 shadow-riviera-card cursor-pointer hover:border-foam-terracotta/50 hover:shadow-riviera transition-all duration-300 group h-full"
               >
                 <div className="w-12 h-12 rounded-xl bg-foam-terracottaSoft text-foam-terracotta flex items-center justify-center shrink-0 border border-foam-terracotta/20 group-hover:scale-105 transition-transform">
@@ -126,12 +128,12 @@ export default function HomePage() {
                   <h4 className="font-serif font-bold text-sm text-foam-navy group-hover:text-foam-terracotta transition-colors">Microbrasserie du Port</h4>
                   <p className="text-xs text-foam-muted font-normal">Brassé sur place au Quai des Deux Emmanuels</p>
                 </div>
-              </div>
+              </Link>
             </ScrollReveal>
 
             <ScrollReveal delay={120}>
-              <div 
-                onClick={() => navigate('/nos-bars')}
+              <Link
+                to="/nos-bars" 
                 className="p-4 rounded-2xl bg-white border border-foam-border flex items-center gap-3.5 shadow-riviera-card cursor-pointer hover:border-foam-pine/50 hover:shadow-riviera transition-all duration-300 group h-full"
               >
                 <div className="w-12 h-12 rounded-xl bg-foam-pineSoft text-foam-pine flex items-center justify-center shrink-0 border border-foam-pine/20 group-hover:scale-105 transition-transform">
@@ -141,12 +143,12 @@ export default function HomePage() {
                   <h4 className="font-serif font-bold text-sm text-foam-navy group-hover:text-foam-pine transition-colors">Click & Collect Gratuit 0 €</h4>
                   <p className="text-xs text-foam-muted font-normal">Retrait immédiat sous 2h au Port et Place du Pin</p>
                 </div>
-              </div>
+              </Link>
             </ScrollReveal>
 
             <ScrollReveal delay={240}>
-              <div 
-                onClick={() => navigate('/coffrets')}
+              <Link
+                to="/coffrets" 
                 className="p-4 rounded-2xl bg-white border border-foam-border flex items-center gap-3.5 shadow-riviera-card cursor-pointer hover:border-foam-gold/50 hover:shadow-riviera transition-all duration-300 group h-full"
               >
                 <div className="w-12 h-12 rounded-xl bg-foam-goldSoft text-foam-gold flex items-center justify-center shrink-0 border border-foam-gold/20 group-hover:scale-105 transition-transform">
@@ -156,7 +158,7 @@ export default function HomePage() {
                   <h4 className="font-serif font-bold text-sm text-foam-navy group-hover:text-foam-gold transition-colors">Étuis Carton Kraft Rigides</h4>
                   <p className="text-xs text-foam-muted font-normal">Protection anti-casse écoresponsable</p>
                 </div>
-              </div>
+              </Link>
             </ScrollReveal>
 
           </div>
@@ -186,8 +188,9 @@ export default function HomePage() {
           
           {/* CARTE 1 : COFFRET DÉCOUVERTE */}
           <ScrollReveal delay={0}>
-            <div 
-              onClick={() => openSet(decouverte, '/coffrets/decouverte')}
+            <Link
+              to="/coffrets/decouverte" 
+              onClick={() => trackSet(decouverte)}
               className="card-riviera p-6 sm:p-8 flex flex-col justify-between group cursor-pointer hover:border-foam-terracotta/50 hover:shadow-riviera transition-all duration-300 h-full"
             >
               <div className="space-y-5">
@@ -248,13 +251,14 @@ export default function HomePage() {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
-            </div>
+            </Link>
           </ScrollReveal>
 
           {/* CARTE 2 : COFFRET EXOTIQUE */}
           <ScrollReveal delay={140}>
-            <div 
-              onClick={() => openSet(exotique, '/coffrets/exotique')}
+            <Link
+              to="/coffrets/exotique" 
+              onClick={() => trackSet(exotique)}
               className="card-riviera p-6 sm:p-8 flex flex-col justify-between group cursor-pointer hover:border-foam-pine/50 hover:shadow-riviera transition-all duration-300 h-full"
             >
               <div className="space-y-5">
@@ -315,7 +319,7 @@ export default function HomePage() {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
-            </div>
+            </Link>
           </ScrollReveal>
 
         </div>
@@ -328,8 +332,8 @@ export default function HomePage() {
         
         {/* Carte Maison Rosamar */}
         <ScrollReveal delay={0}>
-          <div 
-            onClick={() => navigate('/notre-histoire')}
+          <Link
+            to="/notre-histoire" 
             className="rounded-2xl bg-foam-navy text-white p-8 sm:p-10 flex flex-col justify-between space-y-6 shadow-riviera relative overflow-hidden group cursor-pointer hover:ring-2 hover:ring-foam-gold/50 hover:shadow-2xl transition-all duration-300 h-full"
           >
             <div className="space-y-4">
@@ -348,13 +352,13 @@ export default function HomePage() {
               <span>Découvrir l'Histoire de la Maison Rosamar</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </div>
-          </div>
+          </Link>
         </ScrollReveal>
 
         {/* Carte Nos Bars à Nice */}
         <ScrollReveal delay={140}>
-          <div 
-            onClick={() => navigate('/nos-bars')}
+          <Link
+            to="/nos-bars" 
             className="card-riviera p-8 sm:p-10 flex flex-col justify-between space-y-6 group cursor-pointer hover:border-foam-terracotta/50 hover:shadow-riviera transition-all duration-300 h-full"
           >
             <div className="space-y-4">
@@ -370,7 +374,7 @@ export default function HomePage() {
               <span>Voir les adresses, horaires & terrasses</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </div>
-          </div>
+          </Link>
         </ScrollReveal>
 
       </section>

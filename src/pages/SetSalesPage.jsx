@@ -11,6 +11,7 @@ import { useCart } from '../context/CartContext';
 import { trackAddToCart, trackBeginCheckout, trackFictivePurchase, trackViewItem } from '../utils/analytics';
 import ScrollReveal from '../components/ScrollReveal';
 import usePageMeta from '../utils/usePageMeta';
+import useJsonLd from '../utils/useJsonLd';
 
 export default function SetSalesPage({ defaultSlug }) {
   const navigate = useNavigate();
@@ -52,6 +53,25 @@ export default function SetSalesPage({ defaultSlug }) {
 
   const currentPack = selectedFormat === 'pack3' ? product.pack3 : product.pack6;
   const promoMode = usePromoMode();
+
+  // Données structurées produit : nom, image, marque et fourchette de prix (pack de 3 à pack de 6)
+  useJsonLd('produit', {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.description,
+    image: `https://www.peronnetgauvain.fr${product.image}`,
+    brand: { '@type': 'Brand', name: 'FAOM' },
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'EUR',
+      lowPrice: promoPrice(product.pack3.price, promoMode),
+      highPrice: promoPrice(product.pack6.price, promoMode),
+      offerCount: 2,
+      availability: 'https://schema.org/InStock',
+      seller: { '@id': 'https://www.peronnetgauvain.fr/#faom' }
+    }
+  });
   const isBf = promoMode === 'black_friday';
   const packPrice = promoPrice(currentPack.price, promoMode);
 
@@ -183,30 +203,30 @@ export default function SetSalesPage({ defaultSlug }) {
 
           {/* Guarantees row below image */}
           <div className="grid grid-cols-3 gap-3 text-center text-xs text-foam-navy pt-2">
-            <div 
-              onClick={() => navigate('/bieres')}
-              className="p-3.5 bg-white rounded-xl border border-foam-border shadow-xs cursor-pointer hover:border-foam-terracotta/50 hover:shadow-riviera transition-all duration-300 group"
+            <Link
+              to="/bieres" 
+              className="block p-3.5 bg-white rounded-xl border border-foam-border shadow-xs cursor-pointer hover:border-foam-terracotta/50 hover:shadow-riviera transition-all duration-300 group"
             >
               <Beer className="w-5 h-5 text-foam-terracotta mx-auto mb-1 stroke-[2] group-hover:scale-110 transition-transform" />
               <p className="font-bold text-[11px] group-hover:text-foam-terracotta transition-colors">100% Artisanal</p>
               <p className="text-[10px] text-foam-muted">Brassée au Port de Nice</p>
-            </div>
-            <div 
-              onClick={() => navigate('/nos-bars')}
-              className="p-3.5 bg-foam-pineSoft rounded-xl border border-foam-pine/20 shadow-xs cursor-pointer hover:border-foam-pine/60 hover:shadow-riviera transition-all duration-300 group"
+            </Link>
+            <Link
+              to="/nos-bars" 
+              className="block p-3.5 bg-foam-pineSoft rounded-xl border border-foam-pine/20 shadow-xs cursor-pointer hover:border-foam-pine/60 hover:shadow-riviera transition-all duration-300 group"
             >
               <MapPin className="w-5 h-5 text-foam-pine mx-auto mb-1 stroke-[2] group-hover:scale-110 transition-transform" />
               <p className="font-bold text-[11px] text-foam-pine">Click & Collect 0 €</p>
               <p className="text-[10px] text-foam-pine">Prêt en 2h au bar</p>
-            </div>
-            <div 
-              onClick={() => navigate('/coffrets')}
-              className="p-3.5 bg-white rounded-xl border border-foam-border shadow-xs cursor-pointer hover:border-foam-navy/50 hover:shadow-riviera transition-all duration-300 group"
+            </Link>
+            <Link
+              to="/coffrets" 
+              className="block p-3.5 bg-white rounded-xl border border-foam-border shadow-xs cursor-pointer hover:border-foam-navy/50 hover:shadow-riviera transition-all duration-300 group"
             >
               <ShieldCheck className="w-5 h-5 text-foam-navy mx-auto mb-1 stroke-[2] group-hover:scale-110 transition-transform" />
               <p className="font-bold text-[11px] group-hover:text-foam-navy transition-colors">Garantie Anti-Casse</p>
               <p className="text-[10px] text-foam-muted">Étui kraft renforcé</p>
-            </div>
+            </Link>
           </div>
         </ScrollReveal>
 
@@ -457,8 +477,8 @@ export default function SetSalesPage({ defaultSlug }) {
           </div>
 
           {/* Other set showcase card (100% clickable) */}
-          <div 
-            onClick={() => navigate(`/coffrets/${otherSlug === 'coffret-exotique' ? 'exotique' : 'decouverte'}`)}
+          <Link
+            to={`/coffrets/${otherSlug === 'coffret-exotique' ? 'exotique' : 'decouverte'}`} 
             className="p-4 rounded-2xl bg-[#FAF6F0] border border-foam-borderWarm hover:border-foam-terracotta/60 hover:shadow-riviera transition-all duration-300 cursor-pointer flex items-center justify-between group"
           >
             <div className="flex items-center gap-3">
@@ -480,7 +500,7 @@ export default function SetSalesPage({ defaultSlug }) {
               </div>
             </div>
             <ArrowRight className="w-4 h-4 text-foam-navy group-hover:text-foam-terracotta group-hover:translate-x-1 transition-all shrink-0 ml-2" />
-          </div>
+          </Link>
 
         </ScrollReveal>
 

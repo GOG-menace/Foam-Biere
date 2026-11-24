@@ -101,11 +101,17 @@ export default function BeersOverviewPage() {
 
               {/* Actions vers la fiche recette et les coffrets */}
               <div className="pt-4 border-t border-foam-border space-y-2.5">
-                <div className="btn-riviera-outline w-full text-xs sm:text-sm flex items-center justify-center gap-2 text-center group-hover:bg-foam-navy group-hover:text-white group-hover:border-foam-navy transition-all">
+                <Link
+                  to={`/bieres/${beer.slug}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    trackSelectItem({ ...LIST, item: toListItem(beer) });
+                  }}
+                  className="btn-riviera-outline w-full text-xs sm:text-sm flex items-center justify-center gap-2 text-center group-hover:bg-foam-navy group-hover:text-white group-hover:border-foam-navy transition-all">
                   <Beer className="w-4 h-4 shrink-0 text-foam-terracotta group-hover:text-white stroke-[2] transition-colors" />
                   <span>Découvrir la fiche dégustation</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </div>
+                </Link>
                 <div className="text-center pt-0.5">
                   <button
                     type="button"
@@ -143,29 +149,25 @@ export default function BeersOverviewPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 text-xs">
-            <div 
-              onClick={(e) => {
-                e.stopPropagation();
-                navigate('/coffrets/decouverte');
-              }}
-              className="p-4 rounded-xl bg-foam-subtle/80 border border-foam-borderWarm/80 hover:border-foam-terracotta/60 transition-all cursor-pointer"
+            <Link
+              to="/coffrets/decouverte" 
+              onClick={(e) => e.stopPropagation()}
+              className="block p-4 rounded-xl bg-foam-subtle/80 border border-foam-borderWarm/80 hover:border-foam-terracotta/60 transition-all cursor-pointer"
             >
               <span className="px-2 py-0.5 rounded bg-foam-terracotta text-white text-[10px] font-semibold mb-2 inline-block">Coffret Signature</span>
               <h4 className="font-serif font-bold text-sm text-foam-navy">Coffret Découverte</h4>
               <p className="text-[11px] text-foam-text mt-1">L'assortiment classique : West Coast, Lager et Blanche. À partir de 15 €.</p>
-            </div>
+            </Link>
 
-            <div 
-              onClick={(e) => {
-                e.stopPropagation();
-                navigate('/coffrets/exotique');
-              }}
-              className="p-4 rounded-xl bg-foam-subtle/80 border border-foam-borderWarm/80 hover:border-foam-pine/60 transition-all cursor-pointer"
+            <Link
+              to="/coffrets/exotique" 
+              onClick={(e) => e.stopPropagation()}
+              className="block p-4 rounded-xl bg-foam-subtle/80 border border-foam-borderWarm/80 hover:border-foam-pine/60 transition-all cursor-pointer"
             >
               <span className="px-2 py-0.5 rounded bg-foam-pine text-white text-[10px] font-semibold mb-2 inline-block">Édition Spéciale</span>
               <h4 className="font-serif font-bold text-sm text-foam-navy">Coffret Exotique</h4>
               <p className="text-[11px] text-foam-text mt-1">Sélection cuvées phares : Lou FAOM d’Aqui, Wheat Ale et French IPA. À partir de 15 €.</p>
-            </div>
+            </Link>
           </div>
 
           <div className="pt-4 border-t border-foam-border flex flex-col sm:flex-row items-center justify-between gap-4">
