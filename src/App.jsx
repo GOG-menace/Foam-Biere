@@ -21,6 +21,8 @@ import BeersOverviewPage from './pages/BeersOverviewPage';
 import HistoirePage from './pages/HistoirePage';
 import BarsPage from './pages/BarsPage';
 import BlackFridayPage from './pages/BlackFridayPage';
+import ConcoursPage from './pages/ConcoursPage';
+import ConcoursReglementPage from './pages/ConcoursReglementPage';
 
 // Top route progress bar giving instant visual feedback on page changes
 function TopProgressBar() {
@@ -202,6 +204,8 @@ function AppContent() {
 
             {/* Black Friday */}
             <Route path="/black-friday" element={<BlackFridayPage />} />
+            <Route path="/concours" element={<ConcoursPage />} />
+            <Route path="/concours/reglement" element={<ConcoursReglementPage />} />
 
             {/* Fallback to Home */}
             <Route path="*" element={<HomePage />} />

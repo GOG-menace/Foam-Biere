@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingBag, MapPin, Gift } from 'lucide-react';
+import { ShoppingBag, MapPin, Gift, ArrowRight } from 'lucide-react';
 import { SETS } from '../data/products';
 import { useCart } from '../context/CartContext';
 import { usePromoMode, promoPrice, euro, BF_START, BF_END, BF_PROMO } from '../data/promo';
@@ -110,6 +110,25 @@ export default function BlackFridayPage() {
           <p className="text-sm text-foam-text">Le Black Friday est terminé. Nos coffrets restent disponibles toute l’année.</p>
           <Link to="/coffrets" className="btn-riviera-terracotta inline-flex text-sm py-3 px-6">Voir les coffrets</Link>
         </div>
+      )}
+
+      {mode !== 'off' && (
+        <Link
+          to="/concours?from=page_black_friday"
+          className="block p-5 sm:p-6 rounded-3xl border-2 border-foam-gold bg-foam-goldSoft hover:shadow-riviera transition-shadow"
+        >
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+            <div>
+              <p className="font-serif text-xl font-bold text-foam-navy flex items-center justify-center sm:justify-start gap-2">
+                <Gift className="w-5 h-5 text-foam-terracotta" /> Concours : gagnez nos 2 coffrets
+              </p>
+              <p className="text-sm text-foam-text mt-1">Classique + Exotique, 12 bières. Gratuit, jusqu’au 30 novembre.</p>
+            </div>
+            <span className="btn-riviera-terracotta text-sm py-3 px-5 shrink-0">
+              Je participe <ArrowRight className="w-4 h-4" />
+            </span>
+          </div>
+        </Link>
       )}
 
       <p className="text-center text-[11px] text-foam-muted font-medium">

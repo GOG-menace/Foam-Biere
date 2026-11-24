@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Bell } from 'lucide-react';
+import { ArrowRight, Bell, Gift } from 'lucide-react';
 import { usePromoMode, useCountdown, BF_START, BF_END, BF_PROMO } from '../data/promo';
 import { trackPromoView, trackPromoClick } from '../utils/analytics';
 
 const pad = (n) => String(n).padStart(2, '0');
 const ALERT_PROMO = { promotion_id: 'bf_alerte', promotion_name: 'Alerte Black Friday' };
+const CONTEST_PROMO = { promotion_id: 'concours_bf', promotion_name: 'Concours 2 coffrets' };
 
 // Bandeau en haut de chaque page : avant l'offre il mène à l'inscription « Me prévenir »,
 // pendant l'offre il mène aux coffrets à -20 %. Les deux renvoient vers /black-friday.
@@ -32,12 +33,13 @@ export default function BlackFridayBanner() {
   const timeLeft = `${days > 0 ? `${days} j ` : ''}${pad(hours)} h ${pad(minutes)} min ${pad(seconds)} s`;
 
   return (
-    <Link
-      to="/black-friday"
-      onClick={() => trackPromoClick(promo, 'bandeau')}
-      className="block bg-foam-navy text-white hover:bg-foam-navyLight transition-colors"
-    >
-      <div className="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-0.5 text-xs sm:text-sm text-center">
+    <div className="bg-foam-navy text-white">
+      <div className="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs sm:text-sm text-center">
+      <Link
+        to="/black-friday"
+        onClick={() => trackPromoClick(promo, 'bandeau')}
+        className="flex flex-wrap items-center justify-center gap-x-3 gap-y-0.5 hover:text-foam-gold transition-colors"
+      >
         <span className="font-serif font-bold tracking-wide text-foam-gold">BLACK FRIDAY</span>
         <span className="font-semibold">
           {isTeaser ? '-20 % sur tous les coffrets dès jeudi 18 h' : '-20 % sur tous les coffrets'}
@@ -56,7 +58,15 @@ export default function BlackFridayBanner() {
             </>
           )}
         </span>
+      </Link>
+      <Link
+        to="/concours?from=bandeau"
+        onClick={() => trackPromoClick(CONTEST_PROMO, 'bandeau')}
+        className="inline-flex items-center gap-1 font-bold text-foam-gold hover:text-white transition-colors"
+      >
+        <Gift className="w-3.5 h-3.5" /> Concours : 2 coffrets à gagner
+      </Link>
       </div>
-    </Link>
+    </div>
   );
 }

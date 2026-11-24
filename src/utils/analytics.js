@@ -360,3 +360,18 @@ export async function trackBfAlert({ email, placement }) {
   saveLeadEmail(cleanEmail, 'bf_alerte');
   gtag('event', 'generate_lead', { lead_source: 'bf_alerte', lead_type: 'alerte_black_friday', creative_slot: placement });
 }
+
+/**
+ * Concours (2 coffrets à gagner) : participation stockée une fois par email (type « concours »
+ * dans le CSV, avec sa provenance), generate_lead dans GA4. Renvoie 'ok' ou 'deja_inscrit'.
+ */
+export async function trackContestEntry({ email, source }) {
+  const cleanEmail = email.trim().toLowerCase();
+  const response = await recordFirstParty({ type: 'concours', email: cleanEmail, origine: 'concours', source });
+  if (response.status === 409) return 'deja_inscrit';
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+  saveLeadEmail(cleanEmail, 'concours');
+  gtag('event', 'generate_lead', { lead_source: 'concours', lead_type: 'concours_2_coffrets', traffic_origin: source });
+  return 'ok';
+}
