@@ -93,18 +93,22 @@ export default function ConcoursPage() {
           )}
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
-          {[classique, exotique].map((set) => (
-            <Link
-              key={set.slug}
-              to={set.slug.replace('coffret-', '/coffrets/')}
-              className="card-riviera overflow-hidden flex flex-col"
-            >
-              <img src={set.image} alt={set.name} className="w-full aspect-square md:aspect-auto md:flex-1 md:min-h-0 object-cover" />
-              <span className="p-3 text-xs sm:text-sm font-serif font-bold text-foam-navy">{set.name} · 6 bouteilles</span>
-            </Link>
-          ))}
-        </div>
+        <figure className="card-riviera overflow-hidden flex flex-col self-center">
+          <img
+            src="/images/concours-coffrets-noel.jpg"
+            alt="Le Coffret Classique et le Coffret Exotique FAOM, édition de Noël, à gagner"
+            width="1400"
+            height="781"
+            className="w-full h-auto"
+          />
+          <figcaption className="p-3 text-xs sm:text-sm text-foam-navy flex flex-wrap gap-x-3 gap-y-1 justify-center">
+            {[classique, exotique].map((set) => (
+              <Link key={set.slug} to={set.slug.replace('coffret-', '/coffrets/')} className="font-serif font-bold hover:text-foam-terracotta underline-offset-2 hover:underline">
+                {set.name} · 6 bouteilles
+              </Link>
+            ))}
+          </figcaption>
+        </figure>
       </section>
 
       <section className="max-w-md mx-auto">

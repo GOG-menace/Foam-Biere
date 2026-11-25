@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { X, Bell, Check } from 'lucide-react';
+import { X, Bell, Check, Gift, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { usePromoMode, useCountdown, BF_START } from '../data/promo';
-import { trackBfAlert, trackBfAlertDecline, trackPromoView } from '../utils/analytics';
+import { trackBfAlert, trackBfAlertDecline, trackPromoView, trackPromoClick } from '../utils/analytics';
 
 const STORAGE_KEY = 'foam_bf_alerte';
 const DELAY_MS = 8000;
@@ -183,6 +184,37 @@ export default function BlackFridayTeaser() {
         <div className="bg-[#FAF6F0] px-6 py-6 text-center text-foam-navy space-y-3">
           <p className="text-sm text-foam-text">Laissez votre email, on vous prévient dès que l’offre est ouverte.</p>
           <BfAlertForm placement="fenetre" onDone={() => setSubscribed(true)} />
+
+          {/* Concours : 2 coffrets à gagner */}
+          <Link
+            to="/concours?from=fenetre_black_friday"
+            onClick={() => {
+              trackPromoClick({ promotion_id: 'concours_bf', promotion_name: 'Concours 2 coffrets' }, 'fenetre_black_friday');
+              try {
+                localStorage.setItem(STORAGE_KEY, subscribed ? 'inscrit' : 'concours');
+              } catch (e) {
+                console.warn('LocalStorage write failed:', e);
+              }
+              setReady(false);
+              setIsOpen(false);
+            }}
+            className="flex items-center gap-3 p-2.5 rounded-2xl border-2 border-foam-gold bg-foam-goldSoft text-left hover:shadow-riviera transition-shadow"
+          >
+            <img
+              src="/images/concours-coffrets-noel.jpg"
+              alt="Les 2 coffrets FAOM à gagner"
+              className="w-24 h-16 sm:w-28 sm:h-[4.5rem] rounded-xl object-cover shrink-0"
+            />
+            <span className="flex-1 min-w-0">
+              <span className="flex items-center gap-1.5 font-serif font-bold text-sm text-foam-navy">
+                <Gift className="w-4 h-4 text-foam-terracotta shrink-0" /> Concours : gagnez nos 2 coffrets
+              </span>
+              <span className="block text-[11px] text-foam-text mt-0.5">Classique + Exotique, gratuit, jusqu’au 30 novembre.</span>
+              <span className="inline-flex items-center gap-1 text-xs font-bold text-foam-terracotta mt-1">
+                Je participe <ArrowRight className="w-3.5 h-3.5" />
+              </span>
+            </span>
+          </Link>
           <button
             type="button"
             onClick={close}
